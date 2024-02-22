@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# Dream 8조 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 프로젝트 명 : Dream
 
-Currently, two official plugins are available:
+# 목차
+1. 프로젝트 소개
+2. 기획
+3. 느낀점
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+# 1. 프로젝트 소개
+  ## 1) 프로젝트 이름 : Dream
+  ## 2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
+  ## 3) 프로젝트 vacel URL : 
+  ## 4) 작동 화면 :
+  ## 5) 프로젝트 소개 : 환경을 생각하는 중고거래 플랫폼 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# 2. 기획
+  ## 1) 기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# 3. 느낀점
