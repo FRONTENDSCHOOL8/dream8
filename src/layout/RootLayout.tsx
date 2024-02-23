@@ -11,7 +11,7 @@ function RootLayout() {
       <GlobalNavBar />
       <main className="w-full">
         RootLayout 페이지입니다.
-        {state === 'loadi\ng' ? '로딩중입니다~~' : <Outlet />}
+        {state === 'loading' ? '로딩중입니다~~' : <Outlet />}
       </main>
       <Footer />
     </>
