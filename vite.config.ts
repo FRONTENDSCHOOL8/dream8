@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 import viteImagemin from '@vheemstra/vite-plugin-imagemin';
 import imageminGifSicle from 'imagemin-gifsicle';
@@ -14,6 +15,7 @@ export default defineConfig({
   //   base: '/EUID',
   plugins: [
     react(),
+    tsconfigPaths(),
     viteImagemin({
       plugins: {
         jpg: imageminMozjpeg(),
@@ -29,9 +31,13 @@ export default defineConfig({
       },
     }),
   ],
-  resolve: {
-    alias: { '@': path.resolve(__dirname, './src') },
+  server: {
+    port: 3000, // default: 5173
+    open: true, // default: false
   },
+  // resolve: {
+  //   alias: { '@': path.resolve(__dirname, './src') },
+  // },
   css: {
     devSourcemap: true,
     modules: {
