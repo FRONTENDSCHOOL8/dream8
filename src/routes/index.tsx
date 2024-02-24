@@ -7,7 +7,7 @@ import RootLayout from '@/layout/RootLayout';
 // import NotFound from '@/pages/NotFound';
 
 // 내비게이션(Navigation)
-import navigation from '@/routes/navigation';
+import navigation from '@/routes/navigaition';
 
 // 루트 구성(routes configuration)
 const routes = [
