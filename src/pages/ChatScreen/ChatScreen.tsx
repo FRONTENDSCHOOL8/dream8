@@ -1,5 +1,5 @@
 function ChatScreen() {
-  return;
+  return <div> 채팅창 </div>;
 }
 
 export default ChatScreen;
