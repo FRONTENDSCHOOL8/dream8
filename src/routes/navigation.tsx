@@ -27,7 +27,7 @@ const navigationItems = [
   {
     id: 'SignIn',
     index: false,
-    path: '/',
+    path: '/SignIn',
     text: '로그인 페이지',
     element: <SignIn />,
     // lazy: () => import('../pages/Home/Home'),
