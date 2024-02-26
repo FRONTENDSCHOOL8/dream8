@@ -14,6 +14,7 @@ import {
   ProductDetails,
   News,
 } from '@/pages';
+import ExchangeWrite from '@/pages/Exchange/page/ExchangeWrite/ExchangeWrite';
 
 // 내비게이션 구성(navigation configuration)
 const navigationItems = [
@@ -103,6 +104,14 @@ const navigationItems = [
     path: '/ExchangeDetails',
     text: '교환 상세페이지',
     element: <ExchangeDetails />,
+    // lazy: () => import('../pages/Home/Home'),
+  },
+  {
+    id: 'ExchangeWrite',
+    index: false,
+    path: '/ExchangeWrite',
+    text: '교환 게시글 작성 페이지',
+    element: <ExchangeWrite />,
     // lazy: () => import('../pages/Home/Home'),
   },
   {
