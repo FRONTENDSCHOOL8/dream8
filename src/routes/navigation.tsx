@@ -1,124 +1,135 @@
-import {
-  ChatList,
-  ChatScreen,
-  Donation,
-  Exchange,
-  ExchangeDetails,
-  Home,
-  SignIn,
-  SignUp,
-  MyPage,
-  MypageUserSetting,
-  Product,
-  Payment,
-  ProductDetails,
-} from '@/pages';
+import { queryClient } from './routingStart';
 
 // 내비게이션 구성(navigation configuration)
 const navigationItems = [
   {
     id: 'home',
-    index: true,
-    path: '',
+    // lazy load 를 사용할 경우에는 index 프로퍼티를 사용할 수 없습니다.
+    // index: true,
+    path: '/',
     text: '홈',
-    element: <Home />,
-    // lazy: () => import('../pages/Home/Home'),
+    // element: <Home />,
+    // react-router-dom 의 lazy load는 아래와 같은 방법으로 사용합니다.
+    lazy: async () => {
+      const Module = await import('@/pages/Home/Home');
+      return { Component: Module.default };
+    },
+
+    // loadr와 component 두개를 가져올 때 방법
+    // async lazy() {
+    //   const { loader, Component } = await import('@/pages/Home/Home');
+    //   return {
+    //     loader: loader(queryClient),
+    //     Component,
+    //   };
+    // },
   },
   {
     id: 'SignIn',
-    index: false,
     path: '/SignIn',
     text: '로그인 페이지',
-    element: <SignIn />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Login/SignIn');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'SignUp',
-    index: false,
     path: '/SignUp',
     text: '회원가입 페이지',
-    element: <SignUp />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Login/SignUp');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'MyPage',
-    index: false,
     path: '/MyPage',
     text: '마이페이지',
-    element: <MyPage />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Mypage/MyPage');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'MypageUserSetting',
-    index: false,
     path: '/MypageUserSetting',
-    text: '마이페이지',
-    element: <MypageUserSetting />,
-    // lazy: () => import('../pages/Home/Home'),
+    text: '회원설정',
+    lazy: async () => {
+      const Module = await import('@/pages/Mypage/MypageUserSetting');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'Product',
-    index: false,
     path: '/Product',
     text: '판매 메인페이지',
-    element: <Product />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Product/Product');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'ProductDetails',
-    index: false,
     path: '/ProductDetails',
     text: '판매 상세페이지',
-    element: <ProductDetails />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Product/ProductDetails');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'Payment',
-    index: false,
     path: '/Payment',
-    text: '판매 작성페이지',
-    element: <Payment />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Product/Payment');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'Exchange',
-    index: false,
     path: '/Exchange',
     text: '교환페이지',
-    element: <Exchange />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Exchange/Exchange');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'ExchangeDetails',
-    index: false,
     path: '/ExchangeDetails',
     text: '교환 상세페이지',
-    element: <ExchangeDetails />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Exchange/ExchangeDetails');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'Donation',
-    index: false,
     path: '/Donation',
     text: '기부페이지',
-    element: <Donation />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/Donation/Donation');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'ChatScreen',
-    index: false,
     path: '/ChatScreen',
     text: '채팅페이지',
-    element: <ChatScreen />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/ChatScreen/ChatScreen');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'ChatList',
-    index: false,
     path: '/ChatList',
     text: '채팅리스트 페이지',
-    element: <ChatList />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/ChatScreen/ChatList');
+      return { Component: Module.default };
+    },
   },
 ];
 
