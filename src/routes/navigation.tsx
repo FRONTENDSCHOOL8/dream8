@@ -26,11 +26,12 @@ const navigationItems = [
   },
   {
     id: 'news',
-    index: false,
     path: '/News',
     text: '뉴스',
-    element: <News />,
-    // lazy: () => import('../pages/Home/Home'),
+    lazy: async () => {
+      const Module = await import('@/pages/News/News');
+      return { Component: Module.default };
+    },
   },
   {
     id: 'SignIn',
