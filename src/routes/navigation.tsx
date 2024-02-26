@@ -26,15 +26,15 @@ const navigationItems = [
   },
   {
     id: 'SignIn',
-    index: true,
-    path: '/',
+    index: false,
+    path: '/SignIn',
     text: '로그인 페이지',
     element: <SignIn />,
     // lazy: () => import('../pages/Home/Home'),
   },
   {
     id: 'SignUp',
-    index: true,
+    index: false,
     path: '/SignUp',
     text: '회원가입 페이지',
     element: <SignUp />,
@@ -42,7 +42,7 @@ const navigationItems = [
   },
   {
     id: 'MyPage',
-    index: true,
+    index: false,
     path: '/MyPage',
     text: '마이페이지',
     element: <MyPage />,
@@ -50,7 +50,7 @@ const navigationItems = [
   },
   {
     id: 'MypageUserSetting',
-    index: true,
+    index: false,
     path: '/MypageUserSetting',
     text: '마이페이지',
     element: <MypageUserSetting />,
@@ -58,7 +58,7 @@ const navigationItems = [
   },
   {
     id: 'Product',
-    index: true,
+    index: false,
     path: '/Product',
     text: '판매 메인페이지',
     element: <Product />,
@@ -66,7 +66,7 @@ const navigationItems = [
   },
   {
     id: 'ProductDetails',
-    index: true,
+    index: false,
     path: '/ProductDetails',
     text: '판매 상세페이지',
     element: <ProductDetails />,
@@ -74,7 +74,7 @@ const navigationItems = [
   },
   {
     id: 'Payment',
-    index: true,
+    index: false,
     path: '/Payment',
     text: '판매 작성페이지',
     element: <Payment />,
@@ -82,7 +82,7 @@ const navigationItems = [
   },
   {
     id: 'Exchange',
-    index: true,
+    index: false,
     path: '/Exchange',
     text: '교환페이지',
     element: <Exchange />,
@@ -90,7 +90,7 @@ const navigationItems = [
   },
   {
     id: 'ExchangeDetails',
-    index: true,
+    index: false,
     path: '/ExchangeDetails',
     text: '교환 상세페이지',
     element: <ExchangeDetails />,
@@ -98,7 +98,7 @@ const navigationItems = [
   },
   {
     id: 'Donation',
-    index: true,
+    index: false,
     path: '/Donation',
     text: '기부페이지',
     element: <Donation />,
@@ -106,7 +106,7 @@ const navigationItems = [
   },
   {
     id: 'ChatScreen',
-    index: true,
+    index: false,
     path: '/ChatScreen',
     text: '채팅페이지',
     element: <ChatScreen />,
@@ -114,7 +114,7 @@ const navigationItems = [
   },
   {
     id: 'ChatList',
-    index: true,
+    index: false,
     path: '/ChatList',
     text: '채팅리스트 페이지',
     element: <ChatList />,
