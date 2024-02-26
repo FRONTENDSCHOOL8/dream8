@@ -25,6 +25,14 @@ const navigationItems = [
     // },
   },
   {
+    id: 'news',
+    index: false,
+    path: '/News',
+    text: '뉴스',
+    element: <News />,
+    // lazy: () => import('../pages/Home/Home'),
+  },
+  {
     id: 'SignIn',
     path: '/SignIn',
     text: '로그인 페이지',
