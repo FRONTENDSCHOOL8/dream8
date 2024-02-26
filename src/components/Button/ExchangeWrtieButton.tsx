@@ -4,7 +4,7 @@ interface ButtonName {
   name: string;
 }
 
-function MoreButton({ name }: ButtonName) {
+function ExchangeWriteButton({ name }: ButtonName) {
   return (
     <Link to="/ExchangeWrite">
       <button
@@ -17,4 +17,4 @@ function MoreButton({ name }: ButtonName) {
   );
 }
 
-export default MoreButton;
+export default ExchangeWriteButton;
