@@ -21,7 +21,7 @@ function Header() {
         <Link to="/Donation" aria-label="후원 페이지로 이동">
           후원
         </Link>
-        <Link to="/" aria-label="소식 페이지로 이동">
+        <Link to="/News" aria-label="소식 페이지로 이동">
           소식
         </Link>
       </nav>

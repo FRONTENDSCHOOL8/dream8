@@ -12,6 +12,7 @@ import {
   Product,
   Payment,
   ProductDetails,
+  News,
 } from '@/pages';
 
 // 내비게이션 구성(navigation configuration)
@@ -22,6 +23,14 @@ const navigationItems = [
     path: '',
     text: '홈',
     element: <Home />,
+    // lazy: () => import('../pages/Home/Home'),
+  },
+  {
+    id: 'news',
+    index: false,
+    path: '/News',
+    text: '뉴스',
+    element: <News />,
     // lazy: () => import('../pages/Home/Home'),
   },
   {
