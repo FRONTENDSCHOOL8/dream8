@@ -9,7 +9,7 @@ function ExchangeWriteButton({ name }: ButtonName) {
     <Link to="/ExchangeWrite">
       <button
         aria-label="게시글 작성 버튼"
-        className="text-blue-primary border-2 border-blue-primary text-[16px] px-3 rounded-[5px] hover:bg-blue-primary hover:text-white"
+        className=" text-blue-primary border-2 border-blue-primary px-3 rounded-[5px] hover:bg-blue-primary hover:text-white"
       >
         {name}
       </button>
