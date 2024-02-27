@@ -47,7 +47,7 @@ const navigationItems = [
     path: '/SignIn',
     text: '로그인 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignIn');
+      const Module = await import('@/pages/Login/SignIn/page/SignIn');
       return { Component: Module.default };
     },
   },
@@ -56,7 +56,7 @@ const navigationItems = [
     path: '/SignUp',
     text: '회원가입 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignUp');
+      const Module = await import('@/pages/Login/SignUp/page/SignUp');
       return { Component: Module.default };
     },
   },
@@ -155,6 +155,15 @@ const navigationItems = [
     text: '채팅리스트 페이지',
     lazy: async () => {
       const Module = await import('@/pages/ChatScreen/ChatList');
+      return { Component: Module.default };
+    },
+  },
+  {
+    id: 'KakaoRedirect',
+    path: '/oauth',
+    text: '카카오로그인 Redirect 페이지',
+    lazy: async () => {
+      const Module = await import('@/features/SnsService/KakaoRedirect');
       return { Component: Module.default };
     },
   },
