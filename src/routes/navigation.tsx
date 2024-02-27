@@ -140,6 +140,15 @@ const navigationItems = [
       return { Component: Module.default };
     },
   },
+  {
+    id: 'KakaoRedirect',
+    path: '/oauth',
+    text: '카카오로그인 Redirect 페이지',
+    lazy: async () => {
+      const Module = await import('@/features/SnsService/KakaoRedirect');
+      return { Component: Module.default };
+    },
+  },
 ];
 
 export default navigationItems;
