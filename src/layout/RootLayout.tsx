@@ -5,13 +5,13 @@ import { Outlet, ScrollRestoration, useNavigation } from 'react-router-dom';
 function RootLayout() {
   const { state } = useNavigation();
   return (
-    <>
+    <div>
       <Header />
       <main className="w-full">
         {state === 'loading' ? '로딩중입니다~~' : <Outlet />}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
+import GlobalNavBar from './GlobalNavBar';
 import logo from 'public/logo.svg';
-import alarmIcon from 'public/alarm.svg';
-import mailIcon from 'public/mail.svg';
 
 function Header() {
   return (
@@ -29,16 +28,11 @@ function Header() {
         <div className="flex text-sm gap-2 pr-2">
           <Link to="/SignIn">로그인</Link>
           <Link to="/SignUp">회원가입</Link>
-        </div>
-        <div className="flex justify-center gap-3">
-          <button aria-label="이메일로 이동">
-            <img src={mailIcon} alt="이메일 아이콘" />
-          </button>
-          <button aria-label="알람으로 이동">
-            <img src={alarmIcon} alt="알람 아이콘" />
-          </button>
+          <Link to="/SignIn">로그인</Link>
         </div>
       </div>
+
+      <GlobalNavBar />
     </header>
   );
 }
