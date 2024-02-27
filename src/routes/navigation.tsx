@@ -132,6 +132,15 @@ const navigationItems = [
     },
   },
   {
+    id: 'DonationForm',
+    path: '/DonationForm',
+    text: '기부페이지',
+    lazy: async () => {
+      const Module = await import('@/pages/Donation/DonationForm');
+      return { Component: Module.default };
+    },
+  },
+  {
     id: 'ChatScreen',
     path: '/ChatScreen',
     text: '채팅페이지',
