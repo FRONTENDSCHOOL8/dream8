@@ -3,7 +3,7 @@ import Trash from 'public/Trash.svg';
 function DeleteButton() {
   return (
     <>
-      <button>
+      <button className="text-blue-primary ">
         <img src={Trash} />
       </button>
     </>
