@@ -17,11 +17,11 @@ function ExchangeDetail() {
   }
 
   return (
-    <>
-      <div className="mt-10 flex w-full">
+    <div className="pl-20">
+      <div className="pt-5 flex">
         <img
           src={getPbImageURL(selectedItem, 'product_img')}
-          className="w-[17.5rem] border rounded-xl"
+          className="w-[19.5rem] border rounded-xl"
         />
         <div className="flex flex-col pl-14 gap-6">
           <p>{selectedItem.type}</p>
@@ -37,11 +37,11 @@ function ExchangeDetail() {
           <ExchangeModify />
         </div>
       </div>
-      <div className="pt-14">
+      <div className="pt-10 flex flex-col">
         <h1 className="text0">상품정보</h1>
         <p className="w-11/12 border h-52 p-4">{selectedItem.product_detail}</p>
       </div>
-    </>
+    </div>
   );
 }
 
