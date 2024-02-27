@@ -1,5 +1,13 @@
+import Trash from 'public/Trash.svg';
+
 function DeleteButton() {
-  return;
+  return (
+    <>
+      <button>
+        <img src={Trash} />
+      </button>
+    </>
+  );
 }
 
 export default DeleteButton;
