@@ -4,9 +4,8 @@ import ExchangeBox from '../../atom/ExchangeBox';
 import { getPbImageURL } from '@/utils/getPbImage';
 import Profile from '@/components/Profile/Profile';
 import ExchangeModify from '@/pages/Exchange/molecules/ExchangeModify';
-import { ProductDetails } from '@/pages';
 
-function ExchangeDetailPage() {
+function ExchangeDetail() {
   const { id } = useParams();
   const { exchangeData } = useExchangeStore();
 
@@ -46,4 +45,4 @@ function ExchangeDetailPage() {
   );
 }
 
-export default ExchangeDetailPage;
+export default ExchangeDetail;
