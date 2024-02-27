@@ -2,7 +2,7 @@ import Exercise from '@/routes/routingStart';
 
 function App() {
   return (
-    <div className="max-w-[90rem] m-auto">
+    <div className="m-auto">
       <Exercise />
     </div>
   );
