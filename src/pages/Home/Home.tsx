@@ -3,7 +3,7 @@ import titleImg from "../../assets/images/home/home-section1.png"
 import earthSick from "../../assets/images/home/earth-sick.png"
 import fastImf from "../../assets/images/home/fast-fashion.png"
 import earthClean from "../../assets/images/home/clean-earth.png"
-import NewsCard from "./NewsCard"
+import NewsCard from "./atoms/NewsCard"
 
 function Home() {
 
@@ -56,8 +56,7 @@ function Home() {
         </div>
       </div>
 
-
-      <div className="inner marker:w-screen h-screen bg-white">
+      <div className="inner w-screen h-screen bg-white">
         <div className="flex flex-col items-center gap-8 justify-center w-full h-full">
           <h1 className="sr-only">section 4</h1>
           <p className="text-7xl">"지구를 되살리기 위한 사업을 합니다"</p>
@@ -69,11 +68,22 @@ function Home() {
         </div>
       </div>
 
-      <div className="inner marker:w-screen h-screen bg-orange-300">
-        <h1 className="sr-only">section 5</h1>
-        <h2>드림 소식</h2>
-        <div>
-          <NewsCard />
+      <div className="inner w-screen h-screen bg-white">
+        <div className="max-w-[1400px] h-[700px] m-auto">
+          <h1 className="sr-only">section 5</h1>
+          <h2 className="text-center text-5xl p-16">드림 소식</h2>
+
+          <div className="grid gap-4 grid-cols-2 w-[1170px] m-auto">
+            <div className="grid gap-4 grid-cols-2">
+              <NewsCard width="w-[273px]" height="h-[273px]" />
+              <NewsCard width="w-[273px]" height="h-[273px]" />
+              <NewsCard width="w-[273px]" height="h-[273px]" />
+              <NewsCard width="w-[273px]" height="h-[273px]" />
+            </div>
+            <div className="w-full">
+              <NewsCard width="w-full" height="h-full" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
