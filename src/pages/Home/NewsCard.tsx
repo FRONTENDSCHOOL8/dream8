@@ -1,4 +1,6 @@
 // import React, { Component } from 'react'
+import Button from  "../../assets/images/home/plus-button.svg"
+import { Link } from "react-router-dom"
 
 function NewsCard() {
 
@@ -12,7 +14,11 @@ function NewsCard() {
         <div className="bg-pink-300">
           <p>내용</p>
         </div>
-        <button type="button" className="absolute bottom-8 right-10">+</button>
+        <Link to="/News">
+          <button type="button" className="absolute bottom-8 right-8">
+            <img src={Button} alt="소식 페이지로 이동" />
+          </button>
+        </Link>
       </div>
       
     </div>

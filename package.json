@@ -58,11 +58,5 @@
     "vanilla-tilt": "1.8.1",
     "vite-tsconfig-paths": "^4.3.1",
     "zustand": "4.5.0"
-  },
-  "name": "dream8",
-  "description": "1. 프로젝트 소개\r 2. 기획\r 3. 느낀점",
-  "version": "1.0.0",
-  "main": "postcss.config.js",
-  "author": "",
-  "license": "ISC"
+  }
 }

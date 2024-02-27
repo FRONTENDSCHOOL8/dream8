@@ -3,7 +3,13 @@ export default {
   content: ['./src/**/*.{html,js,tsx,ts}'],
   theme: {
     extend: {
+      boxShadow: {
+        root: '0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 3px 16px 0px rgba(0, 0, 0, 0.12)',
+      },
       colors: {
+        orange: {
+          primary: '#FFA031',
+        },
         blue: {
           primary: '#224b8f',
           secondary: '#2e5eab',

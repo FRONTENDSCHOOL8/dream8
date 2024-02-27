@@ -10,7 +10,7 @@ function Home() {
   return (
     <div className="outer overflow-hidden">
       <div 
-        className="inner w-screen h-screen" 
+        className="inner w-screen h-screen flex items-center justify-center" 
         style={{
           backgroundImage: `url(${titleImg})`,
           backgroundPosition: "center",
@@ -24,8 +24,8 @@ function Home() {
         </div>
       </div>
 
-      <div className="inner w-screen h-screen bg-yellow-300">
-        <div className="flex flex-col items-center gap-8 justify-center w-full h-full">
+      <div className="inner w-screen h-screen bg-blue-primary">
+        <div className="flex flex-col items-center gap-10 justify-center w-full h-full">
           <h1 className="sr-only">section 2</h1>
             <p className="flex flex-col gap-5 text-center text-6xl text-white font-bold">
               <span>지구가 울고 있어요</span>
