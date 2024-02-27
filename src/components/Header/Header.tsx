@@ -5,7 +5,7 @@ import mailIcon from 'public/mail.svg';
 
 function Header() {
   return (
-    <header className="flex items-center justify-between sticky top-0 border-b ">
+    <header className="flex items-center justify-between sticky top-0 border-b bg-white">
       <img src={logo} alt="Dream 로고" className="p-2 w-14" />
       <nav className="flex gap-20">
         <Link to="/" aria-label="메인 페이지로 이동">
