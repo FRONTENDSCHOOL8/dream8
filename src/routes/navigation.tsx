@@ -34,6 +34,15 @@ const navigationItems = [
     },
   },
   {
+    id: 'newsDetails',
+    path: '/NewsDetails',
+    text: '뉴스 내용',
+    lazy: async () => {
+      const Module = await import('@/pages/News/NewsDetails');
+      return { Component: Module.default };
+    },
+  },
+  {
     id: 'SignIn',
     path: '/SignIn',
     text: '로그인 페이지',

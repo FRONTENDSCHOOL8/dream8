@@ -19,10 +19,10 @@ function NewsCard({ width, height  }) {
           <PlusButton />
         </Link>
       </div>
-      
     </div>
   )
 }
 
+// Link to => 수정하기... 뉴스페이지 말고 각각 기사페이지 링크로.....
 
 export default NewsCard
