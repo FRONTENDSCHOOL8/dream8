@@ -2,7 +2,7 @@ export { default as ChatList } from '@/pages/ChatScreen/ChatList';
 export { default as ChatScreen } from '@/pages/ChatScreen/ChatScreen';
 export { default as Donation } from '@/pages/Donation/Donation';
 export { default as Exchange } from '@/pages/Exchange/page/Exchange/Exchange';
-export { default as ExchangeDetails } from '@/pages/Exchange/page/ExchangeDetail/ExchangeDetails';
+export { default as ExchangeDetails } from '@/pages/Exchange/page/ExchangeDetail/ExchangeDetail';
 export { default as Home } from '@/pages/Home/Home';
 export { default as SignIn } from '@/pages/Login/SignIn';
 export { default as SignUp } from '@/pages/Login/SignUp';
