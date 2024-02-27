@@ -1,5 +1,6 @@
-import profile from 'public/profile.svg';
-import ExchangeBox from './ExchangeBox';
+import ExchangeBox from '@/pages/Exchange/atom/ExchangeBox';
+import { getPbImageURL } from '@/utils/getPbImage';
+import Profile from '../Profile/Profile';
 
 interface CardProps {
   children: {
@@ -12,12 +13,14 @@ function Card({ children }: CardProps) {
   const { title, product_detail } = children;
 
   return (
-    <div className="rounded-2xl shadow-root w-[16rem] text-ellipsis">
-      <img className="bg-gray-200 rounded-t-2xl h-44" />
-      <ul className=" flex flex-col gap-2 pl-3 pb-3">
-        <li className="flex items-center gap-2 ">
-          <img src={profile} alt="Profile" />
-          <h2 className="text-sm">name</h2>
+    <div className="rounded-2xl shadow-root text-ellipsis flex flex-col gap-3">
+      <img
+        className="bg-gray-200 rounded-t-2xl h-44 line-clamp-1 w-full"
+        src={getPbImageURL(children, 'product_img')}
+      />
+      <ul className="flex flex-col gap-2 px-2 pb-3">
+        <li className="flex items-center gap-2">
+          <Profile />
         </li>
         <li className="text-[1.3rem] line-clamp-1">{title}</li>
         <li className="text-[0.75rem] line-clamp-1">{product_detail}</li>
