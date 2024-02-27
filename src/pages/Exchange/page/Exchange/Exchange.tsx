@@ -1,4 +1,4 @@
-import ExchangeWriteButton from '@/components/Button/ExchangeWrtieButton';
+import ExchangeWriteButton from '@/components/Button/ExchangeWriteButton';
 import Card from '@/components/Card/Card';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -49,7 +49,7 @@ function Exchange() {
   return (
     <div
       className="flex flex-col gap-4 mt-10 overflow-y-auto"
-      style={{ maxHeight: 'calc(100vh - 64px - 68px)' }}
+      style={{ maxHeight: 'calc(100vh - 61px - 210px)' }}
     >
       <div className="flex flex-col justify-center items-center gap-2">
         <div className="w-3/5 flex justify-end">
