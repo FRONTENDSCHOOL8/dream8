@@ -5,7 +5,7 @@ import mailIcon from 'public/mail.svg';
 
 function GlobalNavBar() {
   return (
-    <div className="flex items-center justify-between ">
+    <div className="flex items-center justify-between">
       <img src={logo} alt="Dream 로고" className="p-2 max-w-[80px]" />
 
       <nav className="flex gap-20 text-xl whitespace-nowrap">
