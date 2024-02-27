@@ -56,6 +56,6 @@
     "react-tilt": "1.0.2",
     "vanilla-tilt": "1.8.1",
     "vite-tsconfig-paths": "^4.3.1",
-    "zustand": "4.5.0"
+    "zustand": "^4.5.0"
   }
 }
