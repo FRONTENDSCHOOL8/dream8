@@ -101,7 +101,7 @@ const navigationItems = [
   {
     id: 'ExchangeDetails',
     index: false,
-    path: '/ExchangeDetails',
+    path: '/Exchange/ExchangeDetail/:id',
     text: '교환 상세페이지',
     element: <ExchangeDetails />,
     // lazy: () => import('../pages/Home/Home'),
