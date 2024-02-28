@@ -34,6 +34,15 @@ const navigationItems = [
     },
   },
   {
+    id: 'newsDetails',
+    path: '/NewsDetails',
+    text: '뉴스 내용',
+    lazy: async () => {
+      const Module = await import('@/pages/News/NewsDetails');
+      return { Component: Module.default };
+    },
+  },
+  {
     id: 'SignIn',
     path: '/SignIn',
     text: '로그인 페이지',
@@ -119,6 +128,15 @@ const navigationItems = [
     text: '기부페이지',
     lazy: async () => {
       const Module = await import('@/pages/Donation/Donation');
+      return { Component: Module.default };
+    },
+  },
+  {
+    id: 'DonationForm',
+    path: '/DonationForm',
+    text: '기부페이지',
+    lazy: async () => {
+      const Module = await import('@/pages/Donation/DonationForm');
       return { Component: Module.default };
     },
   },
