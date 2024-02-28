@@ -173,7 +173,7 @@ const navigationItems = [
   },
   {
     id: 'KakaoRedirect',
-    path: '/oauth',
+    path: '/KakaoRedirect',
     text: '카카오로그인 Redirect 페이지',
     lazy: async () => {
       const Module = await import('@/features/SnsService/KakaoRedirect');

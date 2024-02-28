@@ -1,37 +1,38 @@
+
 function Footer() {
   return (
-    <footer className="w-full flex flex-col px-14 bg-gray-300 text-sm">
-      <div className="flex justify-between pt-1">
-        <div className="flex flex-col gap-3">
+    <footer className="w-full bg-gray-300 text-sm">
+      <div className="max-w-[1440px] flex justify-between m-auto py-4">
+        <div className="flex flex-col gap-2">
           <span className="text-blue-900 font-bold">C/S CENTER</span>
-          <span className=" text-[1.5rem] text-gray-700">123-456-7890</span>
+          <span className="text-3xl text-gray-700">123-456-7890</span>
           <div className="flex flex-col  text-gray-700">
-            <span className="text-[0.725rem]">평일 10:100 - 17:00</span>
-            <span className="text-[0.725rem]">점심시간 12:00 - 13:30</span>
-            <span className="text-[0.725rem]">주말 및 공휴일 휴무</span>
+            <span><strong>평일</strong> 10:100 - 17:00</span>
+            <span><strong>점심시간</strong> 12:00 - 13:30</span>
+            <span>주말 및 공휴일 휴무</span>
           </div>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-3">
           <span className="text-blue-900 font-bold">COMPANY INFO</span>
-          <div className="flex flex-col gap-[0.625rem]">
-            <span className="text-[0.725rem]">
+          <div className="flex flex-col">
+            <span>
               드림 상점 | 대표 : 정서린 | 사업자등록번호 : 135-15-15302
             </span>
-            <span className="text-[0.625rem]">
+            <span>
               주소 : 서울특별시 종로구 사직로 161
             </span>
-            <span className="text-[0.625rem]">
+            <span>
               개인정보 관리 책임자 : 조현돈
             </span>
           </div>
-          <span className="text-gray-500 text-[0.625rem]">
+          <span className="text-gray-500 text-xs">
             이용약관 | 개인정보취급방법
           </span>
         </div>
       </div>
 
-      <div className="text-blue-900 m-auto text-[0.825rem] pb-2">
+      <div className=" border-t border-gray-200 text-blue-900 m-auto py-4 text-center">
         © 2024 DREAM STORE
       </div>
     </footer>
