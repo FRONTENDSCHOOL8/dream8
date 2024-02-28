@@ -1,6 +1,5 @@
-import Delete from '../../assets/images/donation/delet-button.svg'
-
 import { useId } from 'react';
+import DonationTable from './atoms/DonationTable';
 
 function DonationForm() {
   const id = useId();
@@ -43,8 +42,6 @@ function DonationForm() {
               <textarea
                 name="description"
                 id="description"
-                cols="30"
-                rows="10"
                 placeholder="물품 설명을 입력하세요"
                 className="w-[600px] h-[200px] p-2 bg-gray-300"
               />
@@ -60,40 +57,7 @@ function DonationForm() {
   
           <div className="w-full h-[1px] bg-gray-200"></div>
 
-          <div className='w-full h-[138px] border-2 border-gray-200 rounded-[4px]'>
-            <table className='w-full table-fixed'>
-              <thead>
-                <tr className='border-b border-gray-200'>
-                  <th className='w-[10%] p-2'>No.</th>
-                  <th className='w-[30%] p-2'>종류</th>
-                  <th className='w-[40%] p-2'>설명</th>
-                  <th className='w-[20%] p-2'>삭제</th>
-                </tr>
-              </thead>
-              <tbody className='text-center'>
-                <tr className='border-b border-gray-200'>
-                  <td>1</td>
-                  <td>의류</td>
-                  <td className='truncate'>사이즈 M, 정가 37,000원, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.</td>
-                  <th>
-                    <button type="button">
-                      <img src={Delete} alt="삭제하기" className='w-[20px] h-[20px]' />
-                    </button>
-                  </th>
-                </tr>
-                <tr className='border-b border-gray-200'>
-                  <td>2</td>
-                  <td>의류</td>
-                  <td className='truncate'>사이즈 M, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.</td>
-                  <th>
-                    <button type="button">
-                      <img src={Delete} alt="삭제하기" className='w-[20px] h-[20px]' />
-                    </button>
-                  </th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <DonationTable />
 
           <p>⚠️신청서 제출 후 취소 불가</p>
 
