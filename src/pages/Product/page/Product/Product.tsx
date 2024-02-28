@@ -5,7 +5,7 @@ import SearchProduct from '../../organisms/SearchProduct/SearchProduct';
 
 function Product() {
   return (
-    <div className="flex flex-col gap-4 bg-white">
+    <div className="flex flex-col gap-6 bg-white mt-20">
       <h2 className="sr-only">판매 페이지</h2>
       <CategoryProduct />
       <SearchProduct />

@@ -14,7 +14,7 @@ function SearchProduct() {
         name="inputSearch"
         id="inputSearch"
       />
-      <button aria-label="검색" className="absolute border top-3 right-6">
+      <button aria-label="검색" className="absolute top-3 right-6">
         <img className="w-4 h-4" src={searchIcon} alt="검색 아이콘" />
       </button>
     </div>
