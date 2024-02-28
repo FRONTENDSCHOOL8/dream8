@@ -17,13 +17,13 @@ function ExchangeDetail() {
   }
 
   return (
-    <div className="pl-20">
-      <div className="pt-5 flex">
+    <div className="pl-20" style={{ height: `calc(100vh - 82px - 156px)` }}>
+      <div className="pt-10 flex">
         <img
           src={getPbImageURL(selectedItem, 'product_img')}
-          className="w-[19.5rem] border rounded-xl"
+          className="w-[18.75rem] h-[18.75rem] rounded-xl"
         />
-        <div className="flex flex-col pl-14 gap-6">
+        <div className="flex flex-col pl-14 gap-6 ">
           <p>{selectedItem.type}</p>
           <h2 className="text-2xl">{selectedItem.title}</h2>
           <ExchangeBox name="교환가능"></ExchangeBox>
@@ -38,8 +38,10 @@ function ExchangeDetail() {
         </div>
       </div>
       <div className="pt-10 flex flex-col">
-        <h1 className="text0">상품정보</h1>
-        <p className="w-11/12 border h-52 p-4">{selectedItem.product_detail}</p>
+        <h1>상품정보</h1>
+        <p className="w-11/12 border rounded-md h-52 p-4">
+          {selectedItem.product_detail}
+        </p>
       </div>
     </div>
   );
