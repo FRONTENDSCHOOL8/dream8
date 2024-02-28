@@ -24,9 +24,9 @@ export default {
           300: '#f5f4f4',
           400: '#A6A6A6',
           500: '#717171',
+          600: '#D9D9D9',
         },
       },
     },
   },
-  plugins: [require('tailwind-scrollbar-hide')],
 };
