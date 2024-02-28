@@ -1,29 +1,20 @@
+import ArrangeProduct from '../../organisms/ArrangeProduct/ArrangeProduct';
+import CategoryProduct from '../../organisms/CategoryProduct/CategoryProduct';
+import ListsProduct from '../../organisms/ListsProduct/ListsProduct';
+import SearchProduct from '../../organisms/SearchProduct/SearchProduct';
+
 function Product() {
   return (
-    <div>
-      <h1 className="sr-only">판매 페이지</h1>
-      <div>
-        <h2 className="sr-only">카테고리</h2>
-        <ul>
-          <li>
-            <button>전체</button>
-            <button>전체</button>
-            <button>전체</button>
-            <button>전체</button>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h2 className="sr-only">검색</h2>
-      </div>
-      <div>
-        <h2 className="sr-only">정렬</h2>
-      </div>
-      <div>
-        <h2 className="sr-only">상품 리스트</h2>
-      </div>
+    <div className="flex flex-col gap-4 bg-white">
+      <h2 className="sr-only">판매 페이지</h2>
+      <CategoryProduct />
+      <SearchProduct />
+      <ArrangeProduct />
+      <ListsProduct />
     </div>
   );
 }
+
+Product.displayName = 'Product';
 
 export default Product;
