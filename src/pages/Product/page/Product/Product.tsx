@@ -1,7 +1,7 @@
-import ArrangeProduct from '../../organisms/ArrangeProduct/ArrangeProduct';
-import CategoryProduct from '../../organisms/CategoryProduct/CategoryProduct';
-import ListsProduct from '../../organisms/ListsProduct/ListsProduct';
-import SearchProduct from '../../organisms/SearchProduct/SearchProduct';
+import ArrangeProduct from '@/pages/Product/organisms/ArrangeProduct/ArrangeProduct';
+import CategoryProduct from '@/pages/Product/organisms/CategoryProduct/CategoryProduct';
+import ListsProduct from '@/pages/Product/organisms/ListsProduct/ListsProduct';
+import SearchProduct from '@/pages/Product/organisms/SearchProduct/SearchProduct';
 
 function Product() {
   return (

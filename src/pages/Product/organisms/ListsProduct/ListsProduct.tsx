@@ -1,6 +1,6 @@
 import { pb } from '@/api/pocketbase';
 import { useEffect, useState } from 'react';
-import ListProduct from '../../molecules/ListProduct/ListProduct';
+import ListProduct from '@/pages/Product/molecules/ListProduct/ListProduct';
 // import { useLoaderData, useParams } from 'react-router-dom';
 
 function ListsProduct() {
