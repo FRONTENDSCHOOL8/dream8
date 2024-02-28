@@ -2,7 +2,7 @@ import Exercise from '@/routes/routingStart';
 
 function App() {
   return (
-    <div>
+    <div className="m-auto">
       <Exercise />
     </div>
   );
