@@ -1,7 +1,6 @@
 // import React, { Component } from 'react'
-
 import { Link } from "react-router-dom"
-import PlusButton from "../molecules/Button"
+import PlusButton from "../organisms/Button"
 
 function NewsCard({ width, height  }) {
 
