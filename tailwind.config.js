@@ -29,8 +29,4 @@ export default {
       },
     },
   },
-<<<<<<< HEAD
-  plugins: [],
-=======
->>>>>>> develop
 };
