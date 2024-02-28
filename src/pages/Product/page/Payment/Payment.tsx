@@ -1,6 +1,6 @@
 const MyCartList = () => {
   return (
-    <li className="grid grid-cols-[1fr_2fr_4fr_2fr] items-center text-lg bg-white px-12 py-4 rounded-2xl">
+    <li className="grid grid-cols-[1fr_2fr_5fr_2fr_1fr] items-center text-lg bg-white px-12 py-4 rounded-2xl">
       <div>
         <label htmlFor="" className="sr-only">
           구매체크
@@ -17,10 +17,9 @@ const MyCartList = () => {
         </div>
         <div className="flex justify-start"> 사이즈: M</div>
       </div>
-      <div className="flex justify-end">
-        <div>12,000원</div>
-        <button className="text-blue-primary ml-10">✖</button>
-      </div>
+
+      <div>12,000원</div>
+      <button className="text-blue-primary">✖</button>
     </li>
   );
 };
