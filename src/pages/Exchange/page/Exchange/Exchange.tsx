@@ -47,10 +47,7 @@ function Exchange() {
   }, [setExchangeData]);
 
   return (
-    <div
-      className="flex flex-col gap-4 mt-10 overflow-y-auto"
-      style={{ maxHeight: 'calc(100vh - 61px - 210px)' }}
-    >
+    <div className="flex flex-col gap-4 mt-10 ">
       <div className="flex flex-col justify-center items-center gap-2">
         <div className="w-3/5 flex justify-end">
           <ExchangeWriteButton name="게시글 작성" />
