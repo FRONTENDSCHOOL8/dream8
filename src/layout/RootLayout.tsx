@@ -8,12 +8,7 @@ function RootLayout() {
   return (
     <div>
       <Header />
-<<<<<<< HEAD
-      <GlobalNavBar />
-      <main className="w-full">
-=======
       <main className="w-full pt-20">
->>>>>>> develop
         RootLayout 페이지입니다.
         {state === 'loading' ? '로딩중입니다~~' : <Outlet />}
       </main>

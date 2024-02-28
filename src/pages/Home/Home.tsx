@@ -8,7 +8,7 @@ import NewsCard from "./atoms/NewsCard"
 function Home() {
 
   return (
-    <div className="outer overflow-hidden">
+    <div className="outer overflow-hidden py-20">
       <div 
         className="inner w-screen h-screen flex items-center justify-center" 
         style={{
