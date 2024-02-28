@@ -11,7 +11,7 @@ const SocialLoginButtons: React.FC = () => {
   };
 
   return (
-    <div className=" flex flex-col gap-3">
+    <div className=" flex flex-col gap-4">
       <SocialLoginButton
         label="Google"
         icon={google}
