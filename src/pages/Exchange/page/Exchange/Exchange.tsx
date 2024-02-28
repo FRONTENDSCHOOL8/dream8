@@ -49,10 +49,10 @@ function Exchange() {
   return (
     <div className="flex flex-col gap-4 mt-10 ">
       <div className="flex flex-col justify-center items-center gap-2">
-        <div className="w-3/5 flex justify-end">
+        <div className="w-7/12 flex justify-end">
           <ExchangeWriteButton name="게시글 작성" />
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 gap-10">
+        <div className="grid grid-cols-3 grid-rows-3 gap-10 w-7/12">
           {exchangeData.map((item) => (
             <Link to={`/Exchange/ExchangeDetail/${item.id}`} key={item.id}>
               <Card>{item}</Card>
