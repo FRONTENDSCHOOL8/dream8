@@ -6,9 +6,9 @@ import mailIcon from 'public/mail.svg';
 function GlobalNavBar() {
   return (
     <div className="flex items-center justify-between">
-      <img src={logo} alt="Dream 로고" className="p-2 max-w-[80px]" />
+      <img src={logo} alt="Dream 로고" className="pb-2" />
 
-      <nav className="flex gap-20 text-xl whitespace-nowrap">
+      <nav className="flex gap-20 text-lg whitespace-nowrap">
         <Link to="/" aria-label="메인 페이지로 이동">
           메인
         </Link>
@@ -26,20 +26,12 @@ function GlobalNavBar() {
         </Link>
       </nav>
 
-      <div className="flex justify-center gap-3 ">
+      <div className="flex justify-center gap-5 ">
         <button aria-label="이메일로 이동">
-          <img
-            src={mailIcon}
-            alt="이메일 아이콘"
-            className="w-[40px] max-w-[40px]"
-          />
+          <img src={mailIcon} alt="이메일 아이콘" />
         </button>
         <button aria-label="알람으로 이동">
-          <img
-            src={alarmIcon}
-            alt="알람 아이콘"
-            className="w-[40px] max-w-[40px]"
-          />
+          <img src={alarmIcon} alt="알람 아이콘" />
         </button>
       </div>
     </div>

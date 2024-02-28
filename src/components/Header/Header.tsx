@@ -3,12 +3,10 @@ import GlobalNavBar from './GlobalNavBar';
 
 function Header() {
   return (
-    <header className="fixed w-full flex flex-col gap-[26px] px-[84px] py-[31px] bg-white ">
-      <div className="flex gap-2 justify-end">
-        <div className="flex text-sm gap-4 pr-2 ">
-          <Link to="/SignUp">회원가입</Link>
-          <Link to="/SignIn">로그인</Link>
-        </div>
+    <header className="fixed w-full flex flex-col px-[5.25rem] bg-white shadow-root">
+      <div className="flex text-sm gap-2 pt-1 justify-end">
+        <Link to="/SignUp">회원가입</Link>
+        <Link to="/SignIn">로그인</Link>
       </div>
 
       <GlobalNavBar />
