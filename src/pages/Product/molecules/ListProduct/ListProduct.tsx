@@ -1,5 +1,5 @@
 import getDaysFromToday from '@/utils/getDaysFromToday';
-import getPbImage from '@/utils/getPbImage';
+import { getPbImage } from '@/utils/getPbImage';
 
 type ListProductProps = {
   id: string;
@@ -33,7 +33,7 @@ function ListProduct({ list }: listProps): JSX.Element {
           alt={list.title}
           className="w-[17rem] h-[16.5rem] rounded-t-[20px]"
         />
-        <figcaption className="p-5 flex flex-col gap-2">
+        <figcaption className="p-5 flex flex-col justify-between h-32">
           <div className="text-lg font-medium">
             {list.title}
             <span> ({list.size})</span>

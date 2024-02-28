@@ -3,6 +3,7 @@ import { useKakaoStore } from '@/store/useKakaoStore';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import create from 'zustand';
+import PocketBase from 'pocketbase';
 
 /*kakao Redirect 화면 */
 function KakaoRedirect() {
@@ -14,6 +15,21 @@ function KakaoRedirect() {
     const grantType = 'authorization_code';
     const rest_api_key = REST_API_KEY;
     const redirect_uri = REDIRECT_URI;
+
+    async function getOAuth2() {
+      const pb = new PocketBase('https://dream.pockethost.io');
+      const authMethods = await pb.collection('users').listAuthMethods();
+      console.log('authMethods ', authMethods);
+
+      const authLogin = await pb.collection('users').authWithOAuth2({
+        provider: 'kakao',
+        code: code,
+        codeVerifier: authMethods.authProviders[0].codeVerifier,
+        redirectUrl: redirect_uri,
+      });
+      console.log('authLogin  ', authLogin);
+    }
+    getOAuth2();
 
     fetch(
       `https://kauth.kakao.com/oauth/token?grant_type=${grantType}&client_id=${rest_api_key}&redirect_uri=${redirect_uri}&code=${code}`,
