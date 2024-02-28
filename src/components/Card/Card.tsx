@@ -13,7 +13,7 @@ function Card({ children }: CardProps) {
   const { title, product_detail } = children;
 
   return (
-    <div className="rounded-2xl shadow-root text-ellipsis flex flex-col gap-3">
+    <div className="rounded-2xl shadow-root text-ellipsis flex flex-col gap-3 w-11/12">
       <img
         className="bg-gray-200 rounded-t-2xl h-44 line-clamp-1 w-full"
         src={getPbImageURL(children, 'product_img')}
