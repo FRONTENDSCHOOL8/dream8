@@ -1,6 +1,5 @@
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
-import { Fragment } from 'react';
 import { Outlet, ScrollRestoration, useNavigation } from 'react-router-dom';
 
 function RootLayout() {
@@ -14,7 +13,6 @@ function RootLayout() {
       <Footer />
     </div>
   );
-  ㅋ;
 }
 
 export default RootLayout;
