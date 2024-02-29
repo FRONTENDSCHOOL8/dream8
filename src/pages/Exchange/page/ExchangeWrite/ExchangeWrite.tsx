@@ -92,7 +92,7 @@ function ExchangeWrite() {
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
         교환 게시글 작성
       </h1>
-      <div className="flex flex-col m-auto justify-center items-center w-6/12 gap-4 pt-10 border rounded-xl pb-10">
+      <div className="flex flex-col m-auto justify-center items-center w-6/12 gap-4 pt-10 rounded-xl pb-10">
         <form className="flex flex-col gap-10 w-80" onSubmit={handleSubmit}>
           {inputList.map((item, index) => (
             <div
@@ -145,12 +145,8 @@ function ExchangeWrite() {
               onChange={handleFileInputChange}
             />
           </div>
-          <div className="rounded-md">
-            <img
-              src={previewImage?.toString()}
-              alt="Uploaded preview"
-              className="object-cover h-36 w-full"
-            />
+          <div className="bg-gray-300">
+            <img src={previewImage?.toString()} className="h-36 w-full " />
           </div>
           <SubmitButton name="제출하기" />
         </form>
