@@ -9,6 +9,7 @@ interface InputProps {
   ariaRequired: boolean;
   required?: boolean;
   className: string;
+  inputProps: {};
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,9 +19,9 @@ const Input: React.FC<InputProps> = ({
   onChange,
   labelText,
   ariaRequired,
-
   required,
   className,
+  inputProps = {},
 }) => {
   return (
     <>
@@ -34,6 +35,7 @@ const Input: React.FC<InputProps> = ({
           required={required}
           aria-required={ariaRequired}
           className={className}
+          {...inputProps}
         />
       </div>
     </>
