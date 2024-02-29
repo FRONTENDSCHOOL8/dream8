@@ -1,4 +1,4 @@
-function Title() {
+function NewsTitle() {
   return (
     <>
       <h2 className="text-4xl text-center pb-20">드림 소식</h2>
@@ -7,4 +7,4 @@ function Title() {
   );
 }
 
-export default Title;
+export default NewsTitle;

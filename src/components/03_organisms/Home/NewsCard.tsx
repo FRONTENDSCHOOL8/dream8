@@ -1,6 +1,6 @@
 // import React, { Component } from 'react'
 import { Link } from "react-router-dom"
-import NewsMoreButton from "../organisms/NewsMoreButton"
+import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton"
 import { useEffect, useState } from "react"
 import { pb } from "@/api/pocketbase";
 

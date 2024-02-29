@@ -1,4 +1,4 @@
-import DonationContent from "./atoms/DonationContent";
+import DonationContent from "../../../04_templates/Donation/DonationContent";
 
 function Donation() {
   return (

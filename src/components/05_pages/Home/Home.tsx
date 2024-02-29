@@ -1,4 +1,4 @@
-import HomeContens from "../../../pages/Home/atoms/HomeContents";
+import HomeContens from "../../04_templates/Home/HomeContents";
 
 function Home() {
 

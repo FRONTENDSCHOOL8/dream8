@@ -1,5 +1,5 @@
-import Title from "./atoms/Title";
-import NewsList from "./atoms/NewsList";
+import Title from "../../../01_atoms/News/NewsTitle/NewsTitle";
+import NewsList from "../../../01_atoms/News/NewsList/NewsList";
 
 function News() {
   return (

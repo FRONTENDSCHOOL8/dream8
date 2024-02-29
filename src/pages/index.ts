@@ -1,6 +1,6 @@
 export { default as ChatList } from '@/pages/ChatScreen/ChatList';
 export { default as ChatScreen } from '@/pages/ChatScreen/ChatScreen';
-export { default as Donation } from '@/pages/Donation/Donation';
+export { default as Donation } from '@/components/05_pages/Donation/Donation/Donation';
 export { default as Exchange } from '@/pages/Exchange/page/Exchange/Exchange';
 export { default as ExchangeDetails } from '@/pages/Exchange/page/ExchangeDetail/ExchangeDetail';
 export { default as Home } from '@/components/05_pages/Home/Home';
@@ -8,7 +8,7 @@ export { default as SignIn } from '@/components/05_pages/Login/SignIn';
 export { default as SignUp } from '@/pages/Login/SignUp/page/SignUp';
 export { default as MyPage } from '@/pages/Mypage/MyPage';
 export { default as MypageUserSetting } from '@/pages/Mypage/MypageUserSetting';
-export { default as News } from '@/pages/News/News';
+export { default as News } from '@/components/05_pages/News/News/News';
 export { default as Payment } from '@/pages/Product/page/Payment/Payment';
 export { default as Product } from '@/pages/Product/page/Product/Product';
 export { default as ProductDetails } from '@/pages/Product/page/ProductDetails/ProductDetails';

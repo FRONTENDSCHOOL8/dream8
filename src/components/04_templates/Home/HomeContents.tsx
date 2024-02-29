@@ -3,7 +3,7 @@ import titleImg from "public/home-section1.png"
 import earthSick from "public/earth-sick.png"
 import fastImf from "public/fast-fashion.png"
 import earthClean from "public/clean-earth.png"
-import NewsCard from "../molecules/NewsCard"
+import NewsCard from "../../03_organisms/Home/NewsCard"
 
 function HomeContens() {
 
