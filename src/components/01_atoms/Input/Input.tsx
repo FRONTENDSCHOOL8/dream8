@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface InputProps {
-  dynamicId: string;
-  dynamicInputType: string;
-  dynamicvalue: string;
+  id: string;
+  type: string;
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   labelText: string;
   ariaRequired: boolean;
@@ -12,9 +12,9 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({
-  dynamicId,
-  dynamicInputType,
-  dynamicvalue,
+  id,
+  type,
+  value,
   onChange,
   labelText,
   ariaRequired,
@@ -25,11 +25,11 @@ const Input: React.FC<InputProps> = ({
   return (
     <>
       <div>
-        <label htmlFor={dynamicvalue}>{labelText}</label>
+        <label htmlFor={value}>{labelText}</label>
         <input
-          type={dynamicInputType}
-          id={dynamicId}
-          value={dynamicvalue}
+          type={type}
+          id={id}
+          value={value}
           onChange={onChange}
           required={required}
           aria-required={ariaRequired}
@@ -40,4 +40,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default SignInFormInputAtoms;
+export default Input;
