@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { pb } from "@/api/pocketbase";
 
 
-function NewsCard({ width, height }) {
+function NewsCard({ width, height }: { width: string; height: string }) {
 
   const [newsList, setNewsList] = useState([]);
   console.log(newsList)
