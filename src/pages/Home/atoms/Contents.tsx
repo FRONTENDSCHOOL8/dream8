@@ -5,10 +5,10 @@ import fastImf from "../../../assets/images/home/fast-fashion.png"
 import earthClean from "../../../assets/images/home/clean-earth.png"
 import NewsCard from "../molecules/NewsCard"
 
-
 function Contens() {
+
   return (
-    <>
+    <div>
       <div 
         className="inner w-screen h-screen flex items-center justify-center" 
         style={{
@@ -68,25 +68,25 @@ function Contens() {
         </div>
       </div>
   
-      <div className="inner w-screen h-screen bg-white">
-        <div className="max-w-[1400px] h-[700px] m-auto">
+      <div className="inner w-screen h-screen">
+        <div className="max-w-[1400px] h-full flex flex-col items-center m-auto">
           <h1 className="sr-only">section 5</h1>
-          <h2 className="text-center text-5xl p-16">드림 소식</h2>
+          <h2 className="text-5xl mt-10">드림 소식</h2>
 
-          <div className="grid gap-4 grid-cols-2 w-[1170px] m-auto">
-            <div className="grid gap-4 grid-cols-2">
-              <NewsCard width="w-[273px]" height="h-[273px]" />
-              <NewsCard width="w-[273px]" height="h-[273px]" />
-              <NewsCard width="w-[273px]" height="h-[273px]" />
-              <NewsCard width="w-[273px]" height="h-[273px]" />
-            </div>
+          <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
+            <ul className="grid gap-4 grid-cols-2">
+              <NewsCard width="w-[275px]" height="h-[275px]" />
+              <NewsCard width="w-[275px]" height="h-[275px]" />
+              <NewsCard width="w-[275px]" height="h-[275px]" />
+              <NewsCard width="w-[275px]" height="h-[275px]" />
+            </ul>
             <div className="w-full">
               <NewsCard width="w-full" height="h-full" />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
