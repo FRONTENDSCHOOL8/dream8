@@ -9,6 +9,16 @@ import { useEffect, useState } from 'react';
 function ProductDetails() {
   const { productId } = useParams();
   console.log(productId);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   // const product = useLoaderData();
   // console.log(product);
 
@@ -111,6 +121,21 @@ function ProductDetails() {
           <p>사이즈:M</p>
         </div>
       </div>
+      {showModal && (
+        <>
+          <ConfirmModal title="성공" onClose={handleCloseModal}>
+            <p>결제를 성공했습니다</p>
+          </ConfirmModal>
+          {/* <SelectModal
+            title="장바구니 담기 완료"
+            onClose={handleCloseModal}
+            onLink={handleCloseModal}
+          >
+            <p>구매하기 페이지로 넘어가시겠습니까?</p>
+          </SelectModal> */}
+          {/* <CautionModal onClose={handleCloseModal} /> */}
+        </>
+      )}
     </div>
   );
 }
