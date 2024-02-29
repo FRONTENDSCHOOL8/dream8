@@ -9,8 +9,8 @@ function DonationTable () {
         <thead>
           <tr className="bg-gray-300">
             <th className='w-[10%] py-3'>No.</th>
-            <th className='w-[30%] py-3'>종류</th>
-            <th className='w-[40%] py-3'>설명</th>
+            <th className='w-[20%] py-3'>종류</th>
+            <th className='w-[50%] py-3'>설명</th>
             <th className='w-[20%] py-3'>삭제</th>
           </tr>
         </thead>
