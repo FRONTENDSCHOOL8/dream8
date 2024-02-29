@@ -4,7 +4,7 @@ export { default as Donation } from '@/pages/Donation/Donation';
 export { default as Exchange } from '@/pages/Exchange/page/Exchange/Exchange';
 export { default as ExchangeDetails } from '@/pages/Exchange/page/ExchangeDetail/ExchangeDetail';
 export { default as Home } from '@/pages/Home/Home';
-export { default as SignIn } from '@/pages/Login/SignIn/page/SignIn';
+export { default as SignIn } from '@/components/05_pages/Login/SignIn';
 export { default as SignUp } from '@/pages/Login/SignUp/page/SignUp';
 export { default as MyPage } from '@/pages/Mypage/MyPage';
 export { default as MypageUserSetting } from '@/pages/Mypage/MypageUserSetting';

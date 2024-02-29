@@ -9,7 +9,5 @@ export default {
 type Story = StoryObj<typeof SignInFormInput>;
 
 export const 기본표시: Story = {
-  args: {
-    email: '',
-  },
+  args: {},
 };
