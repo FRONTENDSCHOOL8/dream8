@@ -1,46 +1,34 @@
-// import React, { Component } from 'react'
-import { Link } from "react-router-dom"
-import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton"
-import { useEffect, useState } from "react"
-import { pb } from "@/api/pocketbase";
+import React from "react";
+import { Link } from "react-router-dom";
+import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton";
 
+type NewsItemProps = {
+  id: string;
+  created: string;
+  type: string;
+  title: string;
+  content: string;
+};
 
-function NewsCard({ width, height }: { width: string; height: string }) {
-
-  const [newsList, setNewsList] = useState([]);
-  console.log(newsList)
-
-  const getPbNewsList = async () => {
-    try {
-      const data = await pb.collection('news').getFullList({ sort: '-created' });
-      setNewsList(data.items);
-    } catch (error) {
-      console.error('Error fetching news list:', error);
-    }
-  };
-
-  useEffect(() => {
-    getPbNewsList();
-  }, [newsList])
+function NewsCard({ width, height, newsItem }: { width: string; height: string; newsItem: NewsItemProps }) {
+  if (!newsItem) {
+    return null; // newsItem이 없다면 아무것도 렌더링하지 않음
+  }
 
   return (
-    <li className={`${width} ${height} list-none rounded-[50px] bg-white relative shadow-root`}>
-      {newsList.map((list) => <div className="flex flex-col gap-10 m-auto p-8 bg-slate-400">
-        <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold">{list.type}</h2>
-          <span className="font-bold">[2024-02-20]</span>
-        </div>
-        <div className="bg-pink-300">
-          <p>{list.title}</p>
-        </div>
-      </div>)}
-      <Link to="/News">
-          <NewsMoreButton/>
-        </Link>
+    <li className={`${width} ${height} list-none flex flex-col items-end justify-between gap-5 m-auto p-8 rounded-[50px] bg-white shadow-root`}>
+      <div className="flex items-center justify-between w-full">
+        <h2 className="text-3xl font-bold">{newsItem.type}</h2>
+        <span className="font-bold">[{new Date(newsItem.created).toLocaleDateString()}]</span>
+      </div>
+      <div className="overflow-hidden">
+        <p>{newsItem.content}</p>
+      </div>
+      <Link to={`/NewsDetails/${newsItem.id}`}>
+        <NewsMoreButton />
+      </Link>
     </li>
-  )
+  );
 }
 
-// Link to => 수정하기... 뉴스페이지 말고 각각 기사페이지 링크로.....
-
-export default NewsCard
+export default NewsCard;

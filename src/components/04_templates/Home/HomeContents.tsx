@@ -4,8 +4,25 @@ import earthSick from "public/earth-sick.png"
 import fastImf from "public/fast-fashion.png"
 import earthClean from "public/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
+import { useEffect, useState } from "react";
+import { pb } from "@/api/pocketbase";
 
 function HomeContens() {
+
+  const [newsList, setNewsList] = useState<NewsItemProps[]>([]);
+
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        const data = await pb.collection('news').getList();
+        setNewsList(data.items); // `records`를 사용하여 데이터 설정
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    }
+
+    fetchNews();
+  }, []);
 
   return (
     <div>
@@ -70,18 +87,17 @@ function HomeContens() {
   
       <div className="inner w-screen h-screen">
         <div className="max-w-[1400px] h-full flex flex-col items-center m-auto">
-          <h1 className="sr-only">section 5</h1>
           <h2 className="text-5xl mt-10">드림 소식</h2>
 
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
-              <NewsCard width="w-[275px]" height="h-[275px]" />
-              <NewsCard width="w-[275px]" height="h-[275px]" />
-              <NewsCard width="w-[275px]" height="h-[275px]" />
-              <NewsCard width="w-[275px]" height="h-[275px]" />
+              {newsList.slice(0, 4).map((newsItem, index) => (
+                // NewsCard 컴포넌트에 newsItem prop으로 뉴스 데이터 전달
+                <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
+              ))}
             </ul>
             <div className="w-full">
-              <NewsCard width="w-full" height="h-full" />
+              {newsList.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={newsList[1]} />}
             </div>
           </div>
         </div>
