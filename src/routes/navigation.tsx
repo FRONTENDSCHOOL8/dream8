@@ -83,7 +83,9 @@ const navigationItems = [
     path: '/Product',
     text: '판매 메인페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Product/page/Product/Product');
+      const Module = await import(
+        '@/components/05_pages/Product/Product/Product'
+      );
       return { Component: Module.default };
     },
   },
@@ -93,7 +95,7 @@ const navigationItems = [
     text: '판매 상세페이지',
     lazy: async () => {
       const Module = await import(
-        '@/pages/Product/page/ProductDetails/ProductDetails'
+        '@/components/05_pages/Product/ProductDetails/ProductDetails'
       );
       return { Component: Module.default };
     },
@@ -111,7 +113,9 @@ const navigationItems = [
     id: 'Payment',
     path: '/Payment',
     lazy: async () => {
-      const Module = await import('@/pages/Product/page/Payment/Payment');
+      const Module = await import(
+        '@/components/05_pages/Product/Payment/Payment'
+      );
       return { Component: Module.default };
     },
   },
