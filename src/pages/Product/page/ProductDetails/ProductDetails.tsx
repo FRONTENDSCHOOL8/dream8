@@ -88,10 +88,7 @@ function ProductDetails() {
             <button className="text-2xl border-[3px] border-blue-primary font-semibold text-blue-primary rounded-md hover:text-white hover:bg-blue-primary py-2">
               구매하기
             </button>
-            <button
-              onClick={}
-              className="text-2xl border-[3px] border-blue-primary font-semibold text-blue-primary rounded-md hover:text-white hover:bg-blue-primary py-2"
-            >
+            <button className="text-2xl border-[3px] border-blue-primary font-semibold text-blue-primary rounded-md hover:text-white hover:bg-blue-primary py-2">
               장바구니
             </button>
           </div>
