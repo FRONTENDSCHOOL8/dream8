@@ -1,32 +1,22 @@
-const MyCartList = () => {
-  return (
-    <li className="grid grid-cols-[1fr_2fr_5fr_2fr_1fr] items-center text-lg bg-white px-12 py-4 rounded-2xl">
-      <div>
-        <label htmlFor="" className="sr-only">
-          구매체크
-        </label>
-        <input type="checkbox" name="checkToPurchase" id="" />
-      </div>
-      <figure className="m-0">
-        <img src="" alt="" className="w-28 h-28 border rounded-3xl" />
-      </figure>
-      <div>
-        <div className="flex justify-start font-semibold">
-          <div>주머니 포인트 청바지</div>
-          <div className="text-blue-primary ml-10 text-base">A등급</div>
-        </div>
-        <div className="flex justify-start"> 사이즈: M</div>
-      </div>
-
-      <div>12,000원</div>
-      <button className="text-blue-primary">✖</button>
-    </li>
-  );
-};
+import CautionModal from '@/components/Modal/CautionModal/CautionModal';
+import ConfirmModal from '@/components/Modal/ConfirmModal/ConfirmModal';
+import SelectModal from '@/components/Modal/SelectModal/SelectModal';
+import MyCartList from '@/pages/Product/organisms/MyCartList/MyCartList';
+import { useState } from 'react';
 
 function Payment() {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className="text-center bg-white">
+    <div className="text-center bg-white" id="myCartPage">
       <section className="w-[62.5rem] m-auto my-16">
         <h2 className="text-4xl pt-20 pb-10 font-semibold">장바구니 목록</h2>
         <ul className="flex flex-col">
@@ -53,11 +43,29 @@ function Payment() {
             <div>총 결제 금액</div>
             <div>29,000원</div>
           </div>
-          <button className="w-full h-12 border-2 border-blue-primary text-blue-primary font-semibold hover:bg-blue-primary hover:text-white">
+          <button
+            onClick={handleOpenModal}
+            className="w-full h-12 border-2 border-blue-primary text-blue-primary font-semibold hover:bg-blue-primary hover:text-white"
+          >
             결제하기
           </button>
         </div>
       </section>
+      {showModal && (
+        <>
+          {/* <ConfirmModal title="성공" onClose={handleCloseModal}>
+            <p>데이터 저장에 성공했습니다</p>
+          </ConfirmModal> */}
+          {/* <SelectModal
+            title="장바구니 담기 완료"
+            onClose={handleCloseModal}
+            onLink={handleCloseModal}
+          >
+            <p>구매하기 페이지로 넘어가시겠습니까?</p>
+          </SelectModal> */}
+          <CautionModal onClose={handleCloseModal} />
+        </>
+      )}
     </div>
   );
 }

@@ -1,7 +1,54 @@
 import Cautions from '@/pages/Product/atoms/Cautions';
 import timerIcon from '/timer.svg';
+import { useLoaderData, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { pb } from '@/api/pocketbase';
+import { getPbImage } from '@/utils/getPbImage';
+import { useEffect, useState } from 'react';
 
 function ProductDetails() {
+  const { productId } = useParams();
+  console.log(productId);
+  // const product = useLoaderData();
+  // console.log(product);
+
+  // async function fetchSingleProduct(productId: string) {
+  //   const product = await pb.collection('product').getOne(productId);
+  //   // product.photo = getPbImage(product);
+  //   return product;
+  // }
+
+  // const data = useQuery({
+  //   queryKey: ['product', productId],
+  //   queryFn: fetchSingleProduct,
+  //   initialData: product,
+  // });
+
+  // const data = fetchSingleProduct(productId);
+  // const data = useQuery({
+  //   queryKey: ['product', productId],
+  //   queryFn: fetchSingleProduct,
+  //   initialData: product,
+  // });
+
+  // const {
+  //   data: {
+  //     created,
+  //     title,
+  //     photo,
+  //     grade,
+  //     description,
+  //     brand_name,
+  //     model_name,
+  //     size,
+  //     category,
+  //   },
+  // } = useQuery({
+  //   queryKey: ['product', productId],
+  //   queryFn: fetchSingleProduct,
+  //   initialData: product,
+  // });
+
   return (
     <div className="pt-20 w-[75rem] m-auto">
       <h2 className="sr-only">상품 디테일 페이지</h2>
@@ -67,5 +114,22 @@ function ProductDetails() {
     </div>
   );
 }
+
+// async function fetchSingleProduct(productId: string) {
+//   const product = await pb.collection('product').getOne(productId);
+//   // product.photo = getPbImage(product);
+//   return product;
+// }
+
+// export const loader =
+//   (queryClient) =>
+//   async ({ params }) => {
+//     const { productId } = params;
+//     return await queryClient.ensureQueryData({
+//       queryKey: ['product', productId],
+//       queryFn: () => fetchSingleProduct(productId),
+//       staleTime: 1000 * 10, // 10s
+//     });
+//   };
 
 export default ProductDetails;

@@ -89,7 +89,7 @@ const navigationItems = [
   },
   {
     id: 'ProductDetails',
-    path: '/ProductDetails',
+    path: '/ProductDetails/:productId',
     text: '판매 상세페이지',
     lazy: async () => {
       const Module = await import(
@@ -97,6 +97,15 @@ const navigationItems = [
       );
       return { Component: Module.default };
     },
+    // async lazy() {
+    //   const { loader, Component } = await import(
+    //     '@/pages/Product/page/ProductDetails/ProductDetails'
+    //   );
+    //   return {
+    //     loader: loader(queryClient),
+    //     Component,
+    //   };
+    // },
   },
   {
     id: 'Payment',
