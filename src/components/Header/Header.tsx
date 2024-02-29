@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import GlobalNavBar from './GlobalNavBar';
-import { useLoginFormStore } from '@/store/useLoginFormStore';
+import useLoginFormStore from '@/store/useLoginFormStore';
 
 function Header() {
   const { isLoggedIn } = useLoginFormStore();

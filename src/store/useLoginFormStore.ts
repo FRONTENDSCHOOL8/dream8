@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 interface LoginFormState {
   email: string;
@@ -9,7 +9,7 @@ interface LoginFormState {
   setPassword: (password: string) => void;
 }
 
-export const useLoginFormStore = create<LoginFormState>((set) => ({
+const useLoginFormStore = create<LoginFormState>((set) => ({
   email: '',
   password: '',
   isLoggedIn: false,
@@ -17,3 +17,5 @@ export const useLoginFormStore = create<LoginFormState>((set) => ({
   setEmail: (email: string) => set({ email }),
   setPassword: (password: string) => set({ password }),
 }));
+
+export default useLoginFormStore;
