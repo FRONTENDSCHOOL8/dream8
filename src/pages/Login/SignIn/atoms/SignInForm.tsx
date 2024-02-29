@@ -1,41 +1,36 @@
-import React, { useEffect } from 'react';
+// SignInForm.tsx 파일에서 handleSubmit 함수 수정
+import React, { useEffect, useRef } from 'react';
 import { useLoginFormStore } from '@/store/useLoginFormStore';
 import { useNavigate } from 'react-router-dom';
+import { pb } from '@/api/pocketbase';
 
 const SignInForm: React.FC = () => {
-  const { email, password, setEmail, setPassword, handleSubmit } =
+  const { email, password, setEmail, setPassword, isLoggedIn } =
     useLoginFormStore();
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // PocketBase에서 데이터 가져오기
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const userData = {
+        email,
+        password,
+      };
 
-        const storedIsLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
+      await pb
+        .collection('users')
+        .authWithPassword(userData.email, userData.password);
 
-        // autoLogin이 true이거나 isLoggedIn이 true인 경우 chatList 페이지로 이동
-        if (storedIsLoggedIn) {
-          navigate('/main');
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, [navigate]);
-
-  const handleLogin = async () => {};
-
-  // const handleAutoLogin = () => {
-  //   setAutoLogin(!autoLogin); // 자동 로그인 버튼 클릭 시 자동 로그인 활성화
-  // };
+      useLoginFormStore.setState({ isLoggedIn: true });
+      navigate('/');
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
+  };
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(e, navigate)}
-      className="w-[28.625rem] "
-    >
+    <form onSubmit={handleSubmit} className="w-[28.625rem] ">
       <div className="flex flex-col gap-3 ">
         <div>
           <label htmlFor="email">이메일</label>
@@ -61,9 +56,9 @@ const SignInForm: React.FC = () => {
             className="border rounded-xl w-full h-[3.79rem]"
           />
         </div>
+
         <button
           type="submit"
-          onClick={handleLogin}
           className="text-2xl border rounded-xl w-full h-[3.79rem]"
         >
           로그인
