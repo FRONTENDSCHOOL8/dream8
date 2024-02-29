@@ -53,16 +53,16 @@ function Payment() {
       </section>
       {showModal && (
         <>
-          {/* <ConfirmModal title="성공" onClose={handleCloseModal}>
-            <p>데이터 저장에 성공했습니다</p>
-          </ConfirmModal> */}
-          <SelectModal
+          <ConfirmModal title="성공" onClose={handleCloseModal}>
+            <p>결제를 성공했습니다</p>
+          </ConfirmModal>
+          {/* <SelectModal
             title="장바구니 담기 완료"
             onClose={handleCloseModal}
             onLink={handleCloseModal}
           >
             <p>구매하기 페이지로 넘어가시겠습니까?</p>
-          </SelectModal>
+          </SelectModal> */}
           {/* <CautionModal onClose={handleCloseModal} /> */}
         </>
       )}

@@ -1,3 +1,4 @@
+import Button from '@/components/01_atoms/Button/Button';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -13,12 +14,13 @@ function ConfirmModal({ title, children, onClose }: ConfirmModalPropsType) {
       <div className="bg-white px-10 py-12 rounded-[50px] min-w-[31.25rem] flex flex-col justify-between gap-9">
         <h1 className="text-3xl font-bold">{title}</h1>
         <div className="text-xl font-medium">{children}</div>
-        <button
+        <Button
           className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-end"
           onClick={onClose}
+          type="button"
         >
           확인
-        </button>
+        </Button>
       </div>
     </div>,
     document.body
