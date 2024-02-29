@@ -11,27 +11,17 @@ interface SignInFormInputProps {
   className: string;
 }
 
-/**
- *
- * @param {{
- * email: string
- * }}props
- * @returns
- */
-const SignInFormInputAtoms: React.FC<SignInFormInputProps> = (
-  props,
-  {
-    dynamicId,
-    dynamicInputType,
-    dynamicvalue,
-    onChange,
-    labelText,
-    ariaRequired,
+const SignInFormInputAtoms: React.FC<SignInFormInputProps> = ({
+  dynamicId,
+  dynamicInputType,
+  dynamicvalue,
+  onChange,
+  labelText,
+  ariaRequired,
 
-    required,
-    className,
-  }
-) => {
+  required,
+  className,
+}) => {
   return (
     <>
       <div>

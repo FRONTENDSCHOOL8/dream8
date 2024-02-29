@@ -47,7 +47,7 @@ const navigationItems = [
     path: '/SignIn',
     text: '로그인 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignIn/page/SignIn');
+      const Module = await import('@/components/05_pages/Login/SignIn');
       return { Component: Module.default };
     },
   },
