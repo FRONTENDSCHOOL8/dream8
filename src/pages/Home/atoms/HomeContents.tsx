@@ -1,8 +1,8 @@
-import whiteLogo from "../../../assets/images/home/white-logo.svg"
-import titleImg from "../../../assets/images/home/home-section1.png"
-import earthSick from "../../../assets/images/home/earth-sick.png"
-import fastImf from "../../../assets/images/home/fast-fashion.png"
-import earthClean from "../../../assets/images/home/clean-earth.png"
+import whiteLogo from "public/white-logo.svg"
+import titleImg from "public/home-section1.png"
+import earthSick from "public/earth-sick.png"
+import fastImf from "public/fast-fashion.png"
+import earthClean from "public/clean-earth.png"
 import NewsCard from "../molecules/NewsCard"
 
 function HomeContens() {

@@ -1,5 +1,4 @@
-import DeleteButton from "../organisms/DeleteButton";
-import DeletButton from "../organisms/DeleteButton";
+import Delete from 'public/delet-button.svg'
 
 
 function DonationTable () {
@@ -20,17 +19,23 @@ function DonationTable () {
             <td>의류</td>
             <td className='truncate'>사이즈 M, 정가 37,000원, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.</td>
             <th>
-              <DeleteButton />
+            <button type="button">
+              <img src={Delete} alt="삭제하기" className='w-[20px] h-[20px] mt-2' />
+            </button>
             </th>
           </tr>
-          <tr className='border-t border-gray-200'>
-            <td>2</td>
-            <td>의류</td>
-            <td className='truncate'>사이즈 M, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.</td>
-            <th>
-              <DeletButton/>
-            </th>
-          </tr>
+          
+          {/* -> 뿌려줄 데이터
+            <tr className='border-t border-gray-200'>
+              <td>2</td>
+              <td>의류</td>
+              <td className='truncate'>사이즈 M, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.</td>
+              <th>
+                <button type="button">
+                  <img src={Delete} alt="삭제하기" className='w-[20px] h-[20px] mt-2' />
+                </button>
+              </th>
+            </tr> */}
         </tbody>
       </table>
     </div>

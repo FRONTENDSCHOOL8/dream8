@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import donationIllust from "../../../assets/images/donation/donaion-illust.svg"
-import Note  from "../../../assets/images/donation/note.svg"
-import Check  from "../../../assets/images/donation/check.svg"
-import Location from "../../../assets/images/donation/location.svg"
-import DonaionBg from "../../../assets/images/donation/donaion-bg.png"
+import donationIllust from "public/donaion-illust.svg"
+import Note  from "public/note.svg"
+import Check  from "public/check.svg"
+import Location from "public/location.svg"
+import DonaionBg from "public/donaion-bg.png"
 import DonationButton from "../molecules/DonationButton"
 
 
