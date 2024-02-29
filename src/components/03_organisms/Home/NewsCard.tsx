@@ -1,6 +1,6 @@
 // import React, { Component } from 'react'
 import { Link } from "react-router-dom"
-import PlusButton from "../organisms/Button"
+import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton"
 import { useEffect, useState } from "react"
 import { pb } from "@/api/pocketbase";
 
@@ -35,7 +35,7 @@ function NewsCard({ width, height }: { width: string; height: string }) {
         </div>
       </div>)}
       <Link to="/News">
-          <PlusButton />
+          <NewsMoreButton/>
         </Link>
     </li>
   )

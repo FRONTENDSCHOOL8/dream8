@@ -1,6 +1,6 @@
-import Button from  "../../../assets/images/home/plus-button.svg"
+import Button from  "public/plus-button.svg"
 
-function PlusButton () {
+function NewsMoreButton () {
 
   return (
     <button type="button" className="absolute bottom-8 right-8">
@@ -9,4 +9,4 @@ function PlusButton () {
   )
 }
 
-export default PlusButton
+export default NewsMoreButton

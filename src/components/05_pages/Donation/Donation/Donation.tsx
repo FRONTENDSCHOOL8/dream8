@@ -1,9 +1,9 @@
-import Contents from "./atoms/Contents";
+import DonationContent from "../../../04_templates/Donation/DonationContent";
 
 function Donation() {
   return (
   <div className="py-20"> 
-    <Contents />
+    <DonationContent />
   </div>
   );
 }
