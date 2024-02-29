@@ -7,7 +7,7 @@ function Header() {
   console.log('isLoggedIn   ', isLoggedIn);
   return (
     <header className="fixed w-full bg-white shadow-root z-50">
-      <div className="max-w-[1400px] m-auto">
+      <div className="max-w-[1440px] m-auto">
         <div className="flex items-start justify-end text-sm gap-2">
           <Link to="/SignUp">회원가입</Link>
           {!isLoggedIn && <Link to="/SignIn">로그인</Link>}

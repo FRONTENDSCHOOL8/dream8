@@ -6,6 +6,9 @@ import create from 'zustand';
 import { pb } from '@/api/pocketbase';
 import ExchangeMore from '@/pages/Exchange/molecules/ExchangeMore';
 
+const user = {
+  name: 'donny',
+};
 interface ExchangeItem {
   id: string;
   title: string;
@@ -30,6 +33,7 @@ export const useExchangeStore = create<ExchangeStore>((set) => ({
 
 function Exchange() {
   const { exchangeData, setExchangeData } = useExchangeStore();
+  const maxItemsToShow = 6;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,15 +50,31 @@ function Exchange() {
     fetchData();
   }, [setExchangeData]);
 
+  if (!user || exchangeData.length === 0) {
+    return null;
+  }
+
+  const visibleExchangeData = exchangeData.slice(0, maxItemsToShow);
+
   return (
-    <div className="flex flex-col gap-4 mt-10 ">
+    <div className="flex flex-col gap-4 pt-10">
       <div className="flex flex-col justify-center items-center gap-2">
-        <div className="w-7/12 flex justify-end">
+        <div className="w-6/12 flex justify-end">
           <ExchangeWriteButton name="게시글 작성" />
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 gap-10 w-7/12">
-          {exchangeData.map((item) => (
-            <Link to={`/Exchange/ExchangeDetail/${item.id}`} key={item.id}>
+        <div
+          className={`${
+            maxItemsToShow
+              ? 'grid grid-cols-3 gap-10 w-7/12'
+              : 'grid grid-cols-3 grid-rows-3 gap-10 w-7/12'
+          }`}
+        >
+          {visibleExchangeData.map((item, index) => (
+            <Link
+              to={`/Exchange/ExchangeDetail/${item.id}`}
+              key={item.id}
+              className={`${index >= 3 ? 'opacity-30' : ''}`}
+            >
               <Card>{item}</Card>
             </Link>
           ))}
