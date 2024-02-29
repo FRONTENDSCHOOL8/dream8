@@ -2,15 +2,15 @@ import React from 'react';
 
 interface SocialLoginButtonProps {
   label: string;
-  icon: string;
   onClick: () => void;
+  children?: React.ReactNode;
   className: string;
 }
 
 const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
   label,
-  icon,
   onClick,
+  children,
   className,
 }) => {
   return (
@@ -19,12 +19,7 @@ const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
       className={className}
       onClick={onClick}
     >
-      <img
-        src={icon}
-        alt={`${label} 로그인 아이콘`}
-        className="absolute top-3 left-3"
-      />
-      <span className="m-auto text-2xl">{label} 로그인</span>
+      {children}
     </button>
   );
 };

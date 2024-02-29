@@ -1,12 +1,13 @@
 // SignInForm.tsx 파일에서 handleSubmit 함수 수정
 import React, { useEffect, useRef } from 'react';
-import { useLoginFormStore } from '@/store/useLoginFormStore';
+import useLoginFormStore from '@/store/useLoginFormStore';
 import { useNavigate } from 'react-router-dom';
 import { pb } from '@/api/pocketbase';
+import SignInFormLogin from '../atoms/SignInFormLogin';
+import SignInFormInput from '../atoms/SignInFormInput';
 
 const SignInForm: React.FC = () => {
-  const { email, password, setEmail, setPassword, isLoggedIn } =
-    useLoginFormStore();
+  const { email, password, setEmail, setPassword } = useLoginFormStore();
 
   const navigate = useNavigate();
 
@@ -33,36 +34,35 @@ const SignInForm: React.FC = () => {
     <form onSubmit={handleSubmit} className="w-[28.625rem] ">
       <div className="flex flex-col gap-3 ">
         <div>
-          <label htmlFor="email">이메일</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
+          <SignInFormInput
+            dynamicInputType="email"
+            dynamicId="email"
+            dynamicvalue={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            aria-required="true"
+            ariaRequired={true}
             className="border rounded-xl w-full h-[3.79rem]"
+            labelText="이메일"
           />
         </div>
         <div>
-          <label htmlFor="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
+          <SignInFormInput
+            dynamicInputType="password"
+            dynamicId="password"
+            dynamicvalue={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            aria-required="true"
+            ariaRequired={true}
             className="border rounded-xl w-full h-[3.79rem]"
+            labelText="비밀번호"
           />
         </div>
 
-        <button
-          type="submit"
-          className="text-2xl border rounded-xl w-full h-[3.79rem]"
-        >
-          로그인
-        </button>
+        <SignInFormLogin
+          dynamicType="submit"
+          dynamicStyle="text-2xl border rounded-xl w-full h-[3.79rem]"
+          buttonText="로그인"
+        />
       </div>
     </form>
   );
