@@ -5,7 +5,7 @@ import fastImf from "../../../assets/images/home/fast-fashion.png"
 import earthClean from "../../../assets/images/home/clean-earth.png"
 import NewsCard from "../molecules/NewsCard"
 
-function Contens() {
+function HomeContens() {
 
   return (
     <div>
@@ -23,7 +23,7 @@ function Contens() {
           <p className="text-7xl text-white font-bold">드림과 함께 만들어 가는 세상</p>
         </div>
       </div>
-  
+
       <div className="inner w-screen h-screen bg-blue-primary">
         <div className="flex flex-col items-center gap-10 justify-center w-full h-full">
           <h1 className="sr-only">section 2</h1>
@@ -34,7 +34,7 @@ function Contens() {
           <img src={earthSick} alt="지구가아파요" className="w-[543px] h-[428px]" />
         </div>
       </div>
-        
+
       <div 
         className="inner w-screen h-screen"
         style={{
@@ -55,7 +55,7 @@ function Contens() {
           </p>
         </div>
       </div>
-  
+
       <div className="inner w-screen h-screen bg-white">
         <div className="flex flex-col items-center gap-8 justify-center w-full h-full">
           <h1 className="sr-only">section 4</h1>
@@ -90,4 +90,4 @@ function Contens() {
   )
 }
 
-export default Contens;
+export default HomeContens;

@@ -11,7 +11,7 @@ const navigationItems = [
     // element: <Home />,
     // react-router-dom 의 lazy load는 아래와 같은 방법으로 사용합니다.
     lazy: async () => {
-      const Module = await import('@/pages/Home/Home');
+      const Module = await import('@/components/05_pages/Home/Home');
       return { Component: Module.default };
     },
 
