@@ -17,13 +17,19 @@ function NewsCard({ width, height, newsItem }: { width: string; height: string; 
 
   return (
     <li className={`${width} ${height} list-none flex flex-col items-end justify-between gap-5 m-auto p-8 rounded-[50px] bg-white shadow-root`}>
-      <div className="flex items-center justify-between w-full">
-        <h2 className="text-3xl font-bold">{newsItem.type}</h2>
-        <span className="font-bold">[{new Date(newsItem.created).toLocaleDateString()}]</span>
+      <div className="w-full h-full">
+        <div className="flex items-center justify-between pb-8">
+          <h2 className="text-3xl font-bold">{newsItem.type}</h2>
+          <span className="font-bold">[{new Date(newsItem.created).toLocaleDateString()}]</span>
+        </div>
+        <div>
+          <div className="overflow-hidden">
+            <p className="text-[20px] text-gray-500">{newsItem.title}</p>
+            {/* <p>{newsItem.content}</p> */}
+        </div>
+        </div>
       </div>
-      <div className="overflow-hidden">
-        <p>{newsItem.content}</p>
-      </div>
+      
       <Link to={`/NewsDetails/${newsItem.id}`}>
         <NewsMoreButton />
       </Link>
