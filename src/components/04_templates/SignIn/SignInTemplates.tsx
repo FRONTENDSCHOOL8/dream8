@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInForm from '@/pages/Login/SignIn/molecules/SignInForm';
+import SignInForm from '@/components/02_molecules/SignIn/SignInForm';
 import SocialLoginButtons from '@/components/03_organisms/SignIn/SocialLoginButtons';
 
 const SignInOrganism: React.FC = () => {

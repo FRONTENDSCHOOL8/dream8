@@ -49,7 +49,7 @@ const navigationItems = [
     path: '/SignIn',
     text: '로그인 페이지',
     lazy: async () => {
-      const Module = await import('@/components/05_pages/Login/SignIn');
+      const Module = await import('@/components/05_pages/SignIn/SignIn');
       return { Component: Module.default };
     },
   },
@@ -58,7 +58,7 @@ const navigationItems = [
     path: '/SignUp',
     text: '회원가입 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignUp/page/SignUp');
+      const Module = await import('@/components/05_pages/SignUp/SignUp');
       return { Component: Module.default };
     },
   },
@@ -67,7 +67,7 @@ const navigationItems = [
     path: '/MyPage',
     text: '마이페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Mypage/MyPage');
+      const Module = await import('@/components/05_pages/Mypage/MyPage');
       return { Component: Module.default };
     },
   },
@@ -76,7 +76,9 @@ const navigationItems = [
     path: '/MypageUserSetting',
     text: '회원설정',
     lazy: async () => {
-      const Module = await import('@/pages/Mypage/MypageUserSetting');
+      const Module = await import(
+        '@/components/05_pages/Mypage/MypageUserSetting'
+      );
       return { Component: Module.default };
     },
   },

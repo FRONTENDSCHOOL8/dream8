@@ -1,7 +1,8 @@
 import React from 'react';
 
 interface ButtonProps {
-  onClick: () => void;
+  label?: string;
+  onClick?: () => void;
   children?: React.ReactNode;
   className: string;
   'aria-label'?: string;
