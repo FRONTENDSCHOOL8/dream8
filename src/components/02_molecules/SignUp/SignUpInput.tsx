@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pb } from '@/api/pocketbase';
+import Input from '@/components/01_atoms/Input/Input';
 
 interface UserData {
   user_name: string;
@@ -106,7 +107,7 @@ function SignUpInput() {
       <div className="flex flex-col gap-3">
         <div className="mt-3">
           <label htmlFor="email">이메일</label>
-          <input
+          <Input
             ref={addEmailRef}
             type="email"
             id="email"
@@ -121,7 +122,7 @@ function SignUpInput() {
         </div>
         <div className="mt-3">
           <label htmlFor="password">비밀번호</label>
-          <input
+          <Input
             ref={addPasswordRef}
             type="password"
             id="password"
@@ -136,7 +137,7 @@ function SignUpInput() {
         </div>
         <div className="mt-3">
           <label htmlFor="passwordConfirm">비밀번호 확인</label>
-          <input
+          <Input
             ref={addPasswordConfirmRef}
             type="password"
             id="passwordConfirm"
@@ -151,7 +152,7 @@ function SignUpInput() {
         </div>
         <div className="mt-3">
           <label htmlFor="user_name">이름</label>
-          <input
+          <Input
             ref={addNameRef}
             type="text"
             id="user_name"
@@ -166,7 +167,7 @@ function SignUpInput() {
         </div>
         <div className="mt-3">
           <label htmlFor="nickName">닉네임</label>
-          <input
+          <Input
             ref={addNickNameRef}
             type="text"
             id="nickName"
@@ -181,7 +182,7 @@ function SignUpInput() {
         </div>
         <div className="mt-3">
           <label htmlFor="phone_number">휴대폰 번호</label>
-          <input
+          <Input
             ref={addPhoneNumberRef}
             type="tel"
             id="phone_number"
@@ -197,7 +198,7 @@ function SignUpInput() {
         <div className="mt-3 flex items-center">
           <label htmlFor="address" className="flex-1">
             주소
-            <input
+            <Input
               ref={addAddressRef}
               type="text"
               id="address"

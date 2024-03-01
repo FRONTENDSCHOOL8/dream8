@@ -1,4 +1,4 @@
-import SignUpInput from '../atoms/SignUpInput';
+import SignUpInput from '@/components/02_molecules/SignUp/SignUpInput';
 
 function SignUp() {
   return (
