@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer/Footer';
-import Header from '@/components/Header/Header';
+import Header from '@/components/03_organisms/Header/Header';
+import Footer from '@/components/03_organisms/Footer/Footer';
 import { Outlet, ScrollRestoration, useNavigation } from 'react-router-dom';
 
 function RootLayout() {

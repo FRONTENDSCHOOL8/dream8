@@ -29,7 +29,7 @@ const navigationItems = [
     path: '/News',
     text: '뉴스',
     lazy: async () => {
-      const Module = await import('@/pages/News/News');
+      const Module = await import('@/components/05_pages/News/News/News');
       return { Component: Module.default };
     },
   },
@@ -38,7 +38,9 @@ const navigationItems = [
     path: '/NewsDetails',
     text: '뉴스 내용',
     lazy: async () => {
-      const Module = await import('@/pages/News/NewsDetails');
+      const Module = await import(
+        '@/components/05_pages/News/NewsDetails/NewsDetails'
+      );
       return { Component: Module.default };
     },
   },
@@ -47,7 +49,7 @@ const navigationItems = [
     path: '/SignIn',
     text: '로그인 페이지',
     lazy: async () => {
-      const Module = await import('@/components/05_pages/Login/SignIn');
+      const Module = await import('@/components/05_pages/SignIn/SignIn');
       return { Component: Module.default };
     },
   },
@@ -56,7 +58,7 @@ const navigationItems = [
     path: '/SignUp',
     text: '회원가입 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignUp/page/SignUp');
+      const Module = await import('@/components/05_pages/SignUp/SignUp');
       return { Component: Module.default };
     },
   },
@@ -65,7 +67,7 @@ const navigationItems = [
     path: '/MyPage',
     text: '마이페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Mypage/MyPage');
+      const Module = await import('@/components/05_pages/Mypage/MyPage');
       return { Component: Module.default };
     },
   },
@@ -74,7 +76,9 @@ const navigationItems = [
     path: '/MypageUserSetting',
     text: '회원설정',
     lazy: async () => {
-      const Module = await import('@/pages/Mypage/MypageUserSetting');
+      const Module = await import(
+        '@/components/05_pages/Mypage/MypageUserSetting'
+      );
       return { Component: Module.default };
     },
   },
@@ -155,7 +159,9 @@ const navigationItems = [
     path: '/Donation',
     text: '기부페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Donation/Donation');
+      const Module = await import(
+        '@/components/05_pages/Donation/Donation/Donation'
+      );
       return { Component: Module.default };
     },
   },
@@ -164,7 +170,9 @@ const navigationItems = [
     path: '/DonationForm',
     text: '기부페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Donation/DonationForm');
+      const Module = await import(
+        '@/components/05_pages/Donation/DonationSubmission/DonationSubmission'
+      );
       return { Component: Module.default };
     },
   },
