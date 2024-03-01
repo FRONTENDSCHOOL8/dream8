@@ -4,7 +4,7 @@ import kakao from 'public/kakao-icon.svg';
 import google from 'public/google-icon.svg';
 import { kakaoURL } from '@/api/SocialKakao';
 
-import SocialButtonMolecules from '../molecules/SocialButtonMolecules';
+import SocialButtonMolecules from '../../02_molecules/SignIn/SocialButtonMolecules';
 
 const SocialLoginButtons: React.FC = () => {
   const handleKakaoLogin = () => {

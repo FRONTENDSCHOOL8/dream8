@@ -38,7 +38,9 @@ const navigationItems = [
     path: '/NewsDetails',
     text: '뉴스 내용',
     lazy: async () => {
-      const Module = await import('@/components/05_pages/News/NewsDetails/NewsDetails');
+      const Module = await import(
+        '@/components/05_pages/News/NewsDetails/NewsDetails'
+      );
       return { Component: Module.default };
     },
   },
@@ -155,7 +157,9 @@ const navigationItems = [
     path: '/Donation',
     text: '기부페이지',
     lazy: async () => {
-      const Module = await import('@/components/05_pages/Donation/Donation/Donation');
+      const Module = await import(
+        '@/components/05_pages/Donation/Donation/Donation'
+      );
       return { Component: Module.default };
     },
   },
@@ -164,7 +168,9 @@ const navigationItems = [
     path: '/DonationForm',
     text: '기부페이지',
     lazy: async () => {
-      const Module = await import('@/components/05_pages/Donation/DonationSubmission/DonationSubmission');
+      const Module = await import(
+        '@/components/05_pages/Donation/DonationSubmission/DonationSubmission'
+      );
       return { Component: Module.default };
     },
   },

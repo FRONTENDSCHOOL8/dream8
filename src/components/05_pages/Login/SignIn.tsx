@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignInOrganism from '@/pages/Login/SignIn/templates/SignInTemplates';
+import SignInOrganism from '@/components/04_templates/SignIn/SignInTemplates';
 
 const SignInPage: React.FC = () => {
   return (
