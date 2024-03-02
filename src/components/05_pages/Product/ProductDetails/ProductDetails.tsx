@@ -10,6 +10,7 @@ import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal
 import Button from '@/components/01_atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import getDaysFromToday from '@/utils/getDaysFromToday';
+import ShowProductImage from '@/components/03_organisms/ProductDetails/ShowProductImage/ShowProductImage';
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -95,42 +96,20 @@ function ProductDetails() {
   // });
 
   const photo = productData.photo;
-
+  const pbUrl = getPbImage(productData.collectionId, productData.id, '');
   return (
     <div className="pt-20 w-[75rem] m-auto">
       <h2 className="sr-only">상품 디테일 페이지</h2>
       {productData && (
         <>
           <div className="flex justify-between gap-14">
-            <figure className="flex flex-col border m-0">
-              <img
-                src={getPbImage(
-                  productData.collectionId,
-                  productData.id,
-                  photo[0]
-                )}
-                alt={productData.title}
-                className="w-96 h-[31.25rem] border"
+            {photo.length > 1 && (
+              <ShowProductImage
+                photoURL={pbUrl}
+                photos={photo}
+                title={productData.title}
               />
-
-              <ul aria-label="썸네일 버튼" className="flex">
-                {photo.map((item, index) => (
-                  <li key={`product_Photo_${index}`}>
-                    <button>
-                      <img
-                        src={getPbImage(
-                          productData.collectionId,
-                          productData.id,
-                          item
-                        )}
-                        alt={productData.title}
-                        className="w-12 h-12"
-                      />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </figure>
+            )}
             <div className="flex flex-col justify-between">
               <div role="group">
                 <h3 className="text-3xl">
