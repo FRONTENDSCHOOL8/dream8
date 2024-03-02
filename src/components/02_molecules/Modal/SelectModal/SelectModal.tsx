@@ -1,3 +1,4 @@
+import Button from '@/components/01_atoms/Button/Button';
 import { createPortal } from 'react-dom';
 
 type SelectModalPropsType = {
@@ -19,18 +20,20 @@ function SelectModal({
         <h1 className="text-3xl font-bold">{title}</h1>
         <div className="text-xl font-medium">{children}</div>
         <div className="flex justify-between">
-          <button
+          <Button
             className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-start"
             onClick={onClose}
+            type="button"
           >
             아니요
-          </button>
-          <button
+          </Button>
+          <Button
             className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-end"
             onClick={onLink}
+            type="button"
           >
             네
-          </button>
+          </Button>
         </div>
       </div>
     </div>,
