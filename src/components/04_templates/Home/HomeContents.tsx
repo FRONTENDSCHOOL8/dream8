@@ -92,7 +92,6 @@ function HomeContens() {
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
               {newsList.slice(0, 4).map((newsItem, index) => (
-                // NewsCard 컴포넌트에 newsItem prop으로 뉴스 데이터 전달
                 <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
               ))}
             </ul>
