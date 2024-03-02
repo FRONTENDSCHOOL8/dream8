@@ -1,8 +1,8 @@
-import whiteLogo from "public/white-logo.svg"
-import titleImg from "public/home-section1.png"
-import earthSick from "public/earth-sick.png"
-import fastImf from "public/fast-fashion.png"
-import earthClean from "public/clean-earth.png"
+import whiteLogo from "/white-logo.svg"
+import titleImg from "/home-section1.png"
+import earthSick from "/earth-sick.png"
+import fastImf from "/fast-fashion.png"
+import earthClean from "/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
