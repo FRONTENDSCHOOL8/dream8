@@ -24,7 +24,6 @@ type listProps = {
 };
 
 function ListProduct({ list }: listProps): JSX.Element {
-  console.log(list);
   const pt = list.photo[0];
   return (
     <li className=" w-[17rem] border rounded-[20px] shadow-root m-auto">

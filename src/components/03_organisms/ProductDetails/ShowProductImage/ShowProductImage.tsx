@@ -17,12 +17,14 @@ function ShowProductImage({ photoURL, photos, title }: ShowProductImageProps) {
 
   return (
     <figure className="flex flex-col m-0">
-      <img
-        src={mainImageSrc}
-        alt={mainImageAlt}
-        className="w-96 h-[31.25rem] border"
-      />
-      <ul aria-label="썸네일 버튼" className="flex">
+      <div className="min-h-[28rem]">
+        <img
+          src={mainImageSrc}
+          alt={mainImageAlt}
+          className="w-96 h-auto border"
+        />
+      </div>
+      <ul aria-label="썸네일 버튼" className="flex mt-4 gap-3">
         {photos.map((item, index) => (
           <li key={`product_Photo_${index + 1}`}>
             <Button
