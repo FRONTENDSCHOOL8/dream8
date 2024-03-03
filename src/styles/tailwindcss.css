@@ -10,4 +10,8 @@
     font-weight: normal;
     font-style: normal;
   }
+
+  .button-atom {
+    @apply border-3 px-8 py-2 text-3xl font-semibold border-blue-primary text-blue-primary bg-white rounded-md;
+  }
 }
