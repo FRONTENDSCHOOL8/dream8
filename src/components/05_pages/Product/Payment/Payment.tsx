@@ -1,7 +1,7 @@
 import CautionModal from '@/components/02_molecules/Modal/CautionModal/CautionModal';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
-import MyCartList from '@/components/03_organisms/Product/MyCartList/MyCartList';
+import MyCartList from '@/components/03_organisms/ProductDetails/MyCartList/MyCartList';
 import { useState } from 'react';
 
 function Payment() {

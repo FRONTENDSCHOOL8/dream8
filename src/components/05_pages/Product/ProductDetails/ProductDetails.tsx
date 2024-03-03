@@ -1,7 +1,6 @@
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { pb } from '@/api/pocketbase';
-import { getPbImage, getPbImageURL } from '@/utils/getPbImage';
 import { useEffect, useState } from 'react';
 import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';

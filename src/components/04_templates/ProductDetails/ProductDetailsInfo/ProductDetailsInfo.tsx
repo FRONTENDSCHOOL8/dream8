@@ -67,13 +67,13 @@ function ProductDetailsInfo({ productData, onOpenModal }) {
           <div className="text-center">
             <h2 className="text-3xl mb-10">상품 설명</h2>
 
-            <figure className="flex justify-center gap-8">
+            <figure className="flex flex-col justify-center items-center gap-8">
               {photo &&
                 photo.map((item, index) => (
                   <img
                     src={`${pbUrl}${item}`}
                     alt={`${productData.title}_${index + 1}`}
-                    className="w-96 h-auto border"
+                    className="w-[60rem] h-auto border"
                     key={`${productData.title}_${index + 1}`}
                   />
                 ))}
