@@ -6,6 +6,9 @@ export default {
       boxShadow: {
         root: '0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 3px 16px 0px rgba(0, 0, 0, 0.12)',
       },
+      borderWidth: {
+        3: '3px',
+      },
       colors: {
         orange: {
           primary: '#FFA031',
