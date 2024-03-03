@@ -128,7 +128,7 @@ const navigationItems = [
     path: '/Exchange',
     text: '교환페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Exchange/page/Exchange/Exchange');
+      const Module = await import('@/components/05_pages/Exchange/Exchange');
       return { Component: Module.default };
     },
   },
