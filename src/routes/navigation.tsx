@@ -149,7 +149,7 @@ const navigationItems = [
     text: '교환 상세페이지',
     lazy: async () => {
       const Module = await import(
-        '@/pages/Exchange/page/ExchangeDetail/ExchangeDetail'
+        '@/components/05_pages/Exchange/ExchangeDetail'
       );
       return { Component: Module.default };
     },
