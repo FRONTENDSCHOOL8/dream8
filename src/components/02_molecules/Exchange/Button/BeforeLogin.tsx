@@ -1,12 +1,17 @@
 import Button from '@/components/01_atoms/Button/Button';
 import { Link } from 'react-router-dom';
 
-function BeforeLogin() {
+interface BeforeLoginProps {
+  onClick?: () => void;
+}
+
+function BeforeLogin({ onClick }: BeforeLoginProps) {
   return (
     <div className="flex flex-col items-center gap-2">
       <Button
         type="button"
         className="rounded-md px-1 text-blue-primary border-blue-primary border hover:bg-blue-primary hover:text-white"
+        onClick={onClick}
       >
         더보기
       </Button>
