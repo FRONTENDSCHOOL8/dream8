@@ -8,7 +8,7 @@ interface InputProps {
   labelText?: string;
   ariaRequired?: boolean;
   required?: boolean;
-  className: string;
+  className?: string;
   ref?: RefObject<HTMLInputElement>;
   placeholder?: string;
 }
@@ -22,6 +22,7 @@ const Input: React.FC<InputProps> = ({
   ariaRequired,
   required,
   className,
+
   ...restProps
 }) => {
   return (

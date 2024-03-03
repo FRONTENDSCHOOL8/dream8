@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import logo from 'public/logo.svg';
 import alarmIcon from 'public/alarm.svg';
 import mailIcon from 'public/mail.svg';
+import Button from '@/components/01_atoms/Button/Button';
 
 function GlobalNavBar() {
   return (
@@ -47,20 +48,20 @@ function GlobalNavBar() {
       </nav>
 
       <div className="flex justify-center gap-5 ">
-        <button aria-label="이메일로 이동">
+        <Button ariaLabel="이메일로 이동" type="button">
           <img
             src={mailIcon}
             alt="이메일 아이콘"
             className="w-[30px] max-w-[30px]"
           />
-        </button>
-        <button aria-label="알람으로 이동">
+        </Button>
+        <Button ariaLabel="알람으로 이동" type="button">
           <img
             src={alarmIcon}
             alt="알람 아이콘"
             className="w-[30px] max-w-[30px]"
           />
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 
-interface ButtonProps {
+interface Button01Props {
   label?: string;
   onClick?: () => void;
   children?: React.ReactNode;
@@ -10,7 +10,7 @@ interface ButtonProps {
   style?: CSSProperties;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button01: React.FC<Button01Props> = ({
   onClick,
   children,
   className,
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={className}
+      className={`button-atom ${className}`}
       onClick={onClick}
       type={type}
       aria-label={ariaLabel}
@@ -33,4 +33,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default Button01;

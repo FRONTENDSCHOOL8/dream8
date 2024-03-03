@@ -1,7 +1,19 @@
 import Delete from 'public/delet-button.svg'
+import { useState } from 'react';
 
 
 function DonationTable () {
+
+  // delete 버튼 작용 확인용 임시 데이터
+  const [items, setItems] = useState([
+    { id: 1, category: '의류', description: '사이즈 M, 정가 37,000원, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.' },
+    // 기타 아이템들...
+  ]);
+
+  const handleDelete = (itemId) => {
+    setItems(items.filter(item => item.id !== itemId));
+  };
+
   return (
     <div className='w-full border border-gray-200 rounded-[4px]'>
       <table className='w-full table-fixed'>
@@ -13,17 +25,20 @@ function DonationTable () {
             <th className='w-[20%] py-3'>삭제</th>
           </tr>
         </thead>
-        <tbody className='text-center'>
-          <tr className='border-t border-gray-200'>
-            <td>1</td>
-            <td>의류</td>
-            <td className='truncate'>사이즈 M, 정가 37,000원, 한 번 입고 못 입은 옷이라 오염 없이 깨끗해요.</td>
+        <tbody>
+        {items.map((item) => (
+          <tr key={item.id} className='text-center border-t border-gray-200'>
+            <td>{item.id}</td>
+            <td>{item.category}</td>
+            <td className='truncate'>{item.description}</td>
             <th>
-            <button type="button">
-              <img src={Delete} alt="삭제하기" className='w-[20px] h-[20px] mt-2' />
-            </button>
+              <button type="button" onClick={() => handleDelete(item.id)}>
+                <img src={Delete} alt="삭제하기" className='w-[20px] h-[20px] mt-2' />
+              </button>
             </th>
           </tr>
+        ))}
+      </tbody>
           
           {/* -> 뿌려줄 데이터
             <tr className='border-t border-gray-200'>
@@ -36,7 +51,6 @@ function DonationTable () {
                 </button>
               </th>
             </tr> */}
-        </tbody>
       </table>
     </div>
   )
