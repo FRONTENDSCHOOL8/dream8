@@ -60,13 +60,28 @@ function Exchange() {
         <div className="grid grid-cols-3 gap-10 w-[60rem]">
           {renderExchangeCards()}
         </div>
-        {isLoggedIn ? (
-          <BeforeLogin onClick={handleMoreButtonClick} />
-        ) : (
-          <Link to="/SignIn">
-            <BeforeLogin />
-          </Link>
-        )}
+        <div className="flex justify-center items-center pb-5">
+          {isLoggedIn ? (
+            <Button
+              type="button"
+              className="rounded-md w-14 text-blue-primary border-blue-primary border hover:bg-blue-primary hover:text-white"
+              onClick={handleMoreButtonClick}
+            >
+              더보기
+            </Button>
+          ) : (
+            <Link to="/SignIn" className="flex flex-col gap-3">
+              <Button
+                type="button"
+                className="rounded-md w-14 flex justify-center m-auto text-blue-primary border-blue-primary border hover:bg-blue-primary hover:text-white"
+                onClick={handleMoreButtonClick}
+              >
+                더보기
+              </Button>
+              <BeforeLogin />
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
