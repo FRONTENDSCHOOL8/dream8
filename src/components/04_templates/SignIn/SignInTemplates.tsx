@@ -2,7 +2,7 @@ import React from 'react';
 import SignInForm from '@/components/02_molecules/SignIn/SignInForm';
 import SocialLoginButtons from '@/components/03_organisms/SignIn/SocialLoginButtons';
 
-const SignInOrganism: React.FC = () => {
+const SignInTemplates: React.FC = () => {
   return (
     <div>
       <div className="flex  flex-col justify-center gap-10 border rounded-2xl w-[60.62rem] py-20  stroke-3.64 stroke-gray-400 items-center">
@@ -16,4 +16,4 @@ const SignInOrganism: React.FC = () => {
   );
 };
 
-export default SignInOrganism;
+export default SignInTemplates;
