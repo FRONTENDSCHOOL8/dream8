@@ -1,55 +1,65 @@
-import whiteLogo from 'public/white-logo.svg';
-import titleImg from 'public/home-section1.png';
-import earthSick from 'public/earth-sick.png';
-import fastImf from 'public/fast-fashion.png';
-import earthClean from 'public/clean-earth.png';
-import NewsCard from '../../03_organisms/Home/NewsCard';
+import whiteLogo from "public/white-logo.svg"
+import titleImg from "public/home-section1.png"
+import earthSick from "public/earth-sick.png"
+import fastImf from "public/fast-fashion.png"
+import earthClean from "public/clean-earth.png"
+import NewsCard from "../../03_organisms/Home/NewsCard"
+import { useEffect, useState } from "react";
+import { pb } from "@/api/pocketbase";
 
 function HomeContens() {
+
+  const [newsList, setNewsList] = useState<NewsItemProps[]>([]);
+
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        const data = await pb.collection('news').getList();
+        setNewsList(data.items); // `records`를 사용하여 데이터 설정
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    }
+
+    fetchNews();
+  }, []);
+
   return (
     <div>
-      <div
-        className="inner w-screen h-screen flex items-center justify-center"
+      <div 
+        className="inner w-screen h-screen flex items-center justify-center" 
         style={{
           backgroundImage: `url(${titleImg})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat"
+          }}>
         <h1 className="sr-only">section 1</h1>
         <div className="flex flex-col items-center justify-center gap-8 w-full h-full">
           <img src={whiteLogo} alt="드림로고" className="w-[135px] h-[135px]" />
-          <p className="text-7xl text-white font-bold">
-            드림과 함께 만들어 가는 세상
-          </p>
+          <p className="text-7xl text-white font-bold">드림과 함께 만들어 가는 세상</p>
         </div>
       </div>
 
       <div className="inner w-screen h-screen bg-blue-primary">
         <div className="flex flex-col items-center gap-10 justify-center w-full h-full">
           <h1 className="sr-only">section 2</h1>
-          <p className="flex flex-col gap-5 text-center text-6xl text-white font-bold">
-            <span>지구가 울고 있어요</span>
-            <span>우리는 듣고 행동해야 합니다</span>
-          </p>
-          <img
-            src={earthSick}
-            alt="지구가아파요"
-            className="w-[543px] h-[428px]"
-          />
+            <p className="flex flex-col gap-5 text-center text-6xl text-white font-bold">
+              <span>지구가 울고 있어요</span>
+              <span>우리는 듣고 행동해야 합니다</span>
+            </p>
+          <img src={earthSick} alt="지구가아파요" className="w-[543px] h-[428px]" />
         </div>
       </div>
 
-      <div
+      <div 
         className="inner w-screen h-screen"
         style={{
           backgroundImage: `url(${fastImf})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat"
+        }}>
         <div className="flex flex-col m-auto items-center gap-8 justify-center w-full h-full text-center text-white">
           <h1 className="sr-only">section 3</h1>
           <p className="flex flex-col gap-5 text-6xl font-bold">
@@ -74,27 +84,25 @@ function HomeContens() {
           </p>
         </div>
       </div>
-
+  
       <div className="inner w-screen h-screen">
         <div className="max-w-[1400px] h-full flex flex-col items-center m-auto">
-          <h1 className="sr-only">section 5</h1>
           <h2 className="text-5xl mt-10">드림 소식</h2>
 
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
-              <NewsCard width="w-[275px]" height="h-[275px]" />
-              <NewsCard width="w-[275px]" height="h-[275px]" />
-              <NewsCard width="w-[275px]" height="h-[275px]" />
-              <NewsCard width="w-[275px]" height="h-[275px]" />
+              {newsList.slice(0, 4).map((newsItem, index) => (
+                <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
+              ))}
             </ul>
             <div className="w-full">
-              <NewsCard width="w-full" height="h-full" />
+              {newsList.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={newsList[1]} />}
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default HomeContens;
