@@ -1,3 +1,5 @@
+import StateBox from '@/components/01_atoms/StateBox/StateBox';
+import Exchangeable from '@/components/01_atoms/StateBox/StateBox';
 import User from '@/components/02_molecules/Exchange/User/User';
 import { getPbImageURL } from '@/utils/getPbImage';
 
@@ -28,9 +30,10 @@ function ExchangeCard({ name, children, className }: ExchangeCard) {
           <User />
           <h2 className="text-[1.1rem] line-clamp-1">{title}</h2>
           <p className="text-[0.725rem] line-clamp-1">{product_detail}</p>
-          <div className="bg-orange-primary text-white w-14 text-[0.875rem] flex justify-center items-center rounded-[0.3125rem]">
-            {name}
-          </div>
+          <StateBox
+            className="bg-orange-primary text-white w-14 text-[0.875rem] flex justify-center items-center rounded-[0.3125rem]"
+            name="교환가능"
+          />
         </div>
       </section>
     </div>
