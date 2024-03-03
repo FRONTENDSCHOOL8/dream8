@@ -48,10 +48,10 @@ function Exchange() {
     <div className="flex flex-col gap-4 pt-10 items-center">
       <div className="flex flex-col gap-5">
         <div className="flex justify-end">
-          <Link to={isLoggedIn ? '/Exchange/ExchangeWrite' : '/SignIn'}>
+          <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>
             <Button
               type="button"
-              className="px-2 rounded-md text-blue-primary border-blue-primary border hover:bg-blue-primary hover:text-white"
+              className="px-2 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
             >
               게시글 작성
             </Button>
