@@ -9,6 +9,33 @@ import { pb } from "@/api/pocketbase";
 
 function HomeContens() {
 
+  const [currentSection, setCurrentSection] = useState(0);
+  const sectionCount = 5;
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      if (event.deltaY > 0) {
+        setCurrentSection(prevSection => 
+          Math.min(prevSection + 1, sectionCount - 1)
+        );
+      } else {
+        setCurrentSection(prevSection => 
+          Math.max(prevSection - 1, 0)
+        );
+      }
+    };
+
+    window.addEventListener("wheel", handleScroll);
+    return () => window.removeEventListener("wheel", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: window.innerHeight * currentSection,
+      behavior: "smooth",
+    });
+  }, [currentSection]);
+
   const [newsList, setNewsList] = useState<NewsItemProps[]>([]);
 
   useEffect(() => {
@@ -25,9 +52,9 @@ function HomeContens() {
   }, []);
 
   return (
-    <div>
+    <>
       <div 
-        className="inner w-screen h-screen flex items-center justify-center" 
+        className="snap-start w-screen h-screen flex items-center justify-center" 
         style={{
           backgroundImage: `url(${titleImg})`,
           backgroundPosition: "center",
@@ -41,7 +68,7 @@ function HomeContens() {
         </div>
       </div>
 
-      <div className="inner w-screen h-screen bg-blue-primary">
+      <div className="snap-start w-screen h-screen bg-blue-primary">
         <div className="flex flex-col items-center gap-10 justify-center w-full h-full">
           <h1 className="sr-only">section 2</h1>
             <p className="flex flex-col gap-5 text-center text-6xl text-white font-bold">
@@ -53,7 +80,7 @@ function HomeContens() {
       </div>
 
       <div 
-        className="inner w-screen h-screen"
+        className="snap-start w-screen h-screen"
         style={{
           backgroundImage: `url(${fastImf})`,
           backgroundPosition: "center",
@@ -73,7 +100,7 @@ function HomeContens() {
         </div>
       </div>
 
-      <div className="inner w-screen h-screen bg-white">
+      <div className="snap-start w-screen h-screen bg-white">
         <div className="flex flex-col items-center gap-8 justify-center w-full h-full">
           <h1 className="sr-only">section 4</h1>
           <p className="text-7xl">"지구를 되살리기 위한 사업을 합니다"</p>
@@ -85,7 +112,7 @@ function HomeContens() {
         </div>
       </div>
   
-      <div className="inner w-screen h-screen">
+      <div className="snap-start w-screen h-screen">
         <div className="max-w-[1400px] h-full flex flex-col items-center m-auto">
           <h2 className="text-5xl mt-10">드림 소식</h2>
 
@@ -101,7 +128,7 @@ function HomeContens() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
