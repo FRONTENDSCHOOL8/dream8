@@ -19,7 +19,8 @@ const SignInForm: React.FC<SignInFormProps> = ({
   labelEmail,
   labelPassword,
 }) => {
-  const { email, password, setEmail, setPassword } = useLoginFormStore();
+  const { userInfo, email, password, setEmail, setPassword, setUserInfo } =
+    useLoginFormStore();
   const [error, setError] = useState<string>(''); // error 상태 추가
 
   const navigate = useNavigate();
@@ -33,11 +34,20 @@ const SignInForm: React.FC<SignInFormProps> = ({
           password,
         };
 
+        // 로그인 요청
         await pb
           .collection('users')
           .authWithPassword(userData.email, userData.password);
 
+        // 사용자 정보 가져오기
+
+        //  "users" 컬렉션에서 현재 사용자의 email를 포함하는 항목을 찾는 것을 나타냅니다.
+
+        // 사용자 정보를 전역 상태에 저장
+        setUserInfo(pb.authStore.model);
+
         useLoginFormStore.setState({ isLoggedIn: true });
+
         navigate('/product');
       } catch (error) {
         console.error('Error logging in:', error);
