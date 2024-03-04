@@ -1,4 +1,4 @@
-import Delete from 'public/delet-button.svg'
+import Delete from '/delet-button.svg'
 import { useState } from 'react';
 
 
