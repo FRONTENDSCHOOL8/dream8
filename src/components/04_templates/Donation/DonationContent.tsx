@@ -8,7 +8,7 @@ import DonaionBg from "/donaion-bg.png"
 function DonationContents() {
   return (
     <>
-      <div className="max-w-[1440px] m-auto">
+      <div className="max-w-[90rem] m-auto">
         <div className="text-3xl flex justify-between w-[850px] m-auto">
         <h3>후원하기</h3>
         <p className="flex flex-col">
