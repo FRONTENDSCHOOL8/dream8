@@ -24,7 +24,6 @@ type listProps = {
 };
 
 function ListProduct({ list }: listProps): JSX.Element {
-  console.log(list);
   const pt = list.photo[0];
   return (
     <li className=" w-[17rem] border rounded-[20px] shadow-root m-auto">
@@ -32,7 +31,7 @@ function ListProduct({ list }: listProps): JSX.Element {
         <img
           src={getPbImage(list.collectionId, list.id, pt)}
           alt={list.title}
-          className="w-[17rem] h-[16.5rem] rounded-t-[20px]"
+          className="w-[17rem] h-[16.5rem] rounded-t-[20px] object-cover"
         />
         <figcaption className="p-5 flex flex-col justify-between h-32">
           <div className="text-lg font-medium">
