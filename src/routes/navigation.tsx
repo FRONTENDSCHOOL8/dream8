@@ -35,7 +35,7 @@ const navigationItems = [
   },
   {
     id: 'newsDetails',
-    path: '/NewsDetails',
+    path: '/NewsDetails/:newsId',
     text: '뉴스 내용',
     lazy: async () => {
       const Module = await import(
