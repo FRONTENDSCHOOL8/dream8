@@ -10,7 +10,7 @@ function CategoryProduct({ onSelect }) {
         name="productCategory"
         id="productCategory"
         onChange={handleChangeCategory}
-        className="text-lg text-gray-500 border rounded-lg w-24 text-center hover:text-blue-primary hover:font-bold"
+        className="text-lg text-gray-500 border rounded-lg w-24 text-center py-2"
       >
         <option value="전체">전체</option>
         <option value="의류">의류</option>

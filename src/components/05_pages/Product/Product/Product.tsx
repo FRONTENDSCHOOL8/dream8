@@ -23,7 +23,7 @@ export function Product() {
     <div className="flex flex-col gap-8 bg-white m-auto w-[90rem] pt-16 py-48">
       <h2 className="sr-only">판매 페이지</h2>
       <SearchProduct />
-      <div className="flex flex-row justify-end px-[5.31rem] items-center">
+      <div className="flex flex-row justify-end px-[6rem] items-center">
         <ArrangeProduct />
         <CategoryProduct onSelect={onSelect} />
       </div>
