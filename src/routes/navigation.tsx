@@ -86,32 +86,35 @@ const navigationItems = [
     id: 'Product',
     path: '/Product',
     text: '판매 메인페이지',
-    lazy: async () => {
-      const Module = await import(
+    // lazy: async () => {
+    //   const Module = await import(
+    //     '@/components/05_pages/Product/Product/Product'
+    //   );
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, Product } = await import(
         '@/components/05_pages/Product/Product/Product'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: Product,
+      };
     },
   },
   {
     id: 'ProductDetails',
     path: '/ProductDetails/:productId',
     text: '판매 상세페이지',
-    lazy: async () => {
-      const Module = await import(
+    async lazy() {
+      const { loader, ProductDetails } = await import(
         '@/components/05_pages/Product/ProductDetails/ProductDetails'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ProductDetails,
+      };
     },
-    // async lazy() {
-    //   const { loader, Component } = await import(
-    //     '@/pages/Product/page/ProductDetails/ProductDetails'
-    //   );
-    //   return {
-    //     loader: loader(queryClient),
-    //     Component,
-    //   };
-    // },
   },
   {
     id: 'Payment',
