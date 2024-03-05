@@ -3,6 +3,7 @@ import Input from '@/components/01_atoms/Input/Input';
 import Button from '@/components/01_atoms/Button/Button';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import useLoginFormStore from '@/store/useLoginFormStore';
+import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 import { pb } from '@/api/pocketbase';
 
 export interface MypageInfoMoleculesProps {
@@ -108,6 +109,24 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
     }
   };
 
+  const inputType = (field: string) => {
+    if (field === 'email') {
+      return 'email';
+    } else if (field === 'phone_number') {
+      return 'tel';
+    } else {
+      return 'text';
+    }
+  };
+
+  const inputValue = (field: string, value: string) => {
+    if (field === 'phone_number') {
+      return formatPhoneNumber(value);
+    } else {
+      return value;
+    }
+  };
+
   return (
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">회원 정보 (필수)</h2>
@@ -116,17 +135,20 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
         {Object.entries(fields).map(([field, value]) => (
           <li key={field} className="flex gap-10 text-xl font-semibold">
             <span className="w-[35%]">{getFieldLabel(field)}</span>
+
             {editMode[field as keyof EditModeState] ? (
               <Input
                 id={field}
-                type={field === 'email' ? 'email' : 'text'}
-                value={value}
+                type={inputType(field)}
+                value={inputValue(field, value)}
                 onChange={(e) => handleChange(e, field as keyof FieldsState)}
                 required
                 className="border border-gray-400 p-1"
               />
             ) : (
-              <div>{value}</div>
+              <div>
+                {field === 'phone_number' ? formatPhoneNumber(value) : value}
+              </div>
             )}
             {field !== 'email' && (
               <span className="cursor-pointer flex-grow text-right">
