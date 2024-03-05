@@ -48,12 +48,12 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
     address: false,
   });
 
-  useEffect(() => {
-    const storedUserInfo = localStorage.getItem('userInfo');
-    if (storedUserInfo) {
-      setUserInfo(JSON.parse(storedUserInfo));
-    }
-  }, [setUserInfo]);
+  // useEffect(() => {
+  //   const storedUserInfo = localStorage.getItem('userInfo');
+  //   if (storedUserInfo) {
+  //     setUserInfo(JSON.parse(storedUserInfo));
+  //   }
+  // }, [setUserInfo]);
 
   const handleEditToggle = (field: keyof EditModeState) => {
     setEditMode((prevState: EditModeState) => ({
