@@ -9,7 +9,12 @@ import { useQuery } from '@tanstack/react-query';
 
 export function Product() {
   const [category, setCategory] = useState<string>('전체');
-  const onSelect = useCallback((category: string) => setCategory(category), []);
+  const [sort, setSort] = useState<string>('최근순');
+  const onSelectCategory = useCallback(
+    (category: string) => setCategory(category),
+    []
+  );
+  const onSelectSort = useCallback((sort: string) => setSort(sort), []);
 
   const productLists = useLoaderData();
 
@@ -24,10 +29,10 @@ export function Product() {
       <h2 className="sr-only">판매 페이지</h2>
       <SearchProduct />
       <div className="flex flex-row justify-end px-[6rem] items-center">
-        <ArrangeProduct />
-        <CategoryProduct onSelect={onSelect} />
+        <ArrangeProduct onSelect={onSelectSort} />
+        <CategoryProduct onSelect={onSelectCategory} />
       </div>
-      <ListsProduct category={category} productLists={data} />
+      <ListsProduct sort={sort} category={category} productLists={data} />
     </div>
   );
 }

@@ -1,6 +1,4 @@
-import CautionModal from '@/components/02_molecules/Modal/CautionModal/CautionModal';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
-import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import MyCartList from '@/components/03_organisms/ProductDetails/MyCartList/MyCartList';
 import { useState } from 'react';
 
@@ -56,14 +54,6 @@ function Payment() {
           <ConfirmModal title="성공" onClose={handleCloseModal}>
             <p>결제를 성공했습니다</p>
           </ConfirmModal>
-          {/* <SelectModal
-            title="장바구니 담기 완료"
-            onClose={handleCloseModal}
-            onLink={handleCloseModal}
-          >
-            <p>구매하기 페이지로 넘어가시겠습니까?</p>
-          </SelectModal> */}
-          {/* <CautionModal onClose={handleCloseModal} /> */}
         </>
       )}
     </div>
