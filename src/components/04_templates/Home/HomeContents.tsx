@@ -4,8 +4,10 @@ import earthSick from "/earth-sick.png"
 import fastImf from "/fast-fashion.png"
 import earthClean from "/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
+import Dots from "@/components/02_molecules/Home/Dots"
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
+
 
 function HomeContens() {
 
@@ -55,6 +57,8 @@ function HomeContens() {
 
   return (
     <>
+      <Dots currentSection={currentSection} sectionCount={sectionCount} />
+
       <div 
         className="snap-start w-screen h-screen flex items-center justify-center" 
         style={{
