@@ -3,7 +3,7 @@ import Delete from '/delete-button.svg';
 
 interface Donation {
   id: number;
-  category: 'clothes' | 'shoes' | 'miscellaneous';
+  category: 'clothes' | 'shoes' | 'etc';
   description: string;
 }
 
@@ -17,7 +17,7 @@ interface DonationTableProps {
 const categoryLabels: { [key: string]: string } = {
   clothes: '의류',
   shoes: '신발',
-  miscellaneous: '잡화',
+  etc: '잡화',
 };
 
 const DonationTable: React.FC<DonationTableProps> = ({ donations, onDeleteDonation }) => {

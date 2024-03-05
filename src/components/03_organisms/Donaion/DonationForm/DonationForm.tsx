@@ -42,7 +42,7 @@ function DonationForm({ onAddDonation }) {
           <option value="choice">물품의 종류를 선택하세요</option>
           <option value="clothes">의류</option>
           <option value="shoes">신발</option>
-          <option value="miscellaneous">잡화</option>
+          <option value="etc">잡화</option>
         </select>
       </div>
       <div className='flex flex-col gap-3 m-auto items-center'>
