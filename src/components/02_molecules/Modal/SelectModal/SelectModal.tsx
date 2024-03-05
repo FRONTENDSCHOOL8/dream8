@@ -1,18 +1,17 @@
-import Button from '@/components/01_atoms/Button/Button';
 import { createPortal } from 'react-dom';
 
 type SelectModalPropsType = {
   title: React.ReactNode | string;
   children: React.ReactNode;
-  onClose: () => void;
-  onLink: () => void;
+  onClickYes: () => void;
+  onClickNo: () => void;
 };
 
 function SelectModal({
   title,
   children,
-  onClose,
-  onLink,
+  onClickYes,
+  onClickNo,
 }: SelectModalPropsType) {
   return createPortal(
     <div className="w-full h-full fixed top-0 left-0 bg-black-100 bg-opacity-50 flex justify-center items-center">
@@ -20,20 +19,18 @@ function SelectModal({
         <h1 className="text-3xl font-bold">{title}</h1>
         <div className="text-xl font-medium">{children}</div>
         <div className="flex justify-between">
-          <Button
+          <button
             className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-start"
-            onClick={onClose}
-            type="button"
+            onClick={onClickNo}
           >
             아니요
-          </Button>
-          <Button
+          </button>
+          <button
             className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-end"
-            onClick={onLink}
-            type="button"
+            onClick={onClickYes}
           >
             네
-          </Button>
+          </button>
         </div>
       </div>
     </div>,
