@@ -7,6 +7,7 @@ type NewsItemProps = {
   created: string;
   type: string;
   title: string;
+  photo: string[];
   content: string;
 };
 

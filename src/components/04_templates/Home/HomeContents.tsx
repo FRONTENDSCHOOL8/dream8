@@ -41,7 +41,9 @@ function HomeContens() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const data = await pb.collection('news').getList();
+        const data = await pb.collection('news').getList(1, 10, {
+          sort: '-created',
+        });
         setNewsList(data.items); // `records`를 사용하여 데이터 설정
       } catch (error) {
         console.error("Error fetching news:", error);
