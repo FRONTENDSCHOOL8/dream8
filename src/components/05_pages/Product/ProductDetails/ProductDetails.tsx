@@ -7,11 +7,10 @@ import ProductDetailsInfo from '@/components/04_templates/ProductDetails/Product
 import { useQuery } from '@tanstack/react-query';
 
 export function ProductDetails() {
-  const productId = useParams();
+  const { productId } = useParams();
   const product = useLoaderData();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-
   const { data } = useQuery({
     queryKey: ['productDetail', productId],
     queryFn: () => fetchSingleProduct(productId),

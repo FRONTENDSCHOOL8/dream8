@@ -87,7 +87,7 @@ function ProductDetailsInfo({ productData, onOpenModal }) {
                   key={`product_Description_${index}`}
                   className="my-4 text-xl"
                 >
-                  {line}.
+                  {line}
                 </p>
               ))}
               <p>사이즈:{productData.size}</p>
