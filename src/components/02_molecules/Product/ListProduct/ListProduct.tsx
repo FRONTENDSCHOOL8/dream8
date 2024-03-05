@@ -1,6 +1,5 @@
 import getDaysFromToday from '@/utils/getDaysFromToday';
 import { getPbImage } from '@/utils/getPbImage';
-import { Link } from 'react-router-dom';
 
 type ListProductProps = {
   id: string;
@@ -33,10 +32,10 @@ function ListProduct({ list }: listProps): JSX.Element {
           alt={list.title}
           className="w-[17rem] h-[16.5rem] rounded-t-[20px] object-cover"
         />
-        <figcaption className="p-5 flex flex-col justify-between h-32">
+        <figcaption className="p-5 flex flex-col justify-between h-36">
           <div className="text-lg font-medium">
             {list.title}
-            <span> ({list.size})</span>
+            <span> - {list.size}</span>
           </div>
           <div className="flex flex-row justify-between">
             <div>{list.price.toLocaleString()}원</div>

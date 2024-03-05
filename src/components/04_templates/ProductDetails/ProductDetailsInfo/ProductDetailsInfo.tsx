@@ -3,11 +3,10 @@ import getDaysFromToday from '@/utils/getDaysFromToday';
 import { getPbImage } from '@/utils/getPbImage';
 import timerIcon from '/timer.svg';
 import Cautions from '@/components/01_atoms/Product/Cautions';
-import { Link } from 'react-router-dom';
 import Button from '@/components/01_atoms/Button/Button';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 
-function ProductDetailsInfo({ productData, onOpenModal }) {
+function ProductDetailsInfo({ productData, onClickPurchase, onClickMyCart }) {
   const photo = productData.photo;
   const pbUrl = getPbImage(productData.collectionId, productData.id, '');
 
@@ -47,14 +46,15 @@ function ProductDetailsInfo({ productData, onOpenModal }) {
               </div>
               <Cautions />
               <div role="group" className="grid grid-cols-2 gap-5">
-                <Link
-                  to="/Payment"
+                <Button
+                  onClick={onClickPurchase}
                   className="text-2xl border-[3px] border-blue-primary font-semibold text-blue-primary rounded-md hover:text-white hover:bg-blue-primary py-2 text-center"
+                  type="button"
                 >
                   구매하기
-                </Link>
+                </Button>
                 <Button
-                  onClick={onOpenModal}
+                  onClick={onClickMyCart}
                   className="text-2xl border-[3px] border-blue-primary font-semibold text-blue-primary rounded-md hover:text-white hover:bg-blue-primary py-2"
                   type="button"
                 >
@@ -87,7 +87,7 @@ function ProductDetailsInfo({ productData, onOpenModal }) {
                   key={`product_Description_${index}`}
                   className="my-4 text-xl"
                 >
-                  {line}.
+                  {line}
                 </p>
               ))}
               <p>사이즈:{productData.size}</p>
