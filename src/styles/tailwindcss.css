@@ -12,6 +12,6 @@
   }
 
   .button-atom {
-    @apply border-3 px-8 py-2 text-3xl font-semibold border-blue-primary text-blue-primary bg-white rounded-md;
+    @apply border-2 px-6 py-2 text-sm font-semibold border-blue-primary text-blue-primary bg-white rounded-md whitespace-nowrap;
   }
 }
