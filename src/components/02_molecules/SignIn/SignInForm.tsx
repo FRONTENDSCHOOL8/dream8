@@ -19,8 +19,16 @@ const SignInForm: React.FC<SignInFormProps> = ({
   labelEmail,
   labelPassword,
 }) => {
-  const { userInfo, email, password, setEmail, setPassword, setUserInfo } =
-    useLoginFormStore();
+  const {
+    isLoggedIn,
+    userInfo,
+    email,
+    password,
+    setEmail,
+    setPassword,
+    setUserInfo,
+    setIsLoggedIn,
+  } = useLoginFormStore();
   const [error, setError] = useState<string>(''); // error 상태 추가
 
   const navigate = useNavigate();
@@ -46,8 +54,8 @@ const SignInForm: React.FC<SignInFormProps> = ({
         // 사용자 정보를 전역 상태에 저장
         setUserInfo(pb.authStore.model);
 
-        useLoginFormStore.setState({ isLoggedIn: true });
-
+        // useLoginFormStore.setState({ isLoggedIn: true });
+        setIsLoggedIn(!isLoggedIn);
         navigate('/product');
       } catch (error) {
         console.error('Error logging in:', error);
@@ -65,7 +73,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
         <p className="text-red-500">{'아이디 또는 비밀번호를 확인해주세요.'}</p>
       )}
 
-      <div className="flex flex-col gap-3 ">
+      <div className="flex flex-col w-full gap-3 ">
         <div>
           <Input
             type="email"
