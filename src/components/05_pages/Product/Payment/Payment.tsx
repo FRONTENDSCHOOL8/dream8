@@ -16,7 +16,7 @@ function Payment() {
   };
 
   return (
-    <div className="text-center bg-white" id="myCartPage">
+    <div className="text-center bg-white max-w-[90rem]" id="myCartPage ">
       <section className="w-[62.5rem] m-auto my-16">
         <h2 className="text-4xl pt-20 pb-10 font-semibold">장바구니 목록</h2>
         <ul className="flex flex-col">
