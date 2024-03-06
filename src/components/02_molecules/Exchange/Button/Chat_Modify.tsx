@@ -1,16 +1,21 @@
 import Button01 from '@/components/01_atoms/Button/Button01';
 import Trash from '/Trash.svg';
+import { useNavigate } from 'react-router-dom';
 
 interface EditProp {
   Edit: boolean;
+  id: string;
 }
 
-function ExchangeModify({ Edit }: EditProp) {
+function ExchangeModify({ Edit, id }: EditProp) {
+  const navigate = useNavigate();
+
   return Edit ? (
     <div className="flex items-center gap-4">
       <Button01
         type="button"
         className="p-0 w-80 h-10 hover:bg-blue-primary hover:text-white"
+        onClick={() => navigate(`/ExchangeModify/${id}`)}
       >
         게시글 수정하기
       </Button01>
