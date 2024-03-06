@@ -1,4 +1,4 @@
-import ExchangeBox from '@/pages/Exchange/atom/ExchangeBox';
+import StateBox from '@/components/StateBox/StateBox';
 import { getPbImageURL } from '@/utils/getPbImage';
 import Profile from '../Profile/Profile';
 
@@ -25,7 +25,10 @@ function Card({ children }: CardProps) {
         <li className="text-[1.3rem] line-clamp-1">{title}</li>
         <li className="text-[0.75rem] line-clamp-1">{product_detail}</li>
         <li className="text-[0.75rem] text-gray-400">조회수 14회</li>
-        <ExchangeBox name="교환가능" />
+        <StateBox
+          name="교환가능"
+          className="bg-orange-primary text-white w-14 text-[0.875rem] flex justify-center items-center rounded-[0.3125rem]"
+        />
       </ul>
     </div>
   );

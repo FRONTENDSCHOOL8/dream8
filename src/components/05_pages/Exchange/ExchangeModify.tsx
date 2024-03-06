@@ -1,6 +1,8 @@
 import SubmitButton from '@/components/Button/SubmitButton';
-import { useState, ChangeEvent, FormEvent, useRef } from 'react';
+import { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import { pb } from '@/api/pocketbase';
+import { useListStore } from '@/store/useListStore';
+import { useParams } from 'react-router-dom';
 
 interface InputItem {
   name: string;
@@ -9,27 +11,24 @@ interface InputItem {
   options?: string[];
 }
 
-function ExchangeWrite() {
-  const inputList: InputItem[] = [
-    { name: '제목', label: 'title', type: 'text' },
-    {
-      name: '종류',
-      label: 'type',
-      type: 'text',
-      options: ['옷', '잡화', '기타'],
-    },
-    { name: '브랜드', label: 'brand', type: 'text' },
-    { name: '모델명', label: 'model_name', type: 'text' },
-    {
-      name: '상태등급',
-      label: 'grade',
-      type: 'text',
-      options: ['A', 'B', 'C'],
-    },
-    { name: '거래 방법', label: 'trade_method', type: 'text' },
-  ];
+interface InputData {
+  title: string;
+  type: string;
+  brand: string;
+  model_name: string;
+  grade: string;
+  trade_method: string;
+  product_detail: string;
+  product_img: File | string;
+}
 
-  const [inputData, setInputData] = useState({
+function ExchangeModify() {
+  const { id } = useParams();
+  const { Data } = useListStore();
+
+  const selectedItem = Data.find((item) => item.id === id);
+
+  const [inputData, setInputData] = useState<InputData>({
     title: '',
     type: '',
     brand: '',
@@ -46,15 +45,30 @@ function ExchangeWrite() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (selectedItem) {
+      setInputData({
+        title: selectedItem.title,
+        type: selectedItem.type,
+        brand: selectedItem.brand,
+        model_name: selectedItem.model_name,
+        grade: selectedItem.grade,
+        trade_method: selectedItem.trade_method,
+        product_detail: selectedItem.product_detail,
+        product_img: selectedItem.product_img,
+      });
+    }
+  }, [selectedItem]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(inputData);
 
     const formData = new FormData();
-    formData.append('product_img', inputData.product_img);
+    formData.append('product_img', inputData.product_img as File);
 
     try {
-      await pb.collection('exchange').create(inputData, formData);
+      await pb.collection('exchange').update(inputData, formData);
       console.log('Data updated successfully!');
     } catch (error) {
       console.error('Error updating data:', error);
@@ -87,10 +101,33 @@ function ExchangeWrite() {
     setInputData({ ...inputData, [label]: value });
   };
 
+  if (!selectedItem) {
+    return '로딩중입니다...';
+  }
+
+  const inputList: InputItem[] = [
+    { name: '제목', label: 'title', type: 'text' },
+    {
+      name: '종류',
+      label: 'type',
+      type: 'text',
+      options: ['옷', '잡화', '기타'],
+    },
+    { name: '브랜드', label: 'brand', type: 'text' },
+    { name: '모델명', label: 'model_name', type: 'text' },
+    {
+      name: '상태등급',
+      label: 'grade',
+      type: 'text',
+      options: ['A', 'B', 'C'],
+    },
+    { name: '거래 방법', label: 'trade_method', type: 'text' },
+  ];
+
   return (
     <div className="pb-10">
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
-        교환 게시글 작성
+        교환 게시글 수정하기
       </h1>
       <div className="flex flex-col m-auto justify-center items-center w-6/12 gap-4 pt-10 border rounded-xl pb-10">
         <form className="flex flex-col gap-10 w-80" onSubmit={handleSubmit}>
@@ -104,6 +141,7 @@ function ExchangeWrite() {
                 <select
                   className="bg-gray-300 h-8 w-60"
                   onChange={(e) => handleChange(e, item.label)}
+                  value={inputData[item.label]}
                 >
                   {item.options.map((option, index) => (
                     <option key={index} value={option}>
@@ -115,7 +153,7 @@ function ExchangeWrite() {
                 <input
                   type={item.type}
                   className="bg-gray-300 h-8 w-60"
-                  value={inputData[item.label] || ''}
+                  value={inputData[item.label]}
                   onChange={(e) => handleChange(e, item.label)}
                 />
               )}
@@ -159,4 +197,4 @@ function ExchangeWrite() {
   );
 }
 
-export default ExchangeWrite;
+export default ExchangeModify;

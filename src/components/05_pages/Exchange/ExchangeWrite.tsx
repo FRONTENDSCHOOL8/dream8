@@ -4,6 +4,8 @@ import { pb } from '@/api/pocketbase';
 import Input from '@/components/01_atoms/Input/Input';
 import TextArea from '@/components/01_atoms/TextArea/TextArea';
 import Button from '@/components/01_atoms/Button/Button';
+import useLoginFormStore from '@/store/useLoginFormStore';
+import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 
 interface InputItem {
   name: string;
@@ -13,6 +15,13 @@ interface InputItem {
 }
 
 function ExchangeWrite() {
+  const { isLoggedIn, userInfo } = useLoginFormStore();
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState({
+    title: '',
+    message: '',
+  });
+
   const inputList: InputItem[] = [
     { name: '제목', label: 'title', type: 'text' },
     {
@@ -34,13 +43,14 @@ function ExchangeWrite() {
 
   const [inputData, setInputData] = useState({
     title: '',
-    type: '',
+    type: '옷',
     brand: '',
     model_name: '',
-    grade: '',
+    grade: 'A',
     trade_method: '',
     product_detail: '',
     product_img: '',
+    field: '',
   });
 
   const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>(
@@ -51,16 +61,74 @@ function ExchangeWrite() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputData);
+
+    if (!isLoggedIn) {
+      setOpen(true);
+      setText({
+        title: '실패',
+        message: '로그인이 필요합니다.',
+      });
+      return;
+    }
+
+    if (
+      !inputData.title ||
+      !inputData.brand ||
+      !inputData.model_name ||
+      !inputData.trade_method ||
+      !inputData.product_img
+    ) {
+      setOpen(true);
+      setText({
+        title: '실패',
+        message: '빈 값을 입력했습니다 모두 입력해주세요.',
+      });
+      return;
+    }
+
+    if (inputData.product_detail.length >= 500) {
+      setOpen(true);
+      setText({
+        title: '실패',
+        message: '상세 설명은 500글자 아래로 작성해주세요!',
+      });
+      return;
+    }
 
     const formData = new FormData();
     formData.append('product_img', inputData.product_img);
 
     try {
-      await pb.collection('exchange').create(inputData, formData);
-      console.log('Data updated successfully!');
+      await pb.collection('exchange').create(
+        {
+          ...inputData,
+          field: userInfo.id,
+        },
+        formData
+      );
+      setOpen(true);
+      setText({
+        title: '성공',
+        message: '데이터 저장에 성공했습니다.',
+      });
+      setInputData({
+        title: '',
+        type: '옷',
+        brand: '',
+        model_name: '',
+        grade: 'A',
+        trade_method: '',
+        product_detail: '',
+        product_img: '',
+        field: '',
+      });
+      setPreviewImage('');
     } catch (error) {
-      console.error('Error updating data:', error);
+      setOpen(true);
+      setText({
+        title: '실패',
+        message: '데이터 저장에 실패했습니다. 다시 시도해주세요.',
+      });
     }
   };
 
@@ -107,6 +175,7 @@ function ExchangeWrite() {
                 <select
                   className="bg-gray-300 h-8 w-60"
                   onChange={(e) => handleChange(e, item.label)}
+                  value={inputData[item.label] || item.options[0]}
                 >
                   {item.options.map((option, index) => (
                     <option key={index} value={option}>
@@ -143,7 +212,7 @@ function ExchangeWrite() {
             >
               파일선택
             </Button>
-            <Input
+            <input
               id=""
               type="file"
               className="hidden"
@@ -159,6 +228,11 @@ function ExchangeWrite() {
             />
           </div>
           <SubmitButton name="제출하기" />
+          {open && (
+            <ConfirmModal title={text.title} onClose={() => setOpen(false)}>
+              {text.message}
+            </ConfirmModal>
+          )}
         </form>
       </div>
     </div>
