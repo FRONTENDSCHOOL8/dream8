@@ -21,7 +21,7 @@ const Button01: React.FC<Button01Props> = ({
 }) => {
   return (
     <button
-      className={`button-atom ${className}`}
+      className={`button-atom  ${className} `}
       onClick={onClick}
       type={type}
       aria-label={ariaLabel}

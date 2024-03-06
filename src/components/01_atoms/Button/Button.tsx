@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 
 interface ButtonProps {
+  id?: string;
   label?: string;
   onClick?: () => void;
   children?: React.ReactNode;
