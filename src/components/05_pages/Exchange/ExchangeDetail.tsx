@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { getPbImageURL } from '@/utils/getPbImage';
-import ExchangeModify from '@/pages/Exchange/molecules/ExchangeModify';
 import { useListStore } from '@/store/useListStore';
 import StateBox from '@/components/StateBox/StateBox';
 import User from '@/components/02_molecules/Exchange/User/User';
 import useLoginFormStore from '@/store/useLoginFormStore';
+import Chat_Modify from '@/components/02_molecules/Exchange/Button/Chat_Modify';
 
 function ExchangeDetail() {
   const { id } = useParams();
@@ -12,10 +12,9 @@ function ExchangeDetail() {
   const { isLoggedIn, userInfo } = useLoginFormStore();
 
   const selectedItem = Data.find((item) => item.id === id);
-  const userData = selectedItem?.expand.field[0].id;
+  const userData = selectedItem?.expand.field[0]?.id;
 
-  const userName = selectedItem?.expand.field[0].user_name;
-
+  const userName = selectedItem?.expand.field[0]?.user_name;
   const Edit = userData === userInfo.id;
 
   if (!selectedItem) {
@@ -43,7 +42,7 @@ function ExchangeDetail() {
             중고 물품 물물 거래만 가능합니다. <br />
             금전 거래를 자제해주세요.
           </p>
-          <ExchangeModify Edit={Edit} />
+          <Chat_Modify Edit={Edit} id={id} />
         </div>
       </div>
       <div className="pt-10 flex flex-col">
