@@ -23,7 +23,10 @@ function Exchange() {
 
   const renderExchangeCards = () => {
     return Data.slice(0, maxList).map((item, index) => (
-      <Link to={`/Exchange/ExchangeDetail/${item.id}`} key={item.id}>
+      <Link
+        to={isLoggedIn ? `/Exchange/ExchangeDetail/${item.id}` : '/SignIn'}
+        key={item.id}
+      >
         <ExchangeCard
           name="교환가능"
           userName={userData[index]?.user_name}
