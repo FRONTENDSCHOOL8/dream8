@@ -12,7 +12,7 @@ import { pb } from "@/api/pocketbase";
 function HomeContens() {
 
   const [currentSection, setCurrentSection] = useState(0);
-  const sectionCount = 5;
+  const sectionCount = 6;
 
   useEffect(() => {
     const handleScroll = (event) => {
@@ -46,7 +46,7 @@ function HomeContens() {
         const data = await pb.collection('news').getList(1, 10, {
           sort: '-created',
         });
-        setNewsList(data.items); // `records`를 사용하여 데이터 설정
+        setNewsList(data.items);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
