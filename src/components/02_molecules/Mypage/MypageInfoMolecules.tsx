@@ -4,9 +4,9 @@ import Button from '@/components/01_atoms/Button/Button';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { pb } from '@/api/pocketbase';
-import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 import SelectModal from '../Modal/SelectModal/SelectModal';
 import { useNavigate } from 'react-router-dom';
+import { formatPhoneNumber } from '@/utils/formatphoneNumber';
 
 export interface MypageInfoMoleculesProps {
   fontColor?: string;
