@@ -6,7 +6,7 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import { pb } from '@/api/pocketbase';
 import SelectModal from '../Modal/SelectModal/SelectModal';
 import { useNavigate } from 'react-router-dom';
-import formatPhoneNumber from '@/utils/formatPhoneNumber';
+import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 
 export interface MypageInfoMoleculesProps {
   fontColor?: string;
