@@ -129,7 +129,7 @@ const navigationItems = [
   {
     id: 'Exchange',
     path: '/Exchange',
-    text: '교환페이지',
+    text: '교환 메인페이지',
     lazy: async () => {
       const Module = await import('@/components/05_pages/Exchange/Exchange');
       return { Component: Module.default };
@@ -138,10 +138,21 @@ const navigationItems = [
   {
     id: 'ExchangeWrite',
     path: '/ExchangeWrite',
-    text: '교환페이지',
+    text: '교환글 작성하기 페이지',
     lazy: async () => {
       const Module = await import(
         '@/components/05_pages/Exchange/ExchangeWrite'
+      );
+      return { Component: Module.default };
+    },
+  },
+  {
+    id: 'ExchangeModify',
+    path: '/ExchangeModify/:id',
+    text: '교환 작성글 수정',
+    lazy: async () => {
+      const Module = await import(
+        '@/components/05_pages/Exchange/ExchangeModify'
       );
       return { Component: Module.default };
     },
