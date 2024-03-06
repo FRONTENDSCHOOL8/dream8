@@ -4,13 +4,19 @@ import ExchangeModify from '@/pages/Exchange/molecules/ExchangeModify';
 import { useListStore } from '@/store/useListStore';
 import StateBox from '@/components/StateBox/StateBox';
 import User from '@/components/02_molecules/Exchange/User/User';
+import useLoginFormStore from '@/store/useLoginFormStore';
 
 function ExchangeDetail() {
   const { id } = useParams();
   const { Data } = useListStore();
+  const { isLoggedIn, userInfo } = useLoginFormStore();
 
   const selectedItem = Data.find((item) => item.id === id);
+  const userData = selectedItem?.expand.field[0].id;
+
   const userName = selectedItem?.expand.field[0].user_name;
+
+  const Edit = userData === userInfo.id;
 
   if (!selectedItem) {
     return <div>해당 아이템을 찾을 수 없습니다.</div>;
@@ -37,7 +43,7 @@ function ExchangeDetail() {
             중고 물품 물물 거래만 가능합니다. <br />
             금전 거래를 자제해주세요.
           </p>
-          <ExchangeModify />
+          <ExchangeModify Edit={Edit} />
         </div>
       </div>
       <div className="pt-10 flex flex-col">
