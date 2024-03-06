@@ -10,6 +10,11 @@ export interface ExchangeItem {
   trade_method: string;
   product_detail: string;
   product_img: string;
+  expand: {
+    field: {
+      user_name: string;
+    }[];
+  };
 }
 
 interface ExchangeStore {
