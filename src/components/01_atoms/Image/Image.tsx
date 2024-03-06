@@ -1,5 +1,5 @@
 import React from 'react';
-import profilephoto from 'public/profile.svg';
+import profilephoto from '/profile.svg';
 
 interface ImageWithCaptionProps {
   src?: string;
@@ -8,6 +8,10 @@ interface ImageWithCaptionProps {
   width?: string;
   height?: string;
   className?: string;
+  style?: {
+    width: string;
+    height: string;
+  };
 }
 
 const defaultImageSrc = profilephoto; // 기본 이미지 경로
