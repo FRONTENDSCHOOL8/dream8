@@ -1,42 +1,58 @@
 import { useId } from 'react';
 
-function DonationSubmission() {
+
+function DonationForm({ onAddDonation }) {
   const id = useId();
 
-  return (
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
 
-    <form className="w-[600px] flex flex-col gap-8">
+    const donation = {
+      name: event.target.name.value,
+      category: event.target.category.value,
+      description: event.target.description.value,
+    };
+
+    onAddDonation(donation); 
+
+    event.target.reset(); 
+  }
+
+  return (
+    <form className="w-[600px] flex flex-col gap-8" onSubmit={handleSubmit}>
       <div className='flex items-center justify-between'>
-        <label htmlFor={id}>
-          후원자 이름
-        </label>
+        <label htmlFor={`${id}-name`}>후원자 이름</label>
         <input
           type="text"
           name="name"
-          id={id}
+          id={`${id}-name`}
           className="w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300"
           placeholder="후원자 이름을 입력하세요"
+          required 
         />
       </div>
       <div className='flex items-center justify-between'>
-        <label htmlFor="kind">
-          물품 종류
-        </label>
-        <select name="kind" id="kind" className="w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300">
+        <label htmlFor={`${id}-category`}>물품 종류</label>
+        <select
+          name="category"
+          id={`${id}-category`}
+          className="w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300"
+          required 
+        >
+          <option value="choice">물품의 종류를 선택하세요</option>
           <option value="clothes">의류</option>
           <option value="shoes">신발</option>
-          <option value="miscellaneous">잡화</option>
+          <option value="etc">잡화</option>
         </select>
       </div>
       <div className='flex flex-col gap-3 m-auto items-center'>
-        <label htmlFor="description" className="text-lg">
-          물품 설명
-        </label>
+        <label htmlFor={`${id}-description`}>물품 설명</label>
         <textarea
           name="description"
-          id="description"
+          id={`${id}-description`}
           placeholder="물품 설명을 입력하세요"
           className="w-[600px] h-[200px] p-2 bg-gray-300"
+          required 
         />
       </div>
       <button 
@@ -46,7 +62,7 @@ function DonationSubmission() {
         추가하기
       </button>
     </form>
-  )
+  );
 }
 
-export default DonationSubmission
+export default DonationForm;
