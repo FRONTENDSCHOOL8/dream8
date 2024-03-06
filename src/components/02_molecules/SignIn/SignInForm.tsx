@@ -1,4 +1,3 @@
-// SignInForm.tsx 파일에서 handleSubmit 함수 수정
 import React, { useCallback, useEffect, useState } from 'react';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { useNavigate } from 'react-router-dom';
@@ -19,23 +18,17 @@ const SignInForm: React.FC<SignInFormProps> = ({
   labelEmail,
   labelPassword,
 }) => {
-  const {
-    isLoggedIn,
-    userInfo,
-    email,
-    password,
-    setEmail,
-    setPassword,
-    setUserInfo,
-    setIsLoggedIn,
-  } = useLoginFormStore();
+  const { isLoggedIn } = useLoginFormStore();
   const [error, setError] = useState<string>(''); // error 상태 추가
-
   const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+
+      const email = (e.target as HTMLFormElement).elements.email.value;
+      const password = (e.target as HTMLFormElement).elements.password.value;
+
       try {
         const userData = {
           email,
@@ -47,22 +40,15 @@ const SignInForm: React.FC<SignInFormProps> = ({
           .collection('users')
           .authWithPassword(userData.email, userData.password);
 
-        // 사용자 정보 가져오기
-
-        //  "users" 컬렉션에서 현재 사용자의 email를 포함하는 항목을 찾는 것을 나타냅니다.
-
-        // 사용자 정보를 전역 상태에 저장
-        setUserInfo(pb.authStore.model);
-
-        // useLoginFormStore.setState({ isLoggedIn: true });
-        setIsLoggedIn(!isLoggedIn);
+        useLoginFormStore.getState().setUserInfo(pb.authStore.model);
+        useLoginFormStore.getState().setIsLoggedIn(!isLoggedIn);
         navigate('/product');
       } catch (error) {
         console.error('Error logging in:', error);
         setError('아이디 또는 비밀번호를 확인해주세요.');
       }
     },
-    [email, password, navigate]
+    [navigate]
   );
 
   return (
@@ -78,8 +64,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
           <Input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            defaultValue=""
             required
             ariaRequired={true}
             className={
@@ -94,8 +79,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
           <Input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            defaultValue=""
             required
             ariaRequired={true}
             className={
