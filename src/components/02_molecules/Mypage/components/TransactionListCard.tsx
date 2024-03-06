@@ -18,7 +18,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
   const defaultImageSrc = cap;
 
   const handleClick = () => {
-    console.log('이동화면은 아직 미구현입니다');
+    console.log('이동화면은 아직 미구현입니다!');
   };
 
   return (
