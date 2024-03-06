@@ -5,7 +5,7 @@ import Input from '@/components/01_atoms/Input/Input';
 import TextArea from '@/components/01_atoms/TextArea/TextArea';
 import Button from '@/components/01_atoms/Button/Button';
 import useLoginFormStore from '@/store/useLoginFormStore';
-import ConfirmModal from '@/components/Modal/ConfirmModal/ConfirmModal';
+import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 
 interface InputItem {
   name: string;
