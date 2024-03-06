@@ -3,18 +3,31 @@ import DonationForm from '../../../03_organisms/Donaion/DonationForm/DonationFor
 import { useEffect, useState } from 'react';
 import { pb } from '@/api/pocketbase';
 
-function DonationSubmission() {
-  const [donations, setDonations] = useState([]);
+interface Donation {
+  id?: string;
+  name: string;
+  category: string;
+  description: string;
+}
 
-  const handleAddDonation = (donation) => {
+function DonationSubmission() {
+  const [donations, setDonations] = useState<Donation[]>([]);
+
+  const handleAddDonation = (donation : Donation) => {
+    const lastId = parseInt(localStorage.getItem('lastDonationId') || '0', 10);
+    const newId = lastId + 1;
+    const newDonation = { ...donation, id: newId.toString() };
+    
     setDonations((prevDonations) => {
-      const updatedDonations = [...prevDonations, donation];
+      const updatedDonations = [...prevDonations, newDonation];
       localStorage.setItem('donations', JSON.stringify(updatedDonations));
+      localStorage.setItem('lastDonationId', newId.toString());
       return updatedDonations;
     });
   };
   
-  const handleDeleteDonation = (id) => {
+  
+  const handleDeleteDonation = (id: string) => {
     setDonations((prevDonations) => {
       const updatedDonations = prevDonations.filter(donation => donation.id !== id);
       localStorage.setItem('donations', JSON.stringify(updatedDonations));
@@ -23,15 +36,28 @@ function DonationSubmission() {
   };
 
   const handleSubmit = async () => {
+    if (donations.length === 0 || donations.some(donation => !donation.name || !donation.category || !donation.description)) {
+      alert('빈 값을 입력했습니다. 모두 입력해주세요.');
+      return;
+    }
+  
     try {
-      for (const donation of donations) { 
-        const record = await pb.collection('donation').create(donation);
+      for (const donation of donations) {
+        const dataToSend = {
+          name: donation.name,
+          category: donation.category,
+          description: donation.description,
+        };
+  
+        const record = await pb.collection('donation').create(dataToSend);
         console.log('Saved record:', record);
       }
+      localStorage.removeItem('donations');
       setDonations([]);
       alert('모든 후원 데이터가 성공적으로 저장되었습니다.');
     } catch (error) {
       console.error('데이터 저장 실패:', error);
+      alert('데이터 저장 중 오류가 발생했습니다. 콘솔 로그를 확인해주세요.');
     }
   };
 
