@@ -26,15 +26,7 @@ function SignUpInput() {
 
   const navigate = useNavigate();
 
-  const addNameRef = useRef<HTMLInputElement>(null);
-  const addNickNameRef = useRef<HTMLInputElement>(null);
-  const addPasswordRef = useRef<HTMLInputElement>(null);
-  const addPasswordConfirmRef = useRef<HTMLInputElement>(null);
-  const addEmailRef = useRef<HTMLInputElement>(null);
-  const addPhoneNumberRef = useRef<HTMLInputElement>(null);
-  const addAddressRef = useRef<HTMLInputElement>(null);
-
-  const handleAddress = () => {
+  const handleAddress = (e) => {
     new daum.Postcode({
       oncomplete: function (data) {
         setUserData((prevUserData) => ({
@@ -43,13 +35,14 @@ function SignUpInput() {
         }));
         // 주소 선택 후 입력 창에 주소 채우기
 
-        if (addAddressRef.current) {
-          addAddressRef.current.value = data.jibunAddress;
-        }
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          address: data.jibunAddress,
+        }));
       },
     }).open();
   };
-
+  console.log('userData  ', userData);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -108,7 +101,6 @@ function SignUpInput() {
         <div className="mt-3">
           <label htmlFor="email">이메일</label>
           <Input
-            ref={addEmailRef}
             type="email"
             id="email"
             required
@@ -123,7 +115,6 @@ function SignUpInput() {
         <div className="mt-3">
           <label htmlFor="password">비밀번호</label>
           <Input
-            ref={addPasswordRef}
             type="password"
             id="password"
             required
@@ -138,7 +129,6 @@ function SignUpInput() {
         <div className="mt-3">
           <label htmlFor="passwordConfirm">비밀번호 확인</label>
           <Input
-            ref={addPasswordConfirmRef}
             type="password"
             id="passwordConfirm"
             required
@@ -153,7 +143,6 @@ function SignUpInput() {
         <div className="mt-3">
           <label htmlFor="user_name">이름</label>
           <Input
-            ref={addNameRef}
             type="text"
             id="user_name"
             required
@@ -168,7 +157,6 @@ function SignUpInput() {
         <div className="mt-3">
           <label htmlFor="nickName">닉네임</label>
           <Input
-            ref={addNickNameRef}
             type="text"
             id="nickName"
             required
@@ -183,7 +171,6 @@ function SignUpInput() {
         <div className="mt-3">
           <label htmlFor="phone_number">휴대폰 번호</label>
           <Input
-            ref={addPhoneNumberRef}
             type="tel"
             id="phone_number"
             required
@@ -199,9 +186,9 @@ function SignUpInput() {
           <label htmlFor="address" className="flex-1">
             주소
             <Input
-              ref={addAddressRef}
               type="text"
               id="address"
+              value={userData.address}
               required
               aria-required="true"
               placeholder="주소를 입력해주세요"

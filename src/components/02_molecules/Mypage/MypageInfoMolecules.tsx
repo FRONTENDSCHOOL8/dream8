@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Input from '@/components/01_atoms/Input/Input';
 import Button from '@/components/01_atoms/Button/Button';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import useLoginFormStore from '@/store/useLoginFormStore';
-import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 import { pb } from '@/api/pocketbase';
+import SelectModal from '../Modal/SelectModal/SelectModal';
+import { useNavigate } from 'react-router-dom';
+import { formatPhoneNumber } from '@/utils/formatphoneNumber';
 
 export interface MypageInfoMoleculesProps {
   fontColor?: string;
@@ -31,8 +33,10 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
   fontColor,
   fontSize,
 }) => {
-  const { userInfo, setUserInfo } = useLoginFormStore();
-
+  const navigate = useNavigate();
+  const { userInfo, setUserInfo, clearUser, setIsLoggedIn } =
+    useLoginFormStore();
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [fields, setFields] = useState<FieldsState>({
     email: userInfo.email,
     user_name: userInfo.user_name,
@@ -48,13 +52,6 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
     phone: false,
     address: false,
   });
-
-  useEffect(() => {
-    const storedUserInfo = localStorage.getItem('userInfo');
-    if (storedUserInfo) {
-      setUserInfo(JSON.parse(storedUserInfo));
-    }
-  }, [setUserInfo]);
 
   const handleEditToggle = (field: keyof EditModeState) => {
     setEditMode((prevState: EditModeState) => ({
@@ -127,8 +124,47 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
     }
   };
 
+  const handleDeleteID = useCallback(() => {
+    setShowModal(true); // 모달 표시
+  }, [setShowModal]);
+
+  const handleConfirmDelete = useCallback(async () => {
+    try {
+      console.log('삭제된겨?');
+      await pb.collection('users').delete(userInfo.id);
+      setShowModal(false);
+      clearUser();
+      setIsLoggedIn(false);
+      navigate('/'); // 예시로 '/' 페이지로 이동하도록 설정되어 있습니다.
+    } catch (error) {
+      console.error('Error deleting account:', error);
+    }
+  }, [navigate]);
+
   return (
     <section className="flex flex-col gap-10">
+      {/* 모달 렌더링 */}
+      {showModal && (
+        <SelectModal
+          title={'회원탈퇴'}
+          children={
+            <>
+              탈퇴하시면 복구 할 수 없습니다.
+              <br />
+              정말로 탈퇴하시겠습니까
+            </>
+          }
+          onClickYes={() => {
+            handleConfirmDelete();
+            console.log('확인버튼');
+            setShowModal(false); // 모달 닫기
+          }}
+          onClickNo={() => {
+            console.log('취소버튼');
+            setShowModal(false); // 모달 닫기
+          }}
+        />
+      )}
       <h2 className="text-2xl font-semibold">회원 정보 (필수)</h2>
       <div className="border border-b-1"></div>
       <ul className="flex flex-col gap-10">
@@ -175,11 +211,7 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
         ))}
       </ul>
       <div className="flex justify-end gap-10 text-xl">
-        <Button
-          className="text-red-600"
-          onClick={() => console.log('회원탈퇴')}
-          type="button"
-        >
+        <Button className="text-red-600" onClick={handleDeleteID} type="button">
           <span style={{ color: fontColor, fontSize: fontSize }}>회원탈퇴</span>
         </Button>
       </div>
