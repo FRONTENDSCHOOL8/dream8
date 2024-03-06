@@ -8,7 +8,7 @@ import SelectModal from '../Modal/SelectModal/SelectModal';
 import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 
-export interface MypageInfoMoleculesProps {
+export interface MypageUserSettingProps {
   fontColor?: string;
   fontSize?: string;
 }
@@ -29,7 +29,7 @@ interface FieldsState {
   address: string;
 }
 
-const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
+const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
   fontColor,
   fontSize,
 }) => {
@@ -219,4 +219,4 @@ const MypageInfoMolecules: React.FC<MypageInfoMoleculesProps> = ({
   );
 };
 
-export default MypageInfoMolecules;
+export default MypageUserSetting;

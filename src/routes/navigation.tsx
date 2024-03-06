@@ -71,17 +71,17 @@ const navigationItems = [
       return { Component: Module.default };
     },
   },
-  {
-    id: 'MypageUserSetting',
-    path: '/MypageUserSetting',
-    text: '회원설정',
-    lazy: async () => {
-      const Module = await import(
-        '@/components/05_pages/Mypage/MypageUserSetting'
-      );
-      return { Component: Module.default };
-    },
-  },
+  // {
+  //   id: 'MypageUserSetting',
+  //   path: '/MypageUserSetting',
+  //   text: '회원설정',
+  //   lazy: async () => {
+  //     const Module = await import(
+  //       '@/components/05_pages/Mypage/MypageUserSetting'
+  //     );
+  //     return { Component: Module.default };
+  //   },
+  // },
   {
     id: 'Product',
     path: '/Product',
@@ -179,24 +179,24 @@ const navigationItems = [
       return { Component: Module.default };
     },
   },
-  {
-    id: 'ChatScreen',
-    path: '/ChatScreen',
-    text: '채팅페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/ChatScreen/ChatScreen');
-      return { Component: Module.default };
-    },
-  },
-  {
-    id: 'ChatList',
-    path: '/ChatList',
-    text: '채팅리스트 페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/ChatScreen/ChatList');
-      return { Component: Module.default };
-    },
-  },
+  // {
+  //   id: 'ChatScreen',
+  //   path: '/ChatScreen',
+  //   text: '채팅페이지',
+  //   lazy: async () => {
+  //     const Module = await import('@/pages/ChatScreen/ChatScreen');
+  //     return { Component: Module.default };
+  //   },
+  // },
+  // {
+  //   id: 'ChatList',
+  //   path: '/ChatList',
+  //   text: '채팅리스트 페이지',
+  //   lazy: async () => {
+  //     const Module = await import('@/pages/ChatScreen/ChatList');
+  //     return { Component: Module.default };
+  //   },
+  // },
   {
     id: 'KakaoRedirect',
     path: '/KakaoRedirect',
