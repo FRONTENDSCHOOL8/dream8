@@ -1,28 +1,37 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import ExchangeCard from '@/components/02_molecules/Exchange/ExchangeCard/ExchangeCard';
 import Button from '@/components/01_atoms/Button/Button';
 import BeforeLogin from '@/components/02_molecules/Exchange/Button/BeforeLogin';
-import { useListStore } from '@/store/useListStore';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import useGetList from '@/hooks/useGetList';
+import { useQuery } from '@tanstack/react-query';
 
-function Exchange() {
-  const { Data } = useListStore();
+export function Exchange() {
+  const exchangeLists = useLoaderData();
+
   const { isLoggedIn } = useLoginFormStore();
   const [maxList, setMaxList] = useState(6);
-  const data = useGetList();
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ['exchangeList'],
+    queryFn: useGetList,
+    initialData: exchangeLists,
+  });
 
-  const usersData = data.map((item) => item.expand);
-  const userData = usersData.map((item) => item.field[0]);
+  if (isPending) return;
+
+  if (isError) return `...에러났어여! :  ${error}`;
+
+  const usersData = data?.map((item) => item.expand);
+  const userData = usersData?.map((item) => item.field[0]);
 
   const handleLoadMoreButtonClick = () => {
     setMaxList((prevMaxList) => prevMaxList + 6);
   };
 
   const renderExchangeCards = () => {
-    return Data.slice(0, maxList).map((item, index) => (
+    return data?.slice(0, maxList).map((item, index) => (
       <Link
         to={isLoggedIn ? `/Exchange/ExchangeDetail/${item.id}` : '/SignIn'}
         key={item.id}
@@ -84,4 +93,11 @@ function Exchange() {
   );
 }
 
-export default Exchange;
+export const loader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData({
+    queryKey: ['exchangeList'],
+    queryFn: useGetList,
+    cacheTime: 6000 * 10,
+    staleTime: 1000 * 10,
+  });
+};

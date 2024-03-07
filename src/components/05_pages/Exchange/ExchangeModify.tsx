@@ -1,8 +1,10 @@
 import SubmitButton from '@/components/Button/SubmitButton';
 import { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import { pb } from '@/api/pocketbase';
-import { useListStore } from '@/store/useListStore';
 import { useParams } from 'react-router-dom';
+import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
+import { useQuery } from '@tanstack/react-query';
+import useGetOneUser from '@/hooks/useGetOneUser';
 
 interface InputItem {
   name: string;
@@ -22,12 +24,15 @@ interface InputData {
   product_img: File | string;
 }
 
-function ExchangeModify() {
+export function ExchangeModify() {
   const { id } = useParams();
-  const { Data } = useListStore();
+  const { data } = useQuery({
+    queryKey: ['exchangeModify'],
+    queryFn: () => useGetOneUser(id),
+  });
 
-  const selectedItem = Data.find((item) => item.id === id);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [text, setText] = useState({ title: '', message: '' });
   const [inputData, setInputData] = useState<InputData>({
     title: '',
     type: '',
@@ -38,40 +43,41 @@ function ExchangeModify() {
     product_detail: '',
     product_img: '',
   });
-
   const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>(
     ''
   );
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const selectedItem = data?.id === id;
 
   useEffect(() => {
-    if (selectedItem) {
+    if (selectedItem && data) {
       setInputData({
-        title: selectedItem.title,
-        type: selectedItem.type,
-        brand: selectedItem.brand,
-        model_name: selectedItem.model_name,
-        grade: selectedItem.grade,
-        trade_method: selectedItem.trade_method,
-        product_detail: selectedItem.product_detail,
-        product_img: selectedItem.product_img,
+        title: data.title,
+        type: data.type,
+        brand: data.brand,
+        model_name: data.model_name,
+        grade: data.grade,
+        trade_method: data.trade_method,
+        product_detail: data.product_detail,
+        product_img: data.product_img,
       });
     }
-  }, [selectedItem]);
+  }, [data, selectedItem]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputData);
 
     const formData = new FormData();
     formData.append('product_img', inputData.product_img as File);
 
     try {
-      await pb.collection('exchange').update(inputData, formData);
-      console.log('Data updated successfully!');
+      await pb.collection('exchange').update(id, inputData, formData);
+      setIsOpen(true);
+      setText({ title: '성공', message: '데이터 변경에 성공했습니다' });
     } catch (error) {
-      console.error('Error updating data:', error);
+      setIsOpen(true);
+      setText({ title: '실패', message: '데이터 변경에 실패했습니다' });
     }
   };
 
@@ -193,8 +199,23 @@ function ExchangeModify() {
           <SubmitButton name="제출하기" />
         </form>
       </div>
+      {isOpen && (
+        <ConfirmModal title={text.title} onClose={() => setIsOpen(false)}>
+          {text.message}
+        </ConfirmModal>
+      )}
     </div>
   );
 }
 
-export default ExchangeModify;
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const { id } = params;
+    return await queryClient.ensureQueryData({
+      queryKey: ['exchangeModify', id],
+      queryFn: () => useGetOneUser(id),
+      cacheTime: 6000 * 10,
+      staleTime: 1000 * 10,
+    });
+  };
