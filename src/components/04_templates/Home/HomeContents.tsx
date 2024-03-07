@@ -47,7 +47,7 @@ function HomeContents() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const data = await pb.collection('news').getList(1, 10, {
+        const data = await pb.collection('news').getList(1, 30, {
           sort: '-created',
         });
         setNewsList(data.items);
