@@ -5,9 +5,9 @@ import fastImf from "/fast-fashion.png"
 import earthClean from "/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
 import Dots from "@/components/02_molecules/Home/Dots"
+import { throttle } from 'lodash';
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
-import { throttle } from 'lodash';
 
 
 function HomeContents() {
