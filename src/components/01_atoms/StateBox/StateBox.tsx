@@ -1,10 +1,11 @@
-interface nameProp {
-  name: string;
+interface StateBoxProps {
   className: string;
+  isComplete: boolean;
 }
 
-function StateBox({ name, className }: nameProp) {
-  return <div className={className}>{name}</div>;
+function StateBox({ className, isComplete }: StateBoxProps) {
+  console.log(isComplete);
+  return <div className={className}>{isComplete}</div>;
 }
 
 export default StateBox;
