@@ -7,15 +7,16 @@ import NewsCard from "../../03_organisms/Home/NewsCard"
 import Dots from "@/components/02_molecules/Home/Dots"
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
+import { throttle } from 'lodash';
 
 
-function HomeContens() {
+function HomeContents() {
 
   const [currentSection, setCurrentSection] = useState(0);
   const sectionCount = 6;
 
   useEffect(() => {
-    const handleScroll = (event) => {
+    const handleScroll = throttle((event) => {
       if (event.deltaY > 0) {
         setCurrentSection(prevSection => 
           Math.min(prevSection + 1, sectionCount - 1)
@@ -25,11 +26,14 @@ function HomeContens() {
           Math.max(prevSection - 1, 0)
         );
       }
-    };
+    }, 150);
 
     window.addEventListener("wheel", handleScroll);
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, []);
+    return () => {
+      handleScroll.cancel();
+      window.removeEventListener("wheel", handleScroll);
+    };
+  }, [sectionCount]);
 
   useEffect(() => {
     window.scrollTo({
@@ -138,4 +142,4 @@ function HomeContens() {
   )
 }
 
-export default HomeContens;
+export default HomeContents;
