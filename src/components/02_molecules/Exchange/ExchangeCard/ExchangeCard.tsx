@@ -6,17 +6,17 @@ interface ExchangeChildren {
   title: string;
   model_name: string;
   product_detail: string;
+  isComplete: boolean;
 }
 
-interface ExchangeCard {
-  name: string;
+interface ExchangeCardProps {
   children: ExchangeChildren;
   className: string;
-  userName: [];
+  userName: string[];
 }
 
-function ExchangeCard({ children, className, userName }: ExchangeCard) {
-  const { title, product_detail, model_name } = children;
+function ExchangeCard({ children, className, userName }: ExchangeCardProps) {
+  const { title, product_detail, model_name, isComplete } = children;
 
   return (
     <div className={className}>
@@ -32,7 +32,7 @@ function ExchangeCard({ children, className, userName }: ExchangeCard) {
           <p className="text-[0.725rem] line-clamp-1">{product_detail}</p>
           <StateBox
             className="bg-orange-primary text-white w-14 text-[0.875rem] flex justify-center items-center rounded-[0.3125rem]"
-            name="교환가능"
+            isComplete={isComplete}
           />
         </div>
       </section>
