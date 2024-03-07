@@ -4,13 +4,15 @@ import earthSick from "/earth-sick.png"
 import fastImf from "/fast-fashion.png"
 import earthClean from "/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
+import Dots from "@/components/02_molecules/Home/Dots"
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
+
 
 function HomeContens() {
 
   const [currentSection, setCurrentSection] = useState(0);
-  const sectionCount = 5;
+  const sectionCount = 6;
 
   useEffect(() => {
     const handleScroll = (event) => {
@@ -41,8 +43,10 @@ function HomeContens() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const data = await pb.collection('news').getList();
-        setNewsList(data.items); // `records`를 사용하여 데이터 설정
+        const data = await pb.collection('news').getList(1, 10, {
+          sort: '-created',
+        });
+        setNewsList(data.items);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -53,6 +57,8 @@ function HomeContens() {
 
   return (
     <>
+      <Dots currentSection={currentSection} sectionCount={sectionCount} />
+
       <div 
         className="snap-start w-screen h-screen flex items-center justify-center" 
         style={{

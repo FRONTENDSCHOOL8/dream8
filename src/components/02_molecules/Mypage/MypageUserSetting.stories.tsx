@@ -1,15 +1,15 @@
 import { StoryFn } from '@storybook/react';
-import MypageInfoMolecules, {
-  MypageInfoMoleculesProps,
-} from '@/components/02_molecules/Mypage/MypageInfoMolecules';
+import MypageUserSetting, {
+  MypageUserSettingProps,
+} from '@/components/02_molecules/Mypage/MypageUserSetting';
 
 export default {
-  component: MypageInfoMolecules,
+  component: MypageUserSetting,
   title: '회원가입수정',
 };
 
-const Template: StoryFn<MypageInfoMoleculesProps> = (args) => (
-  <MypageInfoMolecules {...args} />
+const Template: StoryFn<MypageUserSettingProps> = (args) => (
+  <MypageUserSetting {...args} />
 );
 
 export const Default = Template.bind({});

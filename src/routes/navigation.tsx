@@ -71,17 +71,17 @@ const navigationItems = [
       return { Component: Module.default };
     },
   },
-  {
-    id: 'MypageUserSetting',
-    path: '/MypageUserSetting',
-    text: '회원설정',
-    lazy: async () => {
-      const Module = await import(
-        '@/components/05_pages/Mypage/MypageUserSetting'
-      );
-      return { Component: Module.default };
-    },
-  },
+  // {
+  //   id: 'MypageUserSetting',
+  //   path: '/MypageUserSetting',
+  //   text: '회원설정',
+  //   lazy: async () => {
+  //     const Module = await import(
+  //       '@/components/05_pages/Mypage/MypageUserSetting'
+  //     );
+  //     return { Component: Module.default };
+  //   },
+  // },
   {
     id: 'Product',
     path: '/Product',
@@ -129,7 +129,7 @@ const navigationItems = [
   {
     id: 'Exchange',
     path: '/Exchange',
-    text: '교환페이지',
+    text: '교환 메인페이지',
     lazy: async () => {
       const Module = await import('@/components/05_pages/Exchange/Exchange');
       return { Component: Module.default };
@@ -138,10 +138,21 @@ const navigationItems = [
   {
     id: 'ExchangeWrite',
     path: '/ExchangeWrite',
-    text: '교환페이지',
+    text: '교환글 작성하기 페이지',
     lazy: async () => {
       const Module = await import(
         '@/components/05_pages/Exchange/ExchangeWrite'
+      );
+      return { Component: Module.default };
+    },
+  },
+  {
+    id: 'ExchangeModify',
+    path: '/ExchangeModify/:id',
+    text: '교환 작성글 수정',
+    lazy: async () => {
+      const Module = await import(
+        '@/components/05_pages/Exchange/ExchangeModify'
       );
       return { Component: Module.default };
     },
@@ -179,24 +190,24 @@ const navigationItems = [
       return { Component: Module.default };
     },
   },
-  {
-    id: 'ChatScreen',
-    path: '/ChatScreen',
-    text: '채팅페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/ChatScreen/ChatScreen');
-      return { Component: Module.default };
-    },
-  },
-  {
-    id: 'ChatList',
-    path: '/ChatList',
-    text: '채팅리스트 페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/ChatScreen/ChatList');
-      return { Component: Module.default };
-    },
-  },
+  // {
+  //   id: 'ChatScreen',
+  //   path: '/ChatScreen',
+  //   text: '채팅페이지',
+  //   lazy: async () => {
+  //     const Module = await import('@/pages/ChatScreen/ChatScreen');
+  //     return { Component: Module.default };
+  //   },
+  // },
+  // {
+  //   id: 'ChatList',
+  //   path: '/ChatList',
+  //   text: '채팅리스트 페이지',
+  //   lazy: async () => {
+  //     const Module = await import('@/pages/ChatScreen/ChatList');
+  //     return { Component: Module.default };
+  //   },
+  // },
   {
     id: 'KakaoRedirect',
     path: '/KakaoRedirect',

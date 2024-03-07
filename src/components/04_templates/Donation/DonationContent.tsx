@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom"
-import donationIllust from "/donaion-illust.svg"
+import donationIllust from "/donation-illust.svg"
 import Note  from "/note.svg"
 import Check  from "/check.svg"
 import Location from "/location.svg"
-import DonaionBg from "/donaion-bg.png"
+import DonaionBg from "/donation-bg.png"
+import useLoginFormStore from "@/store/useLoginFormStore"
 
 function DonationContents() {
+
+  const { isLoggedIn } = useLoginFormStore();
+
   return (
     <>
       <div className="max-w-[90rem] m-auto">
@@ -28,7 +32,7 @@ function DonationContents() {
             <span>필요한 사람들에게 판매하고,</span>
             <span>판매 수익은 사회 공헌 활동에 기부됩니다.</span>
           </p>
-          <Link to="/DonationForm">
+          <Link to={isLoggedIn ? '/DonationForm' : '/SignIn'}>
             <button 
               className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 px-8 hover:bg-blue-primary hover:text-white">
               후원 기증 신청

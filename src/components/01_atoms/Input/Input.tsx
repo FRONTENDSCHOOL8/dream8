@@ -4,13 +4,14 @@ interface InputProps {
   id: string;
   type: string;
   value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   labelText?: string;
   ariaRequired?: boolean;
   required?: boolean;
   className?: string;
   ref?: RefObject<HTMLInputElement>;
   placeholder?: string;
+  defaultValue?: string;
 }
 
 const Input: React.FC<InputProps> = ({

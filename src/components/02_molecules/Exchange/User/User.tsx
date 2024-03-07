@@ -1,11 +1,17 @@
-import profile from 'public/profile.svg';
+import profile from '/profile.svg';
 
-function User() {
+interface userNameProp {
+  userName: string[];
+}
+
+function User({ userName }: userNameProp) {
   return (
-    <figure className="flex items-center gap-3">
-      <img src={profile} alt="유저 프로필" />
-      <figcaption>user</figcaption>
-    </figure>
+    <div>
+      <figure className="flex items-center gap-3 pt-1 pl-2">
+        <img src={profile} alt="유저 프로필" />
+        <figcaption>{userName}</figcaption>
+      </figure>
+    </div>
   );
 }
 
