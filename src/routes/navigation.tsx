@@ -71,17 +71,17 @@ const navigationItems = [
       return { Component: Module.default };
     },
   },
-  {
-    id: 'MypageUserSetting',
-    path: '/MypageUserSetting',
-    text: '회원설정',
-    lazy: async () => {
-      const Module = await import(
-        '@/components/05_pages/Mypage/MypageUserSetting'
-      );
-      return { Component: Module.default };
-    },
-  },
+  // {
+  //   id: 'MypageUserSetting',
+  //   path: '/MypageUserSetting',
+  //   text: '회원설정',
+  //   lazy: async () => {
+  //     const Module = await import(
+  //       '@/components/05_pages/Mypage/MypageUserSetting'
+  //     );
+  //     return { Component: Module.default };
+  //   },
+  // },
   {
     id: 'Product',
     path: '/Product',

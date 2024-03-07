@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import HomeContens from "../../04_templates/Home/HomeContents";
+import HomeContents from "../../04_templates/Home/HomeContents";
 
 function Home() {
   useEffect(() => {
@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <div className="overflow-hidden">
-      <HomeContens />
+      <HomeContents />
     </div>
   );
 }
