@@ -1,5 +1,6 @@
 import { useLoaderData, useParams } from 'react-router-dom';
 import { getPbImageURL } from '@/utils/getPbImage';
+import { useListStore } from '@/store/useListStore';
 import StateBox from '@/components/StateBox/StateBox';
 import User from '@/components/02_molecules/Exchange/User/User';
 import useLoginFormStore from '@/store/useLoginFormStore';

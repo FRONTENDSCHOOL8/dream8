@@ -24,7 +24,7 @@ export function Exchange() {
   if (isError) return `...에러났어여! :  ${error}`;
 
   const usersData = data?.map((item) => item.expand);
-  const userData = usersData?.map((item) => item.field[0]);
+  const userData = usersData?.map((item) => item.field);
 
   const handleLoadMoreButtonClick = () => {
     setMaxList((prevMaxList) => prevMaxList + 6);
@@ -37,7 +37,6 @@ export function Exchange() {
         key={item.id}
       >
         <ExchangeCard
-          name="교환가능"
           userName={userData[index]?.user_name}
           className={`${!isLoggedIn && index >= 3 ? 'opacity-30' : ''}`}
         >

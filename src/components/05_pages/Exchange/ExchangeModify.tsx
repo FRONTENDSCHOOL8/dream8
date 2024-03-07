@@ -1,6 +1,7 @@
 import SubmitButton from '@/components/Button/SubmitButton';
 import { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import { pb } from '@/api/pocketbase';
+import { useListStore } from '@/store/useListStore';
 import { useParams } from 'react-router-dom';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import { useQuery } from '@tanstack/react-query';
@@ -43,6 +44,7 @@ export function ExchangeModify() {
     product_detail: '',
     product_img: '',
   });
+
   const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>(
     ''
   );
@@ -67,6 +69,7 @@ export function ExchangeModify() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(inputData);
 
     const formData = new FormData();
     formData.append('product_img', inputData.product_img as File);
