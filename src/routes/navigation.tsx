@@ -86,12 +86,6 @@ const navigationItems = [
     id: 'Product',
     path: '/Product',
     text: '판매 메인페이지',
-    // lazy: async () => {
-    //   const Module = await import(
-    //     '@/components/05_pages/Product/Product/Product'
-    //   );
-    //   return { Component: Module.default };
-    // },
     async lazy() {
       const { loader, Product } = await import(
         '@/components/05_pages/Product/Product/Product'
@@ -104,7 +98,7 @@ const navigationItems = [
   },
   {
     id: 'ProductDetails',
-    path: '/ProductDetails/:productId',
+    path: '/ProductDetails/:productId/:productCategory',
     text: '판매 상세페이지',
     async lazy() {
       const { loader, ProductDetails } = await import(

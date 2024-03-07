@@ -4,19 +4,30 @@ import { useState } from 'react';
 import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 import ProductDetailsInfo from '@/components/04_templates/ProductDetails/ProductDetailsInfo/ProductDetailsInfo';
-import { useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
+import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
 
 export function ProductDetails() {
-  const { productId } = useParams();
+  const { productId, productCategory } = useParams();
   const product = useLoaderData();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const { data } = useQuery({
-    queryKey: ['productDetail', productId],
-    queryFn: () => fetchSingleProduct(productId),
-    initialData: product,
+
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ['productDetail', productId],
+        queryFn: () => fetchSingleProduct(productId),
+        initialData: product.productDetail,
+      },
+      {
+        queryKey: ['productCategoryLists'],
+        queryFn: () => fetchFilteredCategoryProducts(productCategory),
+        initialData: product.filteredCategoryProduct,
+      },
+    ],
   });
 
   const { isLoggedIn, userInfo } = useLoginFormStore();
@@ -53,18 +64,16 @@ export function ProductDetails() {
   return (
     <div className="pt-20 w-[75rem] m-auto flex flex-col">
       <ProductDetailsInfo
-        productData={data}
+        productData={results[0].data}
         onClickPurchase={handleClickPurchase}
         onClickMyCart={handleClickMyCart}
       />
       <Divider />
-      <section className="flex flex-col text-center">
-        <h2 className="text-3xl">관련 상품</h2>
-        <ul className="flex flex-row">
-          <li>아이템</li>
-          <li>아이템</li>
-        </ul>
-      </section>
+      <RelativeProducts
+        lists={results[1].data}
+        category={productCategory}
+        currentProductId={productId}
+      />
       {showModal && (
         <SelectModal
           title="장바구니 담기 완료"
@@ -82,14 +91,30 @@ async function fetchSingleProduct(productId: string) {
   return await pb.collection('product').getOne(productId);
 }
 
+async function fetchFilteredCategoryProducts(category) {
+  const filter = `category = "${category}"`;
+  return await pb.collection('product').getFullList({
+    sort: '-created',
+    filter: filter,
+  });
+}
+
 export const loader =
   (queryClient) =>
   async ({ params }) => {
-    const { productId } = params;
-    return await queryClient.ensureQueryData({
+    const { productId, productCategory } = params;
+    console.log(productId, productCategory);
+    const productDetail = await queryClient.ensureQueryData({
       queryKey: ['productDetail', productId],
       queryFn: () => fetchSingleProduct(productId),
       cacheTime: 6000 * 10,
       staleTime: 1000 * 10,
     });
+    const filteredCategoryProduct = await queryClient.ensureQueryData({
+      queryKey: ['productCategoryLists'],
+      queryFn: () => fetchFilteredCategoryProducts(productCategory),
+      cacheTime: 6000 * 10,
+      staleTime: 1000 * 10,
+    });
+    return { productDetail, filteredCategoryProduct };
   };

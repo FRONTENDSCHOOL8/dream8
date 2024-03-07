@@ -19,11 +19,11 @@ function ListsProduct({ category, sort, search, productLists }) {
   function getSortedProductLists(sort, lists) {
     let sortedProductLists = [...lists];
     switch (sort) {
-      case '등급별':
+      case '등급순':
         return sortedProductLists.sort((a, b) =>
           a.grade.localeCompare(b.grade)
         );
-      case '가격별':
+      case '가격순':
         return sortedProductLists.sort((a, b) => a.price - b.price);
       case '최신순':
         return sortedProductLists.sort(
@@ -63,14 +63,23 @@ function ListsProduct({ category, sort, search, productLists }) {
   }, [category, sort, search, productLists]);
 
   return (
-    <div className="px-[5.31rem] pb-12">
+    <div className="px-[5.31rem] pb-12 ">
       <h2 className="sr-only">상품 리스트</h2>
-      <ul className="grid grid-cols-4 gap-10">
-        {filteredProductLists.map((list) => (
-          <Link key={list.id} to={`/ProductDetails/${list.id}`}>
-            <ListProduct list={list} />
-          </Link>
-        ))}
+      <ul className="grid grid-cols-4 gap-10 relative">
+        {filteredProductLists.length > 0 ? (
+          filteredProductLists.map((list) => (
+            <Link
+              key={list.id}
+              to={`/ProductDetails/${list.id}/${list.category}`}
+            >
+              <ListProduct list={list} />
+            </Link>
+          ))
+        ) : (
+          <div className="absolute top-0 right-1/2 translate-x-1/2 text-xl">
+            상품이 없습니다
+          </div>
+        )}
       </ul>
     </div>
   );

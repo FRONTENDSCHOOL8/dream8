@@ -1,5 +1,5 @@
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
-import MyCartList from '@/components/03_organisms/ProductDetails/MyCartList/MyCartList';
+import MyCartList from '@/components/03_organisms/Payment/MyCartList/MyCartList';
 import { useState } from 'react';
 
 function Payment() {

@@ -28,11 +28,11 @@ function ArrangeProduct({ onSelect }) {
       <h2 className="sr-only">정렬</h2>
       <ul className="flex flex-row justify-end items-center text-gray-500">
         <ArrangeButton onSelectArrange={handleChangeArrange}>
-          등급별
+          등급순
         </ArrangeButton>{' '}
         |
         <ArrangeButton onSelectArrange={handleChangeArrange}>
-          가격별
+          가격순
         </ArrangeButton>{' '}
         |
         <ArrangeButton onSelectArrange={handleChangeArrange}>
