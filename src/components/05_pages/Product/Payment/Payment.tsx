@@ -1,9 +1,15 @@
+import { pb } from '@/api/pocketbase';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import MyCartList from '@/components/03_organisms/Payment/MyCartList/MyCartList';
-import { useState } from 'react';
+import useLoginFormStore from '@/store/useLoginFormStore';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Payment() {
   const [showModal, setShowModal] = useState(false);
+  const { isLoggedIn, userInfo } = useLoginFormStore();
+  const navigate = useNavigate();
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -13,8 +19,21 @@ function Payment() {
     setShowModal(false);
   };
 
+  async function fetchMyCart(userId) {
+    return await pb.collection('my_cart').getFullList({
+      filter: `userId = "${userId}"`,
+    });
+  }
+
+  const { data } = useQuery({
+    queryKey: ['myCart', userInfo.id],
+    queryFn: () => fetchMyCart(userInfo.id),
+  });
+
+  console.log(data);
+
   return (
-    <div className="text-center bg-white max-w-[90rem]" id="myCartPage ">
+    <div className="text-center bg-white max-w-[90rem]" id="myCartPage">
       <section className="w-[62.5rem] m-auto my-16">
         <h2 className="text-4xl pt-20 pb-10 font-semibold">장바구니 목록</h2>
         <ul className="flex flex-col">
@@ -59,5 +78,23 @@ function Payment() {
     </div>
   );
 }
+
+async function fetchMyCart(userId) {
+  return await pb.collection('my_cart').getFullList({
+    filter: `userId = "${userId}"`,
+  });
+}
+
+// export const loader =
+//   (queryClient) =>
+//   async ({ params }) => {
+//     const { userId } = params;
+//     return await queryClient.ensureQueryData({
+//       queryKey: ['myCart', userId],
+//       queryFn: () => fetchMyCart(userId),
+//       cacheTime: 6000 * 10,
+//       staleTime: 1000 * 10,
+//     });
+//   };
 
 export default Payment;

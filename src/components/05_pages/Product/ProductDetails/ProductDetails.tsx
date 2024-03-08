@@ -4,7 +4,7 @@ import { useState } from 'react';
 import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 import ProductDetailsInfo from '@/components/04_templates/ProductDetails/ProductDetailsInfo/ProductDetailsInfo';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQueries } from '@tanstack/react-query';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
 import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
@@ -103,7 +103,7 @@ export const loader =
   (queryClient) =>
   async ({ params }) => {
     const { productId, productCategory } = params;
-    console.log(productId, productCategory);
+
     const productDetail = await queryClient.ensureQueryData({
       queryKey: ['productDetail', productId],
       queryFn: () => fetchSingleProduct(productId),

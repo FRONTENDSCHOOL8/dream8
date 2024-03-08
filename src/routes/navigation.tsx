@@ -119,6 +119,15 @@ const navigationItems = [
       );
       return { Component: Module.default };
     },
+    // async lazy() {
+    //   const { loader, Payment } = await import(
+    //     '@/components/05_pages/Product/Payment/Payment'
+    //   );
+    //   return {
+    //     loader: loader(queryClient),
+    //     Component: Payment,
+    //   };
+    // },
   },
   {
     id: 'Exchange',

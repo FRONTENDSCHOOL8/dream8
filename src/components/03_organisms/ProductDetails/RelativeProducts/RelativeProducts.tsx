@@ -12,7 +12,7 @@ function RelativeProducts({ lists, category, currentProductId }) {
   const handleShowMore = () => {
     console.log(viewNumber);
     console.log(lists.length);
-    if (viewNumber >= lists.length) setViewNumber(4);
+    if (viewNumber > lists.length) setViewNumber(4);
     else setViewNumber(viewNumber + 4);
   };
   return (
@@ -32,7 +32,7 @@ function RelativeProducts({ lists, category, currentProductId }) {
           <Button
             type="button"
             onClick={handleShowMore}
-            className="border p-2 rounded-xl"
+            className="border p-2 rounded-xl text-gray-500"
           >
             더보기
           </Button>
