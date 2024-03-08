@@ -29,5 +29,6 @@ export const textStyle: Story = {
     fontSize: '24px',
     fontColor: '#ff0000',
     ImageSize: '145px',
+    iconImageSize: '50px',
   },
 };
