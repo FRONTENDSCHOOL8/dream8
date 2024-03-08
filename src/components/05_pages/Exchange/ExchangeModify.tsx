@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import { useQuery } from '@tanstack/react-query';
 import useGetOneUser from '@/hooks/useGetOneUser';
+import { getPbImageURL } from '@/utils/getPbImage';
 
 interface InputItem {
   name: string;
@@ -69,7 +70,6 @@ export function ExchangeModify() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputData);
 
     const formData = new FormData();
     formData.append('product_img', inputData.product_img as File);
@@ -83,16 +83,17 @@ export function ExchangeModify() {
       setText({ title: '실패', message: '데이터 변경에 실패했습니다' });
     }
   };
-
   const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setInputData({ ...inputData, product_img: e.target.files[0] });
+      const selectedImage = e.target.files[0];
+
+      setInputData({ ...inputData, product_img: selectedImage });
 
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(selectedImage);
     }
   };
 
@@ -194,9 +195,13 @@ export function ExchangeModify() {
           </div>
           <div className="rounded-md">
             <img
-              src={previewImage?.toString()}
+              src={
+                previewImage
+                  ? previewImage.toString()
+                  : getPbImageURL(data, 'product_img')
+              }
               alt="Uploaded preview"
-              className="object-cover h-36 w-full"
+              className="object-cover h-44 w-full"
             />
           </div>
           <SubmitButton name="제출하기" />
