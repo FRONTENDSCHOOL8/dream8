@@ -28,20 +28,38 @@ const navigationItems = [
     id: 'news',
     path: '/News',
     text: '뉴스',
-    lazy: async () => {
-      const Module = await import('@/components/05_pages/News/News/News');
-      return { Component: Module.default };
+    // lazy: async () => {
+    //   const Module = await import('@/components/05_pages/News/News/News');
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, News } = await import(
+        '@/components/05_pages/News/News/News'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: News,
+      };
     },
   },
   {
     id: 'newsDetails',
     path: '/NewsDetails/:newsId',
     text: '뉴스 내용',
-    lazy: async () => {
-      const Module = await import(
+    // lazy: async () => {
+    //   const Module = await import(
+    //     '@/components/05_pages/News/NewsDetails/NewsDetails'
+    //   );
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, NewsDetail } = await import(
         '@/components/05_pages/News/NewsDetails/NewsDetails'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: NewsDetail,
+      };
     },
   },
   {

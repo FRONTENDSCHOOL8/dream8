@@ -1,26 +1,6 @@
-import { useEffect, useState } from "react";
-import { pb } from "@/api/pocketbase";
 import { Link } from "react-router-dom";
 
-function NewsList({ setNewsCount }) {
-
-  const [newsList, setNewsList] = useState<NewsItemProps[]>([]);
-
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const data = await pb.collection('news').getList(1, 10, {
-          sort: '-created',
-        });
-        setNewsList(data.items as NewsItemProps[]);
-        setNewsCount(data.items.length); // 뉴스 항목의 개수 업데이트
-      } catch (error) {
-        console.error("Error fetching news:", error);
-      }
-    };
-
-    fetchNews();
-  }, [setNewsCount]);
+function NewsList({ newsList }) {
 
   return (
     <>

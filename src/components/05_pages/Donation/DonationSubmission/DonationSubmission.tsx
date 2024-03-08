@@ -62,13 +62,13 @@ function DonationSubmission() {
       }
       localStorage.removeItem('donations');
       setDonations([]);
-      setModalTitle('후원완료');
+      setModalTitle('신청완료');
       setModalMessage('후원 신청이 완료 되었습니다. 감사합니다.');
       setShowModal(true);
     } catch (error) {
       console.error('데이터 저장 실패:', error);
       setModalTitle('오류🤯');
-      setModalMessage('후원에 실패하였습니다. 다시 시도해주세요.');
+      setModalMessage('데이터 저장에 실패하였습니다. 다시 시도해주세요.');
       setShowModal(true);
     }
   };

@@ -47,7 +47,7 @@ function HomeContents() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const data = await pb.collection('news').getList(1, 10, {
+        const data = await pb.collection('news').getList(1, 30, {
           sort: '-created',
         });
         setNewsList(data.items);
@@ -58,6 +58,9 @@ function HomeContents() {
 
     fetchNews();
   }, []);
+
+  const newsItems = newsList.filter(newsItem => newsItem.type === '소식');
+  const noticeItems = newsList.filter(newsItem => newsItem.type === '공지');
 
   return (
     <>
@@ -128,12 +131,12 @@ function HomeContents() {
 
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
-              {newsList.slice(0, 4).map((newsItem, index) => (
+              {newsItems.slice(0, 4).map((newsItem, index) => (
                 <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
               ))}
             </ul>
             <div className="w-full">
-              {newsList.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={newsList[1]} />}
+              {noticeItems.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} />}
             </div>
           </div>
         </div>
