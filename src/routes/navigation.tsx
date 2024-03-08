@@ -28,20 +28,38 @@ const navigationItems = [
     id: 'news',
     path: '/News',
     text: '뉴스',
-    lazy: async () => {
-      const Module = await import('@/components/05_pages/News/News/News');
-      return { Component: Module.default };
+    // lazy: async () => {
+    //   const Module = await import('@/components/05_pages/News/News/News');
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, News } = await import(
+        '@/components/05_pages/News/News/News'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: News,
+      };
     },
   },
   {
     id: 'newsDetails',
     path: '/NewsDetails/:newsId',
     text: '뉴스 내용',
-    lazy: async () => {
-      const Module = await import(
+    // lazy: async () => {
+    //   const Module = await import(
+    //     '@/components/05_pages/News/NewsDetails/NewsDetails'
+    //   );
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, NewsDetail } = await import(
         '@/components/05_pages/News/NewsDetails/NewsDetails'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: NewsDetail,
+      };
     },
   },
   {
@@ -130,42 +148,56 @@ const navigationItems = [
     id: 'Exchange',
     path: '/Exchange',
     text: '교환 메인페이지',
-    lazy: async () => {
-      const Module = await import('@/components/05_pages/Exchange/Exchange');
-      return { Component: Module.default };
+    async lazy() {
+      const { loader, Exchange } = await import(
+        '@/components/05_pages/Exchange/Exchange'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: Exchange,
+      };
     },
   },
   {
     id: 'ExchangeWrite',
     path: '/ExchangeWrite',
-    text: '교환글 작성하기 페이지',
-    lazy: async () => {
-      const Module = await import(
+    text: '교환 작성 페이지',
+    async lazy() {
+      const { loader, ExchangeWrite } = await import(
         '@/components/05_pages/Exchange/ExchangeWrite'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ExchangeWrite,
+      };
     },
   },
   {
     id: 'ExchangeModify',
     path: '/ExchangeModify/:id',
-    text: '교환 작성글 수정',
-    lazy: async () => {
-      const Module = await import(
+    text: '교환 수정 페이지',
+    async lazy() {
+      const { loader, ExchangeModify } = await import(
         '@/components/05_pages/Exchange/ExchangeModify'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ExchangeModify,
+      };
     },
   },
   {
     id: 'ExchangeDetail',
     path: '/Exchange/ExchangeDetail/:id',
-    text: '교환 상세페이지',
-    lazy: async () => {
-      const Module = await import(
+    text: '교환 메인페이지',
+    async lazy() {
+      const { loader, ExchangeDetail } = await import(
         '@/components/05_pages/Exchange/ExchangeDetail'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ExchangeDetail,
+      };
     },
   },
   {

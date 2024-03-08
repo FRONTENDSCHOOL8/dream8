@@ -1,4 +1,5 @@
 import CategoryMolecules from '@/components/02_molecules/Mypage/CategoryMolecules';
+import MypageExchane from '@/components/02_molecules/Mypage/MypageExchane';
 
 import MypageInfoUserCard from '@/components/02_molecules/Mypage/MypageInfoUserCard';
 import MypageSponsorship from '@/components/02_molecules/Mypage/MypageSponsorship';
@@ -23,6 +24,7 @@ const MypageOrganisms = ({}) => {
           {currentPage === 'LoginInfo' && <MypageUserSetting />}
           {currentPage === 'Purchase' && <MypageTransaction />}
           {currentPage === 'Donation' && <MypageSponsorship />}
+          {currentPage === 'Exchange' && <MypageExchane />}
         </div>
       </div>
     </section>

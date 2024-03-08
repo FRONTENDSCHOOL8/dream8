@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import logo from 'public/logo.svg';
-import alarmIcon from 'public/alarm.svg';
-import mailIcon from 'public/mail.svg';
+import logo from '/logo.svg';
+import alarmIcon from '/alarm.svg';
+import mailIcon from '/mail.svg';
 import Button from '@/components/01_atoms/Button/Button';
 
 function GlobalNavBar() {

@@ -1,50 +1,76 @@
 import ListProduct from '@/components/02_molecules/Product/ListProduct/ListProduct';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ListsProduct({ category, sort, productLists }) {
-  let sortedProductLists = productLists;
+function ListsProduct({ category, sort, search, productLists }) {
+  const [filteredProductLists, setFilteredProductLists] =
+    useState(productLists);
 
-  switch (sort) {
-    case '등급별':
-      sortedProductLists = productLists.sort((a, b) =>
-        a.grade.localeCompare(b.grade)
+  function getSearchedProductLists(search: string, lists: object[]) {
+    let searchedProductLists = [...lists];
+    if (search != '') {
+      searchedProductLists = lists.filter(
+        (list) => list.title.includes(search) === true
       );
-      break;
-    case '가격별':
-      sortedProductLists = productLists.sort((a, b) => a.price - b.price);
-      break;
-    case '최신순':
-      sortedProductLists = productLists.sort(
-        (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
-      );
-      break;
-    case '오래된순':
-      sortedProductLists = productLists.sort(
-        (a, b) => new Date(a.created).getTime() - new Date(b.created).getTime()
-      );
-      break;
-    default:
-      sortedProductLists = productLists;
+    }
+    return searchedProductLists;
   }
+
+  function getSortedProductLists(sort, lists) {
+    let sortedProductLists = [...lists];
+    switch (sort) {
+      case '등급별':
+        return sortedProductLists.sort((a, b) =>
+          a.grade.localeCompare(b.grade)
+        );
+      case '가격별':
+        return sortedProductLists.sort((a, b) => a.price - b.price);
+      case '최신순':
+        return sortedProductLists.sort(
+          (a, b) =>
+            new Date(b.created).getTime() - new Date(a.created).getTime()
+        );
+      case '오래된순':
+        return sortedProductLists.sort(
+          (a, b) =>
+            new Date(a.created).getTime() - new Date(b.created).getTime()
+        );
+      default:
+        return sortedProductLists;
+    }
+  }
+
+  function getCategoryProductLists(category, lists) {
+    if (category === '전체') {
+      return lists;
+    }
+    return lists.filter((list) => list.category === category);
+  }
+
+  useEffect(() => {
+    let updatedProductLists = [...productLists];
+    updatedProductLists = getSearchedProductLists(search, updatedProductLists);
+    updatedProductLists = getSortedProductLists(sort, updatedProductLists);
+
+    if (category !== '전체') {
+      updatedProductLists = getCategoryProductLists(
+        category,
+        updatedProductLists
+      );
+    }
+
+    setFilteredProductLists(updatedProductLists);
+  }, [category, sort, search, productLists]);
 
   return (
     <div className="px-[5.31rem] pb-12">
       <h2 className="sr-only">상품 리스트</h2>
       <ul className="grid grid-cols-4 gap-10">
-        {sortedProductLists.map((list) => {
-          if (category === '전체')
-            return (
-              <Link key={list.id} to={`/ProductDetails/${list.id}`}>
-                <ListProduct list={list} />
-              </Link>
-            );
-          else if (list.category === category)
-            return (
-              <Link key={list.id} to={`/ProductDetails/${list.id}`}>
-                <ListProduct list={list} />
-              </Link>
-            );
-        })}
+        {filteredProductLists.map((list) => (
+          <Link key={list.id} to={`/ProductDetails/${list.id}`}>
+            <ListProduct list={list} />
+          </Link>
+        ))}
       </ul>
     </div>
   );

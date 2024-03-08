@@ -7,13 +7,11 @@ interface Donation {
   description: string;
 }
 
-// 컴포넌트 props 인터페이스 
 interface DonationTableProps {
   donations: Donation[];
   onDeleteDonation: (id: number) => void;
 }
 
-// 카테고리 라벨
 const categoryLabels: { [key: string]: string } = {
   clothes: '의류',
   shoes: '신발',

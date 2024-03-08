@@ -25,9 +25,7 @@ function ProductDetailsInfo({ productData, onClickPurchase, onClickMyCart }) {
             )}
             <div className="flex flex-col justify-between">
               <div role="group">
-                <h3 className="text-3xl">
-                  {productData.title} ({productData.size})
-                </h3>
+                <h3 className="text-3xl">{productData.title}</h3>
                 <p className="flex gap-1 mt-5">
                   <img src={timerIcon} alt="타이머 아이콘" />
                   {getDaysFromToday(productData.created)}
@@ -36,6 +34,9 @@ function ProductDetailsInfo({ productData, onClickPurchase, onClickMyCart }) {
               <div role="group" className="flex flex-col gap-4">
                 <p>
                   상품상태: <span>{productData.grade}급</span>
+                </p>
+                <p>
+                  사이즈: <span>{productData.size}</span>
                 </p>
                 <p>
                   금액: <span>{productData.price.toLocaleString()}원</span>
