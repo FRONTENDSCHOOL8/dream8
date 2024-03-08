@@ -28,7 +28,7 @@ const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
       </Button>
       <Button
         type="button"
-        aria-label="거래내역 자세히보기 버튼"
+        aria-label="구매내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
           selectedButton === 'Purchase' ? 'text-blue-500' : ''
         }`}
@@ -37,7 +37,21 @@ const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
           setSelectedButton('Purchase');
         }}
       >
-        <span>거래내역</span>
+        <span>구매내역</span>
+      </Button>
+
+      <Button
+        type="button"
+        aria-label="교환내역 자세히보기 버튼"
+        className={`text-2xl font-semibold ${
+          selectedButton === 'Exchange' ? 'text-blue-500' : ''
+        }`}
+        onClick={() => {
+          handleMove('Exchange');
+          setSelectedButton('Exchange');
+        }}
+      >
+        <span>교환내역</span>
       </Button>
       <Button
         type="button"
