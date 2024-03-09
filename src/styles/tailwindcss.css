@@ -10,4 +10,12 @@
     font-weight: normal;
     font-style: normal;
   }
+
+  .button-atom {
+    @apply border-2 px-5 py-2 text-sm font-semibold border-blue-primary text-blue-primary bg-white rounded-md whitespace-nowrap;
+  }
+
+  .transactionListCard-molecules {
+    @apply flex items-center rounded-[2rem]   shadow-2xl overflow-hidden gap-10;
+  }
 }

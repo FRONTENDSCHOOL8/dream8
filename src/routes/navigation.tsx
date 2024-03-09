@@ -11,7 +11,7 @@ const navigationItems = [
     // element: <Home />,
     // react-router-dom 의 lazy load는 아래와 같은 방법으로 사용합니다.
     lazy: async () => {
-      const Module = await import('@/pages/Home/Home');
+      const Module = await import('@/components/05_pages/Home/Home');
       return { Component: Module.default };
     },
 
@@ -28,18 +28,38 @@ const navigationItems = [
     id: 'news',
     path: '/News',
     text: '뉴스',
-    lazy: async () => {
-      const Module = await import('@/pages/News/News');
-      return { Component: Module.default };
+    // lazy: async () => {
+    //   const Module = await import('@/components/05_pages/News/News/News');
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, News } = await import(
+        '@/components/05_pages/News/News/News'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: News,
+      };
     },
   },
   {
     id: 'newsDetails',
-    path: '/NewsDetails',
+    path: '/NewsDetails/:newsId',
     text: '뉴스 내용',
-    lazy: async () => {
-      const Module = await import('@/pages/News/NewsDetails');
-      return { Component: Module.default };
+    // lazy: async () => {
+    //   const Module = await import(
+    //     '@/components/05_pages/News/NewsDetails/NewsDetails'
+    //   );
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, NewsDetail } = await import(
+        '@/components/05_pages/News/NewsDetails/NewsDetails'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: NewsDetail,
+      };
     },
   },
   {
@@ -47,7 +67,7 @@ const navigationItems = [
     path: '/SignIn',
     text: '로그인 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignIn/page/SignIn');
+      const Module = await import('@/components/05_pages/SignIn/SignIn');
       return { Component: Module.default };
     },
   },
@@ -56,7 +76,7 @@ const navigationItems = [
     path: '/SignUp',
     text: '회원가입 페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Login/SignUp/page/SignUp');
+      const Module = await import('@/components/05_pages/SignUp/SignUp');
       return { Component: Module.default };
     },
   },
@@ -64,77 +84,115 @@ const navigationItems = [
     id: 'MyPage',
     path: '/MyPage',
     text: '마이페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/Mypage/MyPage');
-      return { Component: Module.default };
-    },
-  },
-  {
-    id: 'MypageUserSetting',
-    path: '/MypageUserSetting',
-    text: '회원설정',
-    lazy: async () => {
-      const Module = await import('@/pages/Mypage/MypageUserSetting');
-      return { Component: Module.default };
+
+    async lazy() {
+      const { loader, MyPage } = await import(
+        '@/components/05_pages/Mypage/MyPage'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: MyPage,
+      };
     },
   },
   {
     id: 'Product',
     path: '/Product',
     text: '판매 메인페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/Product/page/Product/Product');
-      return { Component: Module.default };
+    // lazy: async () => {
+    //   const Module = await import(
+    //     '@/components/05_pages/Product/Product/Product'
+    //   );
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, Product } = await import(
+        '@/components/05_pages/Product/Product/Product'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: Product,
+      };
     },
   },
   {
     id: 'ProductDetails',
-    path: '/ProductDetails',
+    path: '/ProductDetails/:productId',
     text: '판매 상세페이지',
-    lazy: async () => {
-      const Module = await import(
-        '@/pages/Product/page/ProductDetails/ProductDetails'
+    async lazy() {
+      const { loader, ProductDetails } = await import(
+        '@/components/05_pages/Product/ProductDetails/ProductDetails'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ProductDetails,
+      };
     },
   },
   {
     id: 'Payment',
     path: '/Payment',
     lazy: async () => {
-      const Module = await import('@/pages/Product/page/Payment/Payment');
+      const Module = await import(
+        '@/components/05_pages/Product/Payment/Payment'
+      );
       return { Component: Module.default };
     },
   },
   {
     id: 'Exchange',
     path: '/Exchange',
-    text: '교환페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/Exchange/page/Exchange/Exchange');
-      return { Component: Module.default };
+    text: '교환 메인페이지',
+    async lazy() {
+      const { loader, Exchange } = await import(
+        '@/components/05_pages/Exchange/Exchange'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: Exchange,
+      };
     },
   },
   {
     id: 'ExchangeWrite',
     path: '/ExchangeWrite',
-    text: '교환페이지',
-    lazy: async () => {
-      const Module = await import(
-        '@/pages/Exchange/page/ExchangeWrite/ExchangeWrite'
+    text: '교환 작성 페이지',
+    async lazy() {
+      const { loader, ExchangeWrite } = await import(
+        '@/components/05_pages/Exchange/ExchangeWrite'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ExchangeWrite,
+      };
+    },
+  },
+  {
+    id: 'ExchangeModify',
+    path: '/ExchangeModify/:id',
+    text: '교환 수정 페이지',
+    async lazy() {
+      const { loader, ExchangeModify } = await import(
+        '@/components/05_pages/Exchange/ExchangeModify'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: ExchangeModify,
+      };
     },
   },
   {
     id: 'ExchangeDetail',
     path: '/Exchange/ExchangeDetail/:id',
-    text: '교환 상세페이지',
-    lazy: async () => {
-      const Module = await import(
-        '@/pages/Exchange/page/ExchangeDetail/ExchangeDetail'
+    text: '교환 메인페이지',
+    async lazy() {
+      const { loader, ExchangeDetail } = await import(
+        '@/components/05_pages/Exchange/ExchangeDetail'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: ExchangeDetail,
+      };
     },
   },
   {
@@ -142,7 +200,9 @@ const navigationItems = [
     path: '/Donation',
     text: '기부페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Donation/Donation');
+      const Module = await import(
+        '@/components/05_pages/Donation/Donation/Donation'
+      );
       return { Component: Module.default };
     },
   },
@@ -151,28 +211,30 @@ const navigationItems = [
     path: '/DonationForm',
     text: '기부페이지',
     lazy: async () => {
-      const Module = await import('@/pages/Donation/DonationForm');
+      const Module = await import(
+        '@/components/05_pages/Donation/DonationSubmission/DonationSubmission'
+      );
       return { Component: Module.default };
     },
   },
-  {
-    id: 'ChatScreen',
-    path: '/ChatScreen',
-    text: '채팅페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/ChatScreen/ChatScreen');
-      return { Component: Module.default };
-    },
-  },
-  {
-    id: 'ChatList',
-    path: '/ChatList',
-    text: '채팅리스트 페이지',
-    lazy: async () => {
-      const Module = await import('@/pages/ChatScreen/ChatList');
-      return { Component: Module.default };
-    },
-  },
+  // {
+  //   id: 'ChatScreen',
+  //   path: '/ChatScreen',
+  //   text: '채팅페이지',
+  //   lazy: async () => {
+  //     const Module = await import('@/pages/ChatScreen/ChatScreen');
+  //     return { Component: Module.default };
+  //   },
+  // },
+  // {
+  //   id: 'ChatList',
+  //   path: '/ChatList',
+  //   text: '채팅리스트 페이지',
+  //   lazy: async () => {
+  //     const Module = await import('@/pages/ChatScreen/ChatList');
+  //     return { Component: Module.default };
+  //   },
+  // },
   {
     id: 'KakaoRedirect',
     path: '/KakaoRedirect',

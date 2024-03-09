@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import create from 'zustand';
 import { pb } from '@/api/pocketbase';
 import ExchangeMore from '@/pages/Exchange/molecules/ExchangeMore';
-import { useLoginFormStore } from '@/store/useLoginFormStore';
+import useLoginFormStore from '@/store/useLoginFormStore';
 import MoreButton from '@/components/Button/MoreButton';
 import ExchangeWriteButton from '@/components/Button/ExchangeWriteButton';
 import Card from '@/components/Card/Card';
