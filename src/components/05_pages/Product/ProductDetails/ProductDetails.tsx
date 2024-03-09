@@ -13,7 +13,7 @@ export function ProductDetails() {
   const { productId, productCategory } = useParams();
   const product = useLoaderData();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const [showModalMyCart, setShowModalMyCart] = useState(false);
 
   const results = useQueries({
     queries: [
@@ -50,10 +50,10 @@ export function ProductDetails() {
   };
 
   const handleOpenModal = () => {
-    setShowModal(true);
+    setShowModalMyCart(true);
   };
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowModalMyCart(false);
     console.log('닫기');
   };
 
@@ -74,7 +74,7 @@ export function ProductDetails() {
         category={productCategory}
         currentProductId={productId}
       />
-      {showModal && (
+      {showModalMyCart && (
         <SelectModal
           title="장바구니 담기 완료"
           onClickYes={handleMoveToMyCart}

@@ -10,6 +10,7 @@ function Payment() {
   const [showModal, setShowModal] = useState(false);
   const { isLoggedIn, userInfo } = useLoginFormStore();
   const navigate = useNavigate();
+  // const [checkedItems, setCheckedItems] = useState({});
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -19,26 +20,64 @@ function Payment() {
     setShowModal(false);
   };
 
-  async function fetchMyCart(userId) {
+  const handleCheckedMyCartLists = (data) => {
+    setCheckedMyCartLists(data);
+  };
+
+  async function fetchMyCart(userId: string) {
     return await pb.collection('my_cart').getFullList({
       filter: `userId = "${userId}"`,
+      expand: 'productId',
     });
   }
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['myCart', userInfo.id],
     queryFn: () => fetchMyCart(userInfo.id),
+    initialData: [],
   });
 
-  console.log(data);
+  const initial = data.map((list) => ({
+    myCartID: list.id,
+    productId: list.expand.productId.id,
+    price: list.expand.productId.price,
+    isChecked: false,
+  }));
+
+  const [checkedMyCartLists, setCheckedMyCartLists] = useState(initial);
+  console.log(initial);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/SignIn');
+    }
+  }, []);
+
+  const handleDeleteMyCartList = async (data) => {
+    await pb.collection('my_cart').delete(data);
+    refetch();
+  };
 
   return (
     <div className="text-center bg-white max-w-[90rem]" id="myCartPage">
       <section className="w-[62.5rem] m-auto my-16">
-        <h2 className="text-4xl pt-20 pb-10 font-semibold">장바구니 목록</h2>
-        <ul className="flex flex-col">
-          <MyCartList />
-          <MyCartList />
+        <h2 className="text-4xl p-10 font-semibold">장바구니 목록</h2>
+        <ul className="flex flex-col gap-2">
+          <li className="grid grid-cols-[1fr_2fr_6fr_2fr_1fr] text-center px-12 ">
+            <div className="border border-white bg-[#f3f3f3]">구매선택</div>
+            <div className="border border-white bg-[#f3f3f3]">사진</div>
+            <div className="border border-white bg-[#f3f3f3]">상품</div>
+            <div className="border border-white bg-[#f3f3f3]">가격</div>
+            <div className="border border-white bg-[#f3f3f3]">삭제</div>
+          </li>
+          {data.map((list) => (
+            <MyCartList
+              key={list.id}
+              list={list}
+              checked={false}
+              onChecked={handleCheckedMyCartLists}
+              onDelete={handleDeleteMyCartList}
+            />
+          ))}
         </ul>
       </section>
       <section className="text-left w-[62.5rem] m-auto bg-[#F3F3F3] my-16 p-12">
@@ -46,7 +85,7 @@ function Payment() {
         <div className="flex flex-col text-lg gap-6 mt-6">
           <div className="flex justify-between font-medium">
             <div>구매가</div>
-            <div>19,000원</div>
+            <div>{checkedMyCartLists.length > 1 ? 1000 : 0}원</div>
           </div>
           <div className="flex justify-between text-gray-100">
             <div>배송비</div>
@@ -78,23 +117,5 @@ function Payment() {
     </div>
   );
 }
-
-async function fetchMyCart(userId) {
-  return await pb.collection('my_cart').getFullList({
-    filter: `userId = "${userId}"`,
-  });
-}
-
-// export const loader =
-//   (queryClient) =>
-//   async ({ params }) => {
-//     const { userId } = params;
-//     return await queryClient.ensureQueryData({
-//       queryKey: ['myCart', userId],
-//       queryFn: () => fetchMyCart(userId),
-//       cacheTime: 6000 * 10,
-//       staleTime: 1000 * 10,
-//     });
-//   };
 
 export default Payment;

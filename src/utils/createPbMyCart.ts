@@ -21,7 +21,5 @@ export default async function createMyCartData(
   };
   if ((await hasDuplicateData(userId, productId)) == false) {
     await pb.collection('my_cart').create(data);
-  } else {
-    console.log('이미 카트에 담겼습니다');
   }
 }

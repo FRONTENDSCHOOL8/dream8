@@ -6,7 +6,16 @@ import Cautions from '@/components/01_atoms/Product/Cautions';
 import Button from '@/components/01_atoms/Button/Button';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 
-function ProductDetailsInfo({ productData, onClickPurchase, onClickMyCart }) {
+interface ProductDetailsInfoType {
+  productData: object;
+  onClickPurchase: () => void;
+  onClickMyCart: () => void;
+}
+function ProductDetailsInfo({
+  productData,
+  onClickPurchase,
+  onClickMyCart,
+}: ProductDetailsInfoType) {
   const photo = productData.photo;
   const pbUrl = getPbImage(productData.collectionId, productData.id, '');
 
