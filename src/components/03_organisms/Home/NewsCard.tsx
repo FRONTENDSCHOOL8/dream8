@@ -13,7 +13,7 @@ type NewsItemProps = {
 
 function NewsCard({ width, height, newsItem }: { width: string; height: string; newsItem: NewsItemProps }) {
   if (!newsItem) {
-    return null; // newsItem이 없다면 아무것도 렌더링하지 않음
+    return null;
   }
 
   return (
@@ -25,7 +25,7 @@ function NewsCard({ width, height, newsItem }: { width: string; height: string; 
         </div>
         <div>
           <div className="overflow-hidden">
-            <p className="text-[20px] text-gray-500">{newsItem.title}</p>
+            <p className="text-[20px] text-gray-500">"{newsItem.title}"</p>
         </div>
         </div>
       </div>

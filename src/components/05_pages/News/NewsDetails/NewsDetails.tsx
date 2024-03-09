@@ -1,33 +1,17 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { pb } from "@/api/pocketbase";
 import { getPbImage } from '@/utils/getPbImage';
 import NewsTitle from "../../../01_atoms/News/NewsTitle/NewsTitle";
+import { useQuery } from "@tanstack/react-query";
 
-function NewsDetail() {
-  const [news, setNews] = useState<NewsItemProps | null>(null);
+export function NewsDetail() {
+
   const { newsId } = useParams();
 
-  useEffect(() => {
-    const fetchNewsDetail = async () => {
-      try {
-        const response = await pb.collection('news').getList();
-        const newsItems = response.items;
-        const newsItem = newsItems.find(item => item.id === newsId);
-        if (newsItem) {
-          setNews(newsItem);
-        } else {
-          console.error("News not found for the given ID");
-        }
-      } catch (error) {
-        console.error("Error fetching news:", error);
-      }
-    };
-  
-    fetchNewsDetail();
-  }, [newsId]);
-
-  if (!news) return <div>Loading...😵‍💫</div>;
+  const { data: news } = useQuery({
+    queryKey: ['newsDetail', newsId ],
+    queryFn: () => fetchNewsDetail(newsId)
+  });
 
   return (
     <div className="max-w-[90rem] m-auto bg-white py-20">
@@ -50,4 +34,17 @@ function NewsDetail() {
   );
 }
 
-export default NewsDetail;
+async function fetchNewsDetail(newsId: string) {
+  const response = await pb.collection('news').getOne(newsId);
+  return response
+}
+
+export const loader = (queryClient) => async ({ params }) => {
+  const { newsId } = params;
+  return await queryClient.ensureQueryData({
+    queryKey: ['newsDetail', newsId ],
+    queryFn: () => fetchNewsDetail(newsId),
+    cacheTime: 6000 * 10,
+    staleTime: 1000 * 10,
+  })
+}

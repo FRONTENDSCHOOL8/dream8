@@ -12,6 +12,7 @@ interface ImageWithCaptionProps {
     width: string;
     height: string;
   };
+  onClick?: () => void;
 }
 
 const defaultImageSrc = profilephoto; // 기본 이미지 경로

@@ -28,20 +28,38 @@ const navigationItems = [
     id: 'news',
     path: '/News',
     text: '뉴스',
-    lazy: async () => {
-      const Module = await import('@/components/05_pages/News/News/News');
-      return { Component: Module.default };
+    // lazy: async () => {
+    //   const Module = await import('@/components/05_pages/News/News/News');
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, News } = await import(
+        '@/components/05_pages/News/News/News'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: News,
+      };
     },
   },
   {
     id: 'newsDetails',
     path: '/NewsDetails/:newsId',
     text: '뉴스 내용',
-    lazy: async () => {
-      const Module = await import(
+    // lazy: async () => {
+    //   const Module = await import(
+    //     '@/components/05_pages/News/NewsDetails/NewsDetails'
+    //   );
+    //   return { Component: Module.default };
+    // },
+    async lazy() {
+      const { loader, NewsDetail } = await import(
         '@/components/05_pages/News/NewsDetails/NewsDetails'
       );
-      return { Component: Module.default };
+      return {
+        loader: loader(queryClient),
+        Component: NewsDetail,
+      };
     },
   },
   {
@@ -66,22 +84,17 @@ const navigationItems = [
     id: 'MyPage',
     path: '/MyPage',
     text: '마이페이지',
-    lazy: async () => {
-      const Module = await import('@/components/05_pages/Mypage/MyPage');
-      return { Component: Module.default };
+
+    async lazy() {
+      const { loader, MyPage } = await import(
+        '@/components/05_pages/Mypage/MyPage'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: MyPage,
+      };
     },
   },
-  // {
-  //   id: 'MypageUserSetting',
-  //   path: '/MypageUserSetting',
-  //   text: '회원설정',
-  //   lazy: async () => {
-  //     const Module = await import(
-  //       '@/components/05_pages/Mypage/MypageUserSetting'
-  //     );
-  //     return { Component: Module.default };
-  //   },
-  // },
   {
     id: 'Product',
     path: '/Product',
