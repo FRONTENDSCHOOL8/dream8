@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import Logo from '/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import usePhotoGridLayout from '@/hooks/usePhotoGridLayout';
 
 interface TransactionListCardProps {
   src: Array<string>;
   content: string | Array<string>;
   isPayed: boolean;
-  className: string;
+  className?: string;
+  type: string;
 }
 
 const TransactionListCard: React.FC<TransactionListCardProps> = ({
@@ -15,31 +17,18 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
   content,
   isPayed,
   className,
+  type,
 }) => {
-  const [rows, setRows] = useState<Array<Array<{ src: string; alt: string }>>>(
-    []
-  );
-  const [images, setImages] = useState<Array<{ src: string; alt: string }>>([]);
+  const [rows, setRows] = usePhotoGridLayout(src);
   const navigate = useNavigate();
   const defaultImage = Logo;
 
-  // 컴포넌트가 마운트될 때 이미지 상태를 업데이트합니다.
-  useState(() => {
-    const newImages = src.map((item, index) => ({
-      src: item,
-      alt: `Image ${index + 1}`,
-    }));
-    setImages(newImages);
-
-    const newRows = [];
-    for (let i = 0; i < newImages.length; i += 2) {
-      newRows.push(newImages.slice(i, i + 2));
-    }
-    setRows(newRows);
-  }, [src]);
-
   const handleClick = () => {
-    navigate('/Payment');
+    if (type === 'mycart') {
+      navigate('/Payment');
+    } else if (type === 'sponsorship') {
+    } else if (type === 'exchange') {
+    }
   };
 
   return (
@@ -59,7 +48,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
           rows.map((row, index) => (
             <div
               key={index}
-              className="flex items-center justify-center min-w-[6.25rem] max-w-[60%]"
+              className="flex items-center justify-center min-w-[6.25rem] max-w-[60%] "
             >
               {row.map((image, idx) => (
                 <div key={idx}>

@@ -84,22 +84,17 @@ const navigationItems = [
     id: 'MyPage',
     path: '/MyPage',
     text: '마이페이지',
-    lazy: async () => {
-      const Module = await import('@/components/05_pages/Mypage/MyPage');
-      return { Component: Module.default };
+
+    async lazy() {
+      const { loader, MyPage } = await import(
+        '@/components/05_pages/Mypage/MyPage'
+      );
+      return {
+        loader: loader(queryClient),
+        Component: MyPage,
+      };
     },
   },
-  // {
-  //   id: 'MypageUserSetting',
-  //   path: '/MypageUserSetting',
-  //   text: '회원설정',
-  //   lazy: async () => {
-  //     const Module = await import(
-  //       '@/components/05_pages/Mypage/MypageUserSetting'
-  //     );
-  //     return { Component: Module.default };
-  //   },
-  // },
   {
     id: 'Product',
     path: '/Product',
