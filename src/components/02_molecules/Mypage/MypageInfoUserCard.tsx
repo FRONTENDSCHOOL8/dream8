@@ -11,10 +11,6 @@ interface MypageInfoUserCardProps {
   iconImageSize?: string;
 }
 
-interface PhotoFileState {
-  photo: string;
-}
-
 const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
   fontSize,
   fontColor,
@@ -56,7 +52,7 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
   };
 
   return (
-    <div className="flex gap-20 rounded-3xl border border-gray-300 font-semibold p-12">
+    <div className="flex gap-20 rounded-3xl border border-gray-300 font-semibold p-12 shadow-xl">
       <div className="relative">
         <div className="rounded-full w-[140px] h-[140px] overflow-hidden">
           <Image

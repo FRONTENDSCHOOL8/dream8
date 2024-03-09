@@ -5,9 +5,15 @@ import MypageInfoUserCard from '@/components/02_molecules/Mypage/MypageInfoUserC
 import MypageSponsorship from '@/components/02_molecules/Mypage/MypageSponsorship';
 import MypageTransaction from '@/components/02_molecules/Mypage/MypageTransaction';
 import MypageUserSetting from '@/components/02_molecules/Mypage/MypageUserSetting';
+import { UseQueryResult } from '@tanstack/react-query';
+import { RecordModel } from 'pocketbase';
 import { useState } from 'react';
 
-const MypageOrganisms = ({}) => {
+interface MypageOrganismsProps {
+  queries: UseQueryResult<RecordModel[], Error>[];
+}
+
+const MypageOrganisms = ({ queries }: MypageOrganismsProps) => {
   const [currentPage, setCurrentPage] = useState<string>('LoginInfo');
 
   const handleMove = (id: string) => {
@@ -22,9 +28,15 @@ const MypageOrganisms = ({}) => {
         <div className="flex flex-col  gap-[4.37rem] min-w-[40.62rem]">
           <MypageInfoUserCard />
           {currentPage === 'LoginInfo' && <MypageUserSetting />}
-          {currentPage === 'Purchase' && <MypageTransaction />}
-          {currentPage === 'Donation' && <MypageSponsorship />}
-          {currentPage === 'Exchange' && <MypageExchane />}
+          {currentPage === 'Purchase' && (
+            <MypageTransaction mycartList={queries[0]?.data} />
+          )}
+          {currentPage === 'Donation' && (
+            <MypageSponsorship mySponsorList={queries[1]?.data} />
+          )}
+          {currentPage === 'Exchange' && (
+            <MypageExchane mycartList={queries[2]?.data} />
+          )}
         </div>
       </div>
     </section>

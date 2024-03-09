@@ -4,18 +4,22 @@ import { useEffect, useState } from 'react';
 import { pb } from '@/api/pocketbase';
 import { RecordModel } from 'pocketbase';
 
-const MypageSponsorship = () => {
+interface MypageSponsorshipProps {
+  mySponsorList?: RecordModel[];
+}
+
+const MypageSponsorship = ({ mySponsorList }: MypageSponsorshipProps) => {
   const { userInfo } = useLoginFormStore();
-  const [donationData, setDonationData] = useState([]);
+  const [donationData, setDonationData] = useState(mySponsorList);
 
   useEffect(() => {
     const fetchDonaitionValue = async () => {
       try {
-        const response = await pb
-          .collection('donation')
-          .getFullList({ expand: 'userId' });
+        // const response = await pb
+        //   .collection('donation')
+        //   .getFullList({ expand: 'userId' });
 
-        compareCart(userInfo.id, response);
+        compareCart(userInfo.id, donationData);
       } catch (error) {
         console.log('error:', error);
       }
@@ -23,8 +27,8 @@ const MypageSponsorship = () => {
     fetchDonaitionValue();
   }, [userInfo]);
 
-  const compareCart = (userId: string, mydonation: RecordModel[]) => {
-    const result = mydonation.filter(
+  const compareCart = (userId: string, mydonation?: RecordModel[]) => {
+    const result = mydonation?.filter(
       (item) => userId === item.expand?.userId?.id
     );
 
@@ -38,13 +42,14 @@ const MypageSponsorship = () => {
       <div>
         <ul>
           <li className="flex flex-col gap-10">
-            {donationData.map((item) => (
+            {donationData?.map((item) => (
               <TransactionListCard
                 key={item.id}
                 src={[]}
                 content={item.description} // donationData 배열을 직접 전달
                 isPayed={true}
                 className="py-10 pl-10"
+                type={'sponsorship'}
               />
             ))}
           </li>
