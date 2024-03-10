@@ -83,7 +83,7 @@ export function ExchangeModify() {
       setIsOpen(true);
       setText({
         title: '실패',
-        message: '값을 수정해주세요!.',
+        message: '수정된 데이터가 없습니다!.',
       });
       return;
     }
