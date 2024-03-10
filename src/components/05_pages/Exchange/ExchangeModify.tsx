@@ -1,11 +1,11 @@
 import SubmitButton from '@/components/Button/SubmitButton';
 import { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import { pb } from '@/api/pocketbase';
-import { useListStore } from '@/store/useListStore';
 import { useParams } from 'react-router-dom';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import { useQuery } from '@tanstack/react-query';
 import useGetOneUser from '@/hooks/useGetOneUser';
+import { getPbImageURL } from '@/utils/getPbImage';
 
 interface InputItem {
   name: string;
@@ -52,6 +52,15 @@ export function ExchangeModify() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const selectedItem = data?.id === id;
 
+  const Edit =
+    data?.title === inputData.title &&
+    data?.type === inputData.type &&
+    data?.model_name === inputData.model_name &&
+    data?.grade === inputData.grade &&
+    data?.trade_method === inputData.trade_method &&
+    data?.product_detail === inputData.product_detail &&
+    data?.product_img === inputData.product_img;
+
   useEffect(() => {
     if (selectedItem && data) {
       setInputData({
@@ -69,7 +78,39 @@ export function ExchangeModify() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputData);
+
+    if (Edit) {
+      setIsOpen(true);
+      setText({
+        title: '실패',
+        message: '값을 수정해주세요!.',
+      });
+      return;
+    }
+
+    if (
+      !inputData.title ||
+      !inputData.brand ||
+      !inputData.model_name ||
+      !inputData.trade_method ||
+      !inputData.product_img
+    ) {
+      setIsOpen(true);
+      setText({
+        title: '실패',
+        message: '빈 값을 입력했습니다 모두 입력해주세요.',
+      });
+      return;
+    }
+
+    if (inputData.product_detail.length >= 500) {
+      setIsOpen(true);
+      setText({
+        title: '실패',
+        message: '상세 설명은 500글자 아래로 작성해주세요!',
+      });
+      return;
+    }
 
     const formData = new FormData();
     formData.append('product_img', inputData.product_img as File);
@@ -83,16 +124,17 @@ export function ExchangeModify() {
       setText({ title: '실패', message: '데이터 변경에 실패했습니다' });
     }
   };
-
   const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setInputData({ ...inputData, product_img: e.target.files[0] });
+      const selectedImage = e.target.files[0];
+
+      setInputData({ ...inputData, product_img: selectedImage });
 
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(selectedImage);
     }
   };
 
@@ -101,6 +143,9 @@ export function ExchangeModify() {
       fileInputRef.current.click();
     }
   };
+
+  if ({ ...inputData }) {
+  }
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
@@ -194,9 +239,13 @@ export function ExchangeModify() {
           </div>
           <div className="rounded-md">
             <img
-              src={previewImage?.toString()}
+              src={
+                previewImage
+                  ? previewImage.toString()
+                  : getPbImageURL(data, 'product_img')
+              }
               alt="Uploaded preview"
-              className="object-cover h-36 w-full"
+              className="object-cover h-44 w-full"
             />
           </div>
           <SubmitButton name="제출하기" />
