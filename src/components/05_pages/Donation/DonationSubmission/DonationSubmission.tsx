@@ -3,6 +3,7 @@ import DonationForm from '../../../03_organisms/Donaion/DonationForm/DonationFor
 import { useEffect, useState } from 'react';
 import { pb } from '@/api/pocketbase';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
+import useLoginFormStore from '@/store/useLoginFormStore';
 
 interface Donation {
   id?: string;
@@ -15,6 +16,7 @@ function DonationSubmission() {
   const [showModal, setShowModal] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
   const [modalMessage, setModalMessage] = useState('');
+  const { userInfo } = useLoginFormStore();
 
   const [donations, setDonations] = useState<Donation[]>([]);
   const handleAddDonation = (donation: Donation) => {
@@ -39,32 +41,34 @@ function DonationSubmission() {
   };
 
   const handleSubmit = async () => {
+    
     if (donations.length === 0 || donations.some(donation => !donation.name || !donation.category || !donation.description)) {
       setModalTitle('실패');
       setModalMessage('필요한 정보를 모두 작성해주세요.');
       setShowModal(true);
       return;
     }
-
+  
     try {
       for (const donation of donations) {
         const dataToSend = {
           name: donation.name,
           category: donation.category,
           description: donation.description,
+          userId: userInfo.id,
         };
     
         await pb.collection('donation').create(dataToSend);
       }
       localStorage.removeItem('donations');
       setDonations([]);
-      setModalTitle('후원완료');
+      setModalTitle('신청완료');
       setModalMessage('후원 신청이 완료 되었습니다. 감사합니다.');
       setShowModal(true);
     } catch (error) {
       console.error('데이터 저장 실패:', error);
       setModalTitle('오류🤯');
-      setModalMessage('후원에 실패하였습니다. 다시 시도해주세요.');
+      setModalMessage('데이터 저장에 실패하였습니다. 다시 시도해주세요.');
       setShowModal(true);
     }
   };

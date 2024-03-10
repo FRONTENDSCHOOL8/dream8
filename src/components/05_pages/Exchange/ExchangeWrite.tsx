@@ -1,11 +1,12 @@
-import SubmitButton from '@/components/Button/SubmitButton';
-import { useState, ChangeEvent, FormEvent, useRef } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { pb } from '@/api/pocketbase';
 import Input from '@/components/01_atoms/Input/Input';
 import TextArea from '@/components/01_atoms/TextArea/TextArea';
 import Button from '@/components/01_atoms/Button/Button';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
+import useGetList from '@/hooks/useGetList';
+import SubmitButton from '@/components/Button/SubmitButton';
 
 interface InputItem {
   name: string;
@@ -14,13 +15,10 @@ interface InputItem {
   options?: string[];
 }
 
-function ExchangeWrite() {
+export function ExchangeWrite() {
   const { isLoggedIn, userInfo } = useLoginFormStore();
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState({
-    title: '',
-    message: '',
-  });
+  const [text, setText] = useState({ title: '', message: '' });
 
   const inputList: InputItem[] = [
     { name: '제목', label: 'title', type: 'text' },
@@ -239,4 +237,11 @@ function ExchangeWrite() {
   );
 }
 
-export default ExchangeWrite;
+export const loader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData({
+    queryKey: ['exchangeWrite'],
+    queryFn: useGetList,
+    cacheTime: 6000 * 10,
+    staleTime: 1000 * 10,
+  });
+};

@@ -5,17 +5,18 @@ import fastImf from "/fast-fashion.png"
 import earthClean from "/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
 import Dots from "@/components/02_molecules/Home/Dots"
+import { throttle } from 'lodash';
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
 
 
-function HomeContens() {
+function HomeContents() {
 
   const [currentSection, setCurrentSection] = useState(0);
   const sectionCount = 6;
 
   useEffect(() => {
-    const handleScroll = (event) => {
+    const handleScroll = throttle((event) => {
       if (event.deltaY > 0) {
         setCurrentSection(prevSection => 
           Math.min(prevSection + 1, sectionCount - 1)
@@ -25,11 +26,14 @@ function HomeContens() {
           Math.max(prevSection - 1, 0)
         );
       }
-    };
+    }, 150);
 
     window.addEventListener("wheel", handleScroll);
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, []);
+    return () => {
+      handleScroll.cancel();
+      window.removeEventListener("wheel", handleScroll);
+    };
+  }, [sectionCount]);
 
   useEffect(() => {
     window.scrollTo({
@@ -43,7 +47,7 @@ function HomeContens() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const data = await pb.collection('news').getList(1, 10, {
+        const data = await pb.collection('news').getList(1, 30, {
           sort: '-created',
         });
         setNewsList(data.items);
@@ -54,6 +58,9 @@ function HomeContens() {
 
     fetchNews();
   }, []);
+
+  const newsItems = newsList.filter(newsItem => newsItem.type === '소식');
+  const noticeItems = newsList.filter(newsItem => newsItem.type === '공지');
 
   return (
     <>
@@ -124,12 +131,12 @@ function HomeContens() {
 
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
-              {newsList.slice(0, 4).map((newsItem, index) => (
+              {newsItems.slice(0, 4).map((newsItem, index) => (
                 <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
               ))}
             </ul>
             <div className="w-full">
-              {newsList.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={newsList[1]} />}
+              {noticeItems.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} />}
             </div>
           </div>
         </div>
@@ -138,4 +145,4 @@ function HomeContens() {
   )
 }
 
-export default HomeContens;
+export default HomeContents;
