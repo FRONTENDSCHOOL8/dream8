@@ -1,4 +1,5 @@
 import { pb } from '@/api/pocketbase';
+import Button from '@/components/01_atoms/Button/Button';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import MyCartList from '@/components/03_organisms/Payment/MyCartList/MyCartList';
 import useLoginFormStore from '@/store/useLoginFormStore';
@@ -6,23 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Payment() {
+export default function Payment() {
   const [showModal, setShowModal] = useState(false);
+  const [checkedMyCartLists, setCheckedMyCartLists] = useState([]);
   const { isLoggedIn, userInfo } = useLoginFormStore();
   const navigate = useNavigate();
-  // const [checkedItems, setCheckedItems] = useState({});
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleCheckedMyCartLists = (data) => {
-    setCheckedMyCartLists(data);
-  };
 
   async function fetchMyCart(userId: string) {
     return await pb.collection('my_cart').getFullList({
@@ -44,18 +33,41 @@ function Payment() {
     isChecked: false,
   }));
 
-  const [checkedMyCartLists, setCheckedMyCartLists] = useState(initial);
-  console.log(initial);
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/SignIn');
-    }
-  }, []);
+  const price = checkedMyCartLists.reduce(
+    (acc, cur) => acc + (cur.isChecked ? cur.price : 0),
+    0
+  );
+
+  const totalPrice = price + 3000;
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleCheckedMyCartLists = (listID, isChecked) => {
+    console.log(checkedMyCartLists);
+    const updateData = checkedMyCartLists.map((item) =>
+      item.myCartID === listID ? { ...item, isChecked: isChecked } : item
+    );
+    setCheckedMyCartLists(updateData);
+  };
 
   const handleDeleteMyCartList = async (data) => {
     await pb.collection('my_cart').delete(data);
     refetch();
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/SignIn');
+    } else {
+      setCheckedMyCartLists(initial);
+    }
+  }, [isLoggedIn, data]);
 
   return (
     <div className="text-center bg-white max-w-[90rem]" id="myCartPage">
@@ -85,7 +97,7 @@ function Payment() {
         <div className="flex flex-col text-lg gap-6 mt-6">
           <div className="flex justify-between font-medium">
             <div>구매가</div>
-            <div>{checkedMyCartLists.length > 1 ? 1000 : 0}원</div>
+            <div>{price.toLocaleString()}원</div>
           </div>
           <div className="flex justify-between text-gray-100">
             <div>배송비</div>
@@ -97,14 +109,15 @@ function Payment() {
           </div>
           <div className="flex justify-between font-semibold">
             <div>총 결제 금액</div>
-            <div>29,000원</div>
+            <div>{(price === 0 ? 0 : totalPrice).toLocaleString()}원</div>
           </div>
-          <button
+          <Button
+            type="button"
             onClick={handleOpenModal}
             className="w-full h-12 border-2 border-blue-primary text-blue-primary font-semibold hover:bg-blue-primary hover:text-white"
           >
             결제하기
-          </button>
+          </Button>
         </div>
       </section>
       {showModal && (
@@ -117,5 +130,3 @@ function Payment() {
     </div>
   );
 }
-
-export default Payment;

@@ -34,8 +34,7 @@ export function ProductDetails() {
 
   const handleClickPurchase = () => {
     if (isLoggedIn) {
-      createMyCartData(userInfo.id, productId);
-      navigate('/Payment');
+      createMyCartData(userInfo.id, productId).then(() => navigate('/Payment'));
     } else {
       navigate('/SignIn');
     }

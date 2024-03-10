@@ -9,10 +9,10 @@ const MyCartList = ({ list, checked, onChecked, onDelete }) => {
 
   const [isCheck, setIsCheck] = useState(false);
 
-  const handleCheckToPurchase = (e) => {
-    console.log(e.target.id);
+  const handleCheckToPurchase = () => {
+    console.log(list.id, !isCheck);
+    onChecked(list.id, !isCheck);
     setIsCheck(!isCheck);
-    onChecked((prev) => [...prev, { myCartId: list.id, price: price }]);
   };
 
   const handleDeleteMyCart = () => {
@@ -29,12 +29,12 @@ const MyCartList = ({ list, checked, onChecked, onDelete }) => {
           type="checkbox"
           name="checkToPurchase"
           id={list.id}
-          checked={checked}
+          checked={isCheck}
           onChange={handleCheckToPurchase}
           className="w-4 h-4"
         />
       </div>
-      <figure className="">
+      <figure>
         <img
           src={imageSrc}
           alt={title}
