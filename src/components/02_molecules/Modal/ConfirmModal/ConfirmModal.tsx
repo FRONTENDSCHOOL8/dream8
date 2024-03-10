@@ -1,11 +1,10 @@
 import Button from '@/components/01_atoms/Button/Button';
-import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
 type ConfirmModalPropsType = {
   title: React.ReactNode | string;
   children: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 function ConfirmModal({ title, children, onClose }: ConfirmModalPropsType) {

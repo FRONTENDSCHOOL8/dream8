@@ -72,6 +72,11 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
   };
 
   const handleSave = async (field: keyof FieldsState) => {
+    if (fields[field].trim() === '') {
+      alert(`${getFieldLabel(field)}을(를) 입력해주세요.`);
+      return;
+    }
+
     setEditMode((prevState) => ({
       ...prevState,
       [field]: false,
@@ -179,7 +184,12 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
                 value={inputValue(field, value)}
                 onChange={(e) => handleChange(e, field as keyof FieldsState)}
                 required
-                className="border border-gray-400 p-1"
+                className={`border border-gray-400 p-2 focus:outline-none rounded-lg ${
+                  fields[field].trim() === ''
+                    ? 'border-red-500'
+                    : 'border-gray-400'
+                  // 빈 값일 때 빨간색 테두리로 변경
+                }`}
               />
             ) : (
               <div>

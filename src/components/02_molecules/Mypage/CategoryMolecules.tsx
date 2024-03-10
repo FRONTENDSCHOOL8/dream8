@@ -12,7 +12,7 @@ const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
   const [selectedButton, setSelectedButton] = useState('LoginInfo');
 
   return (
-    <div className="flex flex-col whitespace-nowrap px-14 py-20  border border-gray-300 justify-center items-center gap-24 ">
+    <div className="flex flex-col whitespace-nowrap px-14 py-20  border border-gray-300 justify-center items-center gap-24 shadow-xl">
       <Button
         type="button"
         aria-label="회원정보 자세히보기 버튼"
