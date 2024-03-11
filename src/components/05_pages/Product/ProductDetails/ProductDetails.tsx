@@ -21,11 +21,13 @@ export function ProductDetails() {
         queryKey: ['productDetail', productId],
         queryFn: () => fetchSingleProduct(productId),
         initialData: product.productDetail,
+        staleTime: 1000 * 10,
       },
       {
         queryKey: ['productCategoryLists'],
         queryFn: () => fetchFilteredCategoryProducts(productCategory),
         initialData: product.filteredCategoryProduct,
+        staleTime: 1000 * 10,
       },
     ],
   });
@@ -106,14 +108,10 @@ export const loader =
     const productDetail = await queryClient.ensureQueryData({
       queryKey: ['productDetail', productId],
       queryFn: () => fetchSingleProduct(productId),
-      cacheTime: 6000 * 10,
-      staleTime: 1000 * 10,
     });
     const filteredCategoryProduct = await queryClient.ensureQueryData({
       queryKey: ['productCategoryLists'],
       queryFn: () => fetchFilteredCategoryProducts(productCategory),
-      cacheTime: 6000 * 10,
-      staleTime: 1000 * 10,
     });
     return { productDetail, filteredCategoryProduct };
   };

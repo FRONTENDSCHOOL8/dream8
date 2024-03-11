@@ -24,6 +24,7 @@ export function Product() {
     queryKey: ['productLists'],
     queryFn: () => fetchMultipleProduct(),
     initialData: productLists,
+    staleTime: 1000 * 10,
   });
 
   return (
@@ -54,7 +55,5 @@ export const loader = (queryClient) => async () => {
   return await queryClient.ensureQueryData({
     queryKey: ['productLists'],
     queryFn: () => fetchMultipleProduct(),
-    cacheTime: 6000 * 10,
-    staleTime: 1000 * 10,
   });
 };

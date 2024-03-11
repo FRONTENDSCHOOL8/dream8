@@ -24,6 +24,7 @@ export default function Payment() {
     queryKey: ['myCart', userInfo.id],
     queryFn: () => fetchMyCart(userInfo.id),
     initialData: [],
+    staleTime: 1000 * 10,
   });
 
   const initial = data.map((list) => ({
