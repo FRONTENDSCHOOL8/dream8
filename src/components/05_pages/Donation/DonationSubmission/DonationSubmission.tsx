@@ -99,10 +99,11 @@ function DonationSubmission() {
 
   return (
     <div className="py-20">
-      <div className="flex flex-col gap-8 items-center justify-center w-[1024px] m-auto py-20 border border-gray-200 rounded-[50px]">
+      <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
         <h2 className="text-4xl">후원 신청</h2>
         <div className='max-w-[595px] flex flex-col gap-10 items-center'>
-          <DonationForm onAddDonation={handleAddDonation}/> // form의 데이터는 localStorage 저장
+          <DonationForm onAddDonation={handleAddDonation}/> 
+          {/* form의 데이터는 localStorage 저장 */}
   
           <div className="w-full h-[1px] bg-gray-200"></div>
 

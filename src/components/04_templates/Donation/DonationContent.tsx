@@ -13,12 +13,12 @@ function DonationContents() {
   return (
     <>
       <div className="max-w-[90rem] m-auto">
-        <div className="text-3xl flex justify-between w-[850px] m-auto">
-        <h3>후원하기</h3>
-        <p className="flex flex-col">
-          <span>당신의 후원, 소중한 지구생명을 치료합니다</span>
-          <span>정기후원으로 드림의 후원회원이 되어주세요!</span>
-        </p>
+        <div className="text-3xl flex justify-between w-[53rem] m-auto">
+          <h3>후원하기</h3>
+          <p className="flex flex-col">
+            <span>당신의 후원, 소중한 지구생명을 치료합니다</span>
+            <span>정기후원으로 드림의 후원회원이 되어주세요!</span>
+          </p>
         </div>
   
         <img src={donationIllust} alt="기부 일러스트" className="w-[1214px] h-[700px] m-auto py-20" />
@@ -44,15 +44,15 @@ function DonationContents() {
       <div className="w-full h-[650px] p-10 bg-gray-50 text-center">
         <p className="text-4xl font-bold">전화/온라인 접수 절차</p>
         <ul className="flex items-center justify-around w-[1050px] h-full m-auto">
-          <li className="flex flex-col items-center justify-center gap-2 w-[257px] h-[257px] bg-white rounded-full">
+          <li className="flex flex-col items-center justify-center gap-2 w-[16rem] h-[16rem] bg-white rounded-full">
             <img src={Note} alt="후원 접수" className="w-[86px]" />
             <p className="text-xl font-bold">후원 접수</p>
           </li>
-          <li className="flex flex-col items-center justify-center gap-2 w-[257px] h-[257px] bg-white rounded-full">
+          <li className="flex flex-col items-center justify-center gap-2 w-[16rem] h-[16rem] bg-white rounded-full">
             <img src={Check} alt="수거 예약" />
             <p className="text-xl font-bold">수거 예약</p>
           </li>
-          <li className="flex flex-col items-center justify-center gap-2 w-[257px] h-[257px] bg-white rounded-full">
+          <li className="flex flex-col items-center justify-center gap-2 w-[16rem] h-[16rem] bg-white rounded-full">
             <img src={Location} alt="방문 수거" />
             <p className="text-xl font-bold">방문 수거</p>
           </li>
@@ -60,7 +60,7 @@ function DonationContents() {
       </div>
     
       <div 
-      className="w-full h-[985px] relative"
+      className="w-full h-[61rem] relative"
       style={{
         backgroundImage: `url(${DonaionBg})`,
         backgroundPosition: "center",
