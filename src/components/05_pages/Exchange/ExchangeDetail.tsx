@@ -1,44 +1,34 @@
 import { useLoaderData, useParams } from 'react-router-dom';
 import { getPbImageURL } from '@/utils/getPbImage';
-import { useListStore } from '@/store/useListStore';
 import StateBox from '@/components/StateBox/StateBox';
 import User from '@/components/02_molecules/Exchange/User/User';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import Chat_Modify from '@/components/02_molecules/Exchange/Button/Chat_Modify';
 import { useQuery, QueryClient } from '@tanstack/react-query';
 import useGetOneUser from '@/hooks/useGetOneUser';
-import { ReactElement } from 'react';
-import { LoadingSpinner } from '@/components/Loading/Loading';
 
-interface ExchangeDetailProps {
-  queryClient: QueryClient;
-}
-
-export function ExchangeDetail({
-  queryClient,
-}: ExchangeDetailProps): ReactElement {
+export function ExchangeDetail() {
   const { id } = useParams<{ id: string }>();
 
   const { userInfo } = useLoginFormStore();
   const exchangeOneLists = useLoaderData();
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['exchangeDetail', id],
     queryFn: () => useGetOneUser(id),
     initialData: exchangeOneLists,
   });
 
-  if (isPending) return <LoadingSpinner />;
+  if (isLoading) return <p>로딩 중입니다...</p>;
+  if (error) return <p>오류가 발생했습니다: {error.message}</p>;
 
   const userData = data?.expand.field;
-
-  const userName = userData.user_name;
-
-  const Edit = userData.id === userInfo.id;
+  const userName = userData?.user_name;
+  const Edit = userData?.id === userInfo.id;
 
   return (
     <div className="p-10">
-      <div className=" flex">
+      <div className="flex">
         <img
           src={getPbImageURL(data, 'product_img')}
           className="w-[18.75rem] h-[18.75rem] rounded-xl"

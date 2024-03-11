@@ -6,7 +6,16 @@ import Cautions from '@/components/01_atoms/Product/Cautions';
 import Button from '@/components/01_atoms/Button/Button';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 
-function ProductDetailsInfo({ productData, onClickPurchase, onClickMyCart }) {
+interface ProductDetailsInfoType {
+  productData: object;
+  onClickPurchase: () => void;
+  onClickMyCart: () => void;
+}
+function ProductDetailsInfo({
+  productData,
+  onClickPurchase,
+  onClickMyCart,
+}: ProductDetailsInfoType) {
   const photo = productData.photo;
   const pbUrl = getPbImage(productData.collectionId, productData.id, '');
 
@@ -79,15 +88,12 @@ function ProductDetailsInfo({ productData, onClickPurchase, onClickMyCart }) {
                   />
                 ))}
             </figure>
-            <div className="w-[43.75rem] text-start m-auto py-10">
+            <div className="w-[43.75rem] text-start m-auto py-10 text-xl">
               <p>
                 {productData.brand_name} {productData.model_name}
               </p>
               {productData.description.split('. ').map((line, index) => (
-                <p
-                  key={`product_Description_${index}`}
-                  className="my-4 text-xl"
-                >
+                <p key={`product_Description_${index}`} className="my-4">
                   {line}
                 </p>
               ))}

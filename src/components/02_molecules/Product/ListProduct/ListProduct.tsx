@@ -25,7 +25,7 @@ type listProps = {
 function ListProduct({ list }: listProps): JSX.Element {
   const pt = list.photo[0];
   return (
-    <li className=" w-[17rem] border rounded-[20px] shadow-root m-auto">
+    <li className=" w-[17rem] border rounded-[20px] shadow-root m-auto scale-95 hover:scale-100">
       <figure className="m-0 relative">
         <img
           src={getPbImage(list.collectionId, list.id, pt)}
