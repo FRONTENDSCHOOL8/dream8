@@ -197,7 +197,7 @@ const navigationItems = [
   },
   {
     id: 'Chat',
-    path: '/Chat',
+    path: '/Chat/:id',
     text: '채팅 페이지',
     lazy: async () => {
       const Module = await import('@/components/05_pages/Exchange/Chat/Chat');
