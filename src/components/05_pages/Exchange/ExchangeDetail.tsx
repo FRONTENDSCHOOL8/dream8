@@ -33,7 +33,7 @@ export function ExchangeDetail() {
           src={getPbImageURL(data, 'product_img')}
           className="w-[18.75rem] h-[18.75rem] rounded-xl"
         />
-        <div className="flex flex-col pl-14 gap-6 ">
+        <div className="flex flex-col pl-14 gap-6 max-w-[90rem]">
           <p>{data?.type}</p>
           <h2 className="text-2xl">{data?.title}</h2>
           <StateBox

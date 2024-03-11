@@ -57,7 +57,7 @@ export function Exchange() {
   };
 
   return (
-    <div className="flex flex-col gap-4 pt-10 items-center">
+    <div className="flex flex-col gap-4 pt-10 items-center max-w-[90rem]  m-auto">
       <div className="flex flex-col gap-2">
         <div className="flex justify-end">
           <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>

@@ -157,7 +157,7 @@ export function ExchangeWrite() {
   };
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 max-w-[90rem] m-auto">
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
         교환 게시글 작성
       </h1>
