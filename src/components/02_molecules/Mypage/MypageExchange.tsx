@@ -4,14 +4,20 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import { useEffect, useState } from 'react';
 import { RecordModel } from 'pocketbase';
 import { getPbImage } from '@/utils/getPbImage';
+import { useLoaderData } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
-interface MypageExchaneProps {
-  mycartList?: RecordModel[];
-}
-
-const MypageExchane = ({ mycartList }: MypageExchaneProps) => {
+export const MypageExchange = () => {
+  const loadedData = useLoaderData();
   const { userInfo } = useLoginFormStore();
-  const [exchangeData, setExchangeData] = useState(mycartList);
+  const [exchangeData, setExchangeData] = useState(loadedData);
+
+  const { data } = useQuery({
+    queryKey: ['exchange'],
+    queryFn: fetchExchangeValue,
+    initialData: loadedData,
+    staleTime: 1000 * 10,
+  });
 
   useEffect(() => {
     const fetchExchangeValue = async () => {
@@ -20,7 +26,7 @@ const MypageExchane = ({ mycartList }: MypageExchaneProps) => {
         //   .collection('exchange')
         //   .getFullList({ expand: 'field' });
 
-        compareCart(userInfo.id, exchangeData);
+        compareCart(userInfo.id, data);
       } catch (error) {
         console.log('error:', error);
       }
@@ -60,4 +66,15 @@ const MypageExchane = ({ mycartList }: MypageExchaneProps) => {
   );
 };
 
-export default MypageExchane;
+// Component.displayName = 'MypageEchange';
+
+async function fetchExchangeValue() {
+  return await pb.collection('exchange').getFullList({ expand: 'field' });
+}
+
+export const loader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData({
+    queryKey: ['exchange'],
+    queryFn: () => fetchExchangeValue(),
+  });
+};

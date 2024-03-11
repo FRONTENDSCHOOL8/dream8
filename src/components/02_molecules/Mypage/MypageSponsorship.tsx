@@ -3,14 +3,20 @@ import TransactionListCard from './components/TransactionListCard';
 import { useEffect, useState } from 'react';
 import { pb } from '@/api/pocketbase';
 import { RecordModel } from 'pocketbase';
+import { useLoaderData } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
-interface MypageSponsorshipProps {
-  mySponsorList?: RecordModel[];
-}
-
-const MypageSponsorship = ({ mySponsorList }: MypageSponsorshipProps) => {
+export const MypageSponsorship = () => {
+  const loadedData = useLoaderData();
   const { userInfo } = useLoginFormStore();
-  const [donationData, setDonationData] = useState(mySponsorList);
+  const [donationData, setDonationData] = useState(loadedData);
+
+  const { data } = useQuery({
+    queryKey: ['donation'],
+    queryFn: fetchDonationValue,
+    initialData: loadedData,
+    staleTime: 1000 * 10,
+  });
 
   useEffect(() => {
     const fetchDonaitionValue = async () => {
@@ -19,7 +25,7 @@ const MypageSponsorship = ({ mySponsorList }: MypageSponsorshipProps) => {
         //   .collection('donation')
         //   .getFullList({ expand: 'userId' });
 
-        compareCart(userInfo.id, donationData);
+        compareCart(userInfo.id, data);
       } catch (error) {
         console.log('error:', error);
       }
@@ -59,4 +65,15 @@ const MypageSponsorship = ({ mySponsorList }: MypageSponsorshipProps) => {
   );
 };
 
-export default MypageSponsorship;
+// Component.displayName = 'MypageSponsorship';
+
+async function fetchDonationValue() {
+  return await pb.collection('donation').getFullList({ expand: 'userId' });
+}
+
+export const loader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData({
+    queryKey: ['donation'],
+    queryFn: () => fetchDonationValue(),
+  });
+};
