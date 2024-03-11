@@ -196,6 +196,15 @@ const navigationItems = [
     },
   },
   {
+    id: 'Chat',
+    path: '/Chat',
+    text: '채팅 페이지',
+    lazy: async () => {
+      const Module = await import('@/components/05_pages/Exchange/Chat/Chat');
+      return { Component: Module.default };
+    },
+  },
+  {
     id: 'Donation',
     path: '/Donation',
     text: '기부페이지',
