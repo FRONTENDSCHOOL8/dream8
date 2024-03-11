@@ -1,9 +1,20 @@
 import Button from '@/components/01_atoms/Button/Button';
 import ListProduct from '@/components/02_molecules/Product/ListProduct/ListProduct';
+import { ProductListsType } from '@/types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function RelativeProducts({ lists, category, currentProductId }) {
+interface relativeProductsType {
+  lists: ProductListsType[];
+  category: string | unknown;
+  currentProductId: string;
+}
+
+function RelativeProducts({
+  lists,
+  category,
+  currentProductId,
+}: relativeProductsType) {
   const withoutCurrentProductIdLists = lists.filter(
     (list) => list.id != currentProductId
   );

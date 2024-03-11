@@ -1,26 +1,10 @@
+import { ProductListsType } from '@/types';
 import getDaysFromToday from '@/utils/getDaysFromToday';
 import { getPbImage } from '@/utils/getPbImage';
 
-type ListProductProps = {
-  id: string;
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  updated: string;
-  title: string;
-  price: number;
-  photo: string[];
-  grade: string;
-  description: string;
-  brand_name: string;
-  model_name: string;
-  size: string;
-  isSale: true;
-};
-
-type listProps = {
-  list: ListProductProps;
-};
+interface listProps {
+  list: ProductListsType;
+}
 
 function ListProduct({ list }: listProps): JSX.Element {
   const pt = list.photo[0];

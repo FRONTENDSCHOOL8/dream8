@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 import { pb } from '@/api/pocketbase';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { RecordModel } from 'pocketbase';
 
 export function Product() {
   const [category, setCategory] = useState<string>('전체');
@@ -51,9 +52,16 @@ async function fetchMultipleProduct() {
   });
 }
 
-export const loader = (queryClient) => async () => {
-  return await queryClient.ensureQueryData({
-    queryKey: ['productLists'],
-    queryFn: () => fetchMultipleProduct(),
-  });
-};
+export const loader =
+  (queryClient: {
+    ensureQueryData: (arg0: {
+      queryKey: string[];
+      queryFn: () => Promise<RecordModel[]>;
+    }) => any;
+  }) =>
+  async () => {
+    return await queryClient.ensureQueryData({
+      queryKey: ['productLists'],
+      queryFn: () => fetchMultipleProduct(),
+    });
+  };
