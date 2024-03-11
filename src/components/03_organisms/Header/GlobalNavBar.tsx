@@ -3,8 +3,22 @@ import logo from '/logo.svg';
 import alarmIcon from '/alarm.svg';
 import mailIcon from '/mail.svg';
 import Button from '@/components/01_atoms/Button/Button';
-
+import { useState } from 'react';
+import useCountStore from '@/store/useCountStore';
+import NotificationCommon from './Notification/NotificationCommon';
+import useNoticeList from '@/store/useNoticeList';
+import { Dialog, Transition } from '@headlessui/react';
 function GlobalNavBar() {
+  const { count } = useCountStore();
+  const [isOpen, setOpen] = useState(false);
+  const { noticeList } = useNoticeList();
+  const { resetCount } = useCountStore();
+  console.log('noticeList  ', noticeList);
+  const handleNotificationClick = () => {
+    setOpen((prevState) => !prevState);
+    resetCount();
+  };
+
   return (
     <div className="flex items-center justify-between">
       <img src={logo} alt="Dream 로고" className="pb-2" />
@@ -13,41 +27,41 @@ function GlobalNavBar() {
         <Link
           to="/"
           aria-label="메인 페이지로 이동"
-          className="hover:text-blue-primary hover:font-bold "
+          className="hover:text-blue-primary hover:font-bold"
         >
           메인
         </Link>
         <Link
           to="/Product"
           aria-label="상품 페이지로 이동"
-          className="hover:text-blue-primary hover:font-bold "
+          className="hover:text-blue-primary hover:font-bold"
         >
           판매
         </Link>
         <Link
           to="/Exchange"
           aria-label="교환 페이지로 이동"
-          className="hover:text-blue-primary hover:font-bold "
+          className="hover:text-blue-primary hover:font-bold"
         >
           교환
         </Link>
         <Link
           to="/Donation"
           aria-label="후원 페이지로 이동"
-          className="hover:text-blue-primary hover:font-bold "
+          className="hover:text-blue-primary hover:font-bold"
         >
           후원
         </Link>
         <Link
           to="/News"
           aria-label="소식 페이지로 이동"
-          className="hover:text-blue-primary hover:font-bold "
+          className="hover:text-blue-primary hover:font-bold"
         >
           소식
         </Link>
       </nav>
 
-      <div className="flex justify-center gap-5 ">
+      <div className="flex justify-center gap-5">
         <Button ariaLabel="이메일로 이동" type="button">
           <img
             src={mailIcon}
@@ -55,14 +69,41 @@ function GlobalNavBar() {
             className="w-[30px] max-w-[30px]"
           />
         </Button>
-        <Button ariaLabel="알람으로 이동" type="button">
+        <Button
+          ariaLabel="알람으로 이동"
+          type="button"
+          className="relative"
+          onClick={handleNotificationClick}
+        >
           <img
             src={alarmIcon}
             alt="알람 아이콘"
-            className="w-[30px] max-w-[30px]"
+            className=" w-[30px] max-w-[30px]"
           />
+          {count > 0 && (
+            <div className="absolute -top-1 -right-1 h-6 w-6 bg-red-500 rounded-full text-white flex items-center justify-center text-xs">
+              {count}
+            </div>
+          )}
         </Button>
       </div>
+
+      {isOpen && (
+        <Dialog
+          as="div"
+          open={isOpen}
+          onClose={setOpen}
+          className="fixed inset-0 bg-black opacity-50"
+          // onClick={handleNotificationClose}
+        >
+          <Dialog.Panel>
+            <NotificationCommon
+              noticeList={noticeList}
+              // onClose={handleBackgroundClick}
+            />
+          </Dialog.Panel>
+        </Dialog>
+      )}
     </div>
   );
 }
