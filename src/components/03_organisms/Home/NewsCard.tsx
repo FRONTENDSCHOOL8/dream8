@@ -1,4 +1,3 @@
-// import React from "react";
 import { Link } from "react-router-dom";
 import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton";
 
@@ -11,10 +10,12 @@ type NewsItemProps = {
   content: string;
 };
 
-function NewsCard({ width, height, newsItem }: { width: string; height: string; newsItem: NewsItemProps }) {
+function NewsCard({ width, height, newsItem, content }: { width: string; height: string; newsItem: NewsItemProps; content: boolean }) {
   if (!newsItem) {
     return null;
   }
+
+  const showContent = newsItem.content.length > 430 ? newsItem.content.substring(0, 430) + "..." : newsItem.content;
 
   return (
     <li className={`${width} ${height} list-none flex flex-col items-end justify-between gap-5 m-auto p-8 rounded-[50px] bg-white shadow-root`}>
@@ -24,9 +25,10 @@ function NewsCard({ width, height, newsItem }: { width: string; height: string; 
           <span className="font-bold">[{new Date(newsItem.created).toLocaleDateString()}]</span>
         </div>
         <div>
-          <div className="overflow-hidden">
-            <p className="text-[20px] text-gray-500">"{newsItem.title}"</p>
-        </div>
+          <div className="overflow-hidden  text-gray-500">
+            <p className="text-[20px]">"{newsItem.title}"</p>
+            {content && <p className="mt-10">{showContent}</p>}
+          </div>
         </div>
       </div>
       

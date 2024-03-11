@@ -132,11 +132,11 @@ function HomeContents() {
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
               {newsItems.slice(0, 4).map((newsItem, index) => (
-                <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
+                <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} content={false} />
               ))}
             </ul>
             <ul className="w-full">
-              {noticeItems.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} />}
+              <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} content={true} />
             </ul>
           </div>
         </div>
