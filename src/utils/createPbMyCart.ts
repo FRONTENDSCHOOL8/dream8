@@ -1,6 +1,6 @@
 import { pb } from '@/api/pocketbase';
 
-async function hasDuplicateData(userId, productId) {
+async function hasDuplicateData(userId: string, productId: string) {
   try {
     await pb
       .collection('my_cart')
