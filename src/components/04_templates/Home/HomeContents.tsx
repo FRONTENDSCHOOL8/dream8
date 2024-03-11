@@ -227,7 +227,7 @@ function HomeContents() {
       <div className="snap-start w-screen h-screen">
         <div className="max-w-[90rem] h-full flex flex-col items-center justify-center gap-20 m-auto">
           <h2 className="text-5xl">드림 소식</h2>
-          <div className="grid gap-4 grid-cols-2 w-[73rem]">
+          <div className="newsContainer grid gap-4 grid-cols-2 w-[73rem]">
             <ul className="grid gap-4 grid-cols-2">
               {newsItems.slice(0, 4).map((newsItem, index) => (
                 <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} content={false} />

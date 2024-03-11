@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton";
+import gsap from 'gsap'
+import { useEffect } from "react";
 
 type NewsItemProps = {
   id: string;
@@ -11,6 +13,20 @@ type NewsItemProps = {
 };
 
 function NewsCard({ width, height, newsItem, content }: { width: string; height: string; newsItem: NewsItemProps; content: boolean }) {
+
+  useEffect(() => {
+    gsap.fromTo('.newsCard', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 1, stagger: 0.2,
+        scrollTrigger: {
+          trigger: '.newsContainer', 
+          start: 'top center',
+          toggleActions: 'play none none none'
+        } 
+      }
+    );
+  }, []);
+
   if (!newsItem) {
     return null;
   }
@@ -18,7 +34,7 @@ function NewsCard({ width, height, newsItem, content }: { width: string; height:
   const showContent = newsItem.content.length > 430 ? newsItem.content.substring(0, 430) + "..." : newsItem.content;
 
   return (
-    <li className={`${width} ${height} list-none flex flex-col items-end justify-between gap-5 m-auto p-8 rounded-[50px] bg-white shadow-root`}>
+    <li className={`newsCard ${width} ${height} list-none flex flex-col items-end justify-between gap-5 m-auto p-8 rounded-[50px] bg-white shadow-root`}>
       <div className="w-full h-full">
         <div className="flex items-center justify-between pb-8">
           <h2 className="text-3xl font-bold">{newsItem.type}</h2>
