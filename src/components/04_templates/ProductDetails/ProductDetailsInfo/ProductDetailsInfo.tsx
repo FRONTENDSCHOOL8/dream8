@@ -88,15 +88,12 @@ function ProductDetailsInfo({
                   />
                 ))}
             </figure>
-            <div className="w-[43.75rem] text-start m-auto py-10">
+            <div className="w-[43.75rem] text-start m-auto py-10 text-xl">
               <p>
                 {productData.brand_name} {productData.model_name}
               </p>
               {productData.description.split('. ').map((line, index) => (
-                <p
-                  key={`product_Description_${index}`}
-                  className="my-4 text-xl"
-                >
+                <p key={`product_Description_${index}`} className="my-4">
                   {line}
                 </p>
               ))}

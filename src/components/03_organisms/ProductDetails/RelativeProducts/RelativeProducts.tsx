@@ -10,8 +10,6 @@ function RelativeProducts({ lists, category, currentProductId }) {
   const [viewNumber, setViewNumber] = useState(4);
 
   const handleShowMore = () => {
-    console.log(viewNumber);
-    console.log(lists.length);
     if (viewNumber > lists.length) setViewNumber(4);
     else setViewNumber(viewNumber + 4);
   };

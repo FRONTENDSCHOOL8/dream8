@@ -15,7 +15,7 @@ export default function Payment() {
 
   async function fetchMyCart(userId: string) {
     return await pb.collection('my_cart').getFullList({
-      filter: `userId = "${userId}"`,
+      filter: `userId = "${userId}" && isPayed = false`,
       expand: 'productId',
     });
   }
@@ -61,6 +61,11 @@ export default function Payment() {
     refetch();
   };
 
+  const handlePurchase = async () => {
+    // const updatedData = data.map()
+    handleOpenModal();
+  };
+
   useEffect(() => {
     if (!isLoggedIn) {
       navigate('/SignIn');
@@ -70,7 +75,7 @@ export default function Payment() {
   }, [isLoggedIn, data]);
 
   return (
-    <div className="text-center bg-white max-w-[90rem]" id="myCartPage">
+    <div className="text-center bg-white max-w-[90rem] m-auto" id="myCartPage">
       <section className="w-[62.5rem] m-auto my-16">
         <h2 className="text-4xl p-10 font-semibold">장바구니 목록</h2>
         <ul className="flex flex-col gap-2">
@@ -113,7 +118,7 @@ export default function Payment() {
           </div>
           <Button
             type="button"
-            onClick={handleOpenModal}
+            onClick={handlePurchase}
             className="w-full h-12 border-2 border-blue-primary text-blue-primary font-semibold hover:bg-blue-primary hover:text-white"
           >
             결제하기
