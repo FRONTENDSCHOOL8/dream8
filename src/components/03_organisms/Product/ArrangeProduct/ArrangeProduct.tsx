@@ -1,12 +1,9 @@
-import { FC } from 'react';
-
 type ArrangeButtonProps = {
   children: string;
+  onSelectArrange: React.MouseEventHandler<HTMLButtonElement>;
 };
-const ArrangeButton: FC<ArrangeButtonProps> = ({
-  onSelectArrange,
-  children,
-}) => {
+
+function ArrangeButton({ onSelectArrange, children }: ArrangeButtonProps) {
   return (
     <li>
       <button
@@ -17,22 +14,27 @@ const ArrangeButton: FC<ArrangeButtonProps> = ({
       </button>
     </li>
   );
-};
+}
 
-function ArrangeProduct({ onSelect }) {
-  const handleChangeArrange = (e) => {
-    onSelect(e.target.innerHTML);
+interface ArrangeProductProps {
+  onSelect: (value: string) => void;
+}
+
+function ArrangeProduct({ onSelect }: ArrangeProductProps) {
+  const handleChangeArrange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement;
+    onSelect(target.innerHTML);
   };
   return (
     <div className="px-[1rem]">
       <h2 className="sr-only">정렬</h2>
       <ul className="flex flex-row justify-end items-center text-gray-500">
         <ArrangeButton onSelectArrange={handleChangeArrange}>
-          등급별
+          등급순
         </ArrangeButton>{' '}
         |
         <ArrangeButton onSelectArrange={handleChangeArrange}>
-          가격별
+          가격순
         </ArrangeButton>{' '}
         |
         <ArrangeButton onSelectArrange={handleChangeArrange}>

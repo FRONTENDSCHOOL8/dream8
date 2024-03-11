@@ -29,7 +29,7 @@ interface FieldsState {
   address: string;
 }
 
-const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
+export const Component: React.FC<MypageUserSettingProps> = ({
   fontColor,
   fontSize,
 }) => {
@@ -135,7 +135,6 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
 
   const handleConfirmDelete = useCallback(async () => {
     try {
-      console.log('삭제된겨?');
       await pb.collection('users').delete(userInfo.id);
       setShowModal(false);
       clearUser();
@@ -229,4 +228,4 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
   );
 };
 
-export default MypageUserSetting;
+Component.displayName = 'MypageSetting';
