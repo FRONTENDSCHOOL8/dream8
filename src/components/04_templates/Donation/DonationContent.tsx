@@ -3,7 +3,7 @@ import donationIllust from "/donation-illust.svg"
 import Note  from "/note.svg"
 import Check  from "/check.svg"
 import Location from "/location.svg"
-import DonaionBg from "/donation-bg.png"
+import DonaionBg from "/donation-bg.webp"
 import useLoginFormStore from "@/store/useLoginFormStore"
 
 function DonationContents() {

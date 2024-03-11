@@ -1,7 +1,7 @@
 import whiteLogo from "/white-logo.svg"
-import titleImg from "/home-section1.png"
-import earthSick from "/earth-sick.png"
-import fastImf from "/fast-fashion.png"
+import titleImg from "/home-section1.webp"
+import earthSick from "/earth-sick.webp"
+import fastImf from "/fast-fashion.webp"
 import earthClean from "/clean-earth.png"
 import NewsCard from "../../03_organisms/Home/NewsCard"
 import Dots from "@/components/02_molecules/Home/Dots"
@@ -132,12 +132,12 @@ function HomeContents() {
           <div className="grid gap-4 grid-cols-2 w-[1170px] h-[570px] m-auto">
             <ul className="grid gap-4 grid-cols-2">
               {newsItems.slice(0, 4).map((newsItem, index) => (
-                <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
+                <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} content={false} />
               ))}
             </ul>
-            <div className="w-full">
-              {noticeItems.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} />}
-            </div>
+            <ul className="w-full">
+              <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} content={true} />
+            </ul>
           </div>
         </div>
       </div>

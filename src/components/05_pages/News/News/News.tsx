@@ -9,11 +9,15 @@ export function News() {
   const [newsCount, setNewsCount] = useState(0);
   const newsListInitialData = useLoaderData();
 
-  const { data: newsList } = useQuery({
+  const { data: newsList, error, isError } = useQuery({
     queryKey: ['newsList'],
     queryFn: fetchNews,
     initialData: newsListInitialData,
   });
+
+  if (isError) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다. {error.message}</div>
+  }
 
   useEffect(() => {
     if (newsList) {

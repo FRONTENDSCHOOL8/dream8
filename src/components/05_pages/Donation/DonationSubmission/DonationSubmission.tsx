@@ -1,5 +1,5 @@
-import DonationTable from '../../../03_organisms/Donaion/Donationtable/DonationTable';
-import DonationForm from '../../../03_organisms/Donaion/DonationForm/DonationForm';
+import DonationTable from '../../../03_organisms/Donation/Donationtable/DonationTable';
+import DonationForm from '../../../03_organisms/Donation/DonationForm/DonationForm';
 import { useEffect, useState } from 'react';
 import { pb } from '@/api/pocketbase';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
@@ -19,6 +19,7 @@ function DonationSubmission() {
   const { userInfo } = useLoginFormStore();
 
   const [donations, setDonations] = useState<Donation[]>([]);
+
   const handleAddDonation = (donation: Donation) => {
     const lastId = parseInt(localStorage.getItem('lastDonationId') || '0', 10);
     const newId = lastId + 1;
@@ -31,6 +32,19 @@ function DonationSubmission() {
       return updatedDonations;
     });
   };
+
+  const storedDonations = localStorage.getItem('donations');
+
+  if (storedDonations) {
+    const donations = JSON.parse(storedDonations);
+
+    // 각 후원 데이터의 ID 값
+    donations.forEach(donation => {
+      console.log(donation.id);
+    });
+  } else {
+    console.log("로컬 스토리지에 저장된 후원 데이터가 없습니다.");
+  }
 
   const handleDeleteDonation = (id: string) => {
     setDonations((prevDonations) => {
@@ -58,9 +72,12 @@ function DonationSubmission() {
           userId: userInfo.id,
         };
     
-        await pb.collection('donation').create(dataToSend);
+        const donationList = await pb.collection('donation').create(dataToSend);
+        console.log('Saved donation ID:', donationList.id); // 포켓베이스에 저장된 데이터의 Id
       }
       localStorage.removeItem('donations');
+      localStorage.setItem('lastDonationId', '0'); // localStorage ID 초기화
+
       setDonations([]);
       setModalTitle('신청완료');
       setModalMessage('후원 신청이 완료 되었습니다. 감사합니다.');
@@ -85,7 +102,7 @@ function DonationSubmission() {
       <div className="flex flex-col gap-8 items-center justify-center w-[1024px] m-auto py-20 border border-gray-200 rounded-[50px]">
         <h2 className="text-4xl">후원 신청</h2>
         <div className='max-w-[595px] flex flex-col gap-10 items-center'>
-          <DonationForm onAddDonation={handleAddDonation}/>
+          <DonationForm onAddDonation={handleAddDonation}/> // form의 데이터는 localStorage 저장
   
           <div className="w-full h-[1px] bg-gray-200"></div>
 
