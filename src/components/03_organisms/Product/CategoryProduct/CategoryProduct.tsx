@@ -1,11 +1,15 @@
-function CategoryProduct({ onSelect }) {
-  const handleChangeCategory = (e) => {
+interface CategoryProductProps {
+  onSelect: (value: string) => void;
+}
+
+function CategoryProduct({ onSelect }: CategoryProductProps) {
+  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onSelect(e.target.value);
   };
   return (
     <div>
       <h2 className="sr-only">카테고리</h2>
-      <label htmlFor="productCategory"></label>
+      <label htmlFor="productCategory">카테고리 선택</label>
       <select
         name="productCategory"
         id="productCategory"

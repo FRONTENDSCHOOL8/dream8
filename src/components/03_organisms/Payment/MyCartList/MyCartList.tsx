@@ -2,7 +2,7 @@ import Button from '@/components/01_atoms/Button/Button';
 import { getPbImage } from '@/utils/getPbImage';
 import { useState } from 'react';
 
-const MyCartList = ({ list, checked, onChecked, onDelete }) => {
+const MyCartList = ({ list, onChecked, onDelete }) => {
   const { collectionId, id, photo, price, grade, title, size } =
     list.expand.productId;
   const imageSrc = getPbImage(collectionId, id, photo[0]);
@@ -10,7 +10,6 @@ const MyCartList = ({ list, checked, onChecked, onDelete }) => {
   const [isCheck, setIsCheck] = useState(false);
 
   const handleCheckToPurchase = () => {
-    console.log(list.id, !isCheck);
     onChecked(list.id, !isCheck);
     setIsCheck(!isCheck);
   };

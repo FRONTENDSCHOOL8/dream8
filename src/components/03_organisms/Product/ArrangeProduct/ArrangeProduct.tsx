@@ -1,12 +1,9 @@
-import { FC } from 'react';
-
 type ArrangeButtonProps = {
   children: string;
+  onSelectArrange: React.MouseEventHandler<HTMLButtonElement>;
 };
-const ArrangeButton: FC<ArrangeButtonProps> = ({
-  onSelectArrange,
-  children,
-}) => {
+
+function ArrangeButton({ onSelectArrange, children }: ArrangeButtonProps) {
   return (
     <li>
       <button
@@ -17,11 +14,16 @@ const ArrangeButton: FC<ArrangeButtonProps> = ({
       </button>
     </li>
   );
-};
+}
 
-function ArrangeProduct({ onSelect }) {
-  const handleChangeArrange = (e) => {
-    onSelect(e.target.innerHTML);
+interface ArrangeProductProps {
+  onSelect: (value: string) => void;
+}
+
+function ArrangeProduct({ onSelect }: ArrangeProductProps) {
+  const handleChangeArrange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement;
+    onSelect(target.innerHTML);
   };
   return (
     <div className="px-[1rem]">

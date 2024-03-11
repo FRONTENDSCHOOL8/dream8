@@ -5,19 +5,25 @@ import timerIcon from '/timer.svg';
 import Cautions from '@/components/01_atoms/Product/Cautions';
 import Button from '@/components/01_atoms/Button/Button';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
+import { ProductListsType } from '@/types';
 
 interface ProductDetailsInfoType {
-  productData: object;
+  productDetailData: ProductListsType;
   onClickPurchase: () => void;
   onClickMyCart: () => void;
 }
+
 function ProductDetailsInfo({
-  productData,
+  productDetailData,
   onClickPurchase,
   onClickMyCart,
 }: ProductDetailsInfoType) {
-  const photo = productData.photo;
-  const pbUrl = getPbImage(productData.collectionId, productData.id, '');
+  const photo = productDetailData.photo;
+  const pbUrl = getPbImage(
+    productDetailData.collectionId,
+    productDetailData.id,
+    ''
+  );
 
   return (
     <section>
@@ -29,26 +35,27 @@ function ProductDetailsInfo({
               <ShowProductImage
                 photoURL={pbUrl}
                 photos={photo}
-                title={productData.title}
+                title={productDetailData.title}
               />
             )}
             <div className="flex flex-col justify-between">
               <div role="group">
-                <h3 className="text-3xl">{productData.title}</h3>
+                <h3 className="text-3xl">{productDetailData.title}</h3>
                 <p className="flex gap-1 mt-5">
                   <img src={timerIcon} alt="타이머 아이콘" />
-                  {getDaysFromToday(productData.created)}
+                  {getDaysFromToday(productDetailData.created)}
                 </p>
               </div>
               <div role="group" className="flex flex-col gap-4">
                 <p>
-                  상품상태: <span>{productData.grade}급</span>
+                  상품상태: <span>{productDetailData.grade}급</span>
                 </p>
                 <p>
-                  사이즈: <span>{productData.size}</span>
+                  사이즈: <span>{productDetailData.size}</span>
                 </p>
                 <p>
-                  금액: <span>{productData.price.toLocaleString()}원</span>
+                  금액:{' '}
+                  <span>{productDetailData.price.toLocaleString()}원</span>
                 </p>
                 <p>
                   배송비: <span>배송비 별도</span>
@@ -82,22 +89,22 @@ function ProductDetailsInfo({
                 photo.map((item, index) => (
                   <img
                     src={`${pbUrl}${item}`}
-                    alt={`${productData.title}_${index + 1}`}
+                    alt={`${productDetailData.title}_${index + 1}`}
                     className="w-[60rem] h-auto border"
-                    key={`${productData.title}_${index + 1}`}
+                    key={`${productDetailData.title}_${index + 1}`}
                   />
                 ))}
             </figure>
             <div className="w-[43.75rem] text-start m-auto py-10 text-xl">
               <p>
-                {productData.brand_name} {productData.model_name}
+                {productDetailData.brand_name} {productDetailData.model_name}
               </p>
-              {productData.description.split('. ').map((line, index) => (
+              {productDetailData.description?.split('. ').map((line, index) => (
                 <p key={`product_Description_${index}`} className="my-4">
                   {line}
                 </p>
               ))}
-              <p>사이즈:{productData.size}</p>
+              <p>사이즈:{productDetailData.size}</p>
             </div>
           </div>
         </>

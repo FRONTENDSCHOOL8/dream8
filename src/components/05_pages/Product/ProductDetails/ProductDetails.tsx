@@ -8,6 +8,7 @@ import { useQueries } from '@tanstack/react-query';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
 import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
+import { RecordModel } from 'pocketbase';
 
 export function ProductDetails() {
   const { productId, productCategory } = useParams();
@@ -19,16 +20,20 @@ export function ProductDetails() {
     queries: [
       {
         queryKey: ['productDetail', productId],
-        queryFn: () => fetchSingleProduct(productId),
+        queryFn: () => productId,
         initialData: product.productDetail,
+        staleTime: 1000 * 10,
       },
       {
         queryKey: ['productCategoryLists'],
         queryFn: () => fetchFilteredCategoryProducts(productCategory),
         initialData: product.filteredCategoryProduct,
+        staleTime: 1000 * 10,
       },
     ],
   });
+
+  const [productDetailData, productCategoryLists] = results;
 
   const { isLoggedIn, userInfo } = useLoginFormStore();
 
@@ -63,13 +68,13 @@ export function ProductDetails() {
   return (
     <div className="pt-20 w-[75rem] m-auto flex flex-col">
       <ProductDetailsInfo
-        productData={results[0].data}
+        productDetailData={productDetailData.data}
         onClickPurchase={handleClickPurchase}
         onClickMyCart={handleClickMyCart}
       />
       <Divider />
       <RelativeProducts
-        lists={results[1].data}
+        lists={productCategoryLists.data}
         category={productCategory}
         currentProductId={productId}
       />
@@ -90,7 +95,7 @@ async function fetchSingleProduct(productId: string) {
   return await pb.collection('product').getOne(productId);
 }
 
-async function fetchFilteredCategoryProducts(category) {
+async function fetchFilteredCategoryProducts(category: string) {
   const filter = `category = "${category}"`;
   return await pb.collection('product').getFullList({
     sort: '-created',
@@ -99,21 +104,22 @@ async function fetchFilteredCategoryProducts(category) {
 }
 
 export const loader =
-  (queryClient) =>
-  async ({ params }) => {
+  (queryClient: {
+    ensureQueryData: (arg0: {
+      queryKey: string[] | any[];
+      queryFn: (() => Promise<RecordModel>) | (() => Promise<RecordModel[]>);
+    }) => any;
+  }) =>
+  async ({ params }: any) => {
     const { productId, productCategory } = params;
 
     const productDetail = await queryClient.ensureQueryData({
       queryKey: ['productDetail', productId],
       queryFn: () => fetchSingleProduct(productId),
-      cacheTime: 6000 * 10,
-      staleTime: 1000 * 10,
     });
     const filteredCategoryProduct = await queryClient.ensureQueryData({
       queryKey: ['productCategoryLists'],
       queryFn: () => fetchFilteredCategoryProducts(productCategory),
-      cacheTime: 6000 * 10,
-      staleTime: 1000 * 10,
     });
     return { productDetail, filteredCategoryProduct };
   };
