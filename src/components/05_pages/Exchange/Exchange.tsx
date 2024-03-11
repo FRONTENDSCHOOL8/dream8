@@ -7,9 +7,11 @@ import BeforeLogin from '@/components/02_molecules/Exchange/Button/BeforeLogin';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import useGetList from '@/hooks/useGetList';
 import { useQuery } from '@tanstack/react-query';
+import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 
 export function Exchange() {
   const exchangeLists = useLoaderData();
+  const [isOpen, setIsOpen] = useState(false);
 
   const { isLoggedIn } = useLoginFormStore();
   const [maxList, setMaxList] = useState(6);
@@ -28,6 +30,14 @@ export function Exchange() {
 
   const handleLoadMoreButtonClick = () => {
     setMaxList((prevMaxList) => prevMaxList + 6);
+  };
+
+  const handleClick = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
   };
 
   const renderExchangeCards = () => {
@@ -72,22 +82,24 @@ export function Exchange() {
               더보기
             </Button01>
           ) : (
-            <Link
-              to="/SignIn"
-              className="flex flex-col gap-3 justify-center items-center"
-            >
+            <div className="flex flex-col items-center">
               <Button01
                 type="button"
                 className="rounded-md p-0 w-[4rem] border-2 text-sm hover:bg-blue-primary hover:text-white"
-                onClick={handleLoadMoreButtonClick}
+                onClick={handleClick}
               >
                 더보기
               </Button01>
               <BeforeLogin />
-            </Link>
+            </div>
           )}
         </div>
       </div>
+      {isOpen && (
+        <ConfirmModal title="실패!" onClose={handleCloseModal}>
+          로그인 해주세요!
+        </ConfirmModal>
+      )}
     </div>
   );
 }
