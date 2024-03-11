@@ -135,9 +135,9 @@ function HomeContents() {
                 <NewsCard width="w-[275px]" height="h-[275px]" key={index} newsItem={newsItem} />
               ))}
             </ul>
-            <div className="w-full">
+            <ul className="w-full">
               {noticeItems.length > 0 && <NewsCard width="w-full" height="h-full" newsItem={noticeItems[0]} />}
-            </div>
+            </ul>
           </div>
         </div>
       </div>
