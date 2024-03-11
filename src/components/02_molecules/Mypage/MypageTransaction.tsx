@@ -4,19 +4,26 @@ import TransactionListCard from './components/TransactionListCard';
 import { useEffect, useState } from 'react';
 import { RecordModel } from 'pocketbase';
 import { getPbImage } from '@/utils/getPbImage';
+import { useLoaderData } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { pb } from '@/api/pocketbase';
 
-interface MypageTransactionProps {
-  mycartList?: RecordModel[];
-}
-
-const MypageTransaction = ({ mycartList }: MypageTransactionProps) => {
+export const MypageTransaction = () => {
+  const loadedData = useLoaderData();
   const { userInfo } = useLoginFormStore();
-  const [cartData, setCartData] = useState(mycartList);
+  const [cartData, setCartData] = useState(loadedData);
+
+  const { data } = useQuery({
+    queryKey: ['my_cart'],
+    queryFn: fetchMultipleProduct,
+    initialData: loadedData,
+    staleTime: 1000 * 10,
+  });
 
   useEffect(() => {
     const fetchCartValue = async () => {
       try {
-        compareCart(userInfo.id, cartData);
+        compareCart(userInfo.id, data);
       } catch (error) {
         console.log('error:', error);
       }
@@ -61,5 +68,17 @@ const MypageTransaction = ({ mycartList }: MypageTransactionProps) => {
     </section>
   );
 };
+// Component.displayName = 'MypageTransaction';
 
-export default MypageTransaction;
+async function fetchMultipleProduct() {
+  return await pb
+    .collection('my_cart')
+    .getFullList({ expand: 'userId, productId' });
+}
+
+export const loader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData({
+    queryKey: ['my_cart'],
+    queryFn: () => fetchMultipleProduct(),
+  });
+};

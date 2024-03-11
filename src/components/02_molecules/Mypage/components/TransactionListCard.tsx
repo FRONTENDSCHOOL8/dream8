@@ -35,7 +35,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
     <div
       role="button"
       tabIndex={0}
-      className={`transactionListCard-molecules ${className} `}
+      className={`transactionListCard-molecules ${className} w-[51.25rem]`}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {

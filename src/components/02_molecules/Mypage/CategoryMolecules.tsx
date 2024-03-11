@@ -1,27 +1,19 @@
 import Button from '@/components/01_atoms/Button/Button';
-import { useNavigate } from 'react-router-dom';
-import MypageUserSetting from './MypageUserSetting';
-import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-interface CategoryMoleculesProps {
-  handleMove: (id: string) => void;
-}
-const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
-  handleMove,
-}) => {
-  const [selectedButton, setSelectedButton] = useState('LoginInfo');
-
+const CategoryMolecules = ({}) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col whitespace-nowrap px-14 py-20  border border-gray-300 justify-center items-center gap-24 shadow-xl">
       <Button
         type="button"
         aria-label="회원정보 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'LoginInfo' ? 'text-blue-500' : ''
+          pathname === '/MyPage' ? 'text-blue-500' : ''
         }`}
         onClick={() => {
-          handleMove('LoginInfo');
-          setSelectedButton('LoginInfo');
+          navigate('/MyPage', { preventScrollReset: true });
         }}
       >
         <span>회원정보</span>
@@ -30,11 +22,10 @@ const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
         type="button"
         aria-label="구매내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'Purchase' ? 'text-blue-500' : ''
+          pathname === '/MyPage/purchase' ? 'text-blue-500' : ''
         }`}
         onClick={() => {
-          handleMove('Purchase');
-          setSelectedButton('Purchase');
+          navigate('/MyPage/purchase', { preventScrollReset: true });
         }}
       >
         <span>구매내역</span>
@@ -44,11 +35,10 @@ const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
         type="button"
         aria-label="교환내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'Exchange' ? 'text-blue-500' : ''
+          pathname === '/MyPage/exchange' ? 'text-blue-500' : ''
         }`}
         onClick={() => {
-          handleMove('Exchange');
-          setSelectedButton('Exchange');
+          navigate('/MyPage/exchange', { preventScrollReset: true });
         }}
       >
         <span>교환내역</span>
@@ -57,11 +47,10 @@ const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
         type="button"
         aria-label="후원내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'Donation' ? 'text-blue-500' : ''
+          pathname === '/MyPage/donation' ? 'text-blue-500' : ''
         }`}
         onClick={() => {
-          handleMove('Donation');
-          setSelectedButton('Donation');
+          navigate('/MyPage/donation', { preventScrollReset: true });
         }}
       >
         <span>후원내역</span>
