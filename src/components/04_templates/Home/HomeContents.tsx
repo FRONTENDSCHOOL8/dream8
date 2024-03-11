@@ -8,7 +8,10 @@ import Dots from "@/components/02_molecules/Home/Dots"
 import { throttle } from 'lodash';
 import { useEffect, useState } from "react";
 import { pb } from "@/api/pocketbase";
+import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
+gsap.registerPlugin(ScrollToPlugin);
 
 function HomeContents() {
 
@@ -35,12 +38,21 @@ function HomeContents() {
     };
   }, [sectionCount]);
 
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: window.innerHeight * currentSection,
+  //     behavior: "smooth",
+  //   });
+  // }, [currentSection]);
+
+  // gsap
   useEffect(() => {
-    window.scrollTo({
-      top: window.innerHeight * currentSection,
-      behavior: "smooth",
+    gsap.to(window, {
+      scrollTo: { y: window.innerHeight * currentSection, autoKill: false },
+      duration: 1,
     });
   }, [currentSection]);
+
 
   const [newsList, setNewsList] = useState<NewsItemProps[]>([]);
 
