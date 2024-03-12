@@ -10,7 +10,8 @@ const SignInTemplates: React.FC = () => {
 
         <SignInForm />
         <div className="border w-full"> </div>
-        <SocialLoginButtons />
+        {/* <SocialLoginButtons /> */}
+        {/* sns로그인은 추후 개발 */}
       </div>
     </div>
   );

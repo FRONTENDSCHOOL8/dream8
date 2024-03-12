@@ -74,10 +74,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
         {content}
       </div>
       {isPayed && (
-        <Button01
-          type="button"
-          className="bg-blue-primary text-white text-lg"
-        >
+        <Button01 type="button" className="bg-blue-primary text-white text-lg">
           {' 완료 '}
         </Button01>
       )}

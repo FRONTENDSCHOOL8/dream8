@@ -92,7 +92,7 @@ function SignUpInput() {
       console.error('Error logging in:', error);
     }
 
-    navigate('/');
+    navigate('/Mypage');
   };
 
   return (
@@ -105,9 +105,7 @@ function SignUpInput() {
           required
           aria-required="true"
           placeholder="이메일을 입력해주세요"
-          onChange={(e) =>
-            setUserData({ ...userData, email: e.target.value })
-          }
+          onChange={(e) => setUserData({ ...userData, email: e.target.value })}
           className="border rounded-xl w-full h-[3rem] p-2 mt-2"
         />
       </div>
@@ -205,7 +203,7 @@ function SignUpInput() {
           주소입력
         </button>
       </div>
-      <div className='flex flex-col gap-3'>
+      <div className="flex flex-col gap-3">
         <button
           type="submit"
           className="text-xl border-2 rounded-xl w-full h-[3rem] border-blue-primary hover:shadow-root"

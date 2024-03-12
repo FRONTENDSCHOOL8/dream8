@@ -13,7 +13,7 @@ const CategoryMolecules = ({}) => {
           pathname === '/MyPage' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          navigate('/MyPage', { preventScrollReset: true });
+          navigate('/Mypage', { preventScrollReset: true });
         }}
       >
         <span>회원정보</span>
@@ -25,7 +25,7 @@ const CategoryMolecules = ({}) => {
           pathname === '/MyPage/purchase' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          navigate('/MyPage/purchase', { preventScrollReset: true });
+          navigate('/Mypage/purchase', { preventScrollReset: true });
         }}
       >
         <span>구매내역</span>
@@ -37,7 +37,7 @@ const CategoryMolecules = ({}) => {
           pathname === '/MyPage/exchange' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          navigate('/MyPage/exchange', { preventScrollReset: true });
+          navigate('/Mypage/exchange', { preventScrollReset: true });
         }}
       >
         <span>교환내역</span>
@@ -49,7 +49,7 @@ const CategoryMolecules = ({}) => {
           pathname === '/MyPage/donation' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          navigate('/MyPage/donation', { preventScrollReset: true });
+          navigate('/Mypage/donation', { preventScrollReset: true });
         }}
       >
         <span>후원내역</span>

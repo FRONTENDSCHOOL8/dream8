@@ -42,7 +42,7 @@ const SignInForm: React.FC<SignInFormProps> = ({
 
         useLoginFormStore.getState().setUserInfo(pb.authStore.model);
         useLoginFormStore.getState().setIsLoggedIn(!isLoggedIn);
-        navigate('/product');
+        navigate('/Mypage');
       } catch (error) {
         console.error('Error logging in:', error);
         setError('아이디 또는 비밀번호를 확인해주세요.');

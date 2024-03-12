@@ -7,7 +7,7 @@ import Purchase from '@/components/04_templates/Payment/Purchase/Purchase';
 import useModal from '@/hooks/useModal';
 import useCountStore from '@/store/useCountStore';
 import useLoginFormStore from '@/store/useLoginFormStore';
-import { MyCartDataItem, MyCartListItem } from '@/types';
+import { MyCartDataItem, MyCartListItem, ProductListsType } from '@/types';
 import { getPbImage } from '@/utils/getPbImage';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -53,7 +53,6 @@ export default function Payment() {
 
   const handleCloseModal = () => {
     closeConfirmModal();
-    refetch();
   };
 
   const handleCheckedMyCartLists = (listID: string, isChecked: boolean) => {
@@ -70,6 +69,7 @@ export default function Payment() {
 
   const updateMyCartPayed = async (MyCartId: string, data: MyCartDataItem) => {
     await pb.collection('my_cart').update(MyCartId, data);
+    refetch();
   };
 
   const createNotificationRecord = async (updatedData) => {
@@ -134,7 +134,6 @@ export default function Payment() {
         ? { ...item, isPayed: true }
         : item
     );
-
     createNotificationRecord(updatedData);
     updateProductData(updatedData);
     openConfirmModal();
