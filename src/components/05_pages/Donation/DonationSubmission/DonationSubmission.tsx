@@ -98,14 +98,11 @@ function DonationSubmission() {
 
         await pb.collection('notification').create(data);
 
-        // addNotice(data);
         plusCount();
 
-        const donationList = await pb.collection('donation').create(dataToSend);
-        console.log('Saved donation ID:', donationList.id); // 포켓베이스에 저장된 데이터의 Id
       }
       localStorage.removeItem('donations');
-      localStorage.setItem('lastDonationId', '0'); // localStorage ID 초기화
+      localStorage.setItem('lastDonationId', '0');
 
       setDonations([]);
       setModalTitle('신청완료');
@@ -133,17 +130,12 @@ function DonationSubmission() {
 
         <div className="max-w-[595px] flex flex-col gap-10 items-center">
           <DonationForm onAddDonation={handleAddDonation} />
-          {/* form의 데이터는 localStorage 저장 */}
-
           <div className="w-full h-[1px] bg-gray-200"></div>
-
           <DonationTable
             donations={donations}
             onDeleteDonation={handleDeleteDonation}
           />
-
           <p>⚠️신청서 제출 후 취소 불가</p>
-
           <button
             type="button"
             onClick={handleSubmit}
