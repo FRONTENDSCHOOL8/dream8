@@ -1,6 +1,5 @@
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { pb } from '@/api/pocketbase';
-import { useState } from 'react';
 import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 import ProductDetailsInfo from '@/components/04_templates/ProductDetails/ProductDetailsInfo/ProductDetailsInfo';
@@ -9,12 +8,18 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
 import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
 import { RecordModel } from 'pocketbase';
+import useModal from '@/hooks/useModal';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 export function ProductDetails() {
   const { productId, productCategory } = useParams();
   const product = useLoaderData();
   const navigate = useNavigate();
-  const [showModalMyCart, setShowModalMyCart] = useState(false);
+  const {
+    isVisible: isSelectModalVisible,
+    openModal: openSelectModal,
+    closeModal: closeSelectModal,
+  } = useModal();
 
   const results = useQueries({
     queries: [
@@ -47,47 +52,50 @@ export function ProductDetails() {
   const handleClickMyCart = () => {
     if (isLoggedIn) {
       createMyCartData(userInfo.id, productId);
-      handleOpenModal();
+      openSelectModal();
     } else {
       navigate('/SignIn');
     }
-  };
-
-  const handleOpenModal = () => {
-    setShowModalMyCart(true);
-  };
-  const handleCloseModal = () => {
-    setShowModalMyCart(false);
-    console.log('닫기');
   };
 
   const handleMoveToMyCart = () => {
     navigate('/Payment');
   };
 
+  const metaTag = {
+    title: '상품상세 페이지',
+    pageDescription: '드림의 상품상세 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: `ProductDetails/${productId}/${productCategory}`,
+  };
+
   return (
-    <div className="pt-20 w-[75rem] m-auto flex flex-col">
-      <ProductDetailsInfo
-        productDetailData={productDetailData.data}
-        onClickPurchase={handleClickPurchase}
-        onClickMyCart={handleClickMyCart}
-      />
-      <Divider />
-      <RelativeProducts
-        lists={productCategoryLists.data}
-        category={productCategory}
-        currentProductId={productId}
-      />
-      {showModalMyCart && (
-        <SelectModal
-          title="장바구니 담기 완료"
-          onClickYes={handleMoveToMyCart}
-          onClickNo={handleCloseModal}
-        >
-          <p>구매하기 페이지로 넘어가시겠습니까?</p>
-        </SelectModal>
-      )}
-    </div>
+    <>
+      <MetaTag metaTag={metaTag} />
+      <div className="py-36 w-[75rem] m-auto flex flex-col">
+        <ProductDetailsInfo
+          productDetailData={productDetailData.data}
+          onClickPurchase={handleClickPurchase}
+          onClickMyCart={handleClickMyCart}
+        />
+        <Divider />
+        <RelativeProducts
+          lists={productCategoryLists.data}
+          category={productCategory}
+          currentProductId={productId}
+        />
+        {isSelectModalVisible && (
+          <SelectModal
+            title="장바구니 담기 완료"
+            onClickYes={handleMoveToMyCart}
+            onClickNo={closeSelectModal}
+          >
+            <p>구매하기 페이지로 넘어가시겠습니까?</p>
+          </SelectModal>
+        )}
+      </div>
+    </>
   );
 }
 

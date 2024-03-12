@@ -6,14 +6,12 @@ import Button from '@/components/01_atoms/Button/Button';
 import { useState } from 'react';
 import useCountStore from '@/store/useCountStore';
 import NotificationCommon from './Notification/NotificationCommon';
-import useNoticeList from '@/store/useNoticeList';
 import { Dialog, Transition } from '@headlessui/react';
 function GlobalNavBar() {
   const { count } = useCountStore();
   const [isOpen, setOpen] = useState(false);
-  const { noticeList } = useNoticeList();
   const { resetCount } = useCountStore();
-  console.log('noticeList  ', noticeList);
+
   const handleNotificationClick = () => {
     setOpen((prevState) => !prevState);
     resetCount();
@@ -98,8 +96,8 @@ function GlobalNavBar() {
         >
           <Dialog.Panel>
             <NotificationCommon
-              noticeList={noticeList}
-              // onClose={handleBackgroundClick}
+
+            // onClose={handleBackgroundClick}
             />
           </Dialog.Panel>
         </Dialog>

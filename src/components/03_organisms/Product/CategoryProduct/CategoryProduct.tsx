@@ -9,7 +9,9 @@ function CategoryProduct({ onSelect }: CategoryProductProps) {
   return (
     <div>
       <h2 className="sr-only">카테고리</h2>
-      <label htmlFor="productCategory">카테고리 선택</label>
+      <label htmlFor="productCategory" className="sr-only">
+        카테고리 선택
+      </label>
       <select
         name="productCategory"
         id="productCategory"
