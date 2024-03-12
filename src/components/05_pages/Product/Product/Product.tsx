@@ -11,6 +11,13 @@ import { ProductListsType } from '@/types';
 import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 export function Product() {
+  const metaTag = {
+    title: '판매페이지',
+    pageDescription: '드림의 판매 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: 'Product',
+  };
   const [category, setCategory] = useState<string>('전체');
   const [sort, setSort] = useState<string>('최근순');
   const [search, setSearch] = useState<string>('');
@@ -29,14 +36,6 @@ export function Product() {
     initialData: productLists,
     staleTime: 1000 * 10,
   });
-
-  const metaTag = {
-    title: '판매페이지',
-    pageDescription: '드림의 판매 페이지 입니다',
-    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
-    imgSrc: '/logoOG.png',
-    path: 'Product',
-  };
 
   return (
     <>
