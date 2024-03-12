@@ -123,7 +123,7 @@ function DonationSubmission() {
   }, []);
 
   return (
-    <div className="py-20">
+    <div className="py-36">
       <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
         <h2 className="text-4xl">후원 신청</h2>
 

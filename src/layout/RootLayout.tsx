@@ -13,7 +13,7 @@ function RootLayout() {
   return (
     <div>
       <Header />
-      <main className="w-full pt-20">
+      <main className="w-full">
         {state === 'loading' ? <LoadingSpinner /> : <Outlet />}
       </main>
       <GoToTop />
