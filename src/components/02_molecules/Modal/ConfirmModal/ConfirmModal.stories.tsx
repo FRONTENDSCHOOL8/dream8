@@ -8,7 +8,10 @@ const meta: Meta<typeof ConfirmModal> = {
 export default meta;
 
 export const 기본표시: StoryObj<typeof ConfirmModal> = {
-  args: {},
+  args: {
+    title: '성공',
+    children: <p>성공했습니다</p>,
+  },
   argTypes: {
     title: { control: 'text' },
   },

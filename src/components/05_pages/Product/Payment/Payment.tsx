@@ -1,24 +1,34 @@
 import { pb } from '@/api/pocketbase';
+import CautionModal from '@/components/02_molecules/Modal/CautionModal/CautionModal';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import MyCartLists from '@/components/04_templates/Payment/MyCartLists/MyCartLists';
 import Purchase from '@/components/04_templates/Payment/Purchase/Purchase';
+import useModal from '@/hooks/useModal';
 import useCountStore from '@/store/useCountStore';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { MyCartDataItem, MyCartListItem } from '@/types';
-import { getPbImage, getPbImageURL } from '@/utils/getPbImage';
+import { getPbImage } from '@/utils/getPbImage';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Payment() {
   const { plusCount } = useCountStore();
-  const [showModal, setShowModal] = useState(false);
   const [checkedMyCartLists, setCheckedMyCartLists] = useState<
     MyCartListItem[]
   >([]);
   const { isLoggedIn, userInfo } = useLoginFormStore();
-
   const navigate = useNavigate();
+  const {
+    isVisible: isConfirmModalVisible,
+    openModal: openConfirmModal,
+    closeModal: closeConfirmModal,
+  } = useModal();
+  const {
+    isVisible: isCautionModalVisible,
+    openModal: openCautionModal,
+    closeModal: closeCautionModal,
+  } = useModal();
 
   async function fetchMyCart(userId: string) {
     return await pb.collection('my_cart').getFullList({
@@ -40,12 +50,8 @@ export default function Payment() {
     isChecked: false,
   }));
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
   const handleCloseModal = () => {
-    setShowModal(false);
+    closeConfirmModal();
     refetch();
   };
 
@@ -65,18 +71,7 @@ export default function Payment() {
     await pb.collection('my_cart').update(MyCartId, data);
   };
 
-  const handlePurchase = async () => {
-    const payedMyCartLists = checkedMyCartLists
-      .filter((item) => item.isChecked === true)
-      .map((item) => item.productId);
-
-    if (payedMyCartLists.length === 0) return;
-
-    const updatedData = data.map((item) =>
-      payedMyCartLists.includes(item.expand?.productId.id)
-        ? { ...item, isPayed: true }
-        : item
-    );
+  const createNotificationRecord = async (updatedData) => {
     try {
       for (const item of updatedData) {
         if (item.isPayed) {
@@ -101,16 +96,52 @@ export default function Payment() {
           updateMyCartPayed(item.id, item);
           plusCount();
 
-          const response = await pb.collection('notification').create(formData);
-          console.log('response  ', response);
+          await pb.collection('notification').create(formData);
         }
       }
     } catch (error) {
       console.log('error  ', error);
     }
-
-    handleOpenModal();
   };
+
+  const updateProductData = async (updatedData) => {
+    try {
+      let updatedProductData = {};
+      for (const item of updatedData) {
+        if (item.isPayed) {
+          updatedProductData = item.expand.productId;
+          updatedProductData.isSale = false;
+        }
+        await pb
+          .collection('product')
+          .update(item.expand.productId.id, updatedProductData);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlePurchase = async () => {
+    const payedMyCartLists = checkedMyCartLists
+      .filter((item) => item.isChecked === true)
+      .map((item) => item.productId);
+
+    if (payedMyCartLists.length === 0) return;
+
+    const updatedData = data.map((item) =>
+      payedMyCartLists.includes(item.expand?.productId.id)
+        ? { ...item, isPayed: true }
+        : item
+    );
+
+    createNotificationRecord(updatedData);
+    updateProductData(updatedData);
+    openConfirmModal();
+  };
+
+  useEffect(() => {
+    openCautionModal();
+  }, []);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -128,13 +159,12 @@ export default function Payment() {
         onDelete={handleDeleteMyCartList}
       />
       <Purchase checkedList={checkedMyCartLists} onClick={handlePurchase} />
-      {showModal && (
-        <>
-          <ConfirmModal title="성공" onClose={handleCloseModal}>
-            <p>결제를 성공했습니다</p>
-          </ConfirmModal>
-        </>
+      {isConfirmModalVisible && (
+        <ConfirmModal title="성공" onClose={handleCloseModal}>
+          <p>결제를 성공했습니다</p>
+        </ConfirmModal>
       )}
+      {isCautionModalVisible && <CautionModal onClose={closeCautionModal} />}
     </div>
   );
 }
