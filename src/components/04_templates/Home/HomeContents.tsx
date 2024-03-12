@@ -162,7 +162,7 @@ function HomeContents() {
   const noticeItems = newsList.filter(newsItem => newsItem.type === '공지');
 
   return (
-    <>
+    <div className="select-none">
       <Dots currentSection={currentSection} sectionCount={sectionCount} />
 
       <div 
@@ -239,7 +239,7 @@ function HomeContents() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
