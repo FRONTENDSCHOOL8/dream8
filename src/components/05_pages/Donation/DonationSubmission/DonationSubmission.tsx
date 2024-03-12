@@ -88,11 +88,12 @@ function DonationSubmission() {
         const data = {
           id: response.id,
           field: 'notification',
-          title: donation.name,
+          title: donation.description,
           description: donation.description,
           isComplete: true,
           photo: '',
           userId: userInfo.id,
+          type: 'donation',
         };
 
         await pb.collection('notification').create(data);
