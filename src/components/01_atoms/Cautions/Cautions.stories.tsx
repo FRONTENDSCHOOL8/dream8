@@ -1,9 +1,10 @@
+import { Meta, StoryObj } from '@storybook/react';
 import Cautions from './Cautions';
 
-/**@type{import('@storybook/react').Meta} */
-export default {
+const meta: Meta<typeof Cautions> = {
   component: Cautions,
 };
 
-/**@type{import('@storybook/react').StoryObj} */
-export const 기본표시 = {};
+export default meta;
+
+export const 기본표시: StoryObj<typeof Cautions> = {};

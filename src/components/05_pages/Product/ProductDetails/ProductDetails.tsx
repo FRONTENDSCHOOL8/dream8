@@ -1,6 +1,5 @@
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { pb } from '@/api/pocketbase';
-import { useState } from 'react';
 import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
 import ProductDetailsInfo from '@/components/04_templates/ProductDetails/ProductDetailsInfo/ProductDetailsInfo';
