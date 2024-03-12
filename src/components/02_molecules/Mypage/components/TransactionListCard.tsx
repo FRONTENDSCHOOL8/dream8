@@ -35,7 +35,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
     <div
       role="button"
       tabIndex={0}
-      className={`transactionListCard-molecules ${className} w-[51.25rem]`}
+      className={`transactionListCard-molecules ${className} w-[51.25rem] h-[8.12rem]`}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
@@ -75,7 +75,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
       {isPayed && (
         <Button01
           type="button"
-          className="bg-blue-primary text-white mr-10 text-xl"
+          className="bg-blue-primary text-white mr-10 text-sm"
         >
           {' 완료 '}
         </Button01>

@@ -92,7 +92,7 @@ function SignUpInput() {
       console.error('Error logging in:', error);
     }
 
-    navigate('/');
+    navigate('/Mypage');
   };
 
   return (

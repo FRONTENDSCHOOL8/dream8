@@ -7,16 +7,14 @@ function GoToTop() {
   const location = useLocation();
 
   useEffect(() => {
-
     const checkVisibility = () => {
-
       const pageHeight = document.documentElement.scrollHeight;
       const viewportHeight = window.innerHeight;
       const scrollPosition = window.scrollY;
-  
-      const footerHeight = 150; 
+
+      const footerHeight = 150;
       const showValue = pageHeight - viewportHeight - footerHeight;
-  
+
       if (scrollPosition > showValue) {
         setIsVisible(true);
       } else {
@@ -26,7 +24,7 @@ function GoToTop() {
 
     checkVisibility();
     window.addEventListener('scroll', checkVisibility);
-    
+
     // 페이지 이동 시 리스너 제거
     return () => {
       window.removeEventListener('scroll', checkVisibility);
@@ -39,7 +37,12 @@ function GoToTop() {
 
   return isVisible ? (
     <div className="fixed right-56 bottom-60 w-12 h-12 border rounded-full bg-white shadow-root">
-      <img src={TopScroll} alt="상단으로 이동" onClick={moveToTop} className="w-full h-full" />
+      <img
+        src={TopScroll}
+        alt="상단으로 이동"
+        onClick={moveToTop}
+        className="w-full h-full"
+      />
     </div>
   ) : null;
 }
