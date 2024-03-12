@@ -55,8 +55,8 @@ export const MypageExchange = () => {
   return (
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">교환내역</h2>
-
-      <div className="flex flex-col gap-10">
+      <div className="w-full h-[1px] bg-gray-200"></div>
+      <div>
         <ul>
           <li className="flex flex-col gap-10">
             {exchangeData?.slice(0, showMore)?.map((item) => (

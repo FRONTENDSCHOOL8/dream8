@@ -36,7 +36,7 @@ function GoToTop() {
   };
 
   return isVisible ? (
-    <div className="fixed right-56 bottom-60 w-12 h-12 border rounded-full bg-white shadow-root">
+    <div className="fixed right-20 bottom-72 w-12 h-12 border rounded-full bg-white shadow-root cursor-pointer">
       <img
         src={TopScroll}
         alt="상단으로 이동"

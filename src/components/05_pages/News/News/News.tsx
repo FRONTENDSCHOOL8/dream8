@@ -35,7 +35,7 @@ export function News() {
   };
 
   return (
-    <div className="max-w-[90rem] m-auto bg-white py-20">
+    <div className="max-w-[90rem] m-auto bg-white py-36">
       <Title />
       <div className="w-[56rem] m-auto">
         <div className="py-10">
