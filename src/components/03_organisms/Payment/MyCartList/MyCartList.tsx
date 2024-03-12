@@ -1,8 +1,15 @@
 import Button from '@/components/01_atoms/Button/Button';
+import { MyCartDataItem } from '@/types';
 import { getPbImage } from '@/utils/getPbImage';
 import { useState } from 'react';
 
-const MyCartList = ({ list, onChecked, onDelete }) => {
+interface MyCartListType {
+  list: MyCartDataItem;
+  onChecked: (listId: string, isCheck: boolean) => void;
+  onDelete: (listId: string) => void;
+}
+
+function MyCartList({ list, onChecked, onDelete }: MyCartListType) {
   const { collectionId, id, photo, price, grade, title, size } =
     list.expand.productId;
   const imageSrc = getPbImage(collectionId, id, photo[0]);
@@ -60,6 +67,6 @@ const MyCartList = ({ list, onChecked, onDelete }) => {
       </Button>
     </li>
   );
-};
+}
 
 export default MyCartList;
