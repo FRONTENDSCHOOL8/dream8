@@ -1,5 +1,5 @@
-import Cautions from '@/components/Cautions/Cautions';
-import ConfirmModal from '@/components/Modal/ConfirmModal/ConfirmModal';
+import Cautions from '@/components/01_atoms/Cautions/Cautions';
+import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 
 type CautionModalPropsType = {
   onClose: () => void;

@@ -7,6 +7,7 @@ import { pb } from '@/api/pocketbase';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { RecordModel } from 'pocketbase';
+import { ProductListsType } from '@/types';
 
 export function Product() {
   const [category, setCategory] = useState<string>('전체');
@@ -46,7 +47,7 @@ export function Product() {
   );
 }
 
-async function fetchMultipleProduct() {
+async function fetchMultipleProduct(): Promise<ProductListsType[]> {
   return await pb.collection('product').getFullList({
     sort: '-created',
   });
