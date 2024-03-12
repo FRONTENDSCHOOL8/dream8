@@ -2,7 +2,6 @@ import Image from '@/components/01_atoms/Image/Image';
 import closeButton from '/close_noti.svg';
 import Button from '@/components/01_atoms/Button/Button';
 import { pb } from '@/api/pocketbase';
-import useNoticeList from '@/store/useNoticeList';
 
 interface CommponLayoutProps {
   id: string;
@@ -19,13 +18,13 @@ const CommonLayout = ({
   title,
   isComplete,
 }: CommponLayoutProps) => {
-  const { setNotice, minusNotice } = useNoticeList();
+  // const { setNotice, minusNotice } = useNoticeList();
 
   const handleDelete = async (id: string) => {
     try {
-      await pb.collection('donation').delete(id);
-      alert('삭제되었습니다.');
-      minusNotice(id);
+      await pb.collection('notification').delete(id);
+      // alert('삭제되었습니다.');
+      // minusNotice(id);
     } catch (error) {
       console.log('error ', error);
     }

@@ -15,7 +15,6 @@ interface Donation {
 }
 
 function DonationSubmission() {
-  const { addNotice } = useNoticeList();
   const { plusCount } = useCountStore();
 
   const [showModal, setShowModal] = useState(false);
@@ -44,11 +43,11 @@ function DonationSubmission() {
     const donations = JSON.parse(storedDonations);
 
     // 각 후원 데이터의 ID 값
-    donations.forEach(donation => {
+    donations.forEach((donation) => {
       console.log(donation.id);
     });
   } else {
-    console.log("로컬 스토리지에 저장된 후원 데이터가 없습니다.");
+    console.log('로컬 스토리지에 저장된 후원 데이터가 없습니다.');
   }
 
   const handleDeleteDonation = (id: string) => {
@@ -84,7 +83,6 @@ function DonationSubmission() {
           userId: userInfo.id,
         };
 
-
         const response = await pb.collection('donation').create(dataToSend);
 
         const data = {
@@ -94,15 +92,16 @@ function DonationSubmission() {
           description: donation.description,
           isComplete: true,
           photo: '',
+          userId: userInfo.id,
         };
 
-        addNotice(data);
+        await pb.collection('notification').create(data);
+
+        // addNotice(data);
         plusCount();
 
-    
         const donationList = await pb.collection('donation').create(dataToSend);
         console.log('Saved donation ID:', donationList.id); // 포켓베이스에 저장된 데이터의 Id
-
       }
       localStorage.removeItem('donations');
       localStorage.setItem('lastDonationId', '0'); // localStorage ID 초기화
@@ -131,10 +130,10 @@ function DonationSubmission() {
       <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
         <h2 className="text-4xl">후원 신청</h2>
 
-        <div className='max-w-[595px] flex flex-col gap-10 items-center'>
-          <DonationForm onAddDonation={handleAddDonation}/> 
+        <div className="max-w-[595px] flex flex-col gap-10 items-center">
+          <DonationForm onAddDonation={handleAddDonation} />
           {/* form의 데이터는 localStorage 저장 */}
-  
+
           <div className="w-full h-[1px] bg-gray-200"></div>
 
           <DonationTable
