@@ -14,7 +14,7 @@ export function NewsDetail() {
   });
 
   return (
-    <div className="max-w-[90rem] m-auto bg-white py-20">
+    <div className="max-w-[90rem] m-auto bg-white py-36">
       <NewsTitle />
       <div className="flex flex-col m-auto gap-14 justify-center py-5 w-[55rem]">
         <p className="text-center">[발행 날짜: {new Date(news.created).toLocaleDateString()}]</p>

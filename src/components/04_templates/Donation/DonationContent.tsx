@@ -12,7 +12,7 @@ function DonationContents() {
   const { isLoggedIn } = useLoginFormStore();
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 pt-36">
       <div className="max-w-[90rem] flex flex-col gap-20 items-center m-auto">
         <div className="text-3xl flex justify-between w-[53rem]">
           <h3>후원하기</h3>
