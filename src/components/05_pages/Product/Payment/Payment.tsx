@@ -2,13 +2,16 @@ import { pb } from '@/api/pocketbase';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import MyCartLists from '@/components/04_templates/Payment/MyCartLists/MyCartLists';
 import Purchase from '@/components/04_templates/Payment/Purchase/Purchase';
+import useCountStore from '@/store/useCountStore';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { MyCartDataItem, MyCartListItem } from '@/types';
+import { getPbImage, getPbImageURL } from '@/utils/getPbImage';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Payment() {
+  const { plusCount } = useCountStore();
   const [showModal, setShowModal] = useState(false);
   const [checkedMyCartLists, setCheckedMyCartLists] = useState<
     MyCartListItem[]
@@ -74,12 +77,37 @@ export default function Payment() {
         ? { ...item, isPayed: true }
         : item
     );
+    try {
+      for (const item of updatedData) {
+        if (item.isPayed) {
+          const formData = new FormData();
+          const photo = getPbImage(
+            item.expand?.productId.collectionId,
+            item.expand?.productId.id,
+            item.expand?.productId.photo[0]
+          );
 
-    updatedData.forEach((item) => {
-      if (item.isPayed) {
-        updateMyCartPayed(item.id, item);
+          const blob = await fetch(photo).then((res) => res.blob());
+          const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+
+          formData.append('photo', file);
+          formData.append('field', 'notification');
+          formData.append('title', item.expand?.productId.title);
+          formData.append('description', item.expand?.productId.description);
+          formData.append('isComplete', item.isPayed);
+          formData.append('userId', userInfo.id);
+
+          updateMyCartPayed(item.id, item);
+          plusCount();
+
+          const response = await pb.collection('notification').create(formData);
+          console.log('response  ', response);
+        }
       }
-    });
+    } catch (error) {
+      console.log('error  ', error);
+    }
+
     handleOpenModal();
   };
 
