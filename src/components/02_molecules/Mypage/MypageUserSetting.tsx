@@ -38,11 +38,11 @@ export const Component: React.FC<MypageUserSettingProps> = ({
     useLoginFormStore();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [fields, setFields] = useState<FieldsState>({
-    email: userInfo.email,
-    user_name: userInfo.user_name,
-    nickName: userInfo.nickName,
-    phone_number: userInfo.phone_number,
-    address: userInfo.address,
+    email: userInfo?.email,
+    user_name: userInfo?.user_name,
+    nickName: userInfo?.nickName,
+    phone_number: userInfo?.phone_number,
+    address: userInfo?.address,
   });
 
   const [editMode, setEditMode] = useState<EditModeState>({

@@ -62,7 +62,7 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
             alt="프로필 사진"
             src={
               selectedImage ||
-              getPbImage(userInfo.collectionId, userInfo.id, userInfo.photo)
+              getPbImage(userInfo?.collectionId, userInfo.id, userInfo.photo)
             }
             onClick={() => document.getElementById('file-input')?.click()}
           />

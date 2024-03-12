@@ -4,6 +4,9 @@ import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 const useLoginFormStore = create(
   persist(
     devtools((set) => ({
+      accessToken: null,
+      setAccessToken: (token) => set({ accessToken: token }),
+
       isLoggedIn: false,
       setIsLoggedIn: (isLoggedIn: boolean) => set({ isLoggedIn }),
 
