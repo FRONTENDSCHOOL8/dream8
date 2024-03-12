@@ -7,7 +7,7 @@ import Purchase from '@/components/04_templates/Payment/Purchase/Purchase';
 import useModal from '@/hooks/useModal';
 import useCountStore from '@/store/useCountStore';
 import useLoginFormStore from '@/store/useLoginFormStore';
-import { MyCartDataItem, MyCartListItem } from '@/types';
+import { MyCartDataItem, MyCartListItem, ProductListsType } from '@/types';
 import { getPbImage } from '@/utils/getPbImage';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
