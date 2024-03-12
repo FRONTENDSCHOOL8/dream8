@@ -110,7 +110,7 @@ function DonationForm({ onAddDonation }) {
       </div>
       <button 
         type="submit"
-        className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-[130px] m-auto hover:bg-blue-primary hover:text-white"
+        className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-[130px] m-auto hover:bg-blue-primary hover:text-white transition-all"
       >
         추가하기
       </button>
