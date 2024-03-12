@@ -16,9 +16,9 @@ function ListsProduct({
   productLists,
 }: listsProductType) {
   const [filteredProductLists, setFilteredProductLists] =
-    useState(productLists);
+    useState<ProductListsType[]>(productLists);
 
-  const [showMoreCount, setShowMoreCount] = useState(12);
+  const [showMoreCount, setShowMoreCount] = useState<number>(12);
 
   function getSearchedProductLists(search: string, lists: ProductListsType[]) {
     let searchedProductLists = [...lists];
