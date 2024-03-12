@@ -1,15 +1,15 @@
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { pb } from '@/api/pocketbase';
-import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
+import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
+import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
 import ProductDetailsInfo from '@/components/04_templates/ProductDetails/ProductDetailsInfo/ProductDetailsInfo';
-import { useQueries } from '@tanstack/react-query';
+import useModal from '@/hooks/useModal';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
-import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
+import { useQueries } from '@tanstack/react-query';
 import { RecordModel } from 'pocketbase';
-import useModal from '@/hooks/useModal';
-import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 export function ProductDetails() {
   const { productId, productCategory } = useParams();
@@ -104,7 +104,7 @@ async function fetchSingleProduct(productId: string) {
 }
 
 async function fetchFilteredCategoryProducts(category: string) {
-  const filter = `category = "${category}"`;
+  const filter = `category = "${category}" && isSale = true`;
   return await pb.collection('product').getFullList({
     sort: '-created',
     filter: filter,

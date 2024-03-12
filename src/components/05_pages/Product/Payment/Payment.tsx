@@ -53,7 +53,6 @@ export default function Payment() {
 
   const handleCloseModal = () => {
     closeConfirmModal();
-    refetch();
   };
 
   const handleCheckedMyCartLists = (listID: string, isChecked: boolean) => {
@@ -70,6 +69,7 @@ export default function Payment() {
 
   const updateMyCartPayed = async (MyCartId: string, data: MyCartDataItem) => {
     await pb.collection('my_cart').update(MyCartId, data);
+    refetch();
   };
 
   const createNotificationRecord = async (updatedData) => {
@@ -134,7 +134,6 @@ export default function Payment() {
         ? { ...item, isPayed: true }
         : item
     );
-
     createNotificationRecord(updatedData);
     updateProductData(updatedData);
     openConfirmModal();
