@@ -96,8 +96,8 @@ function GlobalNavBar() {
         >
           <Dialog.Panel>
             <NotificationCommon
-              noticeList={noticeList}
-              // onClose={handleBackgroundClick}
+
+            // onClose={handleBackgroundClick}
             />
           </Dialog.Panel>
         </Dialog>
