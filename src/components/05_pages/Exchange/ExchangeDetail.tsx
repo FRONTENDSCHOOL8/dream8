@@ -27,7 +27,7 @@ export function ExchangeDetail() {
   const Edit = userData?.id === userInfo.id;
 
   return (
-    <div className="p-10">
+    <div className="p-10 pt-32">
       <div className="flex">
         <img
           src={getPbImageURL(data, 'product_img')}

@@ -179,7 +179,7 @@ export function ExchangeModify() {
   ];
 
   return (
-    <div className="pb-10 max-w-[90rem] m-auto">
+    <div className="pb-10 max-w-[90rem] m-auto pt-20">
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
         교환 게시글 수정하기
       </h1>
