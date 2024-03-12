@@ -96,6 +96,7 @@ export default function Payment() {
           formData.append('description', item.expand?.productId.description);
           formData.append('isComplete', item.isPayed);
           formData.append('userId', userInfo.id);
+          formData.append('type', 'product');
 
           updateMyCartPayed(item.id, item);
           plusCount();
