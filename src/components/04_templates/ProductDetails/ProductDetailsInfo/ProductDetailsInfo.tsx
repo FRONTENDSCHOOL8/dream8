@@ -1,11 +1,11 @@
+import Button from '@/components/01_atoms/Button/Button';
+import { Divider } from '@/components/01_atoms/Divider/Divider';
+import Cautions from '@/components/01_atoms/Product/Cautions';
 import ShowProductImage from '@/components/03_organisms/ProductDetails/ShowProductImage/ShowProductImage';
+import { ProductListsType } from '@/types';
 import getDaysFromToday from '@/utils/getDaysFromToday';
 import { getPbImage } from '@/utils/getPbImage';
 import timerIcon from '/timer.svg';
-import Cautions from '@/components/01_atoms/Product/Cautions';
-import Button from '@/components/01_atoms/Button/Button';
-import { Divider } from '@/components/01_atoms/Divider/Divider';
-import { ProductListsType } from '@/types';
 
 interface ProductDetailsInfoType {
   productDetailData: ProductListsType;
