@@ -9,12 +9,17 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
 import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
 import { RecordModel } from 'pocketbase';
+import useModal from '@/hooks/useModal';
 
 export function ProductDetails() {
   const { productId, productCategory } = useParams();
   const product = useLoaderData();
   const navigate = useNavigate();
-  const [showModalMyCart, setShowModalMyCart] = useState(false);
+  const {
+    isVisible: isSelectModalVisible,
+    openModal: openSelectModal,
+    closeModal: closeSelectModal,
+  } = useModal();
 
   const results = useQueries({
     queries: [
@@ -47,18 +52,10 @@ export function ProductDetails() {
   const handleClickMyCart = () => {
     if (isLoggedIn) {
       createMyCartData(userInfo.id, productId);
-      handleOpenModal();
+      openSelectModal();
     } else {
       navigate('/SignIn');
     }
-  };
-
-  const handleOpenModal = () => {
-    setShowModalMyCart(true);
-  };
-  const handleCloseModal = () => {
-    setShowModalMyCart(false);
-    console.log('닫기');
   };
 
   const handleMoveToMyCart = () => {
@@ -78,11 +75,11 @@ export function ProductDetails() {
         category={productCategory}
         currentProductId={productId}
       />
-      {showModalMyCart && (
+      {isSelectModalVisible && (
         <SelectModal
           title="장바구니 담기 완료"
           onClickYes={handleMoveToMyCart}
-          onClickNo={handleCloseModal}
+          onClickNo={closeSelectModal}
         >
           <p>구매하기 페이지로 넘어가시겠습니까?</p>
         </SelectModal>
