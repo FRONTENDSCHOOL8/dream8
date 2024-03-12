@@ -6,13 +6,17 @@ import { RecordModel } from 'pocketbase';
 import { getPbImage } from '@/utils/getPbImage';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import Button from '@/components/01_atoms/Button/Button';
 
 export const MypageExchange = () => {
   const loadedData = useLoaderData();
   const { userInfo } = useLoginFormStore();
-  const [exchangeData, setExchangeData] = useState(loadedData);
+  const [showMore, setShowMore] = useState(5);
+  const [exchangeData, setExchangeData] = useState<RecordModel[] | undefined>(
+    loadedData
+  );
 
-  const { data } = useQuery({
+  const { data: exchangeList } = useQuery<RecordModel[]>({
     queryKey: ['exchange'],
     queryFn: fetchExchangeValue,
     initialData: loadedData,
@@ -26,7 +30,7 @@ export const MypageExchange = () => {
         //   .collection('exchange')
         //   .getFullList({ expand: 'field' });
 
-        compareCart(userInfo.id, data);
+        compareCart(userInfo.id, exchangeList);
       } catch (error) {
         console.log('error:', error);
       }
@@ -42,14 +46,20 @@ export const MypageExchange = () => {
     setExchangeData(result);
   };
 
+  const handleShowMore = () => {
+    if (showMore < exchangeList.length) {
+      setShowMore(showMore + 3);
+    }
+  };
+
   return (
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">교환내역</h2>
-
+      <div className="w-full h-[1px] bg-gray-200"></div>
       <div>
         <ul>
           <li className="flex flex-col gap-10">
-            {exchangeData?.map((item) => (
+            {exchangeData?.slice(0, showMore)?.map((item) => (
               <TransactionListCard
                 key={item.id}
                 src={[getPbImage(item.collectionId, item.id, item.product_img)]}
@@ -61,6 +71,18 @@ export const MypageExchange = () => {
             ))}
           </li>
         </ul>
+
+        {exchangeData && exchangeData.length > 0 && (
+          <div className="flex justify-center">
+            <Button
+              type="button"
+              onClick={handleShowMore}
+              className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
+            >
+              더보기
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -35,7 +35,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
     <div
       role="button"
       tabIndex={0}
-      className={`transactionListCard-molecules ${className} w-[51.25rem]`}
+      className={`transactionListCard-molecules ${className} w-full justify-between`}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
@@ -43,12 +43,12 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
         }
       }}
     >
-      <div className="grid gap-1 ">
+      <div className="grid gap-1">
         {rows.length > 0 ? (
           rows.map((row, index) => (
             <div
               key={index}
-              className="flex items-center justify-center min-w-[6.25rem] max-w-[60%] "
+              className="flex items-center justify-center min-w-[6.25rem] max-w-[60%]"
             >
               {row.map((image, idx) => (
                 <div key={idx}>
@@ -69,14 +69,12 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
           />
         )}
       </div>
+
       <div className="flex-1 ml-4 max-w-[60%] overflow-wrap break-words text-xl font-semibol">
         {content}
       </div>
       {isPayed && (
-        <Button01
-          type="button"
-          className="bg-blue-primary text-white mr-10 text-xl"
-        >
+        <Button01 type="button" className="bg-blue-primary text-white text-lg">
           {' 완료 '}
         </Button01>
       )}
