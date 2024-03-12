@@ -42,7 +42,6 @@ function DonationSubmission() {
   if (storedDonations) {
     const donations = JSON.parse(storedDonations);
 
-    // 각 후원 데이터의 ID 값
     donations.forEach((donation) => {
       console.log(donation.id);
     });
@@ -139,7 +138,7 @@ function DonationSubmission() {
           <button
             type="button"
             onClick={handleSubmit}
-            className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white"
+            className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white transition-all"
           >
             제출하기
           </button>
