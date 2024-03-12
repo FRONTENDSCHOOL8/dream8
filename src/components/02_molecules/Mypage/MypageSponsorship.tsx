@@ -44,17 +44,17 @@ export const MypageSponsorship = () => {
   return (
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">후원내역</h2>
-
+      <div className="w-full h-[1px] bg-gray-200"></div>
       <div>
         <ul>
-          <li className="flex flex-col gap-10">
+          <li className="flex flex-col items-center gap-8">
             {donationData?.map((item) => (
               <TransactionListCard
                 key={item.id}
                 src={[]}
                 content={item.description} // donationData 배열을 직접 전달
                 isPayed={true}
-                className="py-10 pl-10"
+                className="p-8"
                 type={'sponsorship'}
               />
             ))}
