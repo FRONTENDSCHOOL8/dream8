@@ -96,132 +96,129 @@ function SignUpInput() {
   };
 
   return (
-    <form className="w-[28.625rem] " onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-3">
-        <div className="mt-3">
-          <label htmlFor="email">이메일</label>
-          <Input
-            type="email"
-            id="email"
-            required
-            aria-required="true"
-            placeholder="이메일을 입력해주세요"
-            onChange={(e) =>
-              setUserData({ ...userData, email: e.target.value })
-            }
-            className="border rounded-xl w-full h-[3.79rem]"
-          />
-        </div>
-        <div className="mt-3">
-          <label htmlFor="password">비밀번호</label>
-          <Input
-            type="password"
-            id="password"
-            required
-            aria-required="true"
-            placeholder="비밀번호를 입력해주세요"
-            onChange={(e) =>
-              setUserData({ ...userData, password: e.target.value })
-            }
-            className="border rounded-xl w-full h-[3.79rem]"
-          />
-        </div>
-        <div className="mt-3">
-          <label htmlFor="passwordConfirm">비밀번호 확인</label>
-          <Input
-            type="password"
-            id="passwordConfirm"
-            required
-            aria-required="true"
-            placeholder="비밀번호를 한번더 입력해주세요"
-            onChange={(e) =>
-              setUserData({ ...userData, passwordConfirm: e.target.value })
-            }
-            className="border rounded-xl w-full h-[3.79rem]"
-          />
-        </div>
-        <div className="mt-3">
-          <label htmlFor="user_name">이름</label>
+    <form className="w-[30rem] flex flex-col gap-7" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email">이메일</label>
+        <Input
+          type="email"
+          id="email"
+          required
+          aria-required="true"
+          placeholder="이메일을 입력해주세요"
+          onChange={(e) =>
+            setUserData({ ...userData, email: e.target.value })
+          }
+          className="border rounded-xl w-full h-[3rem] p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label htmlFor="password">비밀번호</label>
+        <Input
+          type="password"
+          id="password"
+          required
+          aria-required="true"
+          placeholder="비밀번호를 입력해주세요"
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
+          className="border rounded-xl w-full h-[3rem] p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label htmlFor="passwordConfirm">비밀번호 확인</label>
+        <Input
+          type="password"
+          id="passwordConfirm"
+          required
+          aria-required="true"
+          placeholder="비밀번호를 한번더 입력해주세요"
+          onChange={(e) =>
+            setUserData({ ...userData, passwordConfirm: e.target.value })
+          }
+          className="border rounded-xl w-full h-[3rem] p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label htmlFor="user_name">이름</label>
+        <Input
+          type="text"
+          id="user_name"
+          required
+          aria-required="true"
+          placeholder="이름을 입력해주세요"
+          onChange={(e) =>
+            setUserData({ ...userData, user_name: e.target.value })
+          }
+          className="border rounded-xl w-full h-[3rem] p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label htmlFor="nickName">닉네임</label>
+        <Input
+          type="text"
+          id="nickName"
+          required
+          aria-required="true"
+          placeholder="닉네임을 입력해주세요"
+          onChange={(e) =>
+            setUserData({ ...userData, nickName: e.target.value })
+          }
+          className="border rounded-xl w-full h-[3rem] p-2 mt-2"
+        />
+      </div>
+      <div>
+        <label htmlFor="phone_number">휴대폰 번호</label>
+        <Input
+          type="tel"
+          id="phone_number"
+          required
+          aria-required="true"
+          placeholder="휴대폰 번호입력 ( - 제외 11자리 입력)"
+          onChange={(e) =>
+            setUserData({ ...userData, phone_number: e.target.value })
+          }
+          className="border rounded-xl w-full h-[3rem] p-2 mt-2"
+        />
+      </div>
+      <div className="flex gap-3 justify-center items-end">
+        <label htmlFor="address" className="flex-1">
+          주소
           <Input
             type="text"
-            id="user_name"
+            id="address"
+            value={userData.address}
             required
             aria-required="true"
-            placeholder="이름을 입력해주세요"
+            placeholder="주소를 입력해주세요"
             onChange={(e) =>
-              setUserData({ ...userData, user_name: e.target.value })
+              setUserData({ ...userData, address: e.target.value })
             }
-            className="border rounded-xl w-full h-[3.79rem]"
+            className="border rounded-xl w-full h-[3rem] p-2 mt-2"
           />
-        </div>
-        <div className="mt-3">
-          <label htmlFor="nickName">닉네임</label>
-          <Input
-            type="text"
-            id="nickName"
-            required
-            aria-required="true"
-            placeholder="닉네임을 입력해주세요"
-            onChange={(e) =>
-              setUserData({ ...userData, nickName: e.target.value })
-            }
-            className="border rounded-xl w-full h-[3.79rem]"
-          />
-        </div>
-        <div className="mt-3">
-          <label htmlFor="phone_number">휴대폰 번호</label>
-          <Input
-            type="tel"
-            id="phone_number"
-            required
-            aria-required="true"
-            placeholder="휴대폰 번호입력 ( - 제외 11자리 입력)"
-            onChange={(e) =>
-              setUserData({ ...userData, phone_number: e.target.value })
-            }
-            className="border rounded-xl w-full h-[3.79rem]"
-          />
-        </div>
-        <div className="mt-3 flex items-center">
-          <label htmlFor="address" className="flex-1">
-            주소
-            <Input
-              type="text"
-              id="address"
-              value={userData.address}
-              required
-              aria-required="true"
-              placeholder="주소를 입력해주세요"
-              onChange={(e) =>
-                setUserData({ ...userData, address: e.target.value })
-              }
-              className="border rounded-xl w-full h-[3.79rem]"
-            />
-          </label>
-          <button
-            type="button"
-            className="border rounded-xl w-20 h-[3.79rem] ml-3 mt-6"
-            onClick={handleAddress}
-          >
-            주소입력
-          </button>
-        </div>
-        <div className="mt-3">
-          <button
-            type="submit"
-            className="text-2xl border-4 rounded-xl w-full h-[3.79rem] border-blue-700"
-          >
-            확인
-          </button>
-        </div>
-        <div className="mt-3">
-          <button
-            type="button"
-            className="text-white text-2xl rounded-xl w-full h-[3.79rem] bg-blue-700"
-          >
-            취소
-          </button>
-        </div>
+        </label>
+        <button
+          type="button"
+          className="border rounded-xl w-20 h-[3rem] hover:shadow-root"
+          onClick={handleAddress}
+        >
+          주소입력
+        </button>
+      </div>
+      <div className='flex flex-col gap-3'>
+        <button
+          type="submit"
+          className="text-xl border-2 rounded-xl w-full h-[3rem] border-blue-primary hover:shadow-root"
+        >
+          확인
+        </button>
+
+        <button
+          type="button"
+          className="text-white text-xl rounded-xl w-full h-[3rem] bg-blue-primary hover:shadow-root"
+        >
+          취소
+        </button>
       </div>
     </form>
   );

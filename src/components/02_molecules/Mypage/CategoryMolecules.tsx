@@ -5,12 +5,12 @@ const CategoryMolecules = ({}) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col whitespace-nowrap px-14 py-20  border border-gray-300 justify-center items-center gap-24 shadow-xl">
+    <div className="sticky top-20 flex flex-col whitespace-nowrap px-14 py-20 border border-gray-300 justify-center items-center gap-24">
       <Button
         type="button"
         aria-label="회원정보 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage' ? 'text-blue-500' : ''
+          pathname === '/MyPage' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/MyPage', { preventScrollReset: true });
@@ -22,7 +22,7 @@ const CategoryMolecules = ({}) => {
         type="button"
         aria-label="구매내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage/purchase' ? 'text-blue-500' : ''
+          pathname === '/MyPage/purchase' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/MyPage/purchase', { preventScrollReset: true });
@@ -30,12 +30,11 @@ const CategoryMolecules = ({}) => {
       >
         <span>구매내역</span>
       </Button>
-
       <Button
         type="button"
         aria-label="교환내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage/exchange' ? 'text-blue-500' : ''
+          pathname === '/MyPage/exchange' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/MyPage/exchange', { preventScrollReset: true });
@@ -47,7 +46,7 @@ const CategoryMolecules = ({}) => {
         type="button"
         aria-label="후원내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage/donation' ? 'text-blue-500' : ''
+          pathname === '/MyPage/donation' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/MyPage/donation', { preventScrollReset: true });

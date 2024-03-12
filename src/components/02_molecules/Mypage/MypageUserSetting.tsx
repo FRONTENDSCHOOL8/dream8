@@ -146,7 +146,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
   }, [navigate]);
 
   return (
-    <section className="flex flex-col gap-10">
+    <section className="w-full flex flex-col gap-10">
       {/* 모달 렌더링 */}
       {showModal && (
         <SelectModal
@@ -170,12 +170,11 @@ export const Component: React.FC<MypageUserSettingProps> = ({
         />
       )}
       <h2 className="text-2xl font-semibold">회원 정보 (필수)</h2>
-      <div className="border border-b-1"></div>
+      <div className="w-full h-[1px] bg-gray-200"></div>
       <ul className="flex flex-col gap-10">
         {Object.entries(fields).map(([field, value]) => (
-          <li key={field} className="flex gap-10 text-xl font-semibold">
-            <span className="w-[35%]">{getFieldLabel(field)}</span>
-
+          <li key={field} className="flex items-center justify-start gap-10 py-1 text-xl font-semibold">
+            <span className="w-[11rem]">{getFieldLabel(field)}</span>
             {editMode[field as keyof EditModeState] ? (
               <Input
                 id={field}
@@ -183,7 +182,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
                 value={inputValue(field, value)}
                 onChange={(e) => handleChange(e, field as keyof FieldsState)}
                 required
-                className={`border border-gray-400 p-2 focus:outline-none rounded-lg ${
+                className={`border border-gray-300 p-1 focus:outline-none rounded-lg ${
                   fields[field].trim() === ''
                     ? 'border-red-500'
                     : 'border-gray-400'
@@ -196,7 +195,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
               </div>
             )}
             {field !== 'email' && (
-              <span className="cursor-pointer flex-grow text-right">
+              <div className='ml-auto'>
                 {editMode[field as keyof EditModeState] ? (
                   <Button01
                     type="button"
@@ -214,7 +213,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
                     수정
                   </Button01>
                 )}
-              </span>
+              </div>
             )}
           </li>
         ))}
