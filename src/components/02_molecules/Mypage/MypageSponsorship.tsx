@@ -54,11 +54,11 @@ export const MypageSponsorship = () => {
   return (
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">후원내역</h2>
-      <div className="w-full h-[1px] bg-gray-200"></div>
-      <div>
+
+      <div className="flex flex-col gap-10">
         <ul>
-          <li className="flex flex-col items-center gap-8">
-            {donationData?.map((item) => (
+          <li className="flex flex-col gap-10">
+            {donationData?.slice(0, showMore)?.map((item) => (
               <TransactionListCard
                 key={item.id}
                 src={[]}
