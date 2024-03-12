@@ -32,6 +32,7 @@ function MetaTag({ metaTag }: MetaTagType) {
       <meta property="og:description" content={pageDescription} />
       <meta property="og:image" content={imgSrc} />
       <meta property="og:url" content={url} />
+      <link rel="canonical" href={url} />
     </Helmet>
   );
 }

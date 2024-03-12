@@ -1,6 +1,6 @@
+import Button from '@/components/01_atoms/Button/Button';
 import { useState } from 'react';
 import searchIcon from '/search.svg';
-import Button from '@/components/01_atoms/Button/Button';
 
 function SearchProduct({ onSearch }) {
   const [inputSearch, setInputSearch] = useState('');
@@ -31,7 +31,11 @@ function SearchProduct({ onSearch }) {
           className="absolute top-3 right-6"
           type="submit"
         >
-          <img className="w-4 h-4" src={searchIcon} alt="검색 아이콘" />
+          <img
+            className="w-4 h-4 hover:scale-125"
+            src={searchIcon}
+            alt="검색 아이콘"
+          />
         </Button>
       </form>
     </div>
