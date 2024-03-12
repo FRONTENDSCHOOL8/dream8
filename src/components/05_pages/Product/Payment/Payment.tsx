@@ -1,4 +1,5 @@
 import { pb } from '@/api/pocketbase';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 import CautionModal from '@/components/02_molecules/Modal/CautionModal/CautionModal';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import MyCartLists from '@/components/04_templates/Payment/MyCartLists/MyCartLists';
@@ -151,20 +152,34 @@ export default function Payment() {
     }
   }, [isLoggedIn, data]);
 
+  const metaTag = {
+    title: '결제 페이지',
+    pageDescription: '드림의 결제 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: 'Payment/',
+  };
+
   return (
-    <div className="text-center bg-white max-w-[90rem] m-auto" id="myCartPage">
-      <MyCartLists
-        data={data}
-        onChecked={handleCheckedMyCartLists}
-        onDelete={handleDeleteMyCartList}
-      />
-      <Purchase checkedList={checkedMyCartLists} onClick={handlePurchase} />
-      {isConfirmModalVisible && (
-        <ConfirmModal title="성공" onClose={handleCloseModal}>
-          <p>결제를 성공했습니다</p>
-        </ConfirmModal>
-      )}
-      {isCautionModalVisible && <CautionModal onClose={closeCautionModal} />}
-    </div>
+    <>
+      <MetaTag metaTag={metaTag} />
+      <div
+        className="text-center bg-white max-w-[90rem] m-auto py-36"
+        id="myCartPage"
+      >
+        <MyCartLists
+          data={data}
+          onChecked={handleCheckedMyCartLists}
+          onDelete={handleDeleteMyCartList}
+        />
+        <Purchase checkedList={checkedMyCartLists} onClick={handlePurchase} />
+        {isConfirmModalVisible && (
+          <ConfirmModal title="성공" onClose={handleCloseModal}>
+            <p>결제를 성공했습니다</p>
+          </ConfirmModal>
+        )}
+        {isCautionModalVisible && <CautionModal onClose={closeCautionModal} />}
+      </div>
+    </>
   );
 }
