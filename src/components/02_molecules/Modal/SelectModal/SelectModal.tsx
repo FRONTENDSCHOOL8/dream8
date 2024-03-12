@@ -18,15 +18,15 @@ function SelectModal({
       <div className="bg-white p-10 rounded-[50px] min-w-[31.25rem] flex flex-col justify-between gap-9">
         <h1 className="text-3xl font-bold">{title}</h1>
         <div className="text-xl font-medium">{children}</div>
-        <div className="flex justify-between">
+        <div className="flex gap-2 justify-end">
           <button
-            className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-start"
+            className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded"
             onClick={onClickNo}
           >
             아니요
           </button>
           <button
-            className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded self-end"
+            className="w-28 bg-blue-primary text-white mt-[10px] px-7 py-2 rounded"
             onClick={onClickYes}
           >
             네
