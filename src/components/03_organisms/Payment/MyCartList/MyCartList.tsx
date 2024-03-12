@@ -40,12 +40,14 @@ const MyCartList = ({ list, onChecked, onDelete }) => {
           className="w-28 h-28 rounded-3xl object-cover m-auto"
         />
       </figure>
-      <div>
-        <div className="flex justify-start font-semibold">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col font-semibold">
           <div>{title}</div>
-          <div className="text-blue-primary ml-10 text-base">{grade}등급</div>
+          <div className="font-base self-start"> 사이즈: {size}</div>
         </div>
-        <div className="flex justify-start"> 사이즈: {size}</div>
+        <div className="text-blue-primary mr-4 text-base font-semibold">
+          {grade}등급
+        </div>
       </div>
 
       <div>{price.toLocaleString()}원</div>

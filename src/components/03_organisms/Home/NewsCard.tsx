@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import NewsMoreButton from "../../01_atoms/Home/NewsMoreButton";
 import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useEffect } from "react";
 
 type NewsItemProps = {
@@ -15,21 +16,28 @@ type NewsItemProps = {
 function NewsCard({ width, height, newsItem, content }: { width: string; height: string; newsItem: NewsItemProps; content: boolean }) {
 
   useEffect(() => {
-    gsap.fromTo('.newsCard', 
-      { opacity: 0, y: 20 }, 
-      { opacity: 1, y: 0, duration: 1, stagger: 0.2,
-        scrollTrigger: {
-          trigger: '.newsContainer', 
-          start: 'top center',
-          toggleActions: 'play none none none'
-        } 
+    gsap.registerPlugin(ScrollTrigger);
+
+    setTimeout(() => {
+      if (document.querySelector('.newsCard')) {
+        gsap.fromTo('.newsCard', 
+          { opacity: 0, y: 20 }, 
+          { opacity: 1, y: 0, duration: 1, stagger: 0.2,
+            scrollTrigger: {
+              trigger: '.newsContainer', 
+              start: 'top center',
+              toggleActions: 'play none none none'
+            } 
+          }
+        );
       }
-    );
+    }, 500);
   }, []);
 
   if (!newsItem) {
     return null;
   }
+  
 
   const showContent = newsItem.content.length > 430 ? newsItem.content.substring(0, 430) + "..." : newsItem.content;
 

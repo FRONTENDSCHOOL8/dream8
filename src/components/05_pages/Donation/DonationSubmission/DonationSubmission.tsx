@@ -15,7 +15,6 @@ interface Donation {
 }
 
 function DonationSubmission() {
-  const { addNotice } = useNoticeList();
   const { plusCount } = useCountStore();
 
   const [showModal, setShowModal] = useState(false);
@@ -43,12 +42,11 @@ function DonationSubmission() {
   if (storedDonations) {
     const donations = JSON.parse(storedDonations);
 
-    // 각 후원 데이터의 ID 값
-    donations.forEach(donation => {
+    donations.forEach((donation) => {
       console.log(donation.id);
     });
   } else {
-    console.log("로컬 스토리지에 저장된 후원 데이터가 없습니다.");
+    console.log('로컬 스토리지에 저장된 후원 데이터가 없습니다.');
   }
 
   const handleDeleteDonation = (id: string) => {
@@ -84,28 +82,26 @@ function DonationSubmission() {
           userId: userInfo.id,
         };
 
-
         const response = await pb.collection('donation').create(dataToSend);
 
         const data = {
           id: response.id,
           field: 'notification',
-          title: donation.name,
+          title: donation.description,
           description: donation.description,
           isComplete: true,
           photo: '',
+          userId: userInfo.id,
+          type: 'donation',
         };
 
-        addNotice(data);
-        plusCount();
+        await pb.collection('notification').create(data);
 
-    
-        const donationList = await pb.collection('donation').create(dataToSend);
-        console.log('Saved donation ID:', donationList.id); // 포켓베이스에 저장된 데이터의 Id
+        plusCount();
 
       }
       localStorage.removeItem('donations');
-      localStorage.setItem('lastDonationId', '0'); // localStorage ID 초기화
+      localStorage.setItem('lastDonationId', '0');
 
       setDonations([]);
       setModalTitle('신청완료');
@@ -127,27 +123,22 @@ function DonationSubmission() {
   }, []);
 
   return (
-    <div className="py-20">
+    <div className="py-36">
       <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
         <h2 className="text-4xl">후원 신청</h2>
 
-        <div className='max-w-[595px] flex flex-col gap-10 items-center'>
-          <DonationForm onAddDonation={handleAddDonation}/> 
-          {/* form의 데이터는 localStorage 저장 */}
-  
+        <div className="max-w-[595px] flex flex-col gap-10 items-center">
+          <DonationForm onAddDonation={handleAddDonation} />
           <div className="w-full h-[1px] bg-gray-200"></div>
-
           <DonationTable
             donations={donations}
             onDeleteDonation={handleDeleteDonation}
           />
-
           <p>⚠️신청서 제출 후 취소 불가</p>
-
           <button
             type="button"
             onClick={handleSubmit}
-            className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white"
+            className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white transition-all"
           >
             제출하기
           </button>

@@ -52,9 +52,9 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
   };
 
   return (
-    <div className="flex gap-20 rounded-3xl border border-gray-300 font-semibold p-12 shadow-xl">
+    <div className="flex items-center justify-start gap-20 rounded-3xl font-semibold p-12 shadow-root">
       <div className="relative">
-        <div className="rounded-full w-[140px] h-[140px] overflow-hidden">
+        <div className="rounded-full w-[150px] h-[150px] overflow-hidden border-2 border-gray-300">
           <Image
             width={ImageSize}
             height={ImageSize}
@@ -62,7 +62,7 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
             alt="프로필 사진"
             src={
               selectedImage ||
-              getPbImage(userInfo.collectionId, userInfo.id, userInfo.photo)
+              getPbImage(userInfo?.collectionId, userInfo.id, userInfo.photo)
             }
             onClick={() => document.getElementById('file-input')?.click()}
           />
