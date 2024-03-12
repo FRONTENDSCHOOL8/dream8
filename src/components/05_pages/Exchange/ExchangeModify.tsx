@@ -6,6 +6,7 @@ import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmMo
 import { useQuery } from '@tanstack/react-query';
 import useGetOneUser from '@/hooks/useGetOneUser';
 import { getPbImageURL } from '@/utils/getPbImage';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 interface InputItem {
   name: string;
@@ -26,6 +27,15 @@ interface InputData {
 }
 
 export function ExchangeModify() {
+  const metaTagData = {
+    // 변수 이름을 metaTagData로 변경
+    title: '교환 수정 페이지',
+    pageDescription: '드림의 교환 수정 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: '/ExchangeModify/:id',
+  };
+
   const { id } = useParams();
   const { data } = useQuery({
     queryKey: ['exchangeModify'],
@@ -180,6 +190,7 @@ export function ExchangeModify() {
 
   return (
     <div className="pb-10 max-w-[90rem] m-auto pt-20">
+      <MetaTag metaTag={metaTagData} />
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
         교환 게시글 수정하기
       </h1>

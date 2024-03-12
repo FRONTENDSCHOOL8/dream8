@@ -8,10 +8,19 @@ import Button01 from '@/components/01_atoms/Button/Button01';
 import useGetList from '@/hooks/useGetList';
 import { useQuery } from '@tanstack/react-query';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 export function Exchange() {
   const exchangeLists = useLoaderData();
   const [isOpen, setIsOpen] = useState(false);
+  const metaTagData = {
+    // 변수 이름을 metaTagData로 변경
+    title: '교환 페이지',
+    pageDescription: '드림의 판매 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: '/Exchange',
+  };
 
   const { isLoggedIn } = useLoginFormStore();
   const [maxList, setMaxList] = useState(6);
@@ -58,6 +67,7 @@ export function Exchange() {
 
   return (
     <div className="flex flex-col gap-4 pt-32 items-center max-w-[90rem] m-auto">
+      <MetaTag metaTag={metaTagData} />
       <div className="flex flex-col gap-2">
         <div className="flex justify-end">
           <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>
