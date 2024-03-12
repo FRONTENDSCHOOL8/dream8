@@ -1,59 +1,107 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { pb } from '@/api/pocketbase';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import Close from '/close.svg';
 import Send from '/send.svg';
 import useLoginFormStore from '@/store/useLoginFormStore';
+import { pb } from '@/api/pocketbase';
 import User from '@/components/02_molecules/Exchange/User/User';
 
 function Chat() {
   const { id } = useParams();
+
   const navigate = useNavigate();
   const { userInfo } = useLoginFormStore();
-  const [messages, setMessages] = useState([]);
-  const [inputText, setInputText] = useState('');
-  const [others, setOthers] = useState(null);
 
-  const currentUser = userInfo;
+  const [chatRoom, setChatRoom] = useState([]);
+  const [currentPage, setCurrentPage] = useState([]);
+  const [chatMessage, setChatMessage] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const [otherUser, setOtherUser] = useState([]);
 
   useEffect(() => {
-    pb.collection('chat').subscribe('*', (e) => {
-      setMessages((prevMessages) => [...prevMessages, e.record]);
+    // 교환 항목 별, 메시지 가져오기
+    const getChatList = async () => {
+      // 10개 메시지 목록 가져오기
+      const chatMessages = await pb.collection('chat_message').getList(1, 10, {
+        // 현재 교환 상품과 일치하는 레코드만 필터링
+        // 사용자 정보 확장
+        expand: 'sender, chat_room',
+      });
+
+      const resultList = await pb.collection('chat_room').getList(1, 50);
+      setChatRoom(resultList);
+
+      // 메시지 목록 업데이트
+      const nextMessages = chatMessages.items.map((item) => ({
+        id: item.id,
+        message: item.message,
+        sender: item,
+        chat_room: item,
+        created: item.created,
+      }));
+
+      const writeUser = await pb
+        .collection('exchange')
+        .getOne(id, { expand: 'field' });
+
+      const otherUsers = writeUser.expand?.field.id;
+
+      const currentPage = writeUser.id;
+
+      setCurrentPage(currentPage);
+
+      setChatMessage(nextMessages);
+
+      setOtherUser(otherUsers);
+    };
+
+    getChatList();
+
+    pb.collection('chat_message').subscribe('*', (e) => {
+      // 레코드의 exchange 값이 현재 교환 상품 ID와 일치하는 경우에만 화면 업데이트
+      if (e.action === 'create' && e.record.chat_message === id) {
+        const { id, message, sender, chat_room, created } = e.record;
+        setChatMessage((prevMessages) => [
+          ...prevMessages,
+          {
+            id,
+            sender,
+            message,
+            chat_room,
+            created,
+          },
+        ]);
+      }
     });
 
-    const fetchOtherUser = async () => {
-      try {
-        const otherUser = await pb
-          .collection('exchange')
-          .getOne(id, { expand: 'field' });
-        setOthers(otherUser.expand?.field);
-      } catch (error) {
-        console.error('Error fetching other user:', error);
-      }
-    };
-
-    fetchOtherUser();
-
     return () => {
-      pb.collection('chat').unsubscribe(id);
+      pb.collection('chat_message').unsubscribe('*');
     };
-  }, [id]);
+  }, []);
 
   const handleMessageSend = async (e) => {
     e.preventDefault();
 
-    if (!others) {
-      console.error('Other user information not available');
-      return;
-    }
+    const chatRoomId = chatMessage.map(
+      (item) => item.chat_room.expand?.chat_room.id
+    );
 
-    const messageData = {
-      users: [currentUser.id, others.id],
-      message: inputText,
+    const chat_roomData = {
+      field: id,
+      users: [userInfo.id, otherUser],
     };
 
-    await pb.collection('chat').create(messageData);
+    await pb.collection('chat_room').create(chat_roomData);
+
+    const messageData = {
+      message: inputText,
+      sender: userInfo.id,
+      chat_room: chatRoomId,
+    };
+
+    await pb.collection('chat_message').create(messageData);
+
     setInputText('');
   };
 
@@ -70,18 +118,21 @@ function Chat() {
         </Button01>
       </header>
       <main className="w-full border h-[35rem] overflow-y-auto">
-        <div className="flex flex-col pt-4 gap-6">
-          <div>
-            {messages.map((message, index) => (
-              <div key={index}>
-                <User
-                  userName={
-                    message.senderId === currentUser.id
-                      ? currentUser.user_name
-                      : others?.user_name
-                  }
-                ></User>
-                <div>{message.message}</div>
+        <div className="flex flex-col pt-4">
+          <div className="flex flex-col gap-4">
+            {chatMessage.map((message, index) => (
+              <div
+                key={index}
+                className={`flex items-center ${
+                  message.sender.expand?.sender.id === userInfo.id
+                    ? 'flex-row-reverse'
+                    : 'justify-start'
+                }`}
+              >
+                <User />
+                <div className="bg-gray-700 w-64 flex items-center h-10 rounded-xl pl-2">
+                  {message.message}
+                </div>
               </div>
             ))}
           </div>
