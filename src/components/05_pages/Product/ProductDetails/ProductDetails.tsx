@@ -9,6 +9,7 @@ import createMyCartData from '@/utils/createPbMyCart';
 import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
 import { RecordModel } from 'pocketbase';
 import useModal from '@/hooks/useModal';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 export function ProductDetails() {
   const { productId, productCategory } = useParams();
@@ -61,29 +62,40 @@ export function ProductDetails() {
     navigate('/Payment');
   };
 
+  const metaTag = {
+    title: '상품상세 페이지',
+    pageDescription: '드림의 상품상세 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: `ProductDetails/${productId}/${productCategory}`,
+  };
+
   return (
-    <div className="pt-20 w-[75rem] m-auto flex flex-col">
-      <ProductDetailsInfo
-        productDetailData={productDetailData.data}
-        onClickPurchase={handleClickPurchase}
-        onClickMyCart={handleClickMyCart}
-      />
-      <Divider />
-      <RelativeProducts
-        lists={productCategoryLists.data}
-        category={productCategory}
-        currentProductId={productId}
-      />
-      {isSelectModalVisible && (
-        <SelectModal
-          title="장바구니 담기 완료"
-          onClickYes={handleMoveToMyCart}
-          onClickNo={closeSelectModal}
-        >
-          <p>구매하기 페이지로 넘어가시겠습니까?</p>
-        </SelectModal>
-      )}
-    </div>
+    <>
+      <MetaTag metaTag={metaTag} />
+      <div className="py-36 w-[75rem] m-auto flex flex-col">
+        <ProductDetailsInfo
+          productDetailData={productDetailData.data}
+          onClickPurchase={handleClickPurchase}
+          onClickMyCart={handleClickMyCart}
+        />
+        <Divider />
+        <RelativeProducts
+          lists={productCategoryLists.data}
+          category={productCategory}
+          currentProductId={productId}
+        />
+        {isSelectModalVisible && (
+          <SelectModal
+            title="장바구니 담기 완료"
+            onClickYes={handleMoveToMyCart}
+            onClickNo={closeSelectModal}
+          >
+            <p>구매하기 페이지로 넘어가시겠습니까?</p>
+          </SelectModal>
+        )}
+      </div>
+    </>
   );
 }
 
