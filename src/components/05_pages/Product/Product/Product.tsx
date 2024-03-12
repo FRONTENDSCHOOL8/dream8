@@ -50,6 +50,7 @@ export function Product() {
 async function fetchMultipleProduct(): Promise<ProductListsType[]> {
   return await pb.collection('product').getFullList({
     sort: '-created',
+    filter: 'isSale = true',
   });
 }
 

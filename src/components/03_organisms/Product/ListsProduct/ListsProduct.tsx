@@ -90,17 +90,14 @@ function ListsProduct({
       <h2 className="sr-only">상품 리스트</h2>
       <ul className="grid grid-cols-4 gap-10 relative">
         {filteredProductLists.length > 0 ? (
-          filteredProductLists.slice(0, showMoreCount).map(
-            (list) =>
-              list.isSale && (
-                <Link
-                  key={list.id}
-                  to={`/ProductDetails/${list.id}/${list.category}`}
-                >
-                  <ListProduct list={list} />
-                </Link>
-              )
-          )
+          filteredProductLists.slice(0, showMoreCount).map((list) => (
+            <Link
+              key={list.id}
+              to={`/ProductDetails/${list.id}/${list.category}`}
+            >
+              <ListProduct list={list} />
+            </Link>
+          ))
         ) : (
           <div className="absolute top-0 right-1/2 translate-x-1/2 text-xl">
             상품이 없습니다
