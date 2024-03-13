@@ -36,14 +36,14 @@ export function ExchangeDetail() {
   const Edit = userData?.id === userInfo.id;
 
   return (
-    <div className="pl-36 pt-32 pb-5 flex flex-col">
+    <div className="justify-center pt-32 pb-5 flex flex-col max-w-[90rem]  m-auto ">
       <MetaTag metaTag={metaTagData} />
       <div className="flex">
         <img
           src={getPbImageURL(data, 'product_img')}
           className="w-[18.75rem] h-[18.75rem] rounded-xl"
         />
-        <div className="flex flex-col pl-14 gap-6 max-w-[90rem]">
+        <div className="flex flex-col pl-14 gap-6">
           <p>{data?.type}</p>
           <h2 className="text-2xl">{data?.title}</h2>
           <StateBox
@@ -60,11 +60,9 @@ export function ExchangeDetail() {
           <Chat_Modify Edit={Edit} id={id} />
         </div>
       </div>
-      <div className="pt-10 flex flex-col">
+      <div className="pt-10 flex flex-col ">
         <h1>상품정보</h1>
-        <p className="w-11/12 border rounded-md h-52 p-4">
-          {data?.product_detail}
-        </p>
+        <p className="border rounded-md h-52 p-4">{data?.product_detail}</p>
       </div>
     </div>
   );
