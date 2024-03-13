@@ -68,7 +68,6 @@ function HomeContents() {
           trigger: '.sec-2-text',
           start: 'top center',
           toggleActions: 'play none none none'
-          // onEnter, onLeave, onEnterBack, onLeaveBack
         }
       }
     );
