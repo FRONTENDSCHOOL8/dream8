@@ -36,7 +36,7 @@ export function ExchangeDetail() {
   const Edit = userData?.id === userInfo.id;
 
   return (
-    <div className="p-10 pt-32">
+    <div className="pl-36 pt-32 pb-5 flex flex-col">
       <MetaTag metaTag={metaTagData} />
       <div className="flex">
         <img
