@@ -15,13 +15,10 @@
 
 
 
- 1) 프로젝트 이름 : Dream
+1) 프로젝트 이름 : Dream
+   
 👨‍👩‍👧‍👦Introducing the team
-
 <ul>
-<li> Project Name </li>
-<li> Team Member 
-
 <table>
   <tbody>
     <tr>
@@ -33,13 +30,13 @@
   </tbody>
 </table>
 
- 2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
+2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
 
- 3) 프로젝트 vacel URL :dream8.vercel.app
+3) 프로젝트 vacel URL :dream8.vercel.app
 
- 4) 작동 화면 :
+4) 작동 화면 :
 
- 5) 기술스택 : 
+5) 기술스택 : 
 
 # 2. 기획
 
