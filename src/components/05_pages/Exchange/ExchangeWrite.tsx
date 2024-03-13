@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent, useRef } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { pb } from '@/api/pocketbase';
 import Input from '@/components/01_atoms/Input/Input';
 import TextArea from '@/components/01_atoms/TextArea/TextArea';
@@ -8,7 +8,6 @@ import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmMo
 import useGetList from '@/hooks/useGetList';
 import SubmitButton from '@/components/Button/SubmitButton';
 import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 interface InputItem {
   name: string;
@@ -29,7 +28,6 @@ export function ExchangeWrite() {
   const { isLoggedIn, userInfo } = useLoginFormStore();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState({ title: '', message: '' });
-  const navigate = useNavigate();
 
   const inputList: InputItem[] = [
     { name: '제목', label: 'title', type: 'text' },
@@ -132,7 +130,6 @@ export function ExchangeWrite() {
         field: '',
       });
       setPreviewImage('');
-      navigate('/Exchange');
     } catch (error) {
       setOpen(true);
       setText({
@@ -167,10 +164,6 @@ export function ExchangeWrite() {
     const { value } = e.target;
     setInputData({ ...inputData, [label]: value });
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
 
   return (
     <div className="pb-10 max-w-[90rem] m-auto py-36">
@@ -242,7 +235,7 @@ export function ExchangeWrite() {
             <img
               src={previewImage?.toString()}
               alt=""
-              className="object-cover min-h-[14rem] w-full bg-contain"
+              className="object-cover h-36 w-full"
             />
           </div>
           <SubmitButton name="제출하기" />
