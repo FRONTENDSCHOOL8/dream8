@@ -16,7 +16,7 @@
   }
 
   .transactionListCard-molecules {
-    @apply flex items-center rounded-[2rem] shadow-root overflow-hidden;
+    @apply flex justify-between items-center m-auto px-8 rounded-[20px] shadow-root overflow-hidden w-[700px] h-[130px];
   }
 
   .skipToContent {
