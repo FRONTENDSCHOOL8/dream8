@@ -11,7 +11,7 @@ import Button from '@/components/01_atoms/Button/Button';
 export const MypageExchange = () => {
   const loadedData = useLoaderData();
   const { userInfo } = useLoginFormStore();
-  const [showMore, setShowMore] = useState(5);
+  const [showMore, setShowMore] = useState(3);
   const [exchangeData, setExchangeData] = useState<RecordModel[] | undefined>(
     loadedData
   );
@@ -72,17 +72,19 @@ export const MypageExchange = () => {
           </li>
         </ul>
 
-        {exchangeData && exchangeData.length > 0 && (
-          <div className="flex justify-center">
-            <Button
-              type="button"
-              onClick={handleShowMore}
-              className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
-            >
-              더보기
-            </Button>
-          </div>
-        )}
+        {exchangeData &&
+          exchangeData.length > 0 &&
+          exchangeData.length > showMore && (
+            <div className="flex justify-center">
+              <Button
+                type="button"
+                onClick={handleShowMore}
+                className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
+              >
+                더보기
+              </Button>
+            </div>
+          )}
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ const CategoryMolecules = ({}) => {
         type="button"
         aria-label="회원정보 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage' ? 'text-blue-primary' : ''
+          pathname === '/Mypage' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/Mypage', { preventScrollReset: true });
@@ -34,7 +34,7 @@ const CategoryMolecules = ({}) => {
         type="button"
         aria-label="구매내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage/purchase' ? 'text-blue-primary' : ''
+          pathname === '/Mypage/purchase' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/Mypage/purchase', { preventScrollReset: true });
@@ -46,7 +46,7 @@ const CategoryMolecules = ({}) => {
         type="button"
         aria-label="교환내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage/exchange' ? 'text-blue-primary' : ''
+          pathname === '/Mypage/exchange' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/Mypage/exchange', { preventScrollReset: true });
@@ -58,7 +58,7 @@ const CategoryMolecules = ({}) => {
         type="button"
         aria-label="후원내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          pathname === '/MyPage/donation' ? 'text-blue-primary' : ''
+          pathname === '/Mypage/donation' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
           navigate('/Mypage/donation', { preventScrollReset: true });

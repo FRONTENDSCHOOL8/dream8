@@ -13,7 +13,7 @@ export const MypageSponsorship = () => {
   const [donationData, setDonationData] = useState<RecordModel[] | undefined>(
     loadedData
   );
-  const [showMore, setShowMore] = useState(5);
+  const [showMore, setShowMore] = useState(3);
   const { data: donationList, isError } = useQuery<RecordModel[]>({
     queryKey: ['donation'],
     queryFn: fetchDonationValue,
@@ -70,17 +70,19 @@ export const MypageSponsorship = () => {
           </li>
         </ul>
 
-        {donationData && donationData.length > 0 && (
-          <div className="flex justify-center">
-            <Button
-              type="button"
-              onClick={handleShowMore}
-              className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
-            >
-              더보기
-            </Button>
-          </div>
-        )}
+        {donationData &&
+          donationData.length > 0 &&
+          donationData.length > showMore && (
+            <div className="flex justify-center">
+              <Button
+                type="button"
+                onClick={handleShowMore}
+                className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
+              >
+                더보기
+              </Button>
+            </div>
+          )}
       </div>
     </section>
   );
