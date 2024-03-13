@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import Close from '/close.svg';
 import Send from '/send.svg';
@@ -7,6 +7,8 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import { pb } from '@/api/pocketbase';
 import User from '@/components/02_molecules/Exchange/User/User';
 import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
+import { useQuery } from '@tanstack/react-query';
+import useGetList, { otherGetOtherUser } from '@/hooks/useGetList';
 
 function Chat() {
   const metaTagData = {
@@ -18,15 +20,23 @@ function Chat() {
     path: 'Chat/:id',
   };
 
+  const getOtherUserData = useLoaderData();
+
+  const { data } = useQuery({
+    queryKey: ['OtherUserData'],
+    queryFn: () => useGetList(id),
+    initialData: getOtherUserData,
+  });
+
   const { id } = useParams();
 
   const navigate = useNavigate();
   const { userInfo } = useLoginFormStore();
-  const [chatRoom, setChatRoom] = useState([]);
   const [chatMessage, setChatMessage] = useState([]);
   const [inputText, setInputText] = useState('');
   const [otherUser, setOtherUser] = useState([]);
-  const [chatMessageList, setChatMessageList] = useState([]);
+  const [chatRoom, setChatRoom] = useState([]);
+  const [messageData, setMessageData] = useState([]);
   const [chatRoomUsersCount, setChatRoomUsersCount] = useState(0);
 
   useLayoutEffect(() => {
@@ -35,7 +45,13 @@ function Chat() {
 
     // 채팅룸 연결 함수
     const connectChatRoom = async () => {
+      const Data = data;
+      console.log(Data);
+
+      setOtherUser(Data.map((item) => item.expand?.field));
+
       // 채팅룸 정보 가져오기
+
       const chatRoom = await pb
         .collection('chat_room')
         .getFirstListItem(`field='${id}'`);
@@ -89,7 +105,6 @@ function Chat() {
 
     // 채팅 룸 연결
     connectChatRoom();
-    setChatRoom(chatRoom);
 
     return () => {
       // 채팅 룸 연결 해제
@@ -97,25 +112,32 @@ function Chat() {
     };
   }, [id, navigate, userInfo.id]);
 
-  const handleMessageSend = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const fetchData = async () => {
+      const chat_roomData = {
+        id: chatRoom.id,
+        field: id,
+        users: [otherUser.id, userInfo.id],
+      };
 
-    const chatRoom = await pb
-      .collection('chat_room')
-      .getFirstListItem(`field='${id}'`);
+      const makeChatRoom = await pb
+        .collection('chat_room')
+        .create(chat_roomData);
 
-    console.log(chatRoom);
+      setChatRoom(makeChatRoom);
 
-    const chatList = await pb
-      .collection('chat_message')
-      .getList(1, 15, { filter: `field='${id}'` });
-
-    const chat_roomData = {
-      field: id,
-      users: [userInfo.id, otherUser],
+      const getMessage = await pb.collection('chat_message').getList(1, 10, {
+        filter: `chat_room=${chatRoom.id} `,
+        expand: 'chat_room',
+      });
+      setMessageData(getMessage);
     };
 
-    await pb.collection('chat_room').create(chat_roomData);
+    fetchData();
+  }, []);
+
+  const handleMessageSend = async (e) => {
+    e.preventDefault();
 
     const messageData = {
       message: inputText,
@@ -123,22 +145,25 @@ function Chat() {
       chat_room: chatRoom.id,
     };
 
-    setChatMessage(messageData);
-    setChatMessageList(chatList);
+    setChatMessage([...chatMessage, messageData]);
 
     await pb.collection('chat_message').create(messageData);
 
     setInputText('');
   };
 
-  console.log(chatMessageList);
+  console.log(messageData);
+
+  const messageDatas = messageData.items;
 
   return (
     <div className="pt-14">
       <MetaTag metaTag={metaTagData} />
       <div className="w-[45rem] border h-[45rem] flex flex-col m-auto mt-14 mb-10 rounded-3xl">
         <header className="h-[5rem] w-full bg-gray-700 rounded-t-3xl flex items-center">
-          <h1 className="flex items-center m-auto text-xl">{}</h1>
+          <h1 className="flex items-center m-auto text-xl">
+            {otherUser.user_name}의 방
+          </h1>
           <Button01
             type="button"
             className="p-0 h-10 w-10 bg-gray-700 border-none pr-4"
@@ -151,21 +176,20 @@ function Chat() {
           <div className="flex flex-col pt-4">
             <h1>현재 사용자수 : {chatRoomUsersCount}</h1>
             <div className="flex flex-col gap-4">
-              {/* {chatMessage.map((message, index) => (
+              {messageDatas?.map((item) => (
                 <div
-                  key={index}
                   className={`flex items-center ${
-                    message.sender.expand?.sender.id === userInfo.id
-                      ? 'flex-row-reverse'
-                      : 'justify-start'
+                    item.sender === userInfo.id
+                      ? 'justify-start'
+                      : 'flex-row-reverse'
                   }`}
                 >
                   <User />
                   <div className="bg-gray-700 w-64 flex items-center h-10 rounded-xl pl-2">
-                    {message.message}
+                    {item.message}
                   </div>
                 </div>
-              ))} */}
+              ))}
             </div>
           </div>
         </main>

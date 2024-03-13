@@ -57,7 +57,9 @@ export function Exchange() {
       >
         <ExchangeCard
           userName={userData[index]?.user_name}
-          className={`${!isLoggedIn && index >= 3 ? 'opacity-30' : ''}`}
+          className={`${
+            !isLoggedIn && index >= 3 ? 'opacity-30' : ''
+          } hover:scale-110`}
         >
           {item}
         </ExchangeCard>
