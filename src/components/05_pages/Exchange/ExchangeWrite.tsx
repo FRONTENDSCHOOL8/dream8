@@ -7,6 +7,7 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmModal';
 import useGetList from '@/hooks/useGetList';
 import SubmitButton from '@/components/Button/SubmitButton';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 interface InputItem {
   name: string;
@@ -16,6 +17,15 @@ interface InputItem {
 }
 
 export function ExchangeWrite() {
+  const metaTagData = {
+    // 변수 이름을 metaTagData로 변경
+    title: '교환 작성 페이지',
+    pageDescription: '드림의 교환 작성 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: '/ExchangeWrite',
+  };
+
   const { isLoggedIn, userInfo } = useLoginFormStore();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState({ title: '', message: '' });
@@ -157,7 +167,8 @@ export function ExchangeWrite() {
   };
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 max-w-[90rem] m-auto pt-20">
+      <MetaTag metaTag={metaTagData} />
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
         교환 게시글 작성
       </h1>
