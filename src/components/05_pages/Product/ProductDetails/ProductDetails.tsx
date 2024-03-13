@@ -31,7 +31,8 @@ export function ProductDetails() {
       },
       {
         queryKey: ['productCategoryLists'],
-        queryFn: () => fetchFilteredCategoryProducts(productCategory),
+        queryFn: () =>
+          fetchFilteredCategoryProducts(productCategory, productId),
         initialData: product.filteredCategoryProduct,
         staleTime: 1000 * 10,
       },
@@ -83,7 +84,6 @@ export function ProductDetails() {
         <RelativeProducts
           lists={productCategoryLists.data}
           category={productCategory}
-          currentProductId={productId}
         />
         {isSelectModalVisible && (
           <SelectModal
@@ -103,8 +103,8 @@ async function fetchSingleProduct(productId: string) {
   return await pb.collection('product').getOne(productId);
 }
 
-async function fetchFilteredCategoryProducts(category: string) {
-  const filter = `category = "${category}" && isSale = true`;
+async function fetchFilteredCategoryProducts(category: string, productId) {
+  const filter = `category = "${category}" && isSale = true && id != "${productId}"`;
   return await pb.collection('product').getFullList({
     sort: '-created',
     filter: filter,
@@ -127,7 +127,7 @@ export const loader =
     });
     const filteredCategoryProduct = await queryClient.ensureQueryData({
       queryKey: ['productCategoryLists'],
-      queryFn: () => fetchFilteredCategoryProducts(productCategory),
+      queryFn: () => fetchFilteredCategoryProducts(productCategory, productId),
     });
     return { productDetail, filteredCategoryProduct };
   };

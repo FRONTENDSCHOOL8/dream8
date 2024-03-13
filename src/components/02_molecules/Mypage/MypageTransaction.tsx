@@ -51,9 +51,9 @@ export const MypageTransaction = () => {
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">구매내역</h2>
       <div className="w-full h-[1px] bg-gray-200"></div>
-      <div>
+      <div className="flex flex-col gap-10">
         <ul>
-          <li className="flex flex-col gap-10">
+          <li className="flex flex-col gap-5">
             {cartData?.slice(0, showMore)?.map((item) => {
               const photo = item.expand?.productId.photo;
               const firstPhotoURL = getPbImage(

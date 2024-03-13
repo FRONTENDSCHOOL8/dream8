@@ -71,12 +71,12 @@ export function Exchange() {
   return (
     <div className="flex flex-col gap-4 pt-32 items-center max-w-[90rem] m-auto">
       <MetaTag metaTag={metaTagData} />
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         <div className="flex justify-end">
           <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>
             <Button
               type="button"
-              className="px-2 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
+              className="p-2 mr-3 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
             >
               게시글 작성
             </Button>
@@ -87,26 +87,22 @@ export function Exchange() {
         </div>
         <div className="flex justify-center items-center pt-3 pb-2">
           {isLoggedIn ? (
-            renderExchangeCards().length > 6 && (
+            <Button01
+              type="button"
+              className="rounded-md p-0 w-[4rem] border-2 text-sm hover:bg-blue-primary hover:text-white"
+              onClick={handleLoadMoreButtonClick}
+            >
+              더보기
+            </Button01>
+          ) : (
+            <div className="flex flex-col items-center">
               <Button01
                 type="button"
                 className="rounded-md p-0 w-[4rem] border-2 text-sm hover:bg-blue-primary hover:text-white"
-                onClick={handleLoadMoreButtonClick}
+                onClick={handleClick}
               >
                 더보기
               </Button01>
-            )
-          ) : (
-            <div className="flex flex-col items-center">
-              {renderExchangeCards().length > 6 && (
-                <Button01
-                  type="button"
-                  className="rounded-md p-0 w-[4rem] border-2 text-sm hover:bg-blue-primary hover:text-white"
-                  onClick={handleClick}
-                >
-                  더보기
-                </Button01>
-              )}
               <BeforeLogin />
             </div>
           )}
