@@ -20,7 +20,7 @@ function ExchangeCard({ children, className, userName }: ExchangeCardProps) {
 
   return (
     <div className={className}>
-      <section className="w-[280px] h-[400px] rounded-2xl shadow-root text-ellipsis flex flex-col gap-4 overflow-hidden">
+      <section className="w-[280px] h-[400px] rounded-2xl shadow-root text-ellipsis flex flex-col gap-4 overflow-hidden bg-gray-300">
         <div className="w-full h-52 flex justify-center items-center overflow-hidden">
           <img
             src={getPbImageURL(children, 'product_img')}

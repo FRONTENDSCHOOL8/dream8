@@ -72,11 +72,11 @@ export function Exchange() {
     <div className="flex flex-col gap-4 pt-32 items-center max-w-[90rem] m-auto">
       <MetaTag metaTag={metaTagData} />
       <div className="flex flex-col gap-2">
-        <div className="flex justify-end">
+        <div className="flex justify-end pb-4">
           <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>
             <Button
               type="button"
-              className="p-2 mr-3 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
+              className="p-1 mr-3 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
             >
               게시글 작성
             </Button>
