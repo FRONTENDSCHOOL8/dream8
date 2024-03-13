@@ -94,7 +94,7 @@ export function ExchangeWrite() {
       return;
     }
 
-    if (inputData.product_detail.length >= 500) {
+    if (inputData.product_detail.length >= 300) {
       setOpen(true);
       setText({
         title: '실패',
