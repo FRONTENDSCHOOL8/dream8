@@ -1,30 +1,50 @@
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { pb } from '@/api/pocketbase';
-import { useState } from 'react';
-import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
 import { Divider } from '@/components/01_atoms/Divider/Divider';
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
+import SelectModal from '@/components/02_molecules/Modal/SelectModal/SelectModal';
+import RelativeProducts from '@/components/03_organisms/ProductDetails/RelativeProducts/RelativeProducts';
 import ProductDetailsInfo from '@/components/04_templates/ProductDetails/ProductDetailsInfo/ProductDetailsInfo';
-import { useQuery } from '@tanstack/react-query';
+import useModal from '@/hooks/useModal';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import createMyCartData from '@/utils/createPbMyCart';
+import { useQueries } from '@tanstack/react-query';
+import { RecordModel } from 'pocketbase';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 export function ProductDetails() {
-  const { productId } = useParams();
+  const { productId, productCategory } = useParams();
   const product = useLoaderData();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-  const { data } = useQuery({
-    queryKey: ['productDetail', productId],
-    queryFn: () => fetchSingleProduct(productId),
-    initialData: product,
+  const {
+    isVisible: isSelectModalVisible,
+    openModal: openSelectModal,
+    closeModal: closeSelectModal,
+  } = useModal();
+
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ['productDetail', productId],
+        queryFn: () => productId,
+        initialData: product.productDetail,
+        staleTime: 1000 * 10,
+      },
+      {
+        queryKey: ['productCategoryLists'],
+        queryFn: () => fetchFilteredCategoryProducts(productCategory),
+        initialData: product.filteredCategoryProduct,
+        staleTime: 1000 * 10,
+      },
+    ],
   });
+
+  const [productDetailData, productCategoryLists] = results;
 
   const { isLoggedIn, userInfo } = useLoginFormStore();
 
   const handleClickPurchase = () => {
     if (isLoggedIn) {
-      createMyCartData(userInfo.id, productId);
-      navigate('/Payment');
+      createMyCartData(userInfo.id, productId).then(() => navigate('/Payment'));
     } else {
       navigate('/SignIn');
     }
@@ -32,49 +52,50 @@ export function ProductDetails() {
   const handleClickMyCart = () => {
     if (isLoggedIn) {
       createMyCartData(userInfo.id, productId);
-      handleOpenModal();
+      openSelectModal();
     } else {
       navigate('/SignIn');
     }
-  };
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-  const handleCloseModal = () => {
-    setShowModal(false);
-    console.log('닫기');
   };
 
   const handleMoveToMyCart = () => {
     navigate('/Payment');
   };
 
+  const metaTag = {
+    title: '상품상세 페이지',
+    pageDescription: '드림의 상품상세 페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: `ProductDetails/${productId}/${productCategory}`,
+  };
+
   return (
-    <div className="pt-20 w-[75rem] m-auto flex flex-col">
-      <ProductDetailsInfo
-        productData={data}
-        onClickPurchase={handleClickPurchase}
-        onClickMyCart={handleClickMyCart}
-      />
-      <Divider />
-      <section className="flex flex-col text-center">
-        <h2 className="text-3xl">관련 상품</h2>
-        <ul className="flex flex-row">
-          <li>아이템</li>
-          <li>아이템</li>
-        </ul>
-      </section>
-      {showModal && (
-        <SelectModal
-          title="장바구니 담기 완료"
-          onClickYes={handleMoveToMyCart}
-          onClickNo={handleCloseModal}
-        >
-          <p>구매하기 페이지로 넘어가시겠습니까?</p>
-        </SelectModal>
-      )}
-    </div>
+    <>
+      <MetaTag metaTag={metaTag} />
+      <div className="py-36 w-[75rem] m-auto flex flex-col">
+        <ProductDetailsInfo
+          productDetailData={productDetailData.data}
+          onClickPurchase={handleClickPurchase}
+          onClickMyCart={handleClickMyCart}
+        />
+        <Divider />
+        <RelativeProducts
+          lists={productCategoryLists.data}
+          category={productCategory}
+          currentProductId={productId}
+        />
+        {isSelectModalVisible && (
+          <SelectModal
+            title="장바구니 담기 완료"
+            onClickYes={handleMoveToMyCart}
+            onClickNo={closeSelectModal}
+          >
+            <p>구매하기 페이지로 넘어가시겠습니까?</p>
+          </SelectModal>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -82,14 +103,31 @@ async function fetchSingleProduct(productId: string) {
   return await pb.collection('product').getOne(productId);
 }
 
+async function fetchFilteredCategoryProducts(category: string) {
+  const filter = `category = "${category}" && isSale = true`;
+  return await pb.collection('product').getFullList({
+    sort: '-created',
+    filter: filter,
+  });
+}
+
 export const loader =
-  (queryClient) =>
-  async ({ params }) => {
-    const { productId } = params;
-    return await queryClient.ensureQueryData({
+  (queryClient: {
+    ensureQueryData: (arg0: {
+      queryKey: string[] | any[];
+      queryFn: (() => Promise<RecordModel>) | (() => Promise<RecordModel[]>);
+    }) => any;
+  }) =>
+  async ({ params }: any) => {
+    const { productId, productCategory } = params;
+
+    const productDetail = await queryClient.ensureQueryData({
       queryKey: ['productDetail', productId],
       queryFn: () => fetchSingleProduct(productId),
-      cacheTime: 6000 * 10,
-      staleTime: 1000 * 10,
     });
+    const filteredCategoryProduct = await queryClient.ensureQueryData({
+      queryKey: ['productCategoryLists'],
+      queryFn: () => fetchFilteredCategoryProducts(productCategory),
+    });
+    return { productDetail, filteredCategoryProduct };
   };

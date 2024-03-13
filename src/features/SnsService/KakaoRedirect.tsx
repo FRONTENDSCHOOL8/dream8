@@ -57,6 +57,7 @@ function KakaoRedirect() {
           .then((response) => response.json())
           .then((data) => {
             console.log('2번째', data);
+
             navigateTo('/');
           });
       })

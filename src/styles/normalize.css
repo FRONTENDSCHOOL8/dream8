@@ -274,6 +274,10 @@ select {
  *    `input` and others.
  */
 
+input {
+  autocomplete: off;
+}
+
 button,
 html input[type="button"], /* 1 */
 input[type="reset"],

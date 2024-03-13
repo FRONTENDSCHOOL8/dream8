@@ -1,9 +1,12 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
 const useLoginFormStore = create(
   persist(
     devtools((set) => ({
+      accessToken: null,
+      setAccessToken: (token) => set({ accessToken: token }),
+
       isLoggedIn: false,
       setIsLoggedIn: (isLoggedIn: boolean) => set({ isLoggedIn }),
 
@@ -11,8 +14,13 @@ const useLoginFormStore = create(
       setUserInfo: (userInfo: {}) => set({ userInfo }),
       clearUser: () => set({ userInfo: null }),
     })),
-    { name: 'userStore' }
+    { name: 'userStore', storage: createJSONStorage(() => sessionStorage) }
   )
 );
+
+// 페이지를 나갈 때 로컬 스토리지를 삭제하는 이벤트 리스너 추가
+// window.addEventListener('beforeunload', () => {
+//   localStorage.removeItem('userStore');
+// });
 
 export default useLoginFormStore;

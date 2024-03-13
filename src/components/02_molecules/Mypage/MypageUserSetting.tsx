@@ -6,7 +6,7 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import { pb } from '@/api/pocketbase';
 import SelectModal from '../Modal/SelectModal/SelectModal';
 import { useNavigate } from 'react-router-dom';
-import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
+import { formatPhoneNumber } from '@/utils/formatphoneNumber';
 
 export interface MypageUserSettingProps {
   fontColor?: string;
@@ -29,7 +29,7 @@ interface FieldsState {
   address: string;
 }
 
-const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
+export const Component: React.FC<MypageUserSettingProps> = ({
   fontColor,
   fontSize,
 }) => {
@@ -38,11 +38,11 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
     useLoginFormStore();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [fields, setFields] = useState<FieldsState>({
-    email: userInfo.email,
-    user_name: userInfo.user_name,
-    nickName: userInfo.nickName,
-    phone_number: userInfo.phone_number,
-    address: userInfo.address,
+    email: userInfo?.email,
+    user_name: userInfo?.user_name,
+    nickName: userInfo?.nickName,
+    phone_number: userInfo?.phone_number,
+    address: userInfo?.address,
   });
 
   const [editMode, setEditMode] = useState<EditModeState>({
@@ -72,6 +72,11 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
   };
 
   const handleSave = async (field: keyof FieldsState) => {
+    if (fields[field].trim() === '') {
+      alert(`${getFieldLabel(field)}을(를) 입력해주세요.`);
+      return;
+    }
+
     setEditMode((prevState) => ({
       ...prevState,
       [field]: false,
@@ -130,7 +135,6 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
 
   const handleConfirmDelete = useCallback(async () => {
     try {
-      console.log('삭제된겨?');
       await pb.collection('users').delete(userInfo.id);
       setShowModal(false);
       clearUser();
@@ -142,7 +146,7 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
   }, [navigate]);
 
   return (
-    <section className="flex flex-col gap-10">
+    <section className="w-full flex flex-col gap-10">
       {/* 모달 렌더링 */}
       {showModal && (
         <SelectModal
@@ -166,12 +170,11 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
         />
       )}
       <h2 className="text-2xl font-semibold">회원 정보 (필수)</h2>
-      <div className="border border-b-1"></div>
+      <div className="w-full h-[1px] bg-gray-200"></div>
       <ul className="flex flex-col gap-10">
         {Object.entries(fields).map(([field, value]) => (
-          <li key={field} className="flex gap-10 text-xl font-semibold">
-            <span className="w-[35%]">{getFieldLabel(field)}</span>
-
+          <li key={field} className="flex items-center justify-start gap-10 py-1 text-xl font-semibold">
+            <span className="w-[11rem]">{getFieldLabel(field)}</span>
             {editMode[field as keyof EditModeState] ? (
               <Input
                 id={field}
@@ -179,7 +182,12 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
                 value={inputValue(field, value)}
                 onChange={(e) => handleChange(e, field as keyof FieldsState)}
                 required
-                className="border border-gray-400 p-1"
+                className={`border border-gray-300 p-1 focus:outline-none rounded-lg ${
+                  fields[field].trim() === ''
+                    ? 'border-red-500'
+                    : 'border-gray-400'
+                  // 빈 값일 때 빨간색 테두리로 변경
+                }`}
               />
             ) : (
               <div>
@@ -187,7 +195,7 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
               </div>
             )}
             {field !== 'email' && (
-              <span className="cursor-pointer flex-grow text-right">
+              <div className='ml-auto'>
                 {editMode[field as keyof EditModeState] ? (
                   <Button01
                     type="button"
@@ -205,7 +213,7 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
                     수정
                   </Button01>
                 )}
-              </span>
+              </div>
             )}
           </li>
         ))}
@@ -219,4 +227,4 @@ const MypageUserSetting: React.FC<MypageUserSettingProps> = ({
   );
 };
 
-export default MypageUserSetting;
+Component.displayName = 'MypageSetting';

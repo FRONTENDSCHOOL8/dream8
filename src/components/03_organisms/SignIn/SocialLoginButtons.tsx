@@ -5,6 +5,8 @@ import google from 'public/google-icon.svg';
 import { kakaoURL } from '@/api/SocialKakao';
 
 import SocialButtonMolecules from '../../02_molecules/SignIn/SocialButtonMolecules';
+import useLoginFormStore from '@/store/useLoginFormStore';
+import { useNavigate } from 'react-router-dom';
 
 interface SocialLoginButtonsProps {
   className?: string;
@@ -22,8 +24,12 @@ const SocialLoginButtons: React.FC<SocialLoginButtonsProps> = ({
   thirdColor,
   fontSize,
 }) => {
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useLoginFormStore();
   const handleKakaoLogin = () => {
     window.location.href = kakaoURL;
+    setIsLoggedIn(true);
+    // navigate('/Mypage');
   };
 
   return (

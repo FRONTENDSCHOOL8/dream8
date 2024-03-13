@@ -1,53 +1,55 @@
 import Button from '@/components/01_atoms/Button/Button';
-import { useNavigate } from 'react-router-dom';
-import MypageUserSetting from './MypageUserSetting';
-import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-interface CategoryMoleculesProps {
-  handleMove: (id: string) => void;
-}
-const CategoryMolecules: React.FC<CategoryMoleculesProps> = ({
-  handleMove,
-}) => {
-  const [selectedButton, setSelectedButton] = useState('LoginInfo');
-
+const CategoryMolecules = ({}) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
-    <div className="flex flex-col whitespace-nowrap px-14 py-20  border border-gray-300 justify-center items-center gap-24 ">
+    <div className="sticky top-20 flex flex-col whitespace-nowrap px-14 py-20 border border-gray-300 justify-center items-center gap-24">
       <Button
         type="button"
         aria-label="회원정보 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'LoginInfo' ? 'text-blue-500' : ''
+          pathname === '/MyPage' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          handleMove('LoginInfo');
-          setSelectedButton('LoginInfo');
+          navigate('/Mypage', { preventScrollReset: true });
         }}
       >
         <span>회원정보</span>
       </Button>
       <Button
         type="button"
-        aria-label="거래내역 자세히보기 버튼"
+        aria-label="구매내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'Purchase' ? 'text-blue-500' : ''
+          pathname === '/MyPage/purchase' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          handleMove('Purchase');
-          setSelectedButton('Purchase');
+          navigate('/Mypage/purchase', { preventScrollReset: true });
         }}
       >
-        <span>거래내역</span>
+        <span>구매내역</span>
+      </Button>
+      <Button
+        type="button"
+        aria-label="교환내역 자세히보기 버튼"
+        className={`text-2xl font-semibold ${
+          pathname === '/MyPage/exchange' ? 'text-blue-primary' : ''
+        }`}
+        onClick={() => {
+          navigate('/Mypage/exchange', { preventScrollReset: true });
+        }}
+      >
+        <span>교환내역</span>
       </Button>
       <Button
         type="button"
         aria-label="후원내역 자세히보기 버튼"
         className={`text-2xl font-semibold ${
-          selectedButton === 'Donation' ? 'text-blue-500' : ''
+          pathname === '/MyPage/donation' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
-          handleMove('Donation');
-          setSelectedButton('Donation');
+          navigate('/Mypage/donation', { preventScrollReset: true });
         }}
       >
         <span>후원내역</span>

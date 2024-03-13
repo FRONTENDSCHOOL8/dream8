@@ -1,26 +1,11 @@
 import { pb } from '@/api/pocketbase';
-import { ExchangeItem, useListStore } from '@/store/useListStore';
-import { useEffect } from 'react';
 
-function useGetList() {
-  const { Data, setData } = useListStore();
+async function useGetList() {
+  const resultList = await pb
+    .collection('exchange')
+    .getFullList({ sort: '-created', expand: 'field' });
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const resultList: ExchangeItem[] = await pb
-        .collection('exchange')
-        .getFullList({ sort: '-created', expand: 'field' });
-      setData(resultList);
-    } catch (error) {
-      console.error('Error fetching exchange data:', error);
-    }
-  };
-
-  return Data;
+  return resultList;
 }
 
 export default useGetList;
