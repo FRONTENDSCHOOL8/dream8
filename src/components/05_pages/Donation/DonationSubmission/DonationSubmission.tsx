@@ -6,7 +6,7 @@ import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmMo
 import useLoginFormStore from '@/store/useLoginFormStore';
 import useNoticeList from '@/store/useNoticeList';
 import useCountStore from '@/store/useCountStore';
-
+import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 interface Donation {
   id?: string;
   name: string;
@@ -15,6 +15,14 @@ interface Donation {
 }
 
 function DonationSubmission() {
+  const metaTag = {
+    title: '후원 신청페이지',
+    pageDescription: '드림의 후원 신청페이지 입니다',
+    keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
+    imgSrc: '/logoOG.png',
+    path: 'DonationForm',
+  };
+
   const { plusCount } = useCountStore();
 
   const [showModal, setShowModal] = useState(false);
@@ -123,36 +131,39 @@ function DonationSubmission() {
   }, []);
 
   return (
-    <div className="py-36">
-      <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
-        <h2 className="text-4xl">후원 신청</h2>
-
-        <div className="max-w-[595px] flex flex-col gap-10 items-center">
-          <DonationForm onAddDonation={handleAddDonation} />
-          <div className="w-full h-[1px] bg-gray-200"></div>
-          <DonationTable
-            donations={donations}
-            onDeleteDonation={handleDeleteDonation}
-          />
-          <p>⚠️신청서 제출 후 취소 불가</p>
-          <button
-            type="button"
-            onClick={handleSubmit}
-            className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white transition-all"
-          >
-            제출하기
-          </button>
-          {showModal && (
-            <ConfirmModal
-              title={modalTitle}
-              onClose={() => setShowModal(false)}
+    <>
+      <MetaTag metaTag={metaTag} />
+      <div className="py-36">
+        <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
+          <h2 className="text-4xl">후원 신청</h2>
+  
+          <div className="max-w-[595px] flex flex-col gap-10 items-center">
+            <DonationForm onAddDonation={handleAddDonation} />
+            <div className="w-full h-[1px] bg-gray-200"></div>
+            <DonationTable
+              donations={donations}
+              onDeleteDonation={handleDeleteDonation}
+            />
+            <p>⚠️신청서 제출 후 취소 불가</p>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white transition-all"
             >
-              <p>{modalMessage}</p>
-            </ConfirmModal>
-          )}
+              제출하기
+            </button>
+            {showModal && (
+              <ConfirmModal
+                title={modalTitle}
+                onClose={() => setShowModal(false)}
+              >
+                <p>{modalMessage}</p>
+              </ConfirmModal>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
