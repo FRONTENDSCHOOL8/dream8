@@ -56,9 +56,9 @@ export const MypageExchange = () => {
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">교환내역</h2>
       <div className="w-full h-[1px] bg-gray-200"></div>
-      <div>
+      <div className="flex flex-col gap-10">
         <ul>
-          <li className="flex flex-col gap-10">
+          <li className="flex flex-col gap-5">
             {exchangeData?.slice(0, showMore)?.map((item) => (
               <TransactionListCard
                 key={item.id}
