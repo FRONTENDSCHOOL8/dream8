@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
+import { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { pb } from '@/api/pocketbase';
 import Input from '@/components/01_atoms/Input/Input';
 import TextArea from '@/components/01_atoms/TextArea/TextArea';
@@ -8,6 +8,7 @@ import ConfirmModal from '@/components/02_molecules/Modal/ConfirmModal/ConfirmMo
 import useGetList from '@/hooks/useGetList';
 import SubmitButton from '@/components/Button/SubmitButton';
 import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface InputItem {
   name: string;
@@ -18,7 +19,6 @@ interface InputItem {
 
 export function ExchangeWrite() {
   const metaTagData = {
-    // 변수 이름을 metaTagData로 변경
     title: '교환 작성 페이지',
     pageDescription: '드림의 교환 작성 페이지 입니다',
     keywords: 'dream, 판매, 헌옷, 기부, 후원, 지구사랑, 환경, 공헌',
@@ -29,6 +29,7 @@ export function ExchangeWrite() {
   const { isLoggedIn, userInfo } = useLoginFormStore();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState({ title: '', message: '' });
+  const navigate = useNavigate();
 
   const inputList: InputItem[] = [
     { name: '제목', label: 'title', type: 'text' },
@@ -94,7 +95,7 @@ export function ExchangeWrite() {
       return;
     }
 
-    if (inputData.product_detail.length >= 500) {
+    if (inputData.product_detail.length >= 300) {
       setOpen(true);
       setText({
         title: '실패',
@@ -131,6 +132,7 @@ export function ExchangeWrite() {
         field: '',
       });
       setPreviewImage('');
+      navigate('/Exchange');
     } catch (error) {
       setOpen(true);
       setText({
@@ -166,14 +168,21 @@ export function ExchangeWrite() {
     setInputData({ ...inputData, [label]: value });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
+
   return (
-    <div className="pb-10 max-w-[90rem] m-auto pt-20">
+    <div className="pb-10 max-w-[90rem] m-auto py-36">
       <MetaTag metaTag={metaTagData} />
-      <h1 className="flex items-center justify-center text-[1.875rem] p-10">
-        교환 게시글 작성
-      </h1>
-      <div className="flex flex-col m-auto justify-center items-center w-6/12 gap-4 pt-10 border rounded-xl pb-10">
-        <form className="flex flex-col gap-10 w-80" onSubmit={handleSubmit}>
+      <div className="flex flex-col gap-20 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
+        <h1 className="flex items-center justify-center text-[1.875rem] ">
+          교환 게시글 작성
+        </h1>
+        <form
+          className="flex flex-col gap-8 w-[37.5rem]"
+          onSubmit={handleSubmit}
+        >
           {inputList.map((item, index) => (
             <div
               key={index}
@@ -182,7 +191,7 @@ export function ExchangeWrite() {
               <label className="text-right">{item.name}</label>
               {item.options ? (
                 <select
-                  className="bg-gray-300 h-8 w-60"
+                  className="bg-gray-300 h-10 w-[28.125rem] px-5 rounded-[5px] text-center"
                   onChange={(e) => handleChange(e, item.label)}
                   value={inputData[item.label] || item.options[0]}
                 >
@@ -196,7 +205,7 @@ export function ExchangeWrite() {
                 <Input
                   id=""
                   type={item.type}
-                  className="bg-gray-300 h-8 w-60"
+                  className="bg-gray-300 h-10 w-[28.125rem] rounded-[5px]"
                   value={inputData[item.label] || ''}
                   onChange={(e) => handleChange(e, item.label)}
                 />
@@ -213,7 +222,7 @@ export function ExchangeWrite() {
             />
           </div>
           <div className="flex gap-3 items-center">
-            <label className="w-20">사진 업로드</label>
+            <label className="w-28 ">사진 업로드</label>
             <Button
               type="button"
               className="w-24 rounded-md text-blue-primary border-blue-primary border-2"
@@ -233,7 +242,7 @@ export function ExchangeWrite() {
             <img
               src={previewImage?.toString()}
               alt=""
-              className="object-cover h-36 w-full"
+              className="object-cover min-h-[14rem] w-full bg-contain"
             />
           </div>
           <SubmitButton name="제출하기" />

@@ -12,7 +12,7 @@ import Button from '@/components/01_atoms/Button/Button';
 export const MypageTransaction = () => {
   const loadedData = useLoaderData();
   const { userInfo } = useLoginFormStore();
-  const [showMore, setShowMore] = useState(5);
+  const [showMore, setShowMore] = useState(3);
   const [cartData, setCartData] = useState<RecordModel[] | undefined>(
     loadedData
   );
@@ -51,32 +51,34 @@ export const MypageTransaction = () => {
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">구매내역</h2>
       <div className="w-full h-[1px] bg-gray-200"></div>
-      <div>
+      <div className="flex flex-col gap-10">
         <ul>
-          <li className="flex flex-col gap-10">
+          <li className="flex flex-col gap-5">
             {cartData?.slice(0, showMore)?.map((item) => {
-              const photo = item.expand?.productId.photo;
-              const firstPhotoURL = getPbImage(
-                item.expand?.productId.collectionId,
-                item.expand?.productId.id,
-                photo[0] // 첫 번째 이미지 URL만 추출
-              );
-              const title = item.expand?.productId.title;
-              const isPayed = item.isPayed;
+              if (item.isPayed) {
+                const photo = item.expand?.productId.photo;
+                const firstPhotoURL = getPbImage(
+                  item.expand?.productId.collectionId,
+                  item.expand?.productId.id,
+                  photo[0] // 첫 번째 이미지 URL만 추출
+                );
+                const title = item.expand?.productId.title;
+                const isPayed = item.isPayed;
 
-              return (
-                <TransactionListCard
-                  key={item.id}
-                  src={[firstPhotoURL]} // 배열로 전달
-                  content={title}
-                  isPayed={isPayed}
-                  type={'mycart'}
-                />
-              );
+                return (
+                  <TransactionListCard
+                    key={item.id}
+                    src={[firstPhotoURL]} // 배열로 전달
+                    content={title}
+                    isPayed={isPayed}
+                    type={'mycart'}
+                  />
+                );
+              }
             })}
           </li>
         </ul>
-        {cartData && cartData.length > 0 && (
+        {cartData && cartData.length > 0 && cartData.length > showMore && (
           <div className="flex justify-center">
             <Button
               type="button"

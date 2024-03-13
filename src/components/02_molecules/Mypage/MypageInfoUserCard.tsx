@@ -3,6 +3,7 @@ import Image from '@/components/01_atoms/Image/Image';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { getPbImage } from '@/utils/getPbImage';
 import { useEffect, useState } from 'react';
+import DefaultProfile from '/profile.svg';
 
 interface MypageInfoUserCardProps {
   fontSize?: string;
@@ -52,7 +53,7 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
   };
 
   return (
-    <div className="flex items-center justify-start gap-20 rounded-3xl font-semibold p-12 shadow-root">
+    <div className="flex items-center justify-start gap-20 rounded-3xl font-semibold p-12 shadow-root w-full">
       <div className="relative">
         <div className="rounded-full w-[150px] h-[150px] overflow-hidden border-2 border-gray-300">
           <Image

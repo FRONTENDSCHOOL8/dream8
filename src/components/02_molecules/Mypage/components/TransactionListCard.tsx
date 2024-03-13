@@ -35,7 +35,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
     <div
       role="button"
       tabIndex={0}
-      className={`transactionListCard-molecules ${className} w-full justify-between`}
+      className={`transactionListCard-molecules ${className}`}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
@@ -43,19 +43,19 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
         }
       }}
     >
-      <div className="grid gap-1">
+      <div>
         {rows.length > 0 ? (
           rows.map((row, index) => (
             <div
               key={index}
-              className="flex items-center justify-center min-w-[6.25rem] max-w-[60%]"
+              className="w-[100px] h-[100px] rounded-[20px] shadow-root flex justify-center items-center overflow-hidden"
             >
               {row.map((image, idx) => (
-                <div key={idx}>
+                <div key={idx} className="w-full h-full">
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full max-w-[200px] h-auto"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               ))}
@@ -64,13 +64,13 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
         ) : (
           <img
             src={defaultImage}
-            alt={'기본 이미지'}
-            className="w-full max-w-[200px] h-auto"
+            alt={'드림로고'}
+            className="w-[70px] h-[70px]"
           />
         )}
       </div>
 
-      <div className="flex-1 ml-4 max-w-[60%] overflow-wrap break-words text-xl font-semibol">
+      <div className="w-[50%] truncate break-words text-xl font-semibol">
         {content}
       </div>
       {isPayed && (

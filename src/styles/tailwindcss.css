@@ -12,11 +12,11 @@
   }
 
   .button-atom {
-    @apply border-2 px-5 py-2 text-sm font-semibold border-blue-primary text-blue-primary bg-white rounded-md whitespace-nowrap;
+    @apply border-2 px-5 py-2 text-sm text-blue-primary bg-white rounded-md whitespace-nowrap;
   }
 
   .transactionListCard-molecules {
-    @apply flex items-center rounded-[2rem] shadow-root overflow-hidden;
+    @apply flex justify-between items-center m-auto px-8 rounded-[20px] shadow-root overflow-hidden w-[700px] h-[130px];
   }
 
   .skipToContent {

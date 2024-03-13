@@ -59,23 +59,24 @@ export function Exchange() {
           userName={userData[index]?.user_name}
           className={`${
             !isLoggedIn && index >= 3 ? 'opacity-30' : ''
-          } hover:scale-110`}
+          } hover:scale-105`}
         >
           {item}
         </ExchangeCard>
       </Link>
     ));
   };
+  86 + 225;
 
   return (
     <div className="flex flex-col gap-4 pt-32 items-center max-w-[90rem] m-auto">
       <MetaTag metaTag={metaTagData} />
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-10">
         <div className="flex justify-end">
           <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>
             <Button
               type="button"
-              className="px-2 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
+              className="p-1 mr-3 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
             >
               게시글 작성
             </Button>
@@ -84,11 +85,11 @@ export function Exchange() {
         <div className="grid grid-cols-3 gap-10 w-[60rem]">
           {renderExchangeCards()}
         </div>
-        <div className="flex justify-center items-center pt-3 pb-3">
+        <div className="flex justify-center items-center pt-3 pb-2">
           {isLoggedIn ? (
             <Button01
               type="button"
-              className="rounded-md p-0 w-[4rem] border-2 text-sm hover:bg-blue-primary hover:text-white"
+              className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary"
               onClick={handleLoadMoreButtonClick}
             >
               더보기
@@ -97,7 +98,7 @@ export function Exchange() {
             <div className="flex flex-col items-center">
               <Button01
                 type="button"
-                className="rounded-md p-0 w-[4rem] border-2 text-sm hover:bg-blue-primary hover:text-white"
+                className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary"
                 onClick={handleClick}
               >
                 더보기

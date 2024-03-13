@@ -4,8 +4,8 @@ function Footer() {
       <div className="max-w-[1440px] flex justify-between m-auto py-4">
         <div className="flex flex-col gap-2">
           <span className="text-blue-900 font-bold">C/S CENTER</span>
-          <span className="text-3xl text-gray-700">123-456-7890</span>
-          <div className="flex flex-col  text-gray-700">
+          <span className="text-3xl text-gray-800">123-456-7890</span>
+          <div className="flex flex-col  text-gray-800">
             <span>
               <strong>평일</strong> 10:100 - 17:00
             </span>

@@ -7,17 +7,9 @@ import { Link } from 'react-router-dom';
 interface relativeProductsType {
   lists: ProductListsType[];
   category: string | unknown;
-  currentProductId: string;
 }
 
-function RelativeProducts({
-  lists,
-  category,
-  currentProductId,
-}: relativeProductsType) {
-  const withoutCurrentProductIdLists = lists.filter(
-    (list) => list.id != currentProductId
-  );
+function RelativeProducts({ lists, category }: relativeProductsType) {
   const [viewNumber, setViewNumber] = useState(4);
 
   const handleShowMore = () => {
@@ -29,13 +21,11 @@ function RelativeProducts({
       <h2 className="text-3xl pb-14">관련 상품</h2>
 
       <ul className="flex flex-row gap-2 justify-center">
-        {withoutCurrentProductIdLists
-          .slice(viewNumber - 4, viewNumber)
-          .map((list) => (
-            <Link key={list.id} to={`/ProductDetails/${list.id}/${category}`}>
-              <ListProduct list={list} />
-            </Link>
-          ))}
+        {lists.slice(viewNumber - 4, viewNumber).map((list) => (
+          <Link key={list.id} to={`/ProductDetails/${list.id}/${category}`}>
+            <ListProduct list={list} />
+          </Link>
+        ))}
 
         <div className="flex items-center">
           <Button

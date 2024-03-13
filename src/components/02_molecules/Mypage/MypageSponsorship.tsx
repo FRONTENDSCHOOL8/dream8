@@ -13,7 +13,7 @@ export const MypageSponsorship = () => {
   const [donationData, setDonationData] = useState<RecordModel[] | undefined>(
     loadedData
   );
-  const [showMore, setShowMore] = useState(5);
+  const [showMore, setShowMore] = useState(3);
   const { data: donationList, isError } = useQuery<RecordModel[]>({
     queryKey: ['donation'],
     queryFn: fetchDonationValue,
@@ -54,34 +54,35 @@ export const MypageSponsorship = () => {
   return (
     <section className="flex flex-col gap-10">
       <h2 className="text-2xl font-semibold">후원내역</h2>
-
+      <div className="w-full h-[1px] bg-gray-200"></div>
       <div className="flex flex-col gap-10">
         <ul>
-          <li className="flex flex-col gap-10">
+          <li className="flex flex-col gap-5">
             {donationData?.slice(0, showMore)?.map((item) => (
               <TransactionListCard
                 key={item.id}
                 src={[]}
                 content={item.description} // donationData 배열을 직접 전달
                 isPayed={true}
-                className="p-8"
                 type={'sponsorship'}
               />
             ))}
           </li>
         </ul>
 
-        {donationData && donationData.length > 0 && (
-          <div className="flex justify-center">
-            <Button
-              type="button"
-              onClick={handleShowMore}
-              className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
-            >
-              더보기
-            </Button>
-          </div>
-        )}
+        {donationData &&
+          donationData.length > 0 &&
+          donationData.length > showMore && (
+            <div className="flex justify-center">
+              <Button
+                type="button"
+                onClick={handleShowMore}
+                className="border p-2 rounded-xl text-gray-500 m-auto text-lg hover:text-white hover:bg-blue-primary bg-white"
+              >
+                더보기
+              </Button>
+            </div>
+          )}
       </div>
     </section>
   );
