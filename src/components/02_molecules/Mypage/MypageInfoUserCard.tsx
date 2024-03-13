@@ -3,6 +3,7 @@ import Image from '@/components/01_atoms/Image/Image';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { getPbImage } from '@/utils/getPbImage';
 import { useEffect, useState } from 'react';
+import DefaultProfile from '/profile.svg';
 
 interface MypageInfoUserCardProps {
   fontSize?: string;

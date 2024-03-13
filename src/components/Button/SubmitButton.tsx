@@ -4,7 +4,7 @@ interface nameProp {
 
 function SubmitButton({ name }: nameProp) {
   return (
-    <button className="text-blue-primary text-[1.1rem] rounded-[0.3125rem] flex justify-center items-center border-2 px-2 border-blue-primary hover:bg-blue-primary hover:text-white">
+    <button className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-full m-auto hover:bg-blue-primary hover:text-white transition-all">
       {name}
     </button>
   );
