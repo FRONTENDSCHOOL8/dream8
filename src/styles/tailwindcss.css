@@ -12,7 +12,7 @@
   }
 
   .button-atom {
-    @apply border-2 px-5 py-2 text-sm font-semibold border-blue-primary text-blue-primary bg-white rounded-md whitespace-nowrap;
+    @apply border-2 px-5 py-2 text-sm text-blue-primary bg-white rounded-md whitespace-nowrap;
   }
 
   .transactionListCard-molecules {
