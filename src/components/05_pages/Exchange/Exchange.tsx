@@ -76,7 +76,7 @@ export function Exchange() {
           <Link to={isLoggedIn ? '/ExchangeWrite' : '/SignIn'}>
             <Button
               type="button"
-              className="p-2 mr-3 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
+              className="p-1 mr-3 rounded-md text-blue-primary border-blue-primary border-2 hover:bg-blue-primary hover:text-white"
             >
               게시글 작성
             </Button>
