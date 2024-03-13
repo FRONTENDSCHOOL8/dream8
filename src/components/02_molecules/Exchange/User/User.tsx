@@ -7,7 +7,7 @@ interface userNameProp {
 function User({ userName }: userNameProp) {
   return (
     <div>
-      <figure className="flex items-center gap-3 pt-1 pl-2">
+      <figure className="flex items-center gap-3 px-2">
         <img src={profile} alt="유저 프로필" />
         <figcaption>{userName}</figcaption>
       </figure>
