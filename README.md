@@ -15,15 +15,28 @@
 
 
 
- 1) 프로젝트 이름 : Dream
+1) 프로젝트 이름 : Dream
+   
+👨‍👩‍👧‍👦Introducing the team
+<ul>
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 정서린 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 스크럼마스터 : 강태욱 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 조현돈 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 여서윤 </b></sub></a><br /></td>
+     </tr>
+  </tbody>
+</table>
 
- 2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
+2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
 
- 3) 프로젝트 vacel URL :dream8.vercel.app
+3) 프로젝트 vacel URL :dream8.vercel.app
 
- 4) 작동 화면 :
+4) 작동 화면 :
 
- 5) 기술스택 : 
+5) 기술스택 : 
 
 # 2. 기획
 
