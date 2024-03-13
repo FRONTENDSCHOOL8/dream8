@@ -21,7 +21,7 @@ function ExchangeCard({ children, className, userName }: ExchangeCardProps) {
   return (
     <div className={className}>
       <section className="w-[280px] h-[400px] rounded-2xl shadow-root text-ellipsis flex flex-col gap-4 overflow-hidden">
-        <div className='w-full h-52 flex justify-center items-center overflow-hidden'>
+        <div className="w-full h-52 flex justify-center items-center overflow-hidden">
           <img
             src={getPbImageURL(children, 'product_img')}
             className="bg-gray-100 line-clamp-1 "
@@ -30,7 +30,7 @@ function ExchangeCard({ children, className, userName }: ExchangeCardProps) {
         </div>
         <User userName={userName} />
         <div className="flex flex-col gap-5 p-3">
-          <div className='flex flex-col gap-2'>
+          <div className="flex flex-col gap-2">
             <h2 className="text-lg line-clamp-1">{title}</h2>
             <p className="text-xs line-clamp-1">{product_detail}</p>
           </div>
