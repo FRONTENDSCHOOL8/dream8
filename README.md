@@ -15,19 +15,19 @@
 
 
 
-## 1) 프로젝트 이름 : Dream
+ 1) 프로젝트 이름 : Dream
 
-## 2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
+ 2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
 
-## 3) 프로젝트 vacel URL :dream8.vercel.app
+ 3) 프로젝트 vacel URL :dream8.vercel.app
 
-## 4) 작동 화면 :
+ 4) 작동 화면 :
 
-## 5) 기술스택 : 
+ 5) 기술스택 : 
 
 # 2. 기획
 
-## 1) 기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
+ 1) 기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
 
 # 3. 디자인 시안(Figma)
 
