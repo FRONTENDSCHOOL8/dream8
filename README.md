@@ -16,6 +16,22 @@
 
 
  1) 프로젝트 이름 : Dream
+👨‍👩‍👧‍👦Introducing the team
+
+<ul>
+<li> Project Name </li>
+<li> Team Member 
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 정서린 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 스크럼마스터 : 강태욱 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 조현돈 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 여서윤 </b></sub></a><br /></td>
+     </tr>
+  </tbody>
+</table>
 
  2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
 
