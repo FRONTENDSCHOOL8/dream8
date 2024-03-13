@@ -1,7 +1,7 @@
 import profile from '/profile.svg';
 
 interface userNameProp {
-  userName: string[];
+  userName?: string;
 }
 
 function User({ userName }: userNameProp) {
