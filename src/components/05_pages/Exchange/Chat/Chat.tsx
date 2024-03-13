@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button01 from '@/components/01_atoms/Button/Button01';
 import Close from '/close.svg';
 import Send from '/send.svg';
@@ -7,8 +7,6 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import { pb } from '@/api/pocketbase';
 import User from '@/components/02_molecules/Exchange/User/User';
 import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
-import { useQuery } from '@tanstack/react-query';
-import useGetList, { otherGetOtherUser } from '@/hooks/useGetList';
 
 function Chat() {
   const metaTagData = {
@@ -19,14 +17,6 @@ function Chat() {
     imgSrc: '/logoOG.png',
     path: 'Chat/:id',
   };
-
-  const getOtherUserData = useLoaderData();
-
-  const { data } = useQuery({
-    queryKey: ['OtherUserData'],
-    queryFn: () => useGetList(id),
-    initialData: getOtherUserData,
-  });
 
   const { id } = useParams();
 
@@ -45,10 +35,11 @@ function Chat() {
 
     // 채팅룸 연결 함수
     const connectChatRoom = async () => {
-      const Data = data;
-      console.log(Data);
+      const otherGetOtherUser = await pb
+        .collection('exchange')
+        .getOne(id, { expand: 'field' });
 
-      setOtherUser(Data.map((item) => item.expand?.field));
+      setOtherUser(otherGetOtherUser.expand?.field);
 
       // 채팅룸 정보 가져오기
 
@@ -127,7 +118,6 @@ function Chat() {
       setChatRoom(makeChatRoom);
 
       const getMessage = await pb.collection('chat_message').getList(1, 10, {
-        filter: `chat_room=${chatRoom.id} `,
         expand: 'chat_room',
       });
       setMessageData(getMessage);
@@ -152,9 +142,10 @@ function Chat() {
     setInputText('');
   };
 
+  const messageDatas = messageData.items;
   console.log(messageData);
 
-  const messageDatas = messageData.items;
+  const isUser = messageDatas?.map((item) => item.sender === userInfo.id);
 
   return (
     <div className="pt-14">
@@ -176,12 +167,10 @@ function Chat() {
           <div className="flex flex-col pt-4">
             <h1>현재 사용자수 : {chatRoomUsersCount}</h1>
             <div className="flex flex-col gap-4">
-              {messageDatas?.map((item) => (
+              {messageDatas?.map((item, index) => (
                 <div
                   className={`flex items-center ${
-                    item.sender === userInfo.id
-                      ? 'justify-start'
-                      : 'flex-row-reverse'
+                    isUser[index] ? 'flex-row-reverse' : 'justify-start'
                   }`}
                 >
                   <User />
