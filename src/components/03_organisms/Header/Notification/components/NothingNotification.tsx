@@ -1,5 +1,5 @@
 interface NothingNotificationProps {
-  isData: '';
+  isData: [];
 }
 
 const NothingNotification = ({ isData }: NothingNotificationProps) => {

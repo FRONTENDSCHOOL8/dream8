@@ -78,7 +78,6 @@ function NotificationCommon() {
           </div>
           <div className=" p-5 flex flex-col gap-3 ">
             <NothingNotification isData={allNotice} />
-
             <LoginCheckLayout isLoggedIn={isLoggedIn} />
             {isLoggedIn &&
               allNotice?.map((item) => {
