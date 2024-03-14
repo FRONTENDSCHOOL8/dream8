@@ -11,7 +11,6 @@
 5. 팀원 회고
 
 
-
 # 1.프로젝트 소개
 💖 Dream은 환경 보호와 사회 공헌을 동시에 실현하는 거래, 중고판매 온라인 플랫폼입니다. 사용하지 않는 옷을 버리는 대신 필요한 사람들에게 판매하고, 판매 수익은 사회 공헌 활동에 기부됩니다.
 
@@ -20,10 +19,10 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 정서린 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 스크럼마스터 : 강태욱 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 조현돈 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 여서윤 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀장 : 정서린 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px" height="100px" alt=""/><br /><sub><b>FE 스크럼마스터 : 강태욱 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/113508075/f559e510-135d-43b0-845c-abcc5cf3be1e" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀원 : 조현돈 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀원 : 여서윤 </b></sub></a><br /></td>
      </tr>
   </tbody>
 </table>
