@@ -53,11 +53,14 @@
 
 # 3. 디자인 시안(Figma)
 
-1) 디자인 시안 주소 : https://www.figma.com/file/q0xtysWbr782sTQhpVn4AL/Untitled?type=design&node-id=620%3A2429&mode=design&t=6ICEgpSdzUAjXh5p-1
-2) 화면 구성:
-3) 유저 플로우  :
 
-
+<ul>
+      <li>  디자인 시안 주소 : https://www.figma.com/file/q0xtysWbr782sTQhpVn4AL/Untitled?type=design&node-id=620%3A2429&mode=design&t=6ICEgpSdzUAjXh5p-1</li>
+   <li> 화면 구성:</li>
+   <li> 프로젝트 설치 방법 : clone 후 npm i </li>
+   <li> 유저 플로우  :</li>
+    
+</ul>
 
 
 
