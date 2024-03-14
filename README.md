@@ -34,10 +34,10 @@
 
   ## 팀원 Github 주소
  
-👨‍🚀 정서린 :  https://github.com/lin0211
-👨‍🚀 강태욱 :  https://github.com/Taewook1212
-👨‍🚀 조현돈 :  https://github.com/chohyundon
-👨‍🚀 여서윤 :  https://github.com/yeo-seoyun
+👨‍🚀 정서린 :  https://github.com/lin0211<br/>
+👨‍🚀 강태욱 :  https://github.com/Taewook1212<br/>
+👨‍🚀 조현돈 :  https://github.com/chohyundon<br/>
+👨‍🚀 여서윤 :  https://github.com/yeo-seoyun<br/>
 
 </br>
 </br>
