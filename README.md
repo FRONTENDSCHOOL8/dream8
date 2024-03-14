@@ -15,10 +15,6 @@
 # 1.프로젝트 소개
 💖 Dream은 환경 보호와 사회 공헌을 동시에 실현하는 거래, 중고판매 온라인 플랫폼입니다. 사용하지 않는 옷을 버리는 대신 필요한 사람들에게 판매하고, 판매 수익은 사회 공헌 활동에 기부됩니다.
 
-
-
-1) 프로젝트 이름 : Dream
-   https://github.com/FRONTENDSCHOOL8/dream8
 👨‍👩‍👧‍👦Introducing the team
 <ul>
 <table>
@@ -33,7 +29,8 @@
 </table>
 
 <ul>
-      <li> 프로젝트 이름 : Dream </li>
+      <li> 프로젝트 이름 : Dream
+   https://github.com/FRONTENDSCHOOL8/dream8</li>
    <li> 프로젝트 기간 :   2024 2월 19일 ~ 3월 14일</li>
    <li> 프로젝트 설치 방법 : clone 후 npm i </li>
    <li>조원 이름 : 정서린, 강태욱, 여서윤, 조현돈</li>
