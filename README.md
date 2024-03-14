@@ -45,7 +45,7 @@
 
 # 2. 기획
 
- 1) 기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
+  기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
 
 
 
