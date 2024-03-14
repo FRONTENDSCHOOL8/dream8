@@ -28,6 +28,7 @@
      </tr>
   </tbody>
 </table>
+</ul>
 
 <ul>
       <li> 프로젝트 이름 : Dream
