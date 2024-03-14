@@ -21,22 +21,45 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀장 : 정서린 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px" height="100px" alt=""/><br /><sub><b>FE 스크럼마스터 : 강태욱 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/bc3c45d7-3c02-435c-80ed-cc3ca809a800" width="100px" height="120px" alt=""/><br /><sub><b>FE 팀장 : 정서린 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/e07f7088-5a4b-4303-a564-36938a00104e" width="100px" height="100px" alt=""/><br /><sub><b>FE 스크럼마스터 : 강태욱 </b></sub></a><br /></td>
       <td align="center"><a href=""><img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/113508075/f559e510-135d-43b0-845c-abcc5cf3be1e" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀원 : 조현돈 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀원 : 여서윤 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/e43331e2-4358-40b6-b86d-69b276519f17" width="100px" height="100px" alt=""/><br /><sub><b>FE 팀원 : 여서윤 </b></sub></a><br /></td>
      </tr>
   </tbody>
 </table>
 </ul>
 
+
+  ## 팀원 Github 주소
+ 
+👨‍🚀 정서린 :  
+   👨‍🚀강태욱 :   
+      👨‍🚀 조현돈 :  
+       👨‍🚀여서윤 :  
+
+</br>
+</br>
+
+
+
 <ul>
-      <li> 프로젝트 이름 : Dream
-   https://github.com/FRONTENDSCHOOL8/dream8</li>
+      <li> 프로젝트 이름 : Dream </li>
    <li> 프로젝트 기간 :   2024 2월 19일 ~ 3월 14일</li>
-   <li> 프로젝트 설치 방법 : clone 후 npm i </li>
-   <li>조원 이름 : 정서린, 강태욱, 여서윤, 조현돈</li>
-      <li>프로젝트 vacel URL :dream8.vercel.app</li>
+   <li> 프로젝트 설치 방법 :
+    </br> 패키지 설치
+  
+      npm i
+      npm run dev
+      
+      
+   </li>
+      <li>프로젝트 vacel URL :  
+        
+        https://dream8.vercel.app/ 
+        
+    
+</li>
       <li>작동 화면 :</li>
       <li>기술스택 : </li>
 </ul>
