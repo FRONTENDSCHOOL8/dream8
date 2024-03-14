@@ -2,38 +2,27 @@
 
 # 프로젝트 명 : Dream
 
-프로젝트 기간 : 
-
-팀원별 각자 회고 :
-
-프로젝트 설치 방법 : 
-
-npm i 
-
-프로젝트일정
-
-프로젝트 기술스택 :
-
-화면 구성:
-
-유저 플로우 
-
-
 # 목차
 
-[1. 프로젝트 소개](#-1.-프로젝트-소개) <br/>
+[1. 프로젝트 소개](#1.프로젝트-소개) <br/>
 [2. 기획](#-2.-기획)  <br/>
-3. 디자인 시안(Figma)
-4. 데이터베이스 ERM
-5. 느낀점
+3. 디자인 시안(Figma) <br/>
+4. 데이터베이스 ERM <br/>
+5. 팀원 회고
 
-# 1. 프로젝트 소개
+
+
+# 1.프로젝트 소개
 💖 Dream은 환경 보호와 사회 공헌을 동시에 실현하는 거래, 중고판매 온라인 플랫폼입니다. 사용하지 않는 옷을 버리는 대신 필요한 사람들에게 판매하고, 판매 수익은 사회 공헌 활동에 기부됩니다.
 
-
+<ul>
+   <li> 프로젝트 기간 :   2024 2월 19일 ~ 3월 14일</li>
+   <li> 프로젝트 설치 방법 : clone 후 npm i </li>
+   <li></li>
+</ul>
 
 1) 프로젝트 이름 : Dream
-   
+   https://github.com/FRONTENDSCHOOL8/dream8
 👨‍👩‍👧‍👦Introducing the team
 <ul>
 <table>
@@ -49,18 +38,54 @@ npm i
 
 2) 조원 이름 : 정서린, 강태욱, 여서윤, 조현돈
 
+
 3) 프로젝트 vacel URL :dream8.vercel.app
+
 
 4) 작동 화면 :
 
+
 5) 기술스택 : 
+
+
 
 # 2. 기획
 
  1) 기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
 
+
+
+
+
 # 3. 디자인 시안(Figma)
 
 1) 디자인 시안 주소 : https://www.figma.com/file/q0xtysWbr782sTQhpVn4AL/Untitled?type=design&node-id=620%3A2429&mode=design&t=6ICEgpSdzUAjXh5p-1
+2) 화면 구성:
+3) 유저 플로우  :
+
+
+
+
+
+
 
 # 4. 데이터베이스 ERM
+
+
+
+
+
+
+
+
+# 5. 팀원 회고
+
+<ul>
+   <li> 정서린 :   어쩌구 저쩌구 </li>
+   <li> 강태욱 :   어쩌구 저쩌구 </li>
+      <li> 조현돈 :   어쩌구 저쩌구 </li>
+      <li> 여서윤 :   어쩌구 저쩌구 </li>
+   <li></li>
+</ul>
+
+
