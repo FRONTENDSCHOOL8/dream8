@@ -4,8 +4,8 @@
 
 # 목차
 
-[1. 프로젝트 소개](#1.프로젝트-소개) <br/>
-[2. 기획](#-2.-기획)  <br/>
+1. 프로젝트 소개 <br/>
+2. 기획  <br/>
 3. 디자인 시안(Figma) <br/>
 4. 데이터베이스 ERM <br/>
 5. 작동화면<br/>
@@ -109,10 +109,38 @@
 
 # 6. 작동화면
 
+[드림메인]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/7d44b0c2-83ee-48dd-8cb5-60e80beb6ec1" width="100px" height="120px" alt=""/>
 
 
+[드림로그인페이지]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/e7ff40b0-e204-4fa6-aa76-63cb8c552804" width="100px" height="120px" alt=""/>
 
 
+[드림회원가입페이지]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/b5297e6f-35a8-4d51-b7cf-c2c9c2800730" width="100px" height="120px" alt=""/>
+
+
+[드림마이페이지]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/c93ba5ed-bba3-4395-b1de-f21faafa3d10" width="100px" height="120px" alt=""/>
+
+[드림 마이페이지 내역]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/f65edd39-38a0-4f52-8be9-1b36e3c13d1d" width="100px" height="120px" alt=""/>
+
+[드림판매페이지]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/0df44477-3dd4-45eb-a402-1a833e50edc6" width="100px" height="120px" alt=""/>
+[드림판메디테일]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/512d2af1-31b8-4c4e-9715-183f64cdf2cf" width="100px" height="120px" alt=""/>
+
+
+[드림장바구니]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/9bc4bc0b-9726-4921-8a94-ba0ce425203b" width="100px" height="120px" alt=""/>
+[드림교환페이지]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/2a3c0837-e49d-4767-b8d3-f8d4991995d4" width="100px" height="120px" alt=""/>
+[교환작성]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/0ea650d5-2cfc-4f40-a3d4-417dd3dc3083" width="100px" height="120px" alt=""/>
+[후원페이지]
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/6cdb8247-6c29-41fc-ae1c-aa7a1ca8f329" width="100px" height="120px" alt=""/>
 
 # 7 기능별 페이지 분석
 
@@ -261,7 +289,7 @@ Button, Input 같이 재사용성이 높은 요소는 아토믹 컴포넌트로 
 
 <ul>
    <li> 정서린 : 프로젝트 전날까지도 불안해서 잠을 못잤던거 같아요. 하지만 막상 시작하면서 모르는 부분에 대해 이야기도 나누고 직접 코드를 작성하며 수업때는 이해 못했던 부분들을 하나하나 이해 되는 순간이 있었습니다.<br/> 때문에 뿌듯한 시간을 보냈다고 생각합니다. 다음에 새로 만날 프로젝트에서도 기억이 될 원동력이 될 것 같습니다. </li>
-   <li> 강태욱 :   어쩌구 저쩌구 </li>
+   <li> 강태욱 : 컴포넌트화가 엄청 중요하다라는 것을 알게 되었고, 문서화도 중요하다는 것을 알게 되었다. 처음부터 기획과 디자인 개발 발표까지 모든것을 하느라 시간이 부족했지만, 그만큼 전체를 보는 안목이 생겼습니다. 추가적인 리팩토링을 할 예정입니다. </li>
 
    <li> 여서윤 : 기획부터 배포까지 진행하는 동안 팀원과의 소통을 통하여 리액트의 기능과 작동 원리에 대해 더욱 알게 되는 시간이었습니다. <br>
 프로젝트 시작 전에는 걱정이 많았지만 팀원들 덕분에 무사히 끝낼 수 있었고, 프로젝트 전과 비교했을때 많이 성장했다고 생각하지만 아직은 부족한 부분이 많은 것 같아 추후에 보완하고 싶습니다. <br>
