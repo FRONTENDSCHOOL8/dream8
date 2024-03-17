@@ -61,16 +61,20 @@
         
     
 </li>
-      <li>기술스택 : </li>
+      <li>기술스택</li>
+  <img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/8037bce3-6a4c-49c7-af6c-9e06d65a85fc" width="1000px" height="500px" alt=""/>
+      
 </ul>
+
+
 
 
 
 
 # 2. 기획
 
-  기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit
-
+  기획 발표 URL : https://www.canva.com/design/DAF9ZAMC0L4/PgiIeWpvj1BTwMY_7Yckog/edit </br>
+  최종 발표 URL : https://www.canva.com/design/DAF_Xhuhykg/E4Co7XP5L8P3ZyPKtsqCnw/edit
 
 
 
@@ -79,7 +83,8 @@
 
 
 <ul>
-   <li>  디자인 시안 주소 : https://www.figma.com/file/q0xtysWbr782sTQhpVn4AL/Untitled?type=design&node-id=620%3A2429&mode=design&t=6ICEgpSdzUAjXh5p-1</li>
+   <li>  디자인 시안 주소 : https://www.figma.com/file/q0xtysWbr782sTQhpVn4AL/Untitled?type=design&node-id=620%3A2429&mode=design&t=6ICEgpSdzUAjXh5p-1
+   </li>
    <li> 화면 구성:</li>
    <li> 프로젝트 설치 방법 : clone 후 npm i </li>
    <li> 유저 플로우  :</li>
@@ -98,14 +103,14 @@
 # 5. 작동화면
 
 <div>[메인]</div>
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/7d44b0c2-83ee-48dd-8cb5-60e80beb6ec1" width="50000px" height="500px" alt=""/>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/7d44b0c2-83ee-48dd-8cb5-60e80beb6ec1" width="1000px" height="500px" alt=""/>
 
 <div>[로그인페이지] [회원가입페이지]</div> 
 <img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/e7ff40b0-e204-4fa6-aa76-63cb8c552804" width="400px" height="500px" alt=""/>
 <img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/b5297e6f-35a8-4d51-b7cf-c2c9c2800730" width="400px" height="500px" alt=""/>
 
 
-<div>[마이페이지]  [마이페이지 내역]<</div> 
+<div>[마이페이지]  [마이페이지 내역]</div> 
 <img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/c93ba5ed-bba3-4395-b1de-f21faafa3d10"  width="400px" height="500px" alt=""/>
 <img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/f65edd39-38a0-4f52-8be9-1b36e3c13d1d"  width="400px" height="500px" alt=""/>
 
