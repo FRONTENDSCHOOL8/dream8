@@ -95,52 +95,37 @@
 
 
 
+# 5. 작동화면
 
-# 5. 주요기능 
+<div>[메인]</div>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/7d44b0c2-83ee-48dd-8cb5-60e80beb6ec1" width="50000px" height="500px" alt=""/>
 
-
-<ul>
-        <li> </li>
-   <li> </li>
-   <li>  </li>
-   <li> </li>
-    
-</ul>
-
-# 6. 작동화면
-
-[드림메인]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/7d44b0c2-83ee-48dd-8cb5-60e80beb6ec1" width="100px" height="120px" alt=""/>
+<div>[로그인페이지] [회원가입페이지]</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/e7ff40b0-e204-4fa6-aa76-63cb8c552804" width="400px" height="500px" alt=""/>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/b5297e6f-35a8-4d51-b7cf-c2c9c2800730" width="400px" height="500px" alt=""/>
 
 
-[드림로그인페이지]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/e7ff40b0-e204-4fa6-aa76-63cb8c552804" width="100px" height="120px" alt=""/>
+<div>[마이페이지]  [마이페이지 내역]<</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/c93ba5ed-bba3-4395-b1de-f21faafa3d10"  width="400px" height="500px" alt=""/>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/f65edd39-38a0-4f52-8be9-1b36e3c13d1d"  width="400px" height="500px" alt=""/>
 
+<div>[판매페이지] [판메디테일]</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/0df44477-3dd4-45eb-a402-1a833e50edc6"  width="400px" height="500px" alt=""/>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/512d2af1-31b8-4c4e-9715-183f64cdf2cf"  width="400px" height="500px" alt=""/>
 
-[드림회원가입페이지]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/b5297e6f-35a8-4d51-b7cf-c2c9c2800730" width="100px" height="120px" alt=""/>
+<div>[장바구니]</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/9bc4bc0b-9726-4921-8a94-ba0ce425203b"  width="400px" height="500px" alt=""/>
 
+<div>[교환페이지] [교환작성]</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/2a3c0837-e49d-4767-b8d3-f8d4991995d4"  width="400px" height="500px" alt=""/>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/0ea650d5-2cfc-4f40-a3d4-417dd3dc3083"  width="400px" height="500px" alt=""/>
 
-[드림마이페이지]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/c93ba5ed-bba3-4395-b1de-f21faafa3d10" width="100px" height="120px" alt=""/>
+<div>[후원페이지 후원작성페이지]</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/f4954b66-f897-4ec8-80fc-7dded115a304" width="400px" height="500px" alt=""/>
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/6cdb8247-6c29-41fc-ae1c-aa7a1ca8f329" width="400px" height="500px" alt=""/>
 
-[드림 마이페이지 내역]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/f65edd39-38a0-4f52-8be9-1b36e3c13d1d" width="100px" height="120px" alt=""/>
-
-[드림판매페이지]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/0df44477-3dd4-45eb-a402-1a833e50edc6" width="100px" height="120px" alt=""/>
-[드림판메디테일]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/512d2af1-31b8-4c4e-9715-183f64cdf2cf" width="100px" height="120px" alt=""/>
-
-
-[드림장바구니]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/9bc4bc0b-9726-4921-8a94-ba0ce425203b" width="100px" height="120px" alt=""/>
-[드림교환페이지]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/2a3c0837-e49d-4767-b8d3-f8d4991995d4" width="100px" height="120px" alt=""/>
-[교환작성]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/0ea650d5-2cfc-4f40-a3d4-417dd3dc3083" width="100px" height="120px" alt=""/>
-[후원페이지]
-<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/6cdb8247-6c29-41fc-ae1c-aa7a1ca8f329" width="100px" height="120px" alt=""/>
+<div>[소식페이지]</div> 
+<img src="https://github.com/FRONTENDSCHOOL8/dream8/assets/147236247/a6452b1c-c8f1-4446-a482-61546e941499" width="400px" height="500px" alt=""/>
 
 # 7 기능별 페이지 분석
 
