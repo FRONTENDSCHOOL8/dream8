@@ -72,15 +72,15 @@ const navigationItems = [
     },
   },
   {
-    id: 'MyPage',
-    path: '/MyPage',
+    id: 'Mypage',
+    path: '/Mypage',
     text: '마이페이지',
 
     async lazy() {
-      const { MyPage } = await import('@/components/05_pages/Mypage/MyPage');
+      const { Mypage } = await import('@/components/05_pages/Mypage/MyPage');
       return {
         // loader: loader(queryClient),
-        Component: MyPage,
+        Component: Mypage,
       };
     },
 
