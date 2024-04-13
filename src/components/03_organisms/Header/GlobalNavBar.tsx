@@ -7,7 +7,14 @@ import { useState } from 'react';
 import useCountStore from '@/store/useCountStore';
 import NotificationCommon from './Notification/NotificationCommon';
 import { Dialog, Transition } from '@headlessui/react';
-function GlobalNavBar() {
+import { Alarm } from '@/components/svg/alarm';
+import { Mail } from '@/components/svg/mail';
+
+export type GlobalNavBar = {
+  color?: string;
+};
+
+function GlobalNavBar({ color }: GlobalNavBar) {
   const { count } = useCountStore();
   const [isOpen, setOpen] = useState(false);
   const { resetCount } = useCountStore();
@@ -61,11 +68,12 @@ function GlobalNavBar() {
 
       <div className="flex justify-center gap-5">
         <Button ariaLabel="이메일로 이동" type="button">
-          <img
+          {/* <img
             src={mailIcon}
             alt="이메일 아이콘"
             className="w-[30px] max-w-[30px]"
-          />
+          /> */}
+          <Mail color={color} />
         </Button>
         <Button
           ariaLabel="알람으로 이동"
@@ -73,11 +81,12 @@ function GlobalNavBar() {
           className="relative"
           onClick={handleNotificationClick}
         >
-          <img
+          {/* <img
             src={alarmIcon}
             alt="알람 아이콘"
             className=" w-[30px] max-w-[30px]"
-          />
+          /> */}
+          <Alarm color={color} />
           {count > 0 && (
             <div className="absolute -top-1 -right-1 h-6 w-6 bg-red-500 rounded-full text-white flex items-center justify-center text-xs">
               {count}

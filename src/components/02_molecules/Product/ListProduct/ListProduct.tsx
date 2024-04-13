@@ -28,7 +28,7 @@ function ListProduct({ list }: listProps): JSX.Element {
             </span>
           </div>
         </figcaption>
-      </figure>
+      </figure> 
     </li>
   );
 }

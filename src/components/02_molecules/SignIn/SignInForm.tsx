@@ -21,7 +21,6 @@ const SignInForm: React.FC<SignInFormProps> = ({ isError, className }) => {
   const {
     register,
     handleSubmit,
-    setValue,
     getValues,
     formState: { errors },
   } = useForm({
