@@ -30,7 +30,12 @@ function Header() {
   };
 
   const handleMouseLeave = () => {
-    setHeaderVisible(true);
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 0) {
+      setHeaderVisible(false);
+    } else {
+      setHeaderVisible(true);
+    }
   };
 
   return (
