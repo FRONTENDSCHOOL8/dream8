@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/react';
-import SocialLoginButtons from '@/components/03_organisms/SignIn/SocialLoginButtons';
+import SocialLoginButtons from './SocialLoginButtons';
 import { BrowserRouter } from 'react-router-dom';
 
 /**@type{import('@storybook/react').Meta} */

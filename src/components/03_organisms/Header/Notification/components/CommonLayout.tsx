@@ -2,6 +2,7 @@ import Image from '@/components/01_atoms/Image/Image';
 import closeButton from '/close_noti.svg';
 import Button from '@/components/01_atoms/Button/Button';
 import { pb } from '@/api/pocketbase';
+import useNoticeList from '@/store/useNoticeList';
 
 interface CommponLayoutProps {
   id: string;
@@ -9,8 +10,9 @@ interface CommponLayoutProps {
   alt: string;
   title: string;
   description: string;
-  isComplate: boolean;
+  isComplete: boolean;
   type: string;
+  onDelete: (id: string) => void; // 삭제 이벤트 핸들러 prop 추가
 }
 
 const CommonLayout = ({
@@ -21,14 +23,13 @@ const CommonLayout = ({
   description,
   isComplete,
   type,
+  onDelete, // 삭제 이벤트 핸들러 prop 추가
 }: CommponLayoutProps) => {
-  // const { setNotice, minusNotice } = useNoticeList();
-
   const handleDelete = async (id: string) => {
     try {
       await pb.collection('notification').delete(id);
+      onDelete(id); // 삭제 후 onDelete 함수 호출하여 다시 렌더링되도록 함
       // alert('삭제되었습니다.');
-      // minusNotice(id);
     } catch (error) {
       console.log('error ', error);
     }

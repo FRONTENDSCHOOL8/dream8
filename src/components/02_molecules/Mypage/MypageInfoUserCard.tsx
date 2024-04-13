@@ -4,6 +4,7 @@ import useLoginFormStore from '@/store/useLoginFormStore';
 import { getPbImage } from '@/utils/getPbImage';
 import { useEffect, useState } from 'react';
 import DefaultProfile from '/profile.svg';
+import { useKakaoStore } from '@/store/useKakaoStore';
 
 interface MypageInfoUserCardProps {
   fontSize?: string;
@@ -25,6 +26,7 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
 
   const { userInfo, setUserInfo } = useLoginFormStore();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { userData } = useKakaoStore();
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -37,6 +39,7 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
 
         const formData = new FormData();
         formData.append('photo', file);
+        console.log('file  ', file);
         console.log('formData   ', formData);
         try {
           pb.collection('users')
@@ -52,6 +55,13 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
     }
   };
 
+  const text = getPbImage(
+    userInfo?.collectionId,
+    userInfo?.id,
+    userInfo?.photo
+  );
+  console.log('text  ', text);
+
   return (
     <div className="flex items-center justify-start gap-20 rounded-3xl font-semibold p-12 shadow-root w-full">
       <div className="relative">
@@ -63,7 +73,13 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
             alt="프로필 사진"
             src={
               selectedImage ||
-              getPbImage(userInfo?.collectionId, userInfo.id, userInfo.photo)
+              (userInfo.photo &&
+                getPbImage(
+                  userInfo.collectionId,
+                  userInfo.id,
+                  userInfo.photo
+                )) ||
+              userData?.kakao_account?.profile.profile_image_url
             }
             onClick={() => document.getElementById('file-input')?.click()}
           />
@@ -86,14 +102,14 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
 
       <div className="flex flex-col justify-center gap-3">
         <span className="mb-3 text-3xl" style={profileStyle}>
-          {userInfo.nickName}
+          {userInfo?.nickName}
         </span>
         <div className="flex flex-col gap-1">
           <span className="text-2xl" style={profileStyle}>
             dream
           </span>
           <span className="text-2xl" style={profileStyle}>
-            {userInfo.email}
+            {userInfo?.email}
           </span>
         </div>
       </div>
