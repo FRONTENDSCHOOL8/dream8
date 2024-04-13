@@ -1,12 +1,29 @@
-import { StoryObj } from '@storybook/react';
 import Button from './Button';
+import { Meta, StoryObj } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 
-/**@type{import('@storybook/react').Meta} */
-export default {
+const meta = {
   component: Button,
-};
+  parameters: {
+    layout: 'centered',
+    actions: {
+      handles: ['mouseover', 'click .btn'],
+    },
+  },
+  tags: ['autodocs'],
 
-type Story = StoryObj<typeof Button>;
+  args: {},
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const 기본표시: Story = {
   args: {

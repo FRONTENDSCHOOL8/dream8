@@ -77,7 +77,7 @@ const navigationItems = [
     text: '마이페이지',
 
     async lazy() {
-      const { Mypage } = await import('@/components/05_pages/Mypage/MyPage');
+      const { Mypage } = await import('@/components/05_pages/Mypage/Mypage');
       return {
         // loader: loader(queryClient),
         Component: Mypage,

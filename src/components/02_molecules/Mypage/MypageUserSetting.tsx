@@ -7,6 +7,7 @@ import { pb } from '@/api/pocketbase';
 import SelectModal from '../Modal/SelectModal/SelectModal';
 import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumber } from '@/utils/formatphoneNumber';
+import { useKakaoStore } from '@/store/useKakaoStore';
 
 export interface MypageUserSettingProps {
   fontColor?: string;
@@ -33,6 +34,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
   fontColor,
   fontSize,
 }) => {
+  const { isSocialLoggedIn } = useKakaoStore();
   const navigate = useNavigate();
   const { userInfo, setUserInfo, clearUser, setIsLoggedIn } =
     useLoginFormStore();
@@ -173,7 +175,10 @@ export const Component: React.FC<MypageUserSettingProps> = ({
       <div className="w-full h-[1px] bg-gray-200"></div>
       <ul className="flex flex-col gap-10">
         {Object.entries(fields).map(([field, value]) => (
-          <li key={field} className="flex items-center justify-start gap-10 py-1 text-xl font-semibold">
+          <li
+            key={field}
+            className="flex items-center justify-start gap-10 py-1 text-xl font-semibold"
+          >
             <span className="w-[11rem]">{getFieldLabel(field)}</span>
             {editMode[field as keyof EditModeState] ? (
               <Input
@@ -194,27 +199,28 @@ export const Component: React.FC<MypageUserSettingProps> = ({
                 {field === 'phone_number' ? formatPhoneNumber(value) : value}
               </div>
             )}
-            {field !== 'email' && (
-              <div className='ml-auto'>
-                {editMode[field as keyof EditModeState] ? (
-                  <Button01
-                    type="button"
-                    onClick={() => handleSave(field as keyof FieldsState)}
-                  >
-                    저장
-                  </Button01>
-                ) : (
-                  <Button01
-                    type="button"
-                    onClick={() =>
-                      handleEditToggle(field as keyof EditModeState)
-                    }
-                  >
-                    수정
-                  </Button01>
-                )}
-              </div>
-            )}
+            {field !== 'email' &&
+              !(isSocialLoggedIn && field === 'nickName') && (
+                <div className="ml-auto">
+                  {editMode[field as keyof EditModeState] ? (
+                    <Button01
+                      type="button"
+                      onClick={() => handleSave(field as keyof FieldsState)}
+                    >
+                      저장
+                    </Button01>
+                  ) : (
+                    <Button01
+                      type="button"
+                      onClick={() =>
+                        handleEditToggle(field as keyof EditModeState)
+                      }
+                    >
+                      수정
+                    </Button01>
+                  )}
+                </div>
+              )}
           </li>
         ))}
       </ul>
