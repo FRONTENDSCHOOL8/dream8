@@ -7,6 +7,9 @@ import { kakaoURL } from '@/api/SocialKakao';
 import SocialButtonMolecules from '../../02_molecules/SignIn/SocialButtonMolecules';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GOOGLE_CLIENT_ID } from '@/api/SocialGoogle';
 
 interface SocialLoginButtonsProps {
   className?: string;
@@ -26,25 +29,46 @@ const SocialLoginButtons: React.FC<SocialLoginButtonsProps> = ({
 }) => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useLoginFormStore();
-  const handleKakaoLogin = () => {
+  const google_client_id = GOOGLE_CLIENT_ID;
+
+  const handleKakaoLogin = async () => {
     window.location.href = kakaoURL;
     setIsLoggedIn(true);
+
     // navigate('/Mypage');
+  };
+
+  const handleGoogleLogin = () => {
+    const clientId = google_client_id;
+    return (
+      <>
+        <GoogleOAuthProvider clientId={clientId}>
+          <GoogleLogin
+            onSuccess={(res) => {
+              console.log('onSuccess  ', res);
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
+        </GoogleOAuthProvider>
+      </>
+    );
   };
 
   return (
     <div className=" flex flex-col w-full gap-4">
-      <SocialButtonMolecules
+      {/* <SocialButtonMolecules
         label="Google"
         icon={google}
-        onClick={() => {}}
+        onClick={handleGoogleLogin}
         className={
           className
             ? className
             : 'relative flex text-center rounded-xl border  h-[3.79rem]'
         }
         style={{ background: fristBgColor, fontSize }}
-      />
+      /> */}
       <SocialButtonMolecules
         label="Kakao"
         icon={kakao}
@@ -56,7 +80,7 @@ const SocialLoginButtons: React.FC<SocialLoginButtonsProps> = ({
         }
         style={{ background: secondBgColor, fontSize }}
       />
-      <SocialButtonMolecules
+      {/* <SocialButtonMolecules
         label="페이스북"
         icon={facebook}
         onClick={() => {}}
@@ -66,7 +90,7 @@ const SocialLoginButtons: React.FC<SocialLoginButtonsProps> = ({
             : 'relative flex text-center bg-blue-600 rounded-xl  h-[3.79rem]'
         }
         style={{ background: thirdColor, fontSize }}
-      />
+      /> */}
     </div>
   );
 };

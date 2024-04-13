@@ -3,7 +3,7 @@ import CategoryMolecules from '@/components/02_molecules/Mypage/CategoryMolecule
 import MypageInfoUserCard from '@/components/02_molecules/Mypage/MypageInfoUserCard';
 import { Outlet } from 'react-router-dom';
 
-export function MyPage() {
+export function Mypage() {
   const metaTag = {
     title: '마이페이지',
     pageDescription: '드림의 마이 페이지 입니다',
@@ -26,4 +26,4 @@ export function MyPage() {
   );
 }
 
-MyPage.displayName = 'MyPage';
+Mypage.displayName = 'Mypage';
