@@ -8,6 +8,7 @@ export default {
       tab: { min: '768px', max: '1023px' },
       // desk: { min: '1024px', max: '1439px' },
       sm_range: { min: '200px', max: '500px' },
+      xs: '400px',
       sm: '500px',
       md_range: { min: '0px', max: '660px' },
       md: '660px',

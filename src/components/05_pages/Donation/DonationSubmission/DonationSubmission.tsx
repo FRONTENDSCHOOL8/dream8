@@ -133,7 +133,7 @@ function DonationSubmission() {
     <>
       <MetaTag metaTag={metaTag} />
       <div className="p-[5rem] xxl:py-36">
-        <div className="flex flex-col gap-8 items-center justify-center w-[20rem] md:w-[40rem] xl:w-[50rem] xxl:w-[64rem] m-auto py-20 xxl:border border-gray-200 rounded-[50px]">
+        <div className="flex flex-col gap-8 items-center justify-center w-[10rem] sm:w-[20rem] md:w-[40rem] xl:w-[50rem] xxl:w-[64rem] m-auto py-20 xxl:border border-gray-200 rounded-[50px]">
           <h2 className="text-4xl">후원 신청</h2>
 
           <div className=" max-w-[595px] flex flex-col gap-10 items-center">
