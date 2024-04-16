@@ -5,7 +5,9 @@ export default {
     screens: {
       mob: { min: '320px', max: '767px' },
       tab: { min: '768px', max: '1023px' },
-      desk: { min: '1024px', max: '1439px' },
+      // desk: { min: '1024px', max: '1439px' },
+      lg: '950px',
+      xl: { min: '1024px' },
     },
     extend: {
       display: ['group-hover'],
