@@ -86,9 +86,9 @@ function ListsProduct({
   }, [category, sort, search, productLists]);
 
   return (
-    <div className="px-[5.31rem] pb-12 flex flex-col justify-center gap-8">
+    <div className="lg_md:px-[5.31rem] pb-12 flex flex-col justify-center gap-8">
       <h2 className="sr-only">상품 리스트</h2>
-      <ul className="grid grid-cols-4 gap-10 relative">
+      <ul className="grid lg_md:grid-cols-2 xl:grid-cols-3 xxxl:grid-cols-4 gap-10 relative">
         {filteredProductLists.length > 0 ? (
           filteredProductLists.slice(0, showMoreCount).map((list) => (
             <Link

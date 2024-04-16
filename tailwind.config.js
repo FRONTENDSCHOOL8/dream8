@@ -17,6 +17,7 @@ export default {
       xxl_max: { min: '0', max: '1300px' },
       xl: '1024px',
       xxl: '1300px',
+      xxxl: '1400px',
     },
     extend: {
       display: ['group-hover'],

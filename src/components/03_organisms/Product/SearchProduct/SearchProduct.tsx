@@ -9,7 +9,7 @@ function SearchProduct({ onSearch }) {
     onSearch(inputSearch);
   };
   return (
-    <div className="w-[55rem] m-auto relative">
+    <div className=" w-full lg_md:w-[55rem] m-auto relative">
       <h2 className="sr-only">검색</h2>
       <form onSubmit={handleSearchSubmit}>
         <label htmlFor="inputSearch" className="sr-only">
