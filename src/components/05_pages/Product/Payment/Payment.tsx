@@ -162,10 +162,7 @@ export default function Payment() {
   return (
     <>
       <MetaTag metaTag={metaTag} />
-      <div
-        className="text-center bg-white max-w-[90rem] m-auto py-36"
-        id="myCartPage"
-      >
+      <div className="text-center  bg-white m-auto py-36" id="myCartPage">
         <MyCartLists
           data={data}
           onChecked={handleCheckedMyCartLists}

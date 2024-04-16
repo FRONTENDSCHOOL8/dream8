@@ -26,11 +26,11 @@ function ProductDetailsInfo({
   );
 
   return (
-    <section>
+    <section className="">
       <h2 className="sr-only">상품 디테일 페이지</h2>
       {
         <>
-          <div className="flex justify-between gap-14">
+          <div className="flex xxl_max:flex-col items-center justify-center gap-14 m-auto">
             {photo.length > 0 && (
               <ShowProductImage
                 photoURL={pbUrl}
@@ -62,7 +62,10 @@ function ProductDetailsInfo({
                 </p>
               </div>
               <Cautions />
-              <div role="group" className="grid grid-cols-2 gap-5">
+              <div
+                role="group"
+                className="grid grid-cols-2 gap-5 xxl_max:py-10"
+              >
                 <Button
                   onClick={onClickPurchase}
                   className="text-2xl border-[3px] border-blue-primary font-semibold text-blue-primary rounded-md hover:text-white hover:bg-blue-primary py-2 text-center"
@@ -81,21 +84,21 @@ function ProductDetailsInfo({
             </div>
           </div>
           <Divider />
-          <div className="text-center">
+          <div className="text-center ">
             <h2 className="text-3xl mb-10">상품 설명</h2>
 
-            <figure className="flex flex-col justify-center items-center gap-8">
+            <figure className="flex flex-col justify-center items-center gap-8 ">
               {photo &&
                 photo.map((item, index) => (
                   <img
                     src={`${pbUrl}${item}`}
                     alt={`${productDetailData.title}_${index + 1}`}
-                    className="w-[60rem] h-auto border"
+                    className="w-[20rem] lg:w-[40rem] xxl:w-[60rem] h-auto border"
                     key={`${productDetailData.title}_${index + 1}`}
                   />
                 ))}
             </figure>
-            <div className="w-[43.75rem] text-start m-auto py-10 text-xl">
+            <div className=" lg:w-[43.75rem] text-center lg:text-start m-auto py-10  lg:text-lg xxl:text-xl">
               <p>
                 {productDetailData.brand_name} {productDetailData.model_name}
               </p>
