@@ -10,7 +10,7 @@ interface InputItem {
   name: string;
   label: string;
   type: string;
-  placeholder?: string; 
+  placeholder?: string;
   value?: string;
   options?: OptionItem[];
 }
@@ -25,9 +25,9 @@ function DonationForm({ onAddDonation }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -60,35 +60,43 @@ function DonationForm({ onAddDonation }) {
       ],
       placeholder: '물품의 종류를 선택하세요',
       value: formData.category,
-    }
+    },
   ];
 
   return (
-    <form className="w-[600px] flex flex-col gap-8" onSubmit={handleSubmit}>
+    <form
+      className="w-[300px] md:w-[400px] xxl:w-[600px] flex flex-col gap-8"
+      onSubmit={handleSubmit}
+    >
       {inputList.map((input, index) => (
-        <div key={`${id}-${index}`} className='flex justify-between items-center gap-3'>
+        <div
+          key={`${id}-${index}`}
+          className="flex md_range:flex-col justify-between items-center gap-3 "
+        >
           <label htmlFor={`${id}-${input.name}`}>{input.label}</label>
           {input.type === 'select' ? (
             <select
               name={input.name}
               id={`${id}-${input.name}`}
-              className="w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300"
+              className="w-[200px] md:w-[300px] xxl:w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300"
               value={input.value}
               onChange={handleChange}
               required
             >
               <option value="">{input.placeholder}</option>
               {input.options.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
               ))}
             </select>
-          ): (
+          ) : (
             <Input
               type={input.type}
               name={input.name}
               id={`${id}-${input.name}`}
               placeholder={input.placeholder}
-              className="w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300"
+              className="w-[200px] md:w-[300px] xxl:w-[457px] h-[50px] p-2 rounded-[5px] bg-gray-300"
               value={input.value}
               onChange={handleChange}
               required
@@ -96,19 +104,19 @@ function DonationForm({ onAddDonation }) {
           )}
         </div>
       ))}
-      <div className='flex flex-col gap-3 m-auto items-center'>
+      <div className="flex flex-col gap-3 m-auto items-center">
         <label htmlFor="description" className="text-lg">
           물품 설명
         </label>
         <TextArea
           name="description"
           placeHolder="물품 설명을 입력하세요"
-          className="w-[600px] h-[200px] p-2 bg-gray-300"
+          className="w-[250px] h-[300px] md:w-[400px]  xxl:w-[600px] md:h-[200px] p-2 bg-gray-300"
           value={formData.description}
           onChange={handleChange}
         />
       </div>
-      <button 
+      <button
         type="submit"
         className="font-bold text-blue-primary border-2 border-blue-primary rounded-[3px] py-2 w-[130px] m-auto hover:bg-blue-primary hover:text-white transition-all"
       >

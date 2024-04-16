@@ -181,11 +181,14 @@ export function ExchangeWrite() {
         </h1>
         <form className="flex flex-col gap-8  " onSubmit={handleSubmit}>
           {inputList.map((item, index) => (
-            <div key={index} className="flex justify-center items-center gap-3">
+            <div
+              key={index}
+              className="flex xxl_max:flex-col justify-center items-center gap-3"
+            >
               <label className="text-right">{item.name}</label>
               {item.options ? (
                 <select
-                  className="bg-gray-300 h-10 w-[10rem] md:w-[20rem] lg:w-[28.125rem] px-5 rounded-[5px] text-center"
+                  className="bg-gray-300 h-10 w-[10rem] sm:w-[20rem]  md:w-[28.125rem] px-5 rounded-[5px] text-center"
                   onChange={(e) => handleChange(e, item.label)}
                   value={inputData[item.label] || item.options[0]}
                 >
@@ -199,7 +202,7 @@ export function ExchangeWrite() {
                 <Input
                   id=""
                   type={item.type}
-                  className="bg-gray-300 h-10 w-[10rem] md:w-[20rem] lg:w-[28.125rem] rounded-[5px]"
+                  className="bg-gray-300 h-10 w-[10rem] sm:w-[20rem] md:w-[28.125rem] rounded-[5px]"
                   value={inputData[item.label] || ''}
                   onChange={(e) => handleChange(e, item.label)}
                 />
