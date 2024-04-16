@@ -60,7 +60,7 @@ function NotificationCommon() {
 
   return createPortal(
     <FocusLock>
-      <div className="w-[30rem] max-h-[30rem] rounded-b-3xl overflow-hidden fixed top-20 right-0 shadow-2xl bg-gray-200 overflow-y-auto z-40">
+      <div className="w-[20rem] lg:w-[25rem] xxl:w-[30rem]  max-h-[30rem] rounded-b-3xl overflow-hidden fixed top-20 right-0 shadow-2xl bg-gray-200 overflow-y-auto z-40">
         <h2 className="sr-only">일반 알림창</h2>
         <div className="flex flex-col">
           <div className="sticky top-0 z-50 bg-white text-center p-12 text-xl font-semibold">
