@@ -171,9 +171,11 @@ export const Component: React.FC<MypageUserSettingProps> = ({
           }}
         />
       )}
-      <h2 className="text-2xl font-semibold">회원 정보 (필수)</h2>
-      <div className="w-full h-[1px] bg-gray-200"></div>
-      <ul className="flex flex-col gap-10">
+      <h2 className="m-auto sm:w-[20rem] md:w-[30rem] text-2xl font-semibold">
+        회원 정보 (필수)
+      </h2>
+      <div className="m-auto sm:w-[20rem] md:w-[30rem] w-full h-[1px] bg-gray-200"></div>
+      <ul className=" m-auto sm:w-[20rem] md:w-[30rem] w-full flex flex-col gap-10 ">
         {Object.entries(fields).map(([field, value]) => (
           <li
             key={field}
