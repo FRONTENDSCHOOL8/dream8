@@ -66,7 +66,6 @@ export function Exchange() {
       </Link>
     ));
   };
-  86 + 225;
 
   return (
     <div className="flex flex-col gap-4 pt-32 items-center max-w-[90rem] m-auto">
@@ -82,7 +81,7 @@ export function Exchange() {
             </Button>
           </Link>
         </div>
-        <div className="grid grid-cols-3 gap-10 w-[60rem]">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 w-full xxxl:max-w-[60rem]">
           {renderExchangeCards()}
         </div>
         <div className="flex justify-center items-center pt-3 pb-2">
