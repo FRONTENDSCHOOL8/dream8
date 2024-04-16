@@ -5,7 +5,7 @@ const CategoryMolecules = ({}) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
-    <div className="z-10  m-auto sticky top-20 flex  xxl:flex-col whitespace-nowrap p-7 xxl:px-14 xxl:py-20 bg-white  border border-gray-300 justify-center items-center xxl:gap-20 lg:gap-10 gap-2">
+    <div className="z-10  m-auto xxl:sticky top-20 flex  xxl:flex-col whitespace-nowrap p-7 xxl:px-14 xxl:py-20 bg-white  border border-gray-300 justify-center items-center xxl:gap-20 lg:gap-10 gap-2">
       <Button
         type="button"
         aria-label="회원정보 자세히보기 버튼"

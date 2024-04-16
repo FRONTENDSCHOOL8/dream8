@@ -14,7 +14,7 @@ export function Mypage() {
   return (
     <section className=" flex flex-col justify-center items-center m-auto py-36">
       <MetaTag metaTag={metaTag} />
-      <h2 className="xxl_max:fixed xxl_max:top-8 bg-white w-full text-3xl font-semibold text-center">
+      <h2 className=" xxl_max:top-8 bg-white w-full text-3xl font-semibold text-center">
         마이페이지
       </h2>
 

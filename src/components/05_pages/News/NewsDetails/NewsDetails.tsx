@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
-import { pb } from "@/api/pocketbase";
+import { useParams } from 'react-router-dom';
+import { pb } from '@/api/pocketbase';
 import { getPbImage } from '@/utils/getPbImage';
-import NewsTitle from "../../../01_atoms/News/NewsTitle/NewsTitle";
-import { useQuery } from "@tanstack/react-query";
+import NewsTitle from '../../../01_atoms/News/NewsTitle/NewsTitle';
+import { useQuery } from '@tanstack/react-query';
 import MetaTag from '@/components/01_atoms/MetaTag/MetaTag';
 
 export function NewsDetail() {
@@ -17,8 +17,8 @@ export function NewsDetail() {
   const { newsId } = useParams();
 
   const { data: news } = useQuery({
-    queryKey: ['newsDetail', newsId ],
-    queryFn: () => fetchNewsDetail(newsId)
+    queryKey: ['newsDetail', newsId],
+    queryFn: () => fetchNewsDetail(newsId),
   });
 
   return (
@@ -26,16 +26,23 @@ export function NewsDetail() {
       <MetaTag metaTag={metaTag} />
       <div className="max-w-[90rem] m-auto bg-white py-36">
         <NewsTitle />
-        <div className="flex flex-col m-auto gap-14 justify-center py-5 w-[55rem]">
-          <p className="text-center">[발행 날짜: {new Date(news.created).toLocaleDateString()}]</p>
-          <p className="text-3xl font-bold text-center">{news.title}</p>
+        <div className=" flex flex-col m-auto gap-14 justify-center py-5 w-[18rem] md:w-[30rem] xl:w-[50rem]">
+          <p className="text-center">
+            [발행 날짜: {new Date(news.created).toLocaleDateString()}]
+          </p>
+          <p className="text-xl md:text-2xl xl:text-3xl font-bold text-center">
+            {news.title}
+          </p>
           <img
             src={getPbImage(news.collectionId, news.id, news.photo)}
             alt={news.title}
-            className="w-full"
+            className="m-auto w-[18rem] md:w-[30rem] xl:w-[50rem] xxl:w-full"
           />
           {news.content.split('. ').map((line, index) => (
-            <p key={`news_Description_${index}`} className="-my-4 text-lg">
+            <p
+              key={`news_Description_${index}`}
+              className="m-auto w-[18rem] md:w-[30rem] xl:w-[50rem] -my-4 text-md xl:text-lg"
+            >
               {line}.
             </p>
           ))}
@@ -47,15 +54,17 @@ export function NewsDetail() {
 
 async function fetchNewsDetail(newsId: string) {
   const response = await pb.collection('news').getOne(newsId);
-  return response
+  return response;
 }
 
-export const loader = (queryClient) => async ({ params }) => {
-  const { newsId } = params;
-  return await queryClient.ensureQueryData({
-    queryKey: ['newsDetail', newsId ],
-    queryFn: () => fetchNewsDetail(newsId),
-    cacheTime: 6000 * 10,
-    staleTime: 1000 * 10,
-  })
-}
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const { newsId } = params;
+    return await queryClient.ensureQueryData({
+      queryKey: ['newsDetail', newsId],
+      queryFn: () => fetchNewsDetail(newsId),
+      cacheTime: 6000 * 10,
+      staleTime: 1000 * 10,
+    });
+  };
