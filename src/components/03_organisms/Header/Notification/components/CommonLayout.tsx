@@ -35,7 +35,7 @@ const CommonLayout = ({
     }
   };
   return (
-    <section className="flex justify-between items-center  w-full relative bg-white p-5 pr-10 rounded-lg gap-10">
+    <section className="flex justify-between items-center   w-full relative bg-white p-5 pr-10 rounded-lg gap-10">
       <div className="flex flex-col gap-10">
         <h2 className="text-blue-primary text-lg">
           {isComplete && type === 'donation'
@@ -44,7 +44,7 @@ const CommonLayout = ({
             ? '구입완료'
             : ''}
         </h2>
-        <span className="text-base"> {title || description} </span>
+        <span className="text-base "> {title || description} </span>
       </div>
 
       <Image
