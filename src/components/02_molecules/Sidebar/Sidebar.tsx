@@ -51,7 +51,7 @@ const Sidebar = () => {
           showSidebar ? 'translate-x-0 ' : 'translate-x-full'
         }`}
       >
-        <div className="mt-14 text-4xl font-semibold text-white flex flex-col gap-10 items-center">
+        <div className="z-50 mt-14 text-4xl font-semibold text-white flex flex-col gap-10 items-center">
           <SidebarAlarm></SidebarAlarm>
           <LoginOut></LoginOut>
           <GlobalMenu direction={'flex-col'} />
