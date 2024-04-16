@@ -49,6 +49,7 @@ export function Exchange() {
     setIsOpen(false);
   };
 
+  console.log('isLoggedIn  ', isLoggedIn);
   const renderExchangeCards = () => {
     return data?.slice(0, maxList).map((item, index) => (
       <Link

@@ -19,9 +19,10 @@ export function ExchangeDetail() {
     path: '/Exchange/ExchangeDetail/:id',
   };
 
-  const { userInfo } = useLoginFormStore();
+  const { isLoggedIn, userInfo } = useLoginFormStore();
   const exchangeOneLists = useLoaderData();
 
+  console.log('isLoggedIn  ', isLoggedIn);
   const { data, isLoading, error } = useQuery({
     queryKey: ['exchangeDetail', id],
     queryFn: () => useGetOneUser(id),

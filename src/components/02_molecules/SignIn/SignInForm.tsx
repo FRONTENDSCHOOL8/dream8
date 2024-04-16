@@ -26,7 +26,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ isError, className }) => {
   } = useForm({
     mode: 'onChange',
   });
-
+  console.log('isLoggedIn  ', isLoggedIn);
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const email = getValues('email');

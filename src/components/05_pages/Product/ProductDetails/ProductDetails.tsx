@@ -42,7 +42,7 @@ export function ProductDetails() {
   const [productDetailData, productCategoryLists] = results;
 
   const { isLoggedIn, userInfo } = useLoginFormStore();
-
+  console.log('isLoggedIn  ', isLoggedIn);
   const handleClickPurchase = () => {
     if (isLoggedIn) {
       createMyCartData(userInfo.id, productId).then(() => navigate('/Payment'));

@@ -70,7 +70,7 @@ export function ExchangeWrite() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log('isLoggedIn  ', isLoggedIn);
     if (!isLoggedIn) {
       setOpen(true);
       setText({

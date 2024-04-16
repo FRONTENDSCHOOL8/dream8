@@ -194,17 +194,17 @@ export function ExchangeModify() {
       <h1 className="flex items-center justify-center text-[1.875rem] p-10">
         교환 게시글 수정하기
       </h1>
-      <div className="flex flex-col m-auto justify-center items-center w-6/12 gap-4 pt-10 border rounded-xl pb-10">
-        <form className="flex flex-col gap-10 w-80" onSubmit={handleSubmit}>
+      <div className="flex flex-col m-auto justify-center items-center w-[20rem] lg:w-[40rem]  gap-4 pt-10 border rounded-xl pb-10">
+        <form className="flex flex-col gap-10 w-[80%]" onSubmit={handleSubmit}>
           {inputList.map((item, index) => (
             <div
               key={index}
-              className="flex justify-end items-center gap-3 pr-2"
+              className="flex justify-end items-center w-full gap-3 pr-2"
             >
-              <label className="text-right">{item.name}</label>
+              <label className="text-right w-[7rem]">{item.name}</label>
               {item.options ? (
                 <select
-                  className="bg-gray-300 h-8 w-60"
+                  className="bg-gray-300 h-8  w-[20rem] lg:w-[40rem]"
                   onChange={(e) => handleChange(e, item.label)}
                   value={inputData[item.label]}
                 >
@@ -217,7 +217,7 @@ export function ExchangeModify() {
               ) : (
                 <input
                   type={item.type}
-                  className="bg-gray-300 h-8 w-60"
+                  className="bg-gray-300 h-8  w-[20rem] lg:w-[40rem]"
                   value={inputData[item.label]}
                   onChange={(e) => handleChange(e, item.label)}
                 />
@@ -256,7 +256,7 @@ export function ExchangeModify() {
                   : getPbImageURL(data, 'product_img')
               }
               alt="Uploaded preview"
-              className="object-cover h-44 w-full"
+              className="object-cover h-[20rem] w-full"
             />
           </div>
           <SubmitButton name="제출하기" />
