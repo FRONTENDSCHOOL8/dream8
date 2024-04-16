@@ -47,11 +47,11 @@ const Sidebar = () => {
 
       <div
         ref={sidebarRef}
-        className={`top-0 right-0 w-[35vw] bg-blue-600  p-10 pl-24 text-white fixed h-full z-40  ease-in-out duration-300 ${
+        className={`top-0 right-0 w-[35vw] bg-blue-600 p-10 pl-35 text-white fixed h-full z-40  ease-in-out duration-300 ${
           showSidebar ? 'translate-x-0 ' : 'translate-x-full'
         }`}
       >
-        <div className="mt-14 text-4xl font-semibold text-white flex flex-col gap-10">
+        <div className="mt-14 text-4xl font-semibold text-white flex flex-col gap-10 items-center">
           <SidebarAlarm></SidebarAlarm>
           <LoginOut></LoginOut>
           <GlobalMenu direction={'flex-col'} />

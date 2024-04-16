@@ -14,7 +14,7 @@ interface SignInFormProps {
   labelPassword?: string;
 }
 const SignInForm: React.FC<SignInFormProps> = ({ isError, className }) => {
-  const { isLoggedIn } = useLoginFormStore();
+  const { isLoggedIn, setUserInfo, setIsLoggedIn } = useLoginFormStore();
   const [error, setError] = useState<string>(''); // error 상태 추가
   const navigate = useNavigate();
 
@@ -35,8 +35,8 @@ const SignInForm: React.FC<SignInFormProps> = ({ isError, className }) => {
       // 로그인 요청
       await pb.collection('users').authWithPassword(email, password);
 
-      useLoginFormStore.getState().setUserInfo(pb.authStore.model);
-      useLoginFormStore.getState().setIsLoggedIn(!isLoggedIn);
+      setUserInfo(pb.authStore.model);
+      setIsLoggedIn(!isLoggedIn);
 
       navigate('/Mypage');
     } catch (error) {
@@ -46,8 +46,8 @@ const SignInForm: React.FC<SignInFormProps> = ({ isError, className }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-[28.625rem] ">
-      <div className="flex flex-col w-full gap-3 ">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-[100%] ">
+      <div className="flex flex-col gap-3 ">
         <div>
           <label htmlFor="email">이메일</label>
           <input

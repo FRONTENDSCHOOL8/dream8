@@ -58,7 +58,7 @@ function NewsCard({
       : newsItem.content;
 
   return (
-    <li
+    <div
       className={`newsCard ${width} ${height} list-none flex flex-col items-end justify-between gap-5 m-auto p-8 rounded-[50px] bg-white shadow-root`}
     >
       <div className="w-full h-full">
@@ -69,9 +69,11 @@ function NewsCard({
           </span>
         </div>
         <div>
-          <div className="overflow-hidden  text-gray-500">
+          <div className="overflow-hidden text-gray-500">
             <p className="text-[20px]">"{newsItem.title}"</p>
-            {content && <p className="mt-10">{showContent}</p>}
+            {content && (
+              <p className="mt-10 lg_md_range:line-clamp-1">{showContent}</p>
+            )}
           </div>
         </div>
       </div>
@@ -79,7 +81,7 @@ function NewsCard({
       <Link to={`/NewsDetails/${newsItem.id}`}>
         <NewsMoreButton />
       </Link>
-    </li>
+    </div>
   );
 }
 

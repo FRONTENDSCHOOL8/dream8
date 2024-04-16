@@ -10,16 +10,14 @@ function SignUp() {
     path: 'SignUp',
   };
   return (
-    <section className="py-36">
+    <section className="py-14 lg:py-36">
       <MetaTag metaTag={metaTag} />
-      <div className="flex flex-col gap-10 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
-        <h2 className="text-5xl">회원가입</h2>
-        <div className="">
-          <SignUpInput />
-        </div>
+      <div className="flex flex-col gap-10 items-center justify-center  w-[80%] lg:w-[800px]  m-auto py-20 lg:border border-gray-200 rounded-[50px]">
+        <h2 className="text-3xl md:text-5xl">회원가입</h2>
+        <SignUpInput />
       </div>
     </section>
   );
 }
-
+// md:w-[40rem] xl:w-[64rem]
 export default SignUp;
