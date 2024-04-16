@@ -63,9 +63,9 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
   console.log('text  ', text);
 
   return (
-    <div className="flex items-center justify-start gap-20 rounded-3xl font-semibold p-12 shadow-root w-full">
+    <div className="m-auto flex items-center justify-start gap-14 md:gap-20 rounded-3xl font-semibold p-5 md:p-12 shadow-root w-[25rem] md:w-full">
       <div className="relative">
-        <div className="rounded-full w-[150px] h-[150px] overflow-hidden border-2 border-gray-300">
+        <div className="rounded-full w-[100px] h-[100px] md:w-[150px] md:h-[150px] overflow-hidden border-2 border-gray-300">
           <Image
             width={ImageSize}
             height={ImageSize}
@@ -100,15 +100,15 @@ const MypageInfoUserCard: React.FC<MypageInfoUserCardProps> = ({
         />
       </div>
 
-      <div className="flex flex-col justify-center gap-3">
-        <span className="mb-3 text-3xl" style={profileStyle}>
+      <div className="flex flex-col justify-center gap-1 md:gap-3">
+        <span className="mb-3 text-xl md:text-3xl" style={profileStyle}>
           {userInfo?.nickName}
         </span>
         <div className="flex flex-col gap-1">
-          <span className="text-2xl" style={profileStyle}>
+          <span className="text-lg md:text-2xl" style={profileStyle}>
             dream
           </span>
-          <span className="text-2xl" style={profileStyle}>
+          <span className="text-lg md:text-2xl" style={profileStyle}>
             {userInfo?.email}
           </span>
         </div>

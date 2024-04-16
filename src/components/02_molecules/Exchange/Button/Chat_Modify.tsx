@@ -47,15 +47,15 @@ function ExchangeModify({ Edit, id }: EditProp) {
     <div className="flex items-center gap-4">
       <Button01
         type="button"
-        className="p-0 w-80 h-10 hover:bg-blue-primary hover:text-white"
+        className="p-0 w-[7rem] lg:w-80 h-10 hover:bg-blue-primary hover:text-white"
         onClick={() => navigate(`/Chat/${id}`)}
       >
         채팅하기
       </Button01>
       <Button01
         type="button"
-        className="p-0 w-80 h-10 hover:bg-blue-primary hover:text-white"
-        onClick={() => navigate(`/SignIn`)}
+        className="p-0 w-[7rem] lg:w-80 h-10 hover:bg-blue-primary hover:text-white"
+        onClick={() => navigate(`/ExchangeModify/${id}`)}
       >
         게시글 수정하기
       </Button01>

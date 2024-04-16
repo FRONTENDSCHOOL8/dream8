@@ -12,7 +12,7 @@ const SignInPage: React.FC = () => {
     path: 'SignIn',
   };
   return (
-    <section className="py-36 flex justify-center items-center ">
+    <section className="py-14 lg:py-36 flex justify-center items-center ">
       <MetaTag metaTag={metaTag} />
       <h2 className="sr-only">로그인페이지</h2>
 

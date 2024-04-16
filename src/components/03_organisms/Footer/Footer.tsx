@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer className="w-full bg-gray-300 text-sm px-20 pt-2">
-      <div className="max-w-[1440px] flex justify-between m-auto py-4">
+    <footer className=" w-full bg-gray-300 text-sm px-20 pt-2">
+      <div className="flex_lg:flex-col max-w-[1440px] flex justify-between m-auto py-4">
         <div className="flex flex-col gap-2">
           <span className="text-blue-900 font-bold">C/S CENTER</span>
           <span className="text-3xl text-gray-800">123-456-7890</span>

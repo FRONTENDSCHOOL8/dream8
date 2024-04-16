@@ -52,7 +52,7 @@ export const MypageSponsorship = () => {
   };
 
   return (
-    <section className="flex flex-col gap-10">
+    <section className="flex flex-col gap-10 w-[25rem] md:w-[37rem] xxl:w-full m-auto">
       <h2 className="text-2xl font-semibold">후원내역</h2>
       <div className="w-full h-[1px] bg-gray-200"></div>
       <div className="flex flex-col gap-10">

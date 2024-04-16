@@ -13,8 +13,8 @@ function Purchase({ checkedList, onClick }: purchaseType) {
 
   const totalPrice = price + 3000;
   return (
-    <section className="text-left w-[62.5rem] m-auto bg-[#F3F3F3] my-16 p-12">
-      <h3 className="text-3xl">구매정보</h3>
+    <section className="text-left w-[80%] xxl:w-[62.5rem] m-auto bg-[#F3F3F3] my-16 p-12">
+      <h3 className="text-2xl xxl:text-3xl">구매정보</h3>
       <div className="flex flex-col text-lg gap-6 mt-6">
         <div className="flex justify-between font-medium">
           <div>구매가</div>

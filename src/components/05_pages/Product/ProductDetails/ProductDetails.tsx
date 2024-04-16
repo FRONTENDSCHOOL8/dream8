@@ -42,7 +42,7 @@ export function ProductDetails() {
   const [productDetailData, productCategoryLists] = results;
 
   const { isLoggedIn, userInfo } = useLoginFormStore();
-
+  console.log('isLoggedIn  ', isLoggedIn);
   const handleClickPurchase = () => {
     if (isLoggedIn) {
       createMyCartData(userInfo.id, productId).then(() => navigate('/Payment'));
@@ -74,7 +74,7 @@ export function ProductDetails() {
   return (
     <>
       <MetaTag metaTag={metaTag} />
-      <div className="py-36 w-[75rem] m-auto flex flex-col">
+      <div className="py-36 w-full m-auto flex flex-col">
         <ProductDetailsInfo
           productDetailData={productDetailData.data}
           onClickPurchase={handleClickPurchase}

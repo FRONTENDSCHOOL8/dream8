@@ -177,9 +177,11 @@ export const Component: React.FC<MypageUserSettingProps> = ({
         {Object.entries(fields).map(([field, value]) => (
           <li
             key={field}
-            className="flex items-center justify-start gap-10 py-1 text-xl font-semibold"
+            className="flex items-center justify-start gap-1 md:gap-10 py-1 text-md md:text-xl font-semibold"
           >
-            <span className="w-[11rem]">{getFieldLabel(field)}</span>
+            <span className="w-[5rem] md:w-[11rem]">
+              {getFieldLabel(field)}
+            </span>
             {editMode[field as keyof EditModeState] ? (
               <Input
                 id={field}
@@ -204,6 +206,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
                 <div className="ml-auto">
                   {editMode[field as keyof EditModeState] ? (
                     <Button01
+                      className="lg_md_range:p-2"
                       type="button"
                       onClick={() => handleSave(field as keyof FieldsState)}
                     >
@@ -211,6 +214,7 @@ export const Component: React.FC<MypageUserSettingProps> = ({
                     </Button01>
                   ) : (
                     <Button01
+                      className="lg_md_range:p-2"
                       type="button"
                       onClick={() =>
                         handleEditToggle(field as keyof EditModeState)

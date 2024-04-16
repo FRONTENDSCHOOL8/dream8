@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import GlobalNavBar from './GlobalNavBar';
 import useLoginFormStore from '@/store/useLoginFormStore';
 import Logout from './Logout';
+import menu from 'public/menuberger.svg';
+import logo from '/logo.svg';
+import { MenuHamberger } from '@/components/svg/menuhamberger';
+import Sidebar from '@/components/02_molecules/Sidebar/Sidebar';
 
 function Header() {
   const { isLoggedIn } = useLoginFormStore();
@@ -40,16 +44,16 @@ function Header() {
 
   return (
     <header
-      className={`hover: fixed w-full transition-colors duration-300 z-30 ${
+      className={`p-2 px-10 hover: fixed w-full transition-colors duration-300 z-30 ${
         isHeaderVisible && isMainPage
           ? 'bg-transparent text-white'
-          : 'bg-white text-black'
+          : 'lg:bg-white text-black'
       }`}
       onMouseEnter={handleHover}
       onMouseLeave={handleMouseLeave}
     >
       <div className="max-w-[90rem] m-auto">
-        <div className="flex items-start justify-end text-sm gap-2">
+        <div className="hidden lg:flex items-start justify-end text-sm gap-2">
           {!isLoggedIn && (
             <Link
               to="/SignUp"
@@ -79,6 +83,12 @@ function Header() {
         <GlobalNavBar
           color={isHeaderVisible ? (isMainPage ? '#FFF' : '#000') : '#000'}
         />
+      </div>
+      <div className="lg:hidden p-2 py-5  flex items-center justify-between">
+        <img src={logo} alt="Dream 로고" className="pb-2 " />
+        <button type="button">
+          <Sidebar />
+        </button>
       </div>
     </header>
   );

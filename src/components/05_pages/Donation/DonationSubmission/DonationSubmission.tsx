@@ -106,7 +106,6 @@ function DonationSubmission() {
         await pb.collection('notification').create(data);
 
         plusCount();
-
       }
       localStorage.removeItem('donations');
       localStorage.setItem('lastDonationId', '0');
@@ -133,11 +132,11 @@ function DonationSubmission() {
   return (
     <>
       <MetaTag metaTag={metaTag} />
-      <div className="py-36">
-        <div className="flex flex-col gap-8 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
+      <div className="p-[5rem] xxl:py-36">
+        <div className="flex flex-col gap-8 items-center justify-center w-[20rem] md:w-[40rem] xl:w-[50rem] xxl:w-[64rem] m-auto py-20 xxl:border border-gray-200 rounded-[50px]">
           <h2 className="text-4xl">후원 신청</h2>
-  
-          <div className="max-w-[595px] flex flex-col gap-10 items-center">
+
+          <div className=" max-w-[595px] flex flex-col gap-10 items-center">
             <DonationForm onAddDonation={handleAddDonation} />
             <div className="w-full h-[1px] bg-gray-200"></div>
             <DonationTable

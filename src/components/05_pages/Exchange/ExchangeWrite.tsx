@@ -70,7 +70,7 @@ export function ExchangeWrite() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log('isLoggedIn  ', isLoggedIn);
     if (!isLoggedIn) {
       setOpen(true);
       setText({
@@ -173,25 +173,22 @@ export function ExchangeWrite() {
   // };
 
   return (
-    <div className="pb-10 max-w-[90rem] m-auto py-36">
+    <div className="pb-10 max-w-[90rem] m-auto py-[4rem] xl:py-36">
       <MetaTag metaTag={metaTagData} />
-      <div className="flex flex-col gap-20 items-center justify-center w-[64rem] m-auto py-20 border border-gray-200 rounded-[50px]">
-        <h1 className="flex items-center justify-center text-[1.875rem] ">
+      <div className="flex flex-col gap-20 items-center justify-center w-[20rem] xl:w-[50rem] xxl:w-[80rem] m-auto py-20 xxl:border border-gray-200 rounded-[50px]">
+        <h1 className="flex items-center justify-center text-[1.875rem] m-auto">
           교환 게시글 작성
         </h1>
-        <form
-          className="flex flex-col gap-8 w-[37.5rem]"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col gap-8  " onSubmit={handleSubmit}>
           {inputList.map((item, index) => (
             <div
               key={index}
-              className="flex justify-end items-center gap-3 pr-2"
+              className="flex xxl_max:flex-col justify-center items-center gap-3"
             >
               <label className="text-right">{item.name}</label>
               {item.options ? (
                 <select
-                  className="bg-gray-300 h-10 w-[28.125rem] px-5 rounded-[5px] text-center"
+                  className="bg-gray-300 h-10 w-[10rem] sm:w-[20rem]  md:w-[28.125rem] px-5 rounded-[5px] text-center"
                   onChange={(e) => handleChange(e, item.label)}
                   value={inputData[item.label] || item.options[0]}
                 >
@@ -205,7 +202,7 @@ export function ExchangeWrite() {
                 <Input
                   id=""
                   type={item.type}
-                  className="bg-gray-300 h-10 w-[28.125rem] rounded-[5px]"
+                  className="bg-gray-300 h-10 w-[10rem] sm:w-[20rem] md:w-[28.125rem] rounded-[5px]"
                   value={inputData[item.label] || ''}
                   onChange={(e) => handleChange(e, item.label)}
                 />
@@ -216,12 +213,12 @@ export function ExchangeWrite() {
             <label>상세 설명</label>
             <TextArea
               name="상세설명"
-              className="h-36 w-full p-2 bg-gray-300"
+              className="h-36 w-[10rem] md:w-[20rem] lg:w-[28.125rem] p-2 bg-gray-300"
               value={inputData.product_detail}
               onChange={(e) => handleChange(e, 'product_detail')}
             />
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-center m-auto ">
             <label className="w-28 ">사진 업로드</label>
             <Button
               type="button"
@@ -238,7 +235,7 @@ export function ExchangeWrite() {
               onChange={handleFileInputChange}
             />
           </div>
-          <div className="rounded-md bg-gray-300">
+          <div className="rounded-md m-auto w-[10rem] md:w-[20rem] lg:w-[28.125rem] bg-gray-300">
             <img
               src={previewImage?.toString()}
               alt=""

@@ -7,7 +7,7 @@ function ArrangeButton({ onSelectArrange, children }: ArrangeButtonProps) {
   return (
     <li>
       <button
-        className="text-lg font-medium text-gray-500 w-24 h-11 hover:text-blue-primary hover:font-bold"
+        className="text-sm lg_md:text-lg font-medium text-gray-500 w-[80%] lg_md:w-24 h-11 hover:text-blue-primary hover:font-bold whitespace-nowrap "
         onClick={onSelectArrange}
       >
         {children}
@@ -27,8 +27,8 @@ function ArrangeProduct({ onSelect }: ArrangeProductProps) {
   };
   return (
     <div className="px-[1rem]">
-      <h2 className="sr-only">정렬</h2>
-      <ul className="flex flex-row justify-end items-center text-gray-500">
+      <h2 className="sr-only ">정렬</h2>
+      <ul className="flex flex-row justify-end items-center text-gray-500 lg_md_range:gap-1">
         <ArrangeButton onSelectArrange={handleChangeArrange}>
           등급순
         </ArrangeButton>{' '}

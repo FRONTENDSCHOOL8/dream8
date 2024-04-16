@@ -17,17 +17,17 @@ function RelativeProducts({ lists, category }: relativeProductsType) {
     else setViewNumber(viewNumber + 4);
   };
   return (
-    <section className="flex flex-col text-center mb-24">
-      <h2 className="text-3xl pb-14">관련 상품</h2>
+    <section className="flex flex-col text-center mb-24 ">
+      <h2 className="text-2xl xl:text-3xl pb-14">관련 상품</h2>
 
-      <ul className="flex flex-row gap-2 justify-center">
+      <ul className="flex xxl:flex-row flex-col gap-2 justify-center xl_md:w-[17rem] m-auto">
         {lists.slice(viewNumber - 4, viewNumber).map((list) => (
           <Link key={list.id} to={`/ProductDetails/${list.id}/${category}`}>
             <ListProduct list={list} />
           </Link>
         ))}
 
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <Button
             type="button"
             onClick={handleShowMore}
