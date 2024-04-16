@@ -36,14 +36,14 @@ export function Product() {
     initialData: productLists,
     staleTime: 1000 * 10,
   });
-
+  //w-[90rem] max-w-[90rem]
   return (
     <>
       <MetaTag metaTag={metaTag} />
-      <div className="flex flex-col gap-8 bg-white m-auto w-[90rem] max-w-[90rem] py-36">
+      <div className="flex flex-col gap-8 bg-white m-auto w-full max-w-[90rem] py-36">
         <h2 className="sr-only">판매 페이지</h2>
         <SearchProduct onSearch={onSearch} />
-        <div className="flex flex-row justify-end px-[6rem] items-center">
+        <div className="flex flex-row justify-center lg_md:justify-end lg_md:px-[6rem] items-center ">
           <ArrangeProduct onSelect={onSelectSort} />
           <CategoryProduct onSelect={onSelectCategory} />
         </div>

@@ -61,7 +61,7 @@ function SignUpInput() {
 
   return (
     <form
-      className="w-[30rem] flex flex-col gap-7"
+      className=" md:w-[70%] flex flex-col gap-7 px-10 "
       onSubmit={handleSubmit(onSubmit)}
     >
       <div>
@@ -203,8 +203,8 @@ function SignUpInput() {
         </p>
       </div>
       <div>
-        <div className="flex gap-3 justify-center items-end">
-          <label htmlFor="address" className="flex-1">
+        <div className="flex flex_lg:flex-col gap-3 justify-center items-end">
+          <label htmlFor="address" className="flex-1 w-full">
             주소
             <input
               id="address"
@@ -223,7 +223,7 @@ function SignUpInput() {
           </label>
           <button
             type="button"
-            className="border rounded-xl w-20 h-[3rem] hover:shadow-root"
+            className="flex_lg:w-full border rounded-xl w-20 h-[3rem] hover:shadow-root"
             onClick={handleAddress}
           >
             주소입력

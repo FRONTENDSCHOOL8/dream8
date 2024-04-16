@@ -19,9 +19,10 @@ export function ExchangeDetail() {
     path: '/Exchange/ExchangeDetail/:id',
   };
 
-  const { userInfo } = useLoginFormStore();
+  const { isLoggedIn, userInfo } = useLoginFormStore();
   const exchangeOneLists = useLoaderData();
 
+  console.log('isLoggedIn  ', isLoggedIn);
   const { data, isLoading, error } = useQuery({
     queryKey: ['exchangeDetail', id],
     queryFn: () => useGetOneUser(id),
@@ -36,21 +37,21 @@ export function ExchangeDetail() {
   const Edit = userData?.id === userInfo.id;
 
   return (
-    <div className="justify-center pt-32 pb-5 flex flex-col max-w-[90rem]  m-auto ">
+    <div className="justify-center  pt-32 pb-5 flex flex-col max-w-[90rem]  m-auto ">
       <MetaTag metaTag={metaTagData} />
-      <div className="flex">
+      <div className="flex xxl_max:flex-col xxl_max:m-auto xxl_max:items-center">
         <img
           src={getPbImageURL(data, 'product_img')}
           className="w-[18.75rem] h-[18.75rem] rounded-xl"
         />
-        <div className="flex flex-col pl-14 gap-6">
+        <div className="flex flex-col xxl:pl-14 gap-6">
           <p>{data?.type}</p>
           <h2 className="text-2xl">{data?.title}</h2>
           <StateBox
             className="bg-orange-primary text-white w-14 text-[0.875rem] flex justify-center items-center rounded-[0.3125rem]"
             name="교환가능"
           ></StateBox>
-          <div className="border border-gray-200 p-2">
+          <div className="border border-gray-200 p-2 xxl_max:w-[80%]">
             <User userName={userName} />
           </div>
           <p className="text-gray-100 text-xs">
@@ -60,9 +61,11 @@ export function ExchangeDetail() {
           <Chat_Modify Edit={Edit} id={id} />
         </div>
       </div>
-      <div className="pt-10 flex flex-col ">
+      <div className="pt-10 flex flex-col xxl_max:text-center">
         <h1>상품정보</h1>
-        <p className="border rounded-md h-52 p-4">{data?.product_detail}</p>
+        <p className="border rounded-md h-52 p-4 m-auto xxl_max:w-[80%] xxl:w-full">
+          {data?.product_detail}
+        </p>
       </div>
     </div>
   );

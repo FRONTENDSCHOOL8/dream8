@@ -3,9 +3,22 @@ export default {
   content: ['./src/**/*.{html,js,tsx,ts}'],
   theme: {
     screens: {
+      flex_lg: { min: '0', max: '950px' },
       mob: { min: '320px', max: '767px' },
       tab: { min: '768px', max: '1023px' },
-      desk: { min: '1024px', max: '1439px' },
+      // desk: { min: '1024px', max: '1439px' },
+      sm_range: { min: '200px', max: '500px' },
+      sm: '500px',
+      md_range: { min: '0px', max: '660px' },
+      md: '660px',
+      lg_md_range: { min: '0', max: '758px' },
+      lg_md: '758px',
+      lg: '950px',
+      xl_md: { min: '0', max: '1024px' },
+      xxl_max: { min: '0', max: '1300px' },
+      xl: '1024px',
+      xxl: '1300px',
+      xxxl: '1400px',
     },
     extend: {
       display: ['group-hover'],

@@ -26,7 +26,7 @@ function MyCartList({ list, onChecked, onDelete }: MyCartListType) {
   };
 
   return (
-    <li className="grid grid-cols-[1fr_2fr_6fr_2fr_1fr] items-center text-lg bg-white px-12 py-4 rounded-2xl">
+    <li className="grid xxl:grid-cols-[1fr_2fr_6fr_2fr_1fr] xxl_max:grid-cols-[1fr_1fr_2fr_1fr_1fr] items-center text-lg bg-white px-12 py-4 rounded-2xl">
       <div>
         <label htmlFor={list.id} className="sr-only">
           구매체크
@@ -44,11 +44,11 @@ function MyCartList({ list, onChecked, onDelete }: MyCartListType) {
         <img
           src={imageSrc}
           alt={title}
-          className="w-28 h-28 rounded-3xl object-cover m-auto"
+          className="w-[4.5rem] h-[4.5rem] xxl:w-28 xxl:h-28 rounded-3xl object-cover m-auto"
         />
       </figure>
-      <div className="flex justify-between items-center">
-        <div className="flex flex-col font-semibold">
+      <div className="flex xxl_max:flex-col justify-between items-center">
+        <div className="flex flex-col font-semibold xxl_max:text-sm">
           <div>{title}</div>
           <div className="font-base self-start"> 사이즈: {size}</div>
         </div>

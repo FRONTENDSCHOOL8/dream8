@@ -12,13 +12,25 @@ export function Mypage() {
     path: 'Mypage',
   };
   return (
-    <section className="w-[90rem] flex flex-col justify-center items-center m-auto py-36">
+    <section className=" flex flex-col justify-center items-center m-auto py-36">
       <MetaTag metaTag={metaTag} />
-      <h2 className="text-3xl font-semibold text-center">마이페이지</h2>
-      <div className="w-[64rem] flex items-start gap-20 justify-between py-10">
+      <h2 className="xxl_max:fixed xxl_max:top-8 bg-white w-full text-3xl font-semibold text-center">
+        마이페이지
+      </h2>
+
+      <div className="xxl_max:hidden w-[64rem] flex items-start gap-20 justify-between py-10 ">
         <CategoryMolecules />
         <div className="w-[56rem] flex flex-col gap-10">
           <MypageInfoUserCard />
+          <Outlet></Outlet>
+        </div>
+      </div>
+
+      <div className="xxl:hidden  flex flex-col items-start gap-20 py-10 ">
+        <CategoryMolecules />
+        <div className="w-full xxl:w-[56rem] flex flex-col gap-10 m-auto">
+          <MypageInfoUserCard />
+
           <Outlet></Outlet>
         </div>
       </div>

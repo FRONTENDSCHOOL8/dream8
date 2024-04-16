@@ -48,7 +48,7 @@ export const MypageTransaction = () => {
 
   console.log('cartData  ', cartData);
   return (
-    <section className="flex flex-col gap-10">
+    <section className="flex flex-col gap-10 w-[25rem] md:w-full">
       <h2 className="text-2xl font-semibold">구매내역</h2>
       <div className="w-full h-[1px] bg-gray-200"></div>
       <div className="flex flex-col gap-10">

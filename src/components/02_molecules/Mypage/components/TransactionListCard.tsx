@@ -35,7 +35,7 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
     <div
       role="button"
       tabIndex={0}
-      className={`transactionListCard-molecules ${className}`}
+      className={`transactionListCard-molecules ${className} w-full lg_md_range:h-full lg_md_range:py-3`}
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
@@ -48,10 +48,13 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
           rows.map((row, index) => (
             <div
               key={index}
-              className="w-[100px] h-[100px] rounded-[20px] shadow-root flex justify-center items-center overflow-hidden"
+              className="w-[4rem] h-[4rem] md:w-[100px] md:h-[100px] rounded-[20px] shadow-root flex justify-center items-center overflow-hidden"
             >
               {row.map((image, idx) => (
-                <div key={idx} className="w-full h-full">
+                <div
+                  key={idx}
+                  className="w-[4rem] h-[4rem] md:w-full md:h-full"
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
@@ -70,11 +73,14 @@ const TransactionListCard: React.FC<TransactionListCardProps> = ({
         )}
       </div>
 
-      <div className="w-[50%] truncate break-words text-xl font-semibol">
+      <div className="w-[50%] truncate break-words  md:text-xl font-semibol">
         {content}
       </div>
       {isPayed && (
-        <Button01 type="button" className="bg-blue-primary text-white text-lg">
+        <Button01
+          type="button"
+          className="bg-blue-primary text-white text-sm md:text-lg"
+        >
           {' 완료 '}
         </Button01>
       )}

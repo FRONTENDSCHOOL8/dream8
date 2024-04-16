@@ -5,11 +5,11 @@ const CategoryMolecules = ({}) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
-    <div className="sticky top-20 flex flex-col whitespace-nowrap px-14 py-20 border border-gray-300 justify-center items-center gap-20">
+    <div className="z-10  m-auto sticky top-20 flex  xxl:flex-col whitespace-nowrap p-7 xxl:px-14 xxl:py-20 bg-white  border border-gray-300 justify-center items-center xxl:gap-20 lg:gap-10 gap-2">
       <Button
         type="button"
         aria-label="회원정보 자세히보기 버튼"
-        className={`text-2xl font-semibold ${
+        className={` md:text-xl xxl:text-2xl font-semibold ${
           pathname === '/Mypage' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
@@ -21,7 +21,7 @@ const CategoryMolecules = ({}) => {
       <Button
         type="button"
         aria-label="장바구니 페이지 버튼"
-        className={`text-2xl font-semibold ${
+        className={`md:text-xl xxl:text-2xl font-semibold ${
           pathname === '/Payment' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
@@ -33,7 +33,7 @@ const CategoryMolecules = ({}) => {
       <Button
         type="button"
         aria-label="구매내역 자세히보기 버튼"
-        className={`text-2xl font-semibold ${
+        className={`md:text-xl xxl:text-2xl font-semibold ${
           pathname === '/Mypage/purchase' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
@@ -45,7 +45,7 @@ const CategoryMolecules = ({}) => {
       <Button
         type="button"
         aria-label="교환내역 자세히보기 버튼"
-        className={`text-2xl font-semibold ${
+        className={`md:text-xl xxl:text-2xl font-semibold ${
           pathname === '/Mypage/exchange' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {
@@ -57,7 +57,7 @@ const CategoryMolecules = ({}) => {
       <Button
         type="button"
         aria-label="후원내역 자세히보기 버튼"
-        className={`text-2xl font-semibold ${
+        className={`md:text-xl xxl:text-2xl font-semibold ${
           pathname === '/Mypage/donation' ? 'text-blue-primary' : ''
         }`}
         onClick={() => {

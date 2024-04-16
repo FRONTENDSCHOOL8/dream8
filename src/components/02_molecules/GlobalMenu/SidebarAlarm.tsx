@@ -1,25 +1,16 @@
-import { Link, useLocation } from 'react-router-dom';
-import logo from '/logo.svg';
-import alarmIcon from '/alarm.svg';
-import mailIcon from '/mail.svg';
 import Button from '@/components/01_atoms/Button/Button';
-import { useState, useEffect } from 'react';
-import useCountStore from '@/store/useCountStore';
-import NotificationCommon from './Notification/NotificationCommon';
-import { Dialog, Transition } from '@headlessui/react';
+import NotificationCommon from '@/components/03_organisms/Header/Notification/NotificationCommon';
 import { Alarm } from '@/components/svg/alarm';
 import { Mail } from '@/components/svg/mail';
-import GlobalMenu from '@/components/02_molecules/GlobalMenu/GlobalMenu';
+import useCountStore from '@/store/useCountStore';
+import { Dialog } from '@headlessui/react';
+import { useEffect, useState } from 'react';
 
-export type GlobalNavBar = {
-  color?: string;
-};
-
-function GlobalNavBar({ color }: GlobalNavBar) {
+const SidebarAlarm = () => {
   const { count } = useCountStore();
   const [isOpen, setOpen] = useState(false);
   const { resetCount } = useCountStore();
-  const location = useLocation();
+  const color = '#FFF';
 
   useEffect(() => {
     setOpen(false);
@@ -29,13 +20,8 @@ function GlobalNavBar({ color }: GlobalNavBar) {
     setOpen((prevState) => !prevState);
     resetCount();
   };
-
   return (
-    <div className="hidden lg:flex items-center justify-between">
-      <img src={logo} alt="Dream 로고" className="pb-2" />
-
-      <GlobalMenu direction={''} />
-
+    <>
       <div className="flex justify-center gap-5">
         <Button ariaLabel="이메일로 이동" type="button">
           <Mail color={color} />
@@ -67,8 +53,8 @@ function GlobalNavBar({ color }: GlobalNavBar) {
           </Dialog.Panel>
         </Dialog>
       )}
-    </div>
+    </>
   );
-}
+};
 
-export default GlobalNavBar;
+export default SidebarAlarm;
