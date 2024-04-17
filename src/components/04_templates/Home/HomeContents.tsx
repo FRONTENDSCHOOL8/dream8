@@ -29,11 +29,9 @@ function HomeContents() {
       }
     }, 150);
 
-    window.addEventListener('scroll', handleScroll);
     window.addEventListener('wheel', handleScroll);
     return () => {
       handleScroll.cancel();
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleScroll);
     };
   }, [sectionCount]);
