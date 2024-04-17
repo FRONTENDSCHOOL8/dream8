@@ -29,14 +29,16 @@ function HomeContents() {
       }
     }, 150);
 
+    window.addEventListener('scroll', handleScroll);
     window.addEventListener('wheel', handleScroll);
     return () => {
       handleScroll.cancel();
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleScroll);
     };
   }, [sectionCount]);
 
-  // gsap
+  gsap;
   useEffect(() => {
     gsap.to(window, {
       scrollTo: { y: window.innerHeight * currentSection, autoKill: false },
@@ -226,7 +228,6 @@ function HomeContents() {
           </p>
         </div>
       </div>
-
       <div
         tabIndex={0}
         className="snap-start w-screen h-screen bg-blue-primary"
@@ -244,7 +245,6 @@ function HomeContents() {
           />
         </div>
       </div>
-
       <div
         tabIndex={0}
         className="snap-start w-screen h-screen"
@@ -267,7 +267,6 @@ function HomeContents() {
           </p>
         </div>
       </div>
-
       <div tabIndex={0} className="snap-start w-screen h-screen bg-white">
         <div className="flex flex-col items-center justify-center gap-16 w-[80%] m-auto text-center h-full">
           <h1 className="sr-only">section 4</h1>
@@ -285,7 +284,6 @@ function HomeContents() {
           </p>
         </div>
       </div>
-
       <div tabIndex={0} className="snap-start w-screen  h-full">
         <div className="max-w-[90rem] h-full flex flex-col items-center justify-start gap-20 m-auto">
           <h2 className="text-4xl lg:text-5xl">드림 소식</h2>
